@@ -45,9 +45,16 @@ void i2c_init() {
 
 void InitApp(void)
 {
-    TRISA   = 0b00010111; // CPS0_RA0(p7) CPS3_RA4(p3)
+    TRISA   = 0b00000111; // DACOUT_RA0(p7)
                           //RA1(p6):SCL RA2(p5):SDA
     i2c_init();
+
+    ANSELA  = 0b00000001; // RA0 = Analog
+
+    FVRCON = 0b11101000; // Setup FVR to 2.048V 8:FVREN(1) 7:FVRRDY(1) 6:TSEN(0) 5:TSRNG(0) 3..4:CDAFVR(10 2.048V) 1..2:ADFVR(00 Off)
+    // Setup DAC
+    DACCON0 = 0b10101000; // 8:DACEN(1) 7:DACLPS(0) 6:DACOE(1) 3..4:DACPSS(10 = FVR Buffer2 output)
+    DACCON1 = 0b00000000; // 1..5:DACR(00000 - 0V)
 
     //TIMER0 SETUP
     OPTION_REG = 0b11000011; // 8:WPUEN(1) 7:INTEDG(1) 6:TMR0CS(0) 5:TMR0SE(0) 4:PSA(0 Timer0) 1..3:PS(011 1:16)

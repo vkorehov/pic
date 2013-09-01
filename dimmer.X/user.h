@@ -14,6 +14,7 @@ extern unsigned char i2c_error;
 extern unsigned int syncperiod;
 extern unsigned short hz100_period;
 extern unsigned short hz100_bres;
+extern unsigned short hz100_command;
 
 /******************************************************************************/
 /* User Function Prototypes                                                   */
@@ -29,5 +30,6 @@ void i2c_Address(unsigned char address, unsigned char mode);
 
 void hz100_clock();
 void hz100_sync();
+void hz100_1mhz();
 
 void InitApp(void);         /* I/O and Peripheral Initialization */

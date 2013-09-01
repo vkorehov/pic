@@ -41,6 +41,7 @@ void interrupt isr(void) {
             hz100_bres -= hz100_period; // subtract period, retain error
             hz100_clock();
         }
+        hz100_1mhz();
     }
     if (BCL1IE && BCL1IF) {
         BCL1IF = 0;
