@@ -1,7 +1,17 @@
-_ConfigureOscillator: CODE, 102 0 4
-_main: CODE, 95 0 7
-_InitApp: CODE, 39 0 27
-__initialization: CODE, 85 0 7
-_isr: CODE, 4 0 33
-_i2c_init: CODE, 66 0 19
-Total: 97
+_hz100_sync: CODE, 207 0 208
+_i2c_Write: CODE, 579 0 10
+_hz100_clock: CODE, 630 0 1
+_i2c_on_command: CODE, 618 0 5
+_i2c_Wait: CODE, 605 0 7
+_ConfigureOscillator: CODE, 623 0 4
+_main: CODE, 598 0 7
+i1_i2c_init: CODE, 513 0 22
+_InitApp: CODE, 555 0 13
+__initialization: CODE, 469 0 19
+___lwdiv: CODE, 415 0 54
+_isr: CODE, 4 0 201
+_i2c_check_error: CODE, 535 0 20
+_i2c_destroy: CODE, 568 0 11
+_i2c_handle_error: CODE, 589 0 9
+_i2c_init: CODE, 491 0 22
+Total: 613

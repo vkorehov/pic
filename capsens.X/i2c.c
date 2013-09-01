@@ -14,10 +14,6 @@
 #include "system.h"
 #include "user.h"
 
-#define I2C_MYADDR 0x10                    // This device I2C address
-#define I2C_SLAVE 0x40                    // Slave device I2C address
-#define I2C_RETRY_DELAY  713
-#define I2C_RETRIES 3
 unsigned char i2c_command_id;
 unsigned char i2c_own_bus; //
 unsigned char i2c_retry;
@@ -49,11 +45,13 @@ static unsigned char handle_error(unsigned char waitAck) {
     i2c_ack = 0;
     i2c_Wait(); // Wait first for last operation completion!
     if (i2c_error) {
-        i2c_destroy();
-        i2c_own_bus = 0;
+        if(i2c_error == 1) { // Collision detected
+            i2c_destroy(); // Clear all flags
+            i2c_own_bus = 0;
+        }
         i2c_error = 0;
         __delay_us(I2C_RETRY_DELAY);
-        i2c_init();
+        i2c_init(); // Clear all flags
         return 1;
     }
     if (waitAck) {
