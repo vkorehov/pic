@@ -1,0 +1,7 @@
+_ConfigureOscillator: CODE, 102 0 4
+_main: CODE, 95 0 7
+_InitApp: CODE, 39 0 27
+__initialization: CODE, 85 0 7
+_isr: CODE, 4 0 33
+_i2c_init: CODE, 66 0 19
+Total: 97
