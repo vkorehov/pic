@@ -73,12 +73,12 @@ void hz100_sync() {
         if (initial_adjustments == INITIAL_ADJ_COUNT) { // Initially simply reset period measure
             syncperiod = 0;
             return;
-        } else if (initial_adjustments == INITIAL_ADJ_COUNT - 1) {
+        } else if (initial_adjustments == (INITIAL_ADJ_COUNT - 1)) {
             sync_average = sync_averages[0] = sync_averages[1] = sync_averages[2] = sync_averages[3] = sync_averages[4] = syncperiod;
         }
         initial_adjustments--;
     }
-    if (syncperiod > 1300000 || syncperiod < 700000) { // Sync period too high, probably collision occured
+    if ((syncperiod > 1300000) || (syncperiod < 700000)) { // Sync period too high, probably collision occured
         syncperiod = 0;
         return;
     }
@@ -96,7 +96,7 @@ void hz100_sync() {
     // Phase adjustment
     TMR0IE = 0; // Disable interrupts from timer
     // How close we were from triggering?
-    if (hz100_bres < hz100_period && hz100_period - hz100_bres < PHASE_REPLACE_PROXIMITY) {
+    if ((hz100_bres < hz100_period) && ((hz100_period - hz100_bres) < PHASE_REPLACE_PROXIMITY)) {
         hz100_bres = hz100_period;
         hz100_clock();
     }

@@ -20,16 +20,19 @@ void i2c_check_error() {
         i2c_error = 2;
         WCOL = 0;
     }
-    if(SSPOV) {
+    if (SSPOV) {
         i2c_error = 3;
         SSPOV = 0;
     }
 }
 
 unsigned short i2c_on_command(unsigned char* command) {
-    return 0x11;
+    unsigned short old = hz100_command;
+    if (command[1] != 0xff) {
+        hz100_command = *((unsigned short*) &command[2]);
+    }
+    return old;
 }
-
 
 void i2c_Wait(void) {
     //SSP1CON2: 8:GCEN 7:ACKSTAT 6:ACKDT 5:ACKEN 4:RCEN 3:PEN 2:RSEN 1:SEN
