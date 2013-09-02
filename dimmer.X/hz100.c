@@ -28,28 +28,27 @@ unsigned short hz100_command;
 
 static void on(unsigned char slope) {
     // Todo use slope exp control here!
-    DACCON1 = (slope>>3);
+    DACCON1 = (slope >> 3);
 }
 
 static void off(unsigned char slope) {
     // Todo use slope exp control here!
-    DACCON1 = ((~slope)>>3);
+    DACCON1 = ((~slope) >> 3);
 }
 
 void hz100_1mhz() {
-    if(hz100_command == 0x0000 || (0xffff - hz100_command) <= LEAVE_ON_PROXIMITY) {
+    if (hz100_command == 0x0000 || (0xffff - hz100_command) <= LEAVE_ON_PROXIMITY) {
         return;
     }
     if (hz100_bres < hz100_period) {
         unsigned short offset = hz100_bres - hz100_period;
         // Scale up
         offset *= 6;
-        if (offset + LEAVE_ON_PROXIMITY> hz100_command) {
+        if (offset + LEAVE_ON_PROXIMITY > hz100_command) {
             unsigned int slope_offset = hz100_command - offset;
-            if(slope_offset < LEAVE_ON_PROXIMITY) {
+            if (slope_offset < LEAVE_ON_PROXIMITY) {
                 off((slope_offset >> 7));
-            }
-            else {
+            } else {
                 off(0xff);
             }
         }
@@ -78,6 +77,10 @@ void hz100_sync() {
             sync_average = sync_averages[0] = sync_averages[1] = sync_averages[2] = sync_averages[3] = sync_averages[4] = syncperiod;
         }
         initial_adjustments--;
+    }
+    if (syncperiod > 1300000 || syncperiod < 700000) { // Sync period too high, probably collision occured
+        syncperiod = 0;
+        return;
     }
     for (int k = 4; k > 0; k--) {
         sync_averages[k] = sync_averages[k - 1];
