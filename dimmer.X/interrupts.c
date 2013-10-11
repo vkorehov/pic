@@ -43,21 +43,21 @@ void interrupt isr(void) {
         }
         hz100_1mhz();
     }
-    if (BCL1IE && BCL1IF) {
-        BCL1IF = 0;
+    if (BCLIE && BCLIF) {
+        BCLIF = 0;
         i2c_error = 1;
         i2c_collisions++;
     }
-    if (SSP1IE && SSP1IF) {
-        SSP1IE = 0; // Disable interrupts. Everythong is synchronous here
+    if (SSPIE && SSPIF) {
+        SSPIE = 0; // Disable interrupts. Everythong is synchronous here
         i2c_check_error();
         if (!i2c_error) {
-            if (SSP1STATbits.S) {
+            if (SSPSTATbits.S) {
                 i2c_state = 1;
-            } else if (SSP1STATbits.P) {
+            } else if (SSPSTATbits.P) {
                 i2c_state = 0;
             }
-            if (SSP1STATbits.BF) {
+            if (SSPSTATbits.BF) {
                 if (i2c_state == 0) {
                     volatile unsigned char unused = SSPBUF;
                 } else if (i2c_state == 1) {
@@ -96,8 +96,8 @@ void interrupt isr(void) {
         } else {
             i2c_handle_error();
         }
-        SSP1IF = 0;
-        SSP1IE = 1; // Reenable interrupts
+        SSPIF = 0;
+        SSPIE = 1; // Reenable interrupts
     }
 }
 
