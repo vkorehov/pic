@@ -26,7 +26,7 @@ static void i2c_Write(unsigned char data);
 static void i2c_Address(unsigned char address, unsigned char mode);
 static unsigned char i2c_Read(unsigned char ack);
 
-static const uint8_t pec_lookup[256] =
+static const unsigned char pec_lookup[256] =
 {
 0x00U, 0x07U, 0x0EU, 0x09U, 0x1CU, 0x1BU, 0x12U, 0x15U,
 0x38U, 0x3FU, 0x36U, 0x31U, 0x24U, 0x23U, 0x2AU, 0x2DU,
@@ -151,6 +151,7 @@ void i2c_command8(unsigned char command) {
 void i2c_command16(unsigned short command) {
     unsigned char current_command;
     unsigned char pec;
+
     i2c_retry = I2C_RETRIES;
     i2c_own_bus = 0;
     while (i2c_retry-- > 0) {
@@ -162,7 +163,7 @@ void i2c_command16(unsigned short command) {
         i2c_Address(I2C_SLAVE, I2C_WRITE); // Send slave address - write operation
         if (handle_error(1)) continue;
         pec = pec_lookup[pec ^ I2C_SLAVE];
-
+        
         i2c_Write(I2C_MYADDR); //
         if (handle_error(1)) continue;
         pec = pec_lookup[pec ^ I2C_MYADDR];
@@ -178,8 +179,11 @@ void i2c_command16(unsigned short command) {
 
         i2c_Write(command); //
         if (handle_error(1)) continue;
-        pec = pec_lookup[pec ^ command];
+        pec = pec_lookup[pec ^ ((unsigned char)command)];
         
+        i2c_Write(pec); //
+        if (handle_error(1)) continue;
+
         i2c_Stop(); // send Stop
         i2c_own_bus = 0;
         if (handle_error(0)) continue;

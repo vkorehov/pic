@@ -1,20 +1,20 @@
 _pec_lookup: STRCODE, 257 0 256
-_i2c_Address: CODE, 849 0 18
-_i2c_Write: CODE, 889 0 10
+_i2c_Address: CODE, 857 0 18
+_i2c_Write: CODE, 897 0 10
 __stringtab: STRCODE, 256 0 1
-_i2c_Stop: CODE, 918 0 8
-_i2c_Wait: CODE, 942 0 7
-_ConfigureOscillator: CODE, 955 0 4
-_main: CODE, 770 0 31
-_handle_error: CODE, 709 0 61
-_InitApp: CODE, 801 0 29
-__initialization: CODE, 867 0 8
+_i2c_Stop: CODE, 926 0 8
+_i2c_Wait: CODE, 950 0 7
+_ConfigureOscillator: CODE, 963 0 4
+_main: CODE, 778 0 31
+_handle_error: CODE, 717 0 61
+_InitApp: CODE, 809 0 29
+__initialization: CODE, 875 0 8
 _isr: CODE, 4 0 90
-_handle_restart: CODE, 899 0 10
-_i2c_Start: CODE, 934 0 8
-_i2c_Restart: CODE, 926 0 8
-_i2c_destroy: CODE, 878 0 11
-_check_error: CODE, 909 0 9
-_i2c_init: CODE, 830 0 19
-_i2c_command16: CODE, 513 0 196
-Total: 784
+_handle_restart: CODE, 907 0 10
+_i2c_Start: CODE, 942 0 8
+_i2c_Restart: CODE, 934 0 8
+_i2c_destroy: CODE, 886 0 11
+_check_error: CODE, 917 0 9
+_i2c_init: CODE, 838 0 19
+_i2c_command16: CODE, 513 0 204
+Total: 792
