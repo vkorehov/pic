@@ -46,13 +46,13 @@ void interrupt isr(void) {
         TMR1H = 0x00;
         TMR1ON = 1; // Restart Timer1
     }
-    if (BCL1IE && BCL1IF) {
-        BCL1IF = 0;
+    if (BCLIE && BCLIF) {
+        BCLIF = 0;
         i2c_error = 1;
         i2c_collisions++;
     }
-    if (SSP1IE && SSP1IF) {
-        SSP1IF = 0;
+    if (SSPIE && SSPIF) {
+        SSPIF = 0;
         if (!ACKSTAT) {
             i2c_ack = 1;
         }

@@ -17,7 +17,6 @@ extern unsigned char i2c_ack;
 /******************************************************************************/
 /* User Function Prototypes                                                   */
 /******************************************************************************/
-unsigned char i2c_command8_and_read(unsigned char command);
 void i2c_command16(unsigned short command);
 void i2c_command8(unsigned char command);
 void i2c_init();

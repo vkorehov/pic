@@ -30,8 +30,6 @@ void main(void) {
 
     while (1) {
         i2c_command16(cps0_value);
-        __delay_ms(50);
-        i2c_command16(cps3_value);
         __delay_ms(1000);
     }
 
