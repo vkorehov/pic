@@ -15,8 +15,6 @@
       <itemPath>configuration_bits.c</itemPath>
       <itemPath>interrupts.c</itemPath>
       <itemPath>main.c</itemPath>
-      <itemPath>system.c</itemPath>
-      <itemPath>user.c</itemPath>
       <itemPath>i2c.c</itemPath>
       <itemPath>flash.c</itemPath>
     </logicalFolder>
@@ -615,6 +613,7 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/C:/Users/vlad/Documents/GitHub/pic/bootloader.X/i2c.c</file>
+        <file>file:/C:/Users/vlad/Documents/GitHub/pic/bootloader.X/i2c.h</file>
+        <file>file:/C:/Users/vlad/Documents/GitHub/pic/bootloader.X/flash.c</file>
+        <file>file:/C:/Users/vlad/Documents/GitHub/pic/bootloader.X/interrupts.c</file>
+        <file>file:/E:/Microchip/xc8/v1.20/include/pic16f1938.h</file>
+        <file>file:/C:/Users/vlad/Documents/GitHub/pic/bootloader.X/main.c</file>
+        <file>file:/C:/Users/vlad/Documents/GitHub/pic/bootloader.X/configuration_bits.c</file>
+    </open-files>
 </project-private>

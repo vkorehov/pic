@@ -60,8 +60,7 @@ extern ADDRESS	flash_addr_pointer;
 
 
 // function prototypes
-void i2c_init(void);
-int  do_i2c_tasks(void);
+void  do_i2c_tasks(void);
 
 // externs
 extern unsigned char nrbytes;

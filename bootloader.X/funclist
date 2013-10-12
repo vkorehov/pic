@@ -1,14 +1,9 @@
-_init: CODE, 495 0 4
-__stringtab: STRING, 2 0 1
-_flash_memory_read: CODE, 404 0 19
-_ConfigureOscillator: CODE, 491 0 4
-_main: CODE, 439 0 13
-__WriteData: CODE, 476 0 9
-_mask: STRING, 3 0 1
-__initialization: CODE, 465 0 8
-_flash_memory_erase: CODE, 423 0 16
-_flash_memory_write: CODE, 329 0 75
-_do_i2c_tasks: CODE, 15 0 314
+_flash_memory_read: CODE, 435 0 19
+_main: CODE, 396 0 20
+__WriteData: CODE, 470 0 9
+__initialization: CODE, 416 0 16
+_flash_memory_erase: CODE, 454 0 16
+_flash_memory_write: CODE, 315 0 81
+_do_i2c_tasks: CODE, 15 0 300
 _serrvice_isr: CODE, 4 0 9
-_i2c_init: CODE, 452 0 13
-Total: 486
+Total: 470

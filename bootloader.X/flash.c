@@ -20,7 +20,6 @@
 //****************************************************************
 unsigned int flash_memory_read (unsigned int address)
 {
-
 	EEADRL=((address)&0xff);
 	EEADRH=((address)>>8);
 	CFGS = 0;					// access FLASH program, not config
@@ -32,7 +31,7 @@ unsigned int flash_memory_read (unsigned int address)
 		NOP
 		NOP
 	#endasm
-	return ( (EEDATH)<<8 | (EEDATL) ) ;
+	return ( (EEDATH)<<8 | (EEDATL) );
 }
 //****************************************************************
 //  FLASH MEMORY WRITE
@@ -42,12 +41,13 @@ unsigned int flash_memory_read (unsigned int address)
 
 void flash_memory_write (unsigned int address, unsigned char *data )
 {
+                unsigned int addr_200 = address + 0x200;
 		unsigned char wdi;
 
 		EECON1 = 0;
 
-		EEADRL=((address)&0xff);	// load address
-		EEADRH=((address)>>8);		// load address
+		EEADRL=((addr_200)&0xff);	// load address
+		EEADRH=((addr_200)>>8);		// load address
 
 		for (wdi=0;wdi<14;wdi+=2)
 		{
