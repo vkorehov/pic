@@ -61,7 +61,6 @@ extern unsigned char pksa_index;
 extern unsigned char pksa_wd_address;
 extern unsigned char pksa_status;
 extern unsigned int timeout;
-extern unsigned char timeout_enabled;
 
 #ifdef	__cplusplus
 }

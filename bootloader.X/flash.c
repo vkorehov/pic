@@ -17,6 +17,7 @@
 //  returns 14 bit value from selected address
 //
 //****************************************************************
+
 unsigned int flash_memory_read(unsigned int address) {
     EEADRL = ((address)&0xff);
     EEADRH = ((address) >> 8);
@@ -25,10 +26,10 @@ unsigned int flash_memory_read(unsigned int address) {
     LWLO = 0;
     RD = 1;
 #asm
-        NOP
-        NOP
+    NOP
+    NOP
 #endasm
-    return ( (EEDATL) << 8 | (EEDATH));
+   return ( (EEDATL) << 8 | (EEDATH));
 }
 //****************************************************************
 //  FLASH MEMORY WRITE
@@ -42,7 +43,8 @@ void flash_memory_write(unsigned int address, unsigned char *data) {
     EEADRL = ((address)&0xff); // load address
     EEADRH = ((address) >> 8); // load address
     EEPGD = 1; // access program space FLASH memory
-    CFGS = 0;; // access FLASH program, not config
+    CFGS = 0;
+    ; // access FLASH program, not config
     WREN = 1; // allow program/erase
     LWLO = 1;
     for (wdi = 0; wdi < FLASH_BLOCK_BYTES; wdi += 2) {
@@ -55,7 +57,7 @@ void flash_memory_write(unsigned int address, unsigned char *data) {
         NOP
         NOP
 #endasm
-        EEADR++;
+                EEADR++;
     }
     EEADR--;
     LWLO = 0;
@@ -76,19 +78,19 @@ void flash_memory_write(unsigned int address, unsigned char *data) {
 //****************************************************************
 
 void flash_memory_erase(unsigned int address) {
-		EEADRL=((address)&0xff);	// load address
-		EEADRH=((address)>>8);		// load address
-		CFGS = 0; // access FLASH program, not config
-                LWLO = 0;
-		WREN = 1;					// allow program/erase
-		EEPGD = 1;					// access program space FLASH memory
-		FREE = 1;					// perform an erase on next WR command, cleared by hardware
-		EECON2 = 0x55;				// required sequence
-		EECON2 = 0xAA;				// required sequence
-		WR = 1;						// set WR to begin erase cycle
+    EEADRL = ((address)&0xff); // load address
+    EEADRH = ((address) >> 8); // load address
+    CFGS = 0; // access FLASH program, not config
+    LWLO = 0;
+    WREN = 1; // allow program/erase
+    EEPGD = 1; // access program space FLASH memory
+    FREE = 1; // perform an erase on next WR command, cleared by hardware
+    EECON2 = 0x55; // required sequence
+    EECON2 = 0xAA; // required sequence
+    WR = 1; // set WR to begin erase cycle
 #asm
     NOP
     NOP
 #endasm
-		WREN = 0;					// disallow program/erase
+    WREN = 0; // disallow program/erase
 }

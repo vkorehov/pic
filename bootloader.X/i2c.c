@@ -28,12 +28,12 @@ void do_i2c_tasks() {
                 goto stop;
             } else if (!SSPSTATbits.R_nW && !SSPSTATbits.D_nA && SSPSTATbits.BF) { //MASTER WRITES ADDRESS STATE
                 // Disable timeout
+                OPTION_REG = 0b11111111;
                 temp = SSPBUF;
                 pksa_status = I2C_SLAVE_ADDRESS_RECEIVED;
             } else if (!SSPSTATbits.R_nW && SSPSTATbits.D_nA && SSPSTATbits.BF) { // MWD: //MASTER WRITES DATA STATE
                 temp = SSPBUF;
                 if (pksa_status == I2C_SLAVE_ADDRESS_RECEIVED) { // first time we get the slave address, after that set to word address
-                    timeout_enabled = 0;
                     pksa_wd_address = temp;
                     pksa_index = 0;
                     pksa_status = I2C_WORD_ADDRESS_RECEIVED;
@@ -53,6 +53,8 @@ void do_i2c_tasks() {
                     }
                 }
             } else if (SSPSTATbits.R_nW && !SSPSTATbits.D_nA) { //MASTER READS ADDRESS STATE
+                // Disable timeout
+                OPTION_REG = 0b11111111;
                 if (pksa_wd_address == 0x01) { // buffer word address
                     // Send first byte here, next byte will be send at MRD case, see below
                     _WriteData(flash_addr_pointer.bytes.byte_L);
@@ -84,6 +86,15 @@ void do_i2c_tasks() {
                 } else if (pksa_wd_address == 0x06) {
                     // jump to appplication code
                     _WriteData(0xA0);
+appjmp:
+                    // restore POR values
+                    OPTION_REG = 0b11111111;
+                    SSPSTAT = 0x00; // clear status register
+                    SSPADD = 0x00; // Slave address
+                    SSPCON1 = 0x00; // 8:WCOL(0) 7:SSPOV(0) 6:SSPEN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address))
+                    SSPCON2 = 0x00; // 8:GCEN(0) 7:ACKSTAT(0) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
+                    SSPCON3 = 0x00; // 8:ACKTIM(0) 7:PCIE(1) 6:SCIE(1) 5:BOEN(1) 4:SDAHT(1) 3:SBCDE() 2:AHEN(0) 1:DHEN(1)
+                    OSCCON = 0b00111000;
 #asm
                     goto 0x200;
 #endasm
@@ -109,11 +120,10 @@ stop:
         SSPIF = 0;
         SSPEN = 1;
         CKP = 1; //release clock
-    } else {
-//        if(timeout_enabled && !(timeout--)) {
-//#asm
-//        goto 0x200;
-//#endasm
-//        }
+    } else if(TMR0IF) {
+        if(!(--timeout)) {
+            goto appjmp;
+        }
+        TMR0IF = 0;
     }
 }
