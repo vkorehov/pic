@@ -9,8 +9,6 @@
 /******************************************************************************/
 /* System Function Prototypes                                                 */
 /******************************************************************************/
-
-/* Custom oscillator configuration funtions, reset source evaluation
-functions, and other non-peripheral microcontroller initialization functions
-go here. */
-void ConfigureOscillator(void); /* Handles clock switching/osc initialization */
+#define FLASH_BLOCK_BYTES 16
+#define FLASH_BLOCK_WORDS 8
+#define ERASE_BLOCK_WORDS 32

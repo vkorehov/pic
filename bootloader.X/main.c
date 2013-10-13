@@ -20,11 +20,21 @@
 /* Main Program                                                               */
 
 /******************************************************************************/
-unsigned char flash_buffer[16];
+unsigned char flash_buffer[FLASH_BLOCK_BYTES];
 unsigned char pksa_wd_address;
 unsigned char pksa_index;
 unsigned char pksa_status;
 ADDRESS flash_addr_pointer;
+unsigned int timeout;
+unsigned char timeout_enabled;
+
+void interrupt isr(void) {
+}
+
+#asm
+PSECT intentry
+GOTO 0x204
+#endasm
 
 void main(void) {
     // Configure to 16 MHz
@@ -35,7 +45,6 @@ void main(void) {
     SSPCON1 = 0b00110110; // 8:WCOL(0) 7:SSPOV(0) 6:SSPEN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address))
     SSPCON2 = 0b00000001; // 8:GCEN(0) 7:ACKSTAT(0) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
     SSPCON3 = 0b01101000; // 8:ACKTIM(0) 7:PCIE(1) 6:SCIE(1) 5:BOEN(1) 4:SDAHT(1) 3:SBCDE() 2:AHEN(0) 1:DHEN(1)
-
     // main program loop
     while (1) {
         do_i2c_tasks();
