@@ -47,7 +47,11 @@ typedef union _ADDRESS
 #define I2C_MASTER_NACK						5
 
 // slave address definition
+#ifdef _12F1840
+#define SLAVE_ADDR 0x11
+#else
 #define SLAVE_ADDR 0x10
+#endif
 // address typdef
 extern ADDRESS	flash_addr_pointer;
 

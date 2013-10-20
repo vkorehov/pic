@@ -11,6 +11,10 @@
 #include "flash.h"
 #include "i2c.h"
 
+#ifdef _12F1840
+#define SSPIF SSP1IF
+#endif
+
 void _WriteData(unsigned char data) {
     do {
         WCOL = 0;
