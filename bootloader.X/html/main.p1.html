@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-<TITLE>Listing of build/PIC12F1840/production\main.p1</TITLE>
+<TITLE>Listing of build/PIC12F1840/debug\main.p1</TITLE>
 <LINK rel=stylesheet href="udf_styles.css" type="text/css">
 </HEAD>
 <BODY>
@@ -39,7 +39,7 @@
 <tr><td><code><i>    32</i> </code></td><td><code>&nbsp "1117</code></td></tr>
 <tr><td><code><i>    33</i> </code></td><td><code>&nbsp [v&nbsp _OPTION_REG&nbsp `Vuc&nbsp ~T0&nbsp @X0&nbsp 0&nbsp e@149&nbsp ]</code></td></tr>
 <tr><td><code><i>    34</i> </code></td><td><code>&nbsp "60&nbsp i2c.h</code></td></tr>
-<tr><td><code><i>    35</i> </code></td><td><code>&nbsp [v&nbsp _do_i2c_tasks&nbsp `(uc&nbsp ~T0&nbsp @X0&nbsp 0&nbsp ef&nbsp ]</code></td></tr>
+<tr><td><code><i>    35</i> </code></td><td><code>&nbsp [v&nbsp _do_i2c_tasks&nbsp `(v&nbsp ~T0&nbsp @X0&nbsp 0&nbsp ef&nbsp ]</code></td></tr>
 <tr><td><code><i>    36</i> </code></td><td><code>&nbsp [;&nbsp ;pic12f1840.h:&nbsp 44:&nbsp extern&nbsp volatile&nbsp unsigned&nbsp char&nbsp INDF0&nbsp @&nbsp 0x000;</code></td></tr>
 <tr><td><code><i>    37</i> </code></td><td><code>&nbsp "46&nbsp E:\Microchip\xc8\v1.20\include\pic12f1840.h</code></td></tr>
 <tr><td><code><i>    38</i> </code></td><td><code>&nbsp [;&nbsp ;pic12f1840.h:&nbsp 46:&nbsp asm("INDF0&nbsp equ&nbsp 00h");</code></td></tr>
@@ -2096,7 +2096,7 @@
 <tr><td><code><i>  2089</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 35:&nbsp }bytes;</code></td></tr>
 <tr><td><code><i>  2090</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 36:&nbsp }&nbsp ADDRESS;</code></td></tr>
 <tr><td><code><i>  2091</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 56:&nbsp extern&nbsp ADDRESS&nbsp flash_addr_pointer;</code></td></tr>
-<tr><td><code><i>  2092</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 60:&nbsp unsigned&nbsp char&nbsp do_i2c_tasks(void);</code></td></tr>
+<tr><td><code><i>  2092</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 60:&nbsp void&nbsp do_i2c_tasks(void);</code></td></tr>
 <tr><td><code><i>  2093</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 63:&nbsp extern&nbsp unsigned&nbsp char&nbsp flash_buffer[];</code></td></tr>
 <tr><td><code><i>  2094</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 64:&nbsp extern&nbsp unsigned&nbsp char&nbsp pksa_index;</code></td></tr>
 <tr><td><code><i>  2095</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 65:&nbsp extern&nbsp unsigned&nbsp char&nbsp pksa_wd_address;</code></td></tr>
@@ -2119,111 +2119,90 @@
 <tr><td><code><i>  2112</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 27:&nbsp ADDRESS&nbsp flash_addr_pointer;</code></td></tr>
 <tr><td><code><i>  2113</i> </code></td><td><code>&nbsp "28</code></td></tr>
 <tr><td><code><i>  2114</i> </code></td><td><code>&nbsp [v&nbsp _timeout&nbsp `ui&nbsp ~T0&nbsp @X0&nbsp 1&nbsp e&nbsp ]</code></td></tr>
-<tr><td><code><i>  2115</i> </code></td><td><code>&nbsp [i&nbsp _timeout</code></td></tr>
-<tr><td><code><i>  2116</i> </code></td><td><code>&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 4096&nbsp `i&nbsp `ui</code></td></tr>
-<tr><td><code><i>  2117</i> </code></td><td><code>&nbsp ]</code></td></tr>
-<tr><td><code><i>  2118</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 28:&nbsp unsigned&nbsp int&nbsp timeout&nbsp =&nbsp 0x1000;</code></td></tr>
-<tr><td><code><i>  2119</i> </code></td><td><code>&nbsp "29</code></td></tr>
-<tr><td><code><i>  2120</i> </code></td><td><code>&nbsp [v&nbsp F2100&nbsp `(v&nbsp ~T0&nbsp @X0&nbsp 1&nbsp tf&nbsp ]</code></td></tr>
-<tr><td><code><i>  2121</i> </code></td><td><code>&nbsp [v&nbsp _isr&nbsp `IF2100&nbsp ~T0&nbsp @X0&nbsp 1&nbsp e&nbsp ]</code></td></tr>
-<tr><td><code><i>  2122</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2123</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 29:&nbsp void&nbsp interrupt&nbsp isr(void)&nbsp {</code></td></tr>
-<tr><td><code><i>  2124</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp _isr&nbsp ]</code></td></tr>
-<tr><td><code><i>  2125</i> </code></td><td><code>&nbsp [f&nbsp ]</code></td></tr>
-<tr><td><code><i>  2126</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 30:&nbsp }</code></td></tr>
-<tr><td><code><i>  2127</i> </code></td><td><code>&nbsp "30</code></td></tr>
+<tr><td><code><i>  2115</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 28:&nbsp unsigned&nbsp int&nbsp timeout;</code></td></tr>
+<tr><td><code><i>  2116</i> </code></td><td><code>&nbsp "30</code></td></tr>
+<tr><td><code><i>  2117</i> </code></td><td><code>&nbsp [v&nbsp F2100&nbsp `(v&nbsp ~T0&nbsp @X0&nbsp 1&nbsp tf&nbsp ]</code></td></tr>
+<tr><td><code><i>  2118</i> </code></td><td><code>&nbsp [v&nbsp _isr&nbsp `IF2100&nbsp ~T0&nbsp @X0&nbsp 1&nbsp e&nbsp ]</code></td></tr>
+<tr><td><code><i>  2119</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2120</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 30:&nbsp void&nbsp interrupt&nbsp isr(void)&nbsp {</code></td></tr>
+<tr><td><code><i>  2121</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp _isr&nbsp ]</code></td></tr>
+<tr><td><code><i>  2122</i> </code></td><td><code>&nbsp [f&nbsp ]</code></td></tr>
+<tr><td><code><i>  2123</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 31:&nbsp asm("goto&nbsp 0x204");</code></td></tr>
+<tr><td><code><i>  2124</i> </code></td><td><code>&nbsp "31</code></td></tr>
+<tr><td><code><i>  2125</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp goto&nbsp 0x204&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
+<tr><td><code><i>  2126</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 32:&nbsp }</code></td></tr>
+<tr><td><code><i>  2127</i> </code></td><td><code>&nbsp "32</code></td></tr>
 <tr><td><code><i>  2128</i> </code></td><td><code>&nbsp [e&nbsp :UE&nbsp 263&nbsp ]</code></td></tr>
 <tr><td><code><i>  2129</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2130</i> </code></td><td><code>&nbsp "33</code></td></tr>
-<tr><td><code><i>  2131</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp PSECT&nbsp intentry&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
-<tr><td><code><i>  2132</i> </code></td><td><code>&nbsp "34</code></td></tr>
-<tr><td><code><i>  2133</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp GOTO&nbsp 0x204&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
-<tr><td><code><i>  2134</i> </code></td><td><code>&nbsp "37</code></td></tr>
-<tr><td><code><i>  2135</i> </code></td><td><code>&nbsp [v&nbsp _main&nbsp `(v&nbsp ~T0&nbsp @X0&nbsp 1&nbsp ef&nbsp ]</code></td></tr>
-<tr><td><code><i>  2136</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2137</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 37:&nbsp void&nbsp main(void)&nbsp {</code></td></tr>
-<tr><td><code><i>  2138</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp _main&nbsp ]</code></td></tr>
-<tr><td><code><i>  2139</i> </code></td><td><code>&nbsp [f&nbsp ]</code></td></tr>
-<tr><td><code><i>  2140</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 39:&nbsp if(&nbsp PCONbits.nRI&nbsp ==&nbsp 0)&nbsp {</code></td></tr>
-<tr><td><code><i>  2141</i> </code></td><td><code>&nbsp "39</code></td></tr>
-<tr><td><code><i>  2142</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp ==&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _PCONbits&nbsp 0&nbsp 2&nbsp `i&nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp 265&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2143</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2144</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 40:&nbsp asm("goto&nbsp 0x200");</code></td></tr>
-<tr><td><code><i>  2145</i> </code></td><td><code>&nbsp "40</code></td></tr>
-<tr><td><code><i>  2146</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp goto&nbsp 0x200&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
-<tr><td><code><i>  2147</i> </code></td><td><code>&nbsp "41</code></td></tr>
-<tr><td><code><i>  2148</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2149</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 265&nbsp ]</code></td></tr>
-<tr><td><code><i>  2150</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 41:&nbsp }</code></td></tr>
-<tr><td><code><i>  2151</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 43:&nbsp OSCCON&nbsp =&nbsp 0b01101000;</code></td></tr>
-<tr><td><code><i>  2152</i> </code></td><td><code>&nbsp "43</code></td></tr>
-<tr><td><code><i>  2153</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _OSCCON&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 104&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2154</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 44:&nbsp SSPSTAT&nbsp =&nbsp 0b11000000;</code></td></tr>
-<tr><td><code><i>  2155</i> </code></td><td><code>&nbsp "44</code></td></tr>
-<tr><td><code><i>  2156</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPSTAT&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 192&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2157</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 45:&nbsp SSPADD&nbsp =&nbsp (unsigned&nbsp char)&nbsp (0x11&nbsp&lsaquo &lsaquo &nbsp 1);</code></td></tr>
-<tr><td><code><i>  2158</i> </code></td><td><code>&nbsp "45</code></td></tr>
-<tr><td><code><i>  2159</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPADD&nbsp -&rsaquo &nbsp&lsaquo &lsaquo &nbsp -&rsaquo &nbsp 17&nbsp `i&nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2160</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 46:&nbsp SSPCON1&nbsp =&nbsp 0b00110110;</code></td></tr>
-<tr><td><code><i>  2161</i> </code></td><td><code>&nbsp "46</code></td></tr>
-<tr><td><code><i>  2162</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON1&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 54&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2163</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 47:&nbsp SSPCON2&nbsp =&nbsp 0b00000001;</code></td></tr>
-<tr><td><code><i>  2164</i> </code></td><td><code>&nbsp "47</code></td></tr>
-<tr><td><code><i>  2165</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON2&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2166</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 48:&nbsp SSPCON3&nbsp =&nbsp 0b01101000;</code></td></tr>
-<tr><td><code><i>  2167</i> </code></td><td><code>&nbsp "48</code></td></tr>
-<tr><td><code><i>  2168</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON3&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 104&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2169</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 49:&nbsp timeout&nbsp =&nbsp 0x2000;</code></td></tr>
-<tr><td><code><i>  2170</i> </code></td><td><code>&nbsp "49</code></td></tr>
-<tr><td><code><i>  2171</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _timeout&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 8192&nbsp `i&nbsp `ui&nbsp ]</code></td></tr>
-<tr><td><code><i>  2172</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 50:&nbsp OPTION_REG&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2173</i> </code></td><td><code>&nbsp "50</code></td></tr>
-<tr><td><code><i>  2174</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _OPTION_REG&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2175</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 52:&nbsp while&nbsp (1)&nbsp {</code></td></tr>
-<tr><td><code><i>  2176</i> </code></td><td><code>&nbsp "52</code></td></tr>
-<tr><td><code><i>  2177</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 267&nbsp ]</code></td></tr>
-<tr><td><code><i>  2178</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2179</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 53:&nbsp if(do_i2c_tasks())&nbsp {</code></td></tr>
-<tr><td><code><i>  2180</i> </code></td><td><code>&nbsp "53</code></td></tr>
-<tr><td><code><i>  2181</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp !=&nbsp -&rsaquo &nbsp (&nbsp _do_i2c_tasks&nbsp ..&nbsp&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp `i&nbsp 269&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2182</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2183</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 55:&nbsp OPTION_REG&nbsp =&nbsp 0b11111111;</code></td></tr>
-<tr><td><code><i>  2184</i> </code></td><td><code>&nbsp "55</code></td></tr>
-<tr><td><code><i>  2185</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _OPTION_REG&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 255&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2186</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 56:&nbsp SSPSTAT&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2187</i> </code></td><td><code>&nbsp "56</code></td></tr>
-<tr><td><code><i>  2188</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPSTAT&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2189</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 57:&nbsp SSPADD&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2190</i> </code></td><td><code>&nbsp "57</code></td></tr>
-<tr><td><code><i>  2191</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPADD&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2192</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 58:&nbsp SSPCON1&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2193</i> </code></td><td><code>&nbsp "58</code></td></tr>
-<tr><td><code><i>  2194</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON1&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2195</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 59:&nbsp SSPCON2&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2196</i> </code></td><td><code>&nbsp "59</code></td></tr>
-<tr><td><code><i>  2197</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON2&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2198</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 60:&nbsp SSPCON3&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2199</i> </code></td><td><code>&nbsp "60</code></td></tr>
-<tr><td><code><i>  2200</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON3&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2201</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 61:&nbsp OSCCON&nbsp =&nbsp 0b00111000;</code></td></tr>
-<tr><td><code><i>  2202</i> </code></td><td><code>&nbsp "61</code></td></tr>
-<tr><td><code><i>  2203</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _OSCCON&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 56&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2204</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 62:&nbsp asm("reset");</code></td></tr>
-<tr><td><code><i>  2205</i> </code></td><td><code>&nbsp "62</code></td></tr>
-<tr><td><code><i>  2206</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp reset&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
-<tr><td><code><i>  2207</i> </code></td><td><code>&nbsp "63</code></td></tr>
-<tr><td><code><i>  2208</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2209</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 269&nbsp ]</code></td></tr>
-<tr><td><code><i>  2210</i> </code></td><td><code>&nbsp "64</code></td></tr>
-<tr><td><code><i>  2211</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2212</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 266&nbsp ]</code></td></tr>
-<tr><td><code><i>  2213</i> </code></td><td><code>&nbsp "52</code></td></tr>
-<tr><td><code><i>  2214</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 267&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2215</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 268&nbsp ]</code></td></tr>
-<tr><td><code><i>  2216</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 63:&nbsp }</code></td></tr>
-<tr><td><code><i>  2217</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 64:&nbsp }</code></td></tr>
-<tr><td><code><i>  2218</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 65:&nbsp }</code></td></tr>
-<tr><td><code><i>  2219</i> </code></td><td><code>&nbsp "65</code></td></tr>
-<tr><td><code><i>  2220</i> </code></td><td><code>&nbsp [e&nbsp :UE&nbsp 264&nbsp ]</code></td></tr>
-<tr><td><code><i>  2221</i> </code></td><td><code>&nbsp }</code></code></BODY>
+<tr><td><code><i>  2130</i> </code></td><td><code>&nbsp "39</code></td></tr>
+<tr><td><code><i>  2131</i> </code></td><td><code>&nbsp [v&nbsp _main&nbsp `(v&nbsp ~T0&nbsp @X0&nbsp 1&nbsp ef&nbsp ]</code></td></tr>
+<tr><td><code><i>  2132</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2133</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 39:&nbsp void&nbsp main(void)&nbsp {</code></td></tr>
+<tr><td><code><i>  2134</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp _main&nbsp ]</code></td></tr>
+<tr><td><code><i>  2135</i> </code></td><td><code>&nbsp [f&nbsp ]</code></td></tr>
+<tr><td><code><i>  2136</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 41:&nbsp if(&nbsp PCONbits.nRI&nbsp ==&nbsp 0)&nbsp {</code></td></tr>
+<tr><td><code><i>  2137</i> </code></td><td><code>&nbsp "41</code></td></tr>
+<tr><td><code><i>  2138</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp ==&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _PCONbits&nbsp 0&nbsp 2&nbsp `i&nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp 265&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2139</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2140</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 42:&nbsp asm("goto&nbsp 0x200");</code></td></tr>
+<tr><td><code><i>  2141</i> </code></td><td><code>&nbsp "42</code></td></tr>
+<tr><td><code><i>  2142</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp goto&nbsp 0x200&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
+<tr><td><code><i>  2143</i> </code></td><td><code>&nbsp "43</code></td></tr>
+<tr><td><code><i>  2144</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2145</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 265&nbsp ]</code></td></tr>
+<tr><td><code><i>  2146</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 43:&nbsp }</code></td></tr>
+<tr><td><code><i>  2147</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 45:&nbsp OSCCON&nbsp =&nbsp 0b01101000;</code></td></tr>
+<tr><td><code><i>  2148</i> </code></td><td><code>&nbsp "45</code></td></tr>
+<tr><td><code><i>  2149</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _OSCCON&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 104&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2150</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 46:&nbsp SSPSTAT&nbsp =&nbsp 0b11000000;</code></td></tr>
+<tr><td><code><i>  2151</i> </code></td><td><code>&nbsp "46</code></td></tr>
+<tr><td><code><i>  2152</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPSTAT&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 192&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2153</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 47:&nbsp SSPADD&nbsp =&nbsp (unsigned&nbsp char)&nbsp (0x11&nbsp&lsaquo &lsaquo &nbsp 1);</code></td></tr>
+<tr><td><code><i>  2154</i> </code></td><td><code>&nbsp "47</code></td></tr>
+<tr><td><code><i>  2155</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPADD&nbsp -&rsaquo &nbsp&lsaquo &lsaquo &nbsp -&rsaquo &nbsp 17&nbsp `i&nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2156</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 48:&nbsp SSPCON1&nbsp =&nbsp 0b00110110;</code></td></tr>
+<tr><td><code><i>  2157</i> </code></td><td><code>&nbsp "48</code></td></tr>
+<tr><td><code><i>  2158</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON1&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 54&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2159</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 49:&nbsp SSPCON2&nbsp =&nbsp 0b00000001;</code></td></tr>
+<tr><td><code><i>  2160</i> </code></td><td><code>&nbsp "49</code></td></tr>
+<tr><td><code><i>  2161</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON2&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2162</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 50:&nbsp SSPCON3&nbsp =&nbsp 0b01101000;</code></td></tr>
+<tr><td><code><i>  2163</i> </code></td><td><code>&nbsp "50</code></td></tr>
+<tr><td><code><i>  2164</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPCON3&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 104&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2165</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 51:&nbsp timeout&nbsp =&nbsp 0x2000;</code></td></tr>
+<tr><td><code><i>  2166</i> </code></td><td><code>&nbsp "51</code></td></tr>
+<tr><td><code><i>  2167</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _timeout&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 8192&nbsp `i&nbsp `ui&nbsp ]</code></td></tr>
+<tr><td><code><i>  2168</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 52:&nbsp pksa_wd_address&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2169</i> </code></td><td><code>&nbsp "52</code></td></tr>
+<tr><td><code><i>  2170</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _pksa_wd_address&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2171</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 53:&nbsp pksa_index&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2172</i> </code></td><td><code>&nbsp "53</code></td></tr>
+<tr><td><code><i>  2173</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _pksa_index&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2174</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 54:&nbsp pksa_status=0;</code></td></tr>
+<tr><td><code><i>  2175</i> </code></td><td><code>&nbsp "54</code></td></tr>
+<tr><td><code><i>  2176</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _pksa_status&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2177</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 55:&nbsp flash_addr_pointer.word.address&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2178</i> </code></td><td><code>&nbsp "55</code></td></tr>
+<tr><td><code><i>  2179</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp .&nbsp .&nbsp _flash_addr_pointer&nbsp 0&nbsp 0&nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp ]</code></td></tr>
+<tr><td><code><i>  2180</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 57:&nbsp OPTION_REG&nbsp =&nbsp 0x00;</code></td></tr>
+<tr><td><code><i>  2181</i> </code></td><td><code>&nbsp "57</code></td></tr>
+<tr><td><code><i>  2182</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _OPTION_REG&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2183</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 59:&nbsp while&nbsp (1)&nbsp {</code></td></tr>
+<tr><td><code><i>  2184</i> </code></td><td><code>&nbsp "59</code></td></tr>
+<tr><td><code><i>  2185</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 267&nbsp ]</code></td></tr>
+<tr><td><code><i>  2186</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2187</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 60:&nbsp do_i2c_tasks();</code></td></tr>
+<tr><td><code><i>  2188</i> </code></td><td><code>&nbsp "60</code></td></tr>
+<tr><td><code><i>  2189</i> </code></td><td><code>&nbsp [e&nbsp (&nbsp _do_i2c_tasks&nbsp ..&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2190</i> </code></td><td><code>&nbsp "61</code></td></tr>
+<tr><td><code><i>  2191</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2192</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 266&nbsp ]</code></td></tr>
+<tr><td><code><i>  2193</i> </code></td><td><code>&nbsp "59</code></td></tr>
+<tr><td><code><i>  2194</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 267&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2195</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 268&nbsp ]</code></td></tr>
+<tr><td><code><i>  2196</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 61:&nbsp }</code></td></tr>
+<tr><td><code><i>  2197</i> </code></td><td><code>&nbsp [;&nbsp ;main.c:&nbsp 62:&nbsp }</code></td></tr>
+<tr><td><code><i>  2198</i> </code></td><td><code>&nbsp "62</code></td></tr>
+<tr><td><code><i>  2199</i> </code></td><td><code>&nbsp [e&nbsp :UE&nbsp 264&nbsp ]</code></td></tr>
+<tr><td><code><i>  2200</i> </code></td><td><code>&nbsp }</code></code></BODY>
 </HTML>

@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-<TITLE>Listing of build/PIC12F1840/production\i2c.pre</TITLE>
+<TITLE>Listing of build/PIC12F1840/debug\i2c.pre</TITLE>
 <LINK rel=stylesheet href="udf_styles.css" type="text/css">
 </HEAD>
 <BODY>
@@ -2849,7 +2849,7 @@
 <tr><td><code><i>  2842</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2843</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2844</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2845</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp do_i2c_tasks(void);</code></td></tr>
+<tr><td><code><i>  2845</i> </code></td><td><code>&nbsp void&nbsp do_i2c_tasks(void);</code></td></tr>
 <tr><td><code><i>  2846</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2847</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2848</i> </code></td><td><code>&nbsp extern&nbsp unsigned&nbsp char&nbsp flash_buffer[];</code></td></tr>
@@ -2867,7 +2867,7 @@
 <tr><td><code><i>  2860</i> </code></td><td><code>&nbsp CKP&nbsp =&nbsp 1;</code></td></tr>
 <tr><td><code><i>  2861</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>  2862</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2863</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp do_i2c_tasks()&nbsp {</code></td></tr>
+<tr><td><code><i>  2863</i> </code></td><td><code>&nbsp void&nbsp do_i2c_tasks()&nbsp {</code></td></tr>
 <tr><td><code><i>  2864</i> </code></td><td><code>&nbsp unsigned&nbsp int&nbsp dat&nbsp =&nbsp 0;</code></td></tr>
 <tr><td><code><i>  2865</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp temp,&nbsp idx;</code></td></tr>
 <tr><td><code><i>  2866</i> </code></td><td><code>&nbsp if&nbsp (SSP1IF)&nbsp {</code></td></tr>
@@ -2935,7 +2935,7 @@
 <tr><td><code><i>  2928</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2929</i> </code></td><td><code>&nbsp _WriteData(0xA0);</code></td></tr>
 <tr><td><code><i>  2930</i> </code></td><td><code>&nbsp appjmp:</code></td></tr>
-<tr><td><code><i>  2931</i> </code></td><td><code>&nbsp return&nbsp 1;</code></td></tr>
+<tr><td><code><i>  2931</i> </code></td><td><code>&nbsp asm("reset");</code></td></tr>
 <tr><td><code><i>  2932</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>  2933</i> </code></td><td><code>&nbsp }&nbsp else&nbsp if&nbsp (SSPSTATbits.R_nW&nbsp &&&nbsp SSPSTATbits.D_nA&nbsp &&&nbsp !SSPSTATbits.BF)&nbsp {</code></td></tr>
 <tr><td><code><i>  2934</i> </code></td><td><code>&nbsp if&nbsp (pksa_wd_address&nbsp ==&nbsp 0x01)</code></td></tr>
@@ -2964,6 +2964,5 @@
 <tr><td><code><i>  2957</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>  2958</i> </code></td><td><code>&nbsp TMR0IF&nbsp =&nbsp 0;</code></td></tr>
 <tr><td><code><i>  2959</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2960</i> </code></td><td><code>&nbsp return&nbsp 0;</code></td></tr>
-<tr><td><code><i>  2961</i> </code></td><td><code>&nbsp }</code></code></BODY>
+<tr><td><code><i>  2960</i> </code></td><td><code>&nbsp }</code></code></BODY>
 </HTML>

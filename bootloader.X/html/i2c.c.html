@@ -30,7 +30,7 @@
 <tr><td><code><i>    23</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp CKP&nbsp =&nbsp 1;</code></td></tr>
 <tr><td><code><i>    24</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>    25</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>    26</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp do_i2c_tasks()&nbsp {</code></td></tr>
+<tr><td><code><i>    26</i> </code></td><td><code>&nbsp void&nbsp do_i2c_tasks()&nbsp {</code></td></tr>
 <tr><td><code><i>    27</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp unsigned&nbsp int&nbsp dat&nbsp =&nbsp 0;</code></td></tr>
 <tr><td><code><i>    28</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp unsigned&nbsp char&nbsp temp,&nbsp idx;</code></td></tr>
 <tr><td><code><i>    29</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp if&nbsp (SSPIF)&nbsp {</code></td></tr>
@@ -98,7 +98,7 @@
 <tr><td><code><i>    91</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp //&nbsp jump&nbsp to&nbsp appplication&nbsp code</code></td></tr>
 <tr><td><code><i>    92</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp _WriteData(0xA0);</code></td></tr>
 <tr><td><code><i>    93</i> </code></td><td><code>&nbsp appjmp:</code></td></tr>
-<tr><td><code><i>    94</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp return&nbsp 1;</code></td></tr>
+<tr><td><code><i>    94</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp asm("reset");</code></td></tr>
 <tr><td><code><i>    95</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }</code></td></tr>
 <tr><td><code><i>    96</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }&nbsp else&nbsp if&nbsp (SSPSTATbits.R_nW&nbsp &&&nbsp SSPSTATbits.D_nA&nbsp &&&nbsp !SSPSTATbits.BF)&nbsp {&nbsp //MASTER&nbsp READS&nbsp DATA&nbsp STATE</code></td></tr>
 <tr><td><code><i>    97</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp if&nbsp (pksa_wd_address&nbsp ==&nbsp 0x01)&nbsp //&nbsp buffer&nbsp word&nbsp address</code></td></tr>
@@ -127,6 +127,5 @@
 <tr><td><code><i>   120</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }</code></td></tr>
 <tr><td><code><i>   121</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TMR0IF&nbsp =&nbsp 0;</code></td></tr>
 <tr><td><code><i>   122</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp }</code></td></tr>
-<tr><td><code><i>   123</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp return&nbsp 0;</code></td></tr>
-<tr><td><code><i>   124</i> </code></td><td><code>&nbsp }</code></BODY>
+<tr><td><code><i>   123</i> </code></td><td><code>&nbsp }</code></BODY>
 </HTML>

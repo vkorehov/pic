@@ -23,7 +23,7 @@ void _WriteData(unsigned char data) {
     CKP = 1;
 }
 
-unsigned char do_i2c_tasks() {
+void do_i2c_tasks() {
     unsigned int dat = 0;
     unsigned char temp, idx;
     if (SSPIF) {
@@ -91,7 +91,7 @@ unsigned char do_i2c_tasks() {
                     // jump to appplication code
                     _WriteData(0xA0);
 appjmp:
-                    return 1;
+                    asm("reset");
                 }
             } else if (SSPSTATbits.R_nW && SSPSTATbits.D_nA && !SSPSTATbits.BF) { //MASTER READS DATA STATE
                 if (pksa_wd_address == 0x01) // buffer word address
@@ -120,5 +120,4 @@ stop:
         }
         TMR0IF = 0;
     }
-    return 0;
 }

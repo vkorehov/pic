@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-<TITLE>Listing of build/PIC12F1840/production\i2c.p1</TITLE>
+<TITLE>Listing of build/PIC12F1840/debug\i2c.p1</TITLE>
 <LINK rel=stylesheet href="udf_styles.css" type="text/css">
 </HEAD>
 <BODY>
@@ -2113,7 +2113,7 @@
 <tr><td><code><i>  2106</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 35:&nbsp }bytes;</code></td></tr>
 <tr><td><code><i>  2107</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 36:&nbsp }&nbsp ADDRESS;</code></td></tr>
 <tr><td><code><i>  2108</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 56:&nbsp extern&nbsp ADDRESS&nbsp flash_addr_pointer;</code></td></tr>
-<tr><td><code><i>  2109</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 60:&nbsp unsigned&nbsp char&nbsp do_i2c_tasks(void);</code></td></tr>
+<tr><td><code><i>  2109</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 60:&nbsp void&nbsp do_i2c_tasks(void);</code></td></tr>
 <tr><td><code><i>  2110</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 63:&nbsp extern&nbsp unsigned&nbsp char&nbsp flash_buffer[];</code></td></tr>
 <tr><td><code><i>  2111</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 64:&nbsp extern&nbsp unsigned&nbsp char&nbsp pksa_index;</code></td></tr>
 <tr><td><code><i>  2112</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.h:&nbsp 65:&nbsp extern&nbsp unsigned&nbsp char&nbsp pksa_wd_address;</code></td></tr>
@@ -2149,9 +2149,9 @@
 <tr><td><code><i>  2142</i> </code></td><td><code>&nbsp [e&nbsp :UE&nbsp 263&nbsp ]</code></td></tr>
 <tr><td><code><i>  2143</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>  2144</i> </code></td><td><code>&nbsp "26</code></td></tr>
-<tr><td><code><i>  2145</i> </code></td><td><code>&nbsp [v&nbsp _do_i2c_tasks&nbsp `(uc&nbsp ~T0&nbsp @X0&nbsp 1&nbsp ef&nbsp ]</code></td></tr>
+<tr><td><code><i>  2145</i> </code></td><td><code>&nbsp [v&nbsp _do_i2c_tasks&nbsp `(v&nbsp ~T0&nbsp @X0&nbsp 1&nbsp ef&nbsp ]</code></td></tr>
 <tr><td><code><i>  2146</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2147</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 26:&nbsp unsigned&nbsp char&nbsp do_i2c_tasks()&nbsp {</code></td></tr>
+<tr><td><code><i>  2147</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 26:&nbsp void&nbsp do_i2c_tasks()&nbsp {</code></td></tr>
 <tr><td><code><i>  2148</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp _do_i2c_tasks&nbsp ]</code></td></tr>
 <tr><td><code><i>  2149</i> </code></td><td><code>&nbsp [f&nbsp ]</code></td></tr>
 <tr><td><code><i>  2150</i> </code></td><td><code>&nbsp "27</code></td></tr>
@@ -2395,130 +2395,125 @@
 <tr><td><code><i>  2388</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 93:&nbsp appjmp:</code></td></tr>
 <tr><td><code><i>  2389</i> </code></td><td><code>&nbsp "93</code></td></tr>
 <tr><td><code><i>  2390</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 301&nbsp ]</code></td></tr>
-<tr><td><code><i>  2391</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 94:&nbsp return&nbsp 1;</code></td></tr>
+<tr><td><code><i>  2391</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 94:&nbsp asm("reset");</code></td></tr>
 <tr><td><code><i>  2392</i> </code></td><td><code>&nbsp "94</code></td></tr>
-<tr><td><code><i>  2393</i> </code></td><td><code>&nbsp [e&nbsp )&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2394</i> </code></td><td><code>&nbsp [e&nbsp $UE&nbsp 267&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2395</i> </code></td><td><code>&nbsp "95</code></td></tr>
-<tr><td><code><i>  2396</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2397</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 300&nbsp ]</code></td></tr>
-<tr><td><code><i>  2398</i> </code></td><td><code>&nbsp "96</code></td></tr>
-<tr><td><code><i>  2399</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 299&nbsp ]</code></td></tr>
-<tr><td><code><i>  2400</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 297&nbsp ]</code></td></tr>
-<tr><td><code><i>  2401</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 295&nbsp ]</code></td></tr>
-<tr><td><code><i>  2402</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 289&nbsp ]</code></td></tr>
-<tr><td><code><i>  2403</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2404</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 95:&nbsp }</code></td></tr>
-<tr><td><code><i>  2405</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 96:&nbsp }&nbsp else&nbsp if&nbsp (SSPSTATbits.R_nW&nbsp &&&nbsp SSPSTATbits.D_nA&nbsp &&&nbsp !SSPSTATbits.BF)&nbsp {</code></td></tr>
-<tr><td><code><i>  2406</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 302&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2407</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 287&nbsp ]</code></td></tr>
-<tr><td><code><i>  2408</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp &&&nbsp &&&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 2&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 5&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp !&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 0&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp 303&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2409</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2410</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 97:&nbsp if&nbsp (pksa_wd_address&nbsp ==&nbsp 0x01)</code></td></tr>
-<tr><td><code><i>  2411</i> </code></td><td><code>&nbsp "97</code></td></tr>
-<tr><td><code><i>  2412</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp ==&nbsp -&rsaquo &nbsp _pksa_wd_address&nbsp `i&nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp 304&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2413</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 98:&nbsp {</code></td></tr>
-<tr><td><code><i>  2414</i> </code></td><td><code>&nbsp "98</code></td></tr>
-<tr><td><code><i>  2415</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2416</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 99:&nbsp _WriteData(flash_addr_pointer.bytes.byte_H);</code></td></tr>
-<tr><td><code><i>  2417</i> </code></td><td><code>&nbsp "99</code></td></tr>
-<tr><td><code><i>  2418</i> </code></td><td><code>&nbsp [e&nbsp (&nbsp __WriteData&nbsp (1&nbsp .&nbsp .&nbsp _flash_addr_pointer&nbsp 1&nbsp 1&nbsp ]</code></td></tr>
-<tr><td><code><i>  2419</i> </code></td><td><code>&nbsp "100</code></td></tr>
-<tr><td><code><i>  2420</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2421</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 100:&nbsp }&nbsp else&nbsp if&nbsp (pksa_wd_address&nbsp ==&nbsp 0x03)&nbsp {</code></td></tr>
-<tr><td><code><i>  2422</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 305&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2423</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 304&nbsp ]</code></td></tr>
-<tr><td><code><i>  2424</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp ==&nbsp -&rsaquo &nbsp _pksa_wd_address&nbsp `i&nbsp -&rsaquo &nbsp 3&nbsp `i&nbsp 306&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2425</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2426</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 101:&nbsp if&nbsp (pksa_index&nbsp&lsaquo &nbsp 16)&nbsp {</code></td></tr>
-<tr><td><code><i>  2427</i> </code></td><td><code>&nbsp "101</code></td></tr>
-<tr><td><code><i>  2428</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp&lsaquo &nbsp -&rsaquo &nbsp _pksa_index&nbsp `i&nbsp -&rsaquo &nbsp 16&nbsp `i&nbsp 307&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2429</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2430</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 102:&nbsp _WriteData(flash_buffer[pksa_index]);</code></td></tr>
-<tr><td><code><i>  2431</i> </code></td><td><code>&nbsp "102</code></td></tr>
-<tr><td><code><i>  2432</i> </code></td><td><code>&nbsp [e&nbsp (&nbsp __WriteData&nbsp (1&nbsp *U&nbsp +&nbsp &U&nbsp _flash_buffer&nbsp *&nbsp -&rsaquo &nbsp _pksa_index&nbsp `ux&nbsp -&rsaquo &nbsp -&rsaquo &nbsp #&nbsp *U&nbsp &U&nbsp _flash_buffer&nbsp `ui&nbsp `ux&nbsp ]</code></td></tr>
-<tr><td><code><i>  2433</i> </code></td><td><code>&nbsp "103</code></td></tr>
-<tr><td><code><i>  2434</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2435</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 307&nbsp ]</code></td></tr>
-<tr><td><code><i>  2436</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 103:&nbsp }</code></td></tr>
-<tr><td><code><i>  2437</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 104:&nbsp pksa_index++;</code></td></tr>
-<tr><td><code><i>  2438</i> </code></td><td><code>&nbsp "104</code></td></tr>
-<tr><td><code><i>  2439</i> </code></td><td><code>&nbsp [e&nbsp ++&nbsp _pksa_index&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2440</i> </code></td><td><code>&nbsp "105</code></td></tr>
-<tr><td><code><i>  2441</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2442</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 306&nbsp ]</code></td></tr>
-<tr><td><code><i>  2443</i> </code></td><td><code>&nbsp "106</code></td></tr>
-<tr><td><code><i>  2444</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 305&nbsp ]</code></td></tr>
-<tr><td><code><i>  2445</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2446</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 303&nbsp ]</code></td></tr>
-<tr><td><code><i>  2447</i> </code></td><td><code>&nbsp "107</code></td></tr>
-<tr><td><code><i>  2448</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 302&nbsp ]</code></td></tr>
-<tr><td><code><i>  2449</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 286&nbsp ]</code></td></tr>
-<tr><td><code><i>  2450</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 274&nbsp ]</code></td></tr>
-<tr><td><code><i>  2451</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 272&nbsp ]</code></td></tr>
-<tr><td><code><i>  2452</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2453</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 269&nbsp ]</code></td></tr>
-<tr><td><code><i>  2454</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 105:&nbsp }</code></td></tr>
-<tr><td><code><i>  2455</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 106:&nbsp }</code></td></tr>
-<tr><td><code><i>  2456</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 107:&nbsp }</code></td></tr>
-<tr><td><code><i>  2457</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 108:&nbsp if&nbsp (SSPSTATbits.P)&nbsp {</code></td></tr>
-<tr><td><code><i>  2458</i> </code></td><td><code>&nbsp "108</code></td></tr>
-<tr><td><code><i>  2459</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 4&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp 308&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2460</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2461</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 109:&nbsp stop:</code></td></tr>
-<tr><td><code><i>  2462</i> </code></td><td><code>&nbsp "109</code></td></tr>
-<tr><td><code><i>  2463</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 271&nbsp ]</code></td></tr>
-<tr><td><code><i>  2464</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 111:&nbsp SSPSTAT&nbsp =&nbsp 0b11000000;</code></td></tr>
-<tr><td><code><i>  2465</i> </code></td><td><code>&nbsp "111</code></td></tr>
-<tr><td><code><i>  2466</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPSTAT&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 192&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2467</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 112:&nbsp pksa_status&nbsp =&nbsp 0;</code></td></tr>
-<tr><td><code><i>  2468</i> </code></td><td><code>&nbsp "112</code></td></tr>
-<tr><td><code><i>  2469</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _pksa_status&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2470</i> </code></td><td><code>&nbsp "113</code></td></tr>
-<tr><td><code><i>  2471</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2472</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 308&nbsp ]</code></td></tr>
-<tr><td><code><i>  2473</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 113:&nbsp }</code></td></tr>
-<tr><td><code><i>  2474</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 114:&nbsp SSP1IF&nbsp =&nbsp 0;</code></td></tr>
-<tr><td><code><i>  2475</i> </code></td><td><code>&nbsp "114</code></td></tr>
-<tr><td><code><i>  2476</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSP1IF&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
-<tr><td><code><i>  2477</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 115:&nbsp SSPEN&nbsp =&nbsp 1;</code></td></tr>
-<tr><td><code><i>  2478</i> </code></td><td><code>&nbsp "115</code></td></tr>
-<tr><td><code><i>  2479</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPEN&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
-<tr><td><code><i>  2480</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 116:&nbsp CKP&nbsp =&nbsp 1;</code></td></tr>
-<tr><td><code><i>  2481</i> </code></td><td><code>&nbsp "116</code></td></tr>
-<tr><td><code><i>  2482</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _CKP&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
-<tr><td><code><i>  2483</i> </code></td><td><code>&nbsp "117</code></td></tr>
-<tr><td><code><i>  2484</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2485</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 117:&nbsp }&nbsp else&nbsp if(TMR0IF)&nbsp {</code></td></tr>
-<tr><td><code><i>  2486</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 309&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2487</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 268&nbsp ]</code></td></tr>
-<tr><td><code><i>  2488</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp _TMR0IF&nbsp 310&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2489</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2490</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 118:&nbsp if(!(--timeout))&nbsp {</code></td></tr>
-<tr><td><code><i>  2491</i> </code></td><td><code>&nbsp "118</code></td></tr>
-<tr><td><code><i>  2492</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp !&nbsp !=&nbsp =-&nbsp _timeout&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `ui&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `ui&nbsp 311&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2493</i> </code></td><td><code>&nbsp {</code></td></tr>
-<tr><td><code><i>  2494</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 119:&nbsp goto&nbsp appjmp;</code></td></tr>
-<tr><td><code><i>  2495</i> </code></td><td><code>&nbsp "119</code></td></tr>
-<tr><td><code><i>  2496</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 301&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2497</i> </code></td><td><code>&nbsp "120</code></td></tr>
-<tr><td><code><i>  2498</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2499</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 311&nbsp ]</code></td></tr>
-<tr><td><code><i>  2500</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 120:&nbsp }</code></td></tr>
-<tr><td><code><i>  2501</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 121:&nbsp TMR0IF&nbsp =&nbsp 0;</code></td></tr>
-<tr><td><code><i>  2502</i> </code></td><td><code>&nbsp "121</code></td></tr>
-<tr><td><code><i>  2503</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _TMR0IF&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
-<tr><td><code><i>  2504</i> </code></td><td><code>&nbsp "122</code></td></tr>
-<tr><td><code><i>  2505</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2506</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 310&nbsp ]</code></td></tr>
-<tr><td><code><i>  2507</i> </code></td><td><code>&nbsp "123</code></td></tr>
-<tr><td><code><i>  2508</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 309&nbsp ]</code></td></tr>
-<tr><td><code><i>  2509</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 122:&nbsp }</code></td></tr>
-<tr><td><code><i>  2510</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 123:&nbsp return&nbsp 0;</code></td></tr>
-<tr><td><code><i>  2511</i> </code></td><td><code>&nbsp [e&nbsp )&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
-<tr><td><code><i>  2512</i> </code></td><td><code>&nbsp [e&nbsp $UE&nbsp 267&nbsp&nbsp ]</code></td></tr>
-<tr><td><code><i>  2513</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 124:&nbsp }</code></td></tr>
-<tr><td><code><i>  2514</i> </code></td><td><code>&nbsp "124</code></td></tr>
-<tr><td><code><i>  2515</i> </code></td><td><code>&nbsp [e&nbsp :UE&nbsp 267&nbsp ]</code></td></tr>
-<tr><td><code><i>  2516</i> </code></td><td><code>&nbsp }</code></code></BODY>
+<tr><td><code><i>  2393</i> </code></td><td><code>&nbsp [;&nbsp&lsaquo  "&nbsp reset&nbsp ;#&nbsp "&rsaquo  </code></td></tr>
+<tr><td><code><i>  2394</i> </code></td><td><code>&nbsp "95</code></td></tr>
+<tr><td><code><i>  2395</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2396</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 300&nbsp ]</code></td></tr>
+<tr><td><code><i>  2397</i> </code></td><td><code>&nbsp "96</code></td></tr>
+<tr><td><code><i>  2398</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 299&nbsp ]</code></td></tr>
+<tr><td><code><i>  2399</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 297&nbsp ]</code></td></tr>
+<tr><td><code><i>  2400</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 295&nbsp ]</code></td></tr>
+<tr><td><code><i>  2401</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 289&nbsp ]</code></td></tr>
+<tr><td><code><i>  2402</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2403</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 95:&nbsp }</code></td></tr>
+<tr><td><code><i>  2404</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 96:&nbsp }&nbsp else&nbsp if&nbsp (SSPSTATbits.R_nW&nbsp &&&nbsp SSPSTATbits.D_nA&nbsp &&&nbsp !SSPSTATbits.BF)&nbsp {</code></td></tr>
+<tr><td><code><i>  2405</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 302&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2406</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 287&nbsp ]</code></td></tr>
+<tr><td><code><i>  2407</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp &&&nbsp &&&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 2&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 5&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp !&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 0&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp 303&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2408</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2409</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 97:&nbsp if&nbsp (pksa_wd_address&nbsp ==&nbsp 0x01)</code></td></tr>
+<tr><td><code><i>  2410</i> </code></td><td><code>&nbsp "97</code></td></tr>
+<tr><td><code><i>  2411</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp ==&nbsp -&rsaquo &nbsp _pksa_wd_address&nbsp `i&nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp 304&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2412</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 98:&nbsp {</code></td></tr>
+<tr><td><code><i>  2413</i> </code></td><td><code>&nbsp "98</code></td></tr>
+<tr><td><code><i>  2414</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2415</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 99:&nbsp _WriteData(flash_addr_pointer.bytes.byte_H);</code></td></tr>
+<tr><td><code><i>  2416</i> </code></td><td><code>&nbsp "99</code></td></tr>
+<tr><td><code><i>  2417</i> </code></td><td><code>&nbsp [e&nbsp (&nbsp __WriteData&nbsp (1&nbsp .&nbsp .&nbsp _flash_addr_pointer&nbsp 1&nbsp 1&nbsp ]</code></td></tr>
+<tr><td><code><i>  2418</i> </code></td><td><code>&nbsp "100</code></td></tr>
+<tr><td><code><i>  2419</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2420</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 100:&nbsp }&nbsp else&nbsp if&nbsp (pksa_wd_address&nbsp ==&nbsp 0x03)&nbsp {</code></td></tr>
+<tr><td><code><i>  2421</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 305&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2422</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 304&nbsp ]</code></td></tr>
+<tr><td><code><i>  2423</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp ==&nbsp -&rsaquo &nbsp _pksa_wd_address&nbsp `i&nbsp -&rsaquo &nbsp 3&nbsp `i&nbsp 306&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2424</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2425</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 101:&nbsp if&nbsp (pksa_index&nbsp&lsaquo &nbsp 16)&nbsp {</code></td></tr>
+<tr><td><code><i>  2426</i> </code></td><td><code>&nbsp "101</code></td></tr>
+<tr><td><code><i>  2427</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp&lsaquo &nbsp -&rsaquo &nbsp _pksa_index&nbsp `i&nbsp -&rsaquo &nbsp 16&nbsp `i&nbsp 307&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2428</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2429</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 102:&nbsp _WriteData(flash_buffer[pksa_index]);</code></td></tr>
+<tr><td><code><i>  2430</i> </code></td><td><code>&nbsp "102</code></td></tr>
+<tr><td><code><i>  2431</i> </code></td><td><code>&nbsp [e&nbsp (&nbsp __WriteData&nbsp (1&nbsp *U&nbsp +&nbsp &U&nbsp _flash_buffer&nbsp *&nbsp -&rsaquo &nbsp _pksa_index&nbsp `ux&nbsp -&rsaquo &nbsp -&rsaquo &nbsp #&nbsp *U&nbsp &U&nbsp _flash_buffer&nbsp `ui&nbsp `ux&nbsp ]</code></td></tr>
+<tr><td><code><i>  2432</i> </code></td><td><code>&nbsp "103</code></td></tr>
+<tr><td><code><i>  2433</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2434</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 307&nbsp ]</code></td></tr>
+<tr><td><code><i>  2435</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 103:&nbsp }</code></td></tr>
+<tr><td><code><i>  2436</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 104:&nbsp pksa_index++;</code></td></tr>
+<tr><td><code><i>  2437</i> </code></td><td><code>&nbsp "104</code></td></tr>
+<tr><td><code><i>  2438</i> </code></td><td><code>&nbsp [e&nbsp ++&nbsp _pksa_index&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2439</i> </code></td><td><code>&nbsp "105</code></td></tr>
+<tr><td><code><i>  2440</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2441</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 306&nbsp ]</code></td></tr>
+<tr><td><code><i>  2442</i> </code></td><td><code>&nbsp "106</code></td></tr>
+<tr><td><code><i>  2443</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 305&nbsp ]</code></td></tr>
+<tr><td><code><i>  2444</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2445</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 303&nbsp ]</code></td></tr>
+<tr><td><code><i>  2446</i> </code></td><td><code>&nbsp "107</code></td></tr>
+<tr><td><code><i>  2447</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 302&nbsp ]</code></td></tr>
+<tr><td><code><i>  2448</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 286&nbsp ]</code></td></tr>
+<tr><td><code><i>  2449</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 274&nbsp ]</code></td></tr>
+<tr><td><code><i>  2450</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 272&nbsp ]</code></td></tr>
+<tr><td><code><i>  2451</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2452</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 269&nbsp ]</code></td></tr>
+<tr><td><code><i>  2453</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 105:&nbsp }</code></td></tr>
+<tr><td><code><i>  2454</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 106:&nbsp }</code></td></tr>
+<tr><td><code><i>  2455</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 107:&nbsp }</code></td></tr>
+<tr><td><code><i>  2456</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 108:&nbsp if&nbsp (SSPSTATbits.P)&nbsp {</code></td></tr>
+<tr><td><code><i>  2457</i> </code></td><td><code>&nbsp "108</code></td></tr>
+<tr><td><code><i>  2458</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp !=&nbsp -&rsaquo &nbsp .&nbsp .&nbsp _SSPSTATbits&nbsp 0&nbsp 4&nbsp `i&nbsp -&rsaquo &nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `Vuc&nbsp `i&nbsp 308&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2459</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2460</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 109:&nbsp stop:</code></td></tr>
+<tr><td><code><i>  2461</i> </code></td><td><code>&nbsp "109</code></td></tr>
+<tr><td><code><i>  2462</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 271&nbsp ]</code></td></tr>
+<tr><td><code><i>  2463</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 111:&nbsp SSPSTAT&nbsp =&nbsp 0b11000000;</code></td></tr>
+<tr><td><code><i>  2464</i> </code></td><td><code>&nbsp "111</code></td></tr>
+<tr><td><code><i>  2465</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPSTAT&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 192&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2466</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 112:&nbsp pksa_status&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2467</i> </code></td><td><code>&nbsp "112</code></td></tr>
+<tr><td><code><i>  2468</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _pksa_status&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `uc&nbsp ]</code></td></tr>
+<tr><td><code><i>  2469</i> </code></td><td><code>&nbsp "113</code></td></tr>
+<tr><td><code><i>  2470</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2471</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 308&nbsp ]</code></td></tr>
+<tr><td><code><i>  2472</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 113:&nbsp }</code></td></tr>
+<tr><td><code><i>  2473</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 114:&nbsp SSP1IF&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2474</i> </code></td><td><code>&nbsp "114</code></td></tr>
+<tr><td><code><i>  2475</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSP1IF&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
+<tr><td><code><i>  2476</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 115:&nbsp SSPEN&nbsp =&nbsp 1;</code></td></tr>
+<tr><td><code><i>  2477</i> </code></td><td><code>&nbsp "115</code></td></tr>
+<tr><td><code><i>  2478</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _SSPEN&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
+<tr><td><code><i>  2479</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 116:&nbsp CKP&nbsp =&nbsp 1;</code></td></tr>
+<tr><td><code><i>  2480</i> </code></td><td><code>&nbsp "116</code></td></tr>
+<tr><td><code><i>  2481</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _CKP&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
+<tr><td><code><i>  2482</i> </code></td><td><code>&nbsp "117</code></td></tr>
+<tr><td><code><i>  2483</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2484</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 117:&nbsp }&nbsp else&nbsp if(TMR0IF)&nbsp {</code></td></tr>
+<tr><td><code><i>  2485</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 309&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2486</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 268&nbsp ]</code></td></tr>
+<tr><td><code><i>  2487</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp _TMR0IF&nbsp 310&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2488</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2489</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 118:&nbsp if(!(--timeout))&nbsp {</code></td></tr>
+<tr><td><code><i>  2490</i> </code></td><td><code>&nbsp "118</code></td></tr>
+<tr><td><code><i>  2491</i> </code></td><td><code>&nbsp [e&nbsp $&nbsp !&nbsp !&nbsp !=&nbsp =-&nbsp _timeout&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 1&nbsp `i&nbsp `ui&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `ui&nbsp 311&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2492</i> </code></td><td><code>&nbsp {</code></td></tr>
+<tr><td><code><i>  2493</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 119:&nbsp goto&nbsp appjmp;</code></td></tr>
+<tr><td><code><i>  2494</i> </code></td><td><code>&nbsp "119</code></td></tr>
+<tr><td><code><i>  2495</i> </code></td><td><code>&nbsp [e&nbsp $U&nbsp 301&nbsp&nbsp ]</code></td></tr>
+<tr><td><code><i>  2496</i> </code></td><td><code>&nbsp "120</code></td></tr>
+<tr><td><code><i>  2497</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2498</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 311&nbsp ]</code></td></tr>
+<tr><td><code><i>  2499</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 120:&nbsp }</code></td></tr>
+<tr><td><code><i>  2500</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 121:&nbsp TMR0IF&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2501</i> </code></td><td><code>&nbsp "121</code></td></tr>
+<tr><td><code><i>  2502</i> </code></td><td><code>&nbsp [e&nbsp =&nbsp _TMR0IF&nbsp -&rsaquo &nbsp -&rsaquo &nbsp 0&nbsp `i&nbsp `b&nbsp ]</code></td></tr>
+<tr><td><code><i>  2503</i> </code></td><td><code>&nbsp "122</code></td></tr>
+<tr><td><code><i>  2504</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2505</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 310&nbsp ]</code></td></tr>
+<tr><td><code><i>  2506</i> </code></td><td><code>&nbsp "123</code></td></tr>
+<tr><td><code><i>  2507</i> </code></td><td><code>&nbsp [e&nbsp :U&nbsp 309&nbsp ]</code></td></tr>
+<tr><td><code><i>  2508</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 122:&nbsp }</code></td></tr>
+<tr><td><code><i>  2509</i> </code></td><td><code>&nbsp [;&nbsp ;i2c.c:&nbsp 123:&nbsp }</code></td></tr>
+<tr><td><code><i>  2510</i> </code></td><td><code>&nbsp [e&nbsp :UE&nbsp 267&nbsp ]</code></td></tr>
+<tr><td><code><i>  2511</i> </code></td><td><code>&nbsp }</code></code></BODY>
 </HTML>

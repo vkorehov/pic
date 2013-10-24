@@ -57,7 +57,7 @@ extern ADDRESS	flash_addr_pointer;
 
 
 // function prototypes
-unsigned char  do_i2c_tasks(void);
+void do_i2c_tasks(void);
 
 // externs
 extern unsigned char flash_buffer[];

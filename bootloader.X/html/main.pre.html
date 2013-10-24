@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-<TITLE>Listing of build/PIC12F1840/production\main.pre</TITLE>
+<TITLE>Listing of build/PIC12F1840/debug\main.pre</TITLE>
 <LINK rel=stylesheet href="udf_styles.css" type="text/css">
 </HEAD>
 <BODY>
@@ -2849,7 +2849,7 @@
 <tr><td><code><i>  2842</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2843</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2844</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2845</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp do_i2c_tasks(void);</code></td></tr>
+<tr><td><code><i>  2845</i> </code></td><td><code>&nbsp void&nbsp do_i2c_tasks(void);</code></td></tr>
 <tr><td><code><i>  2846</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2847</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>  2848</i> </code></td><td><code>&nbsp extern&nbsp unsigned&nbsp char&nbsp flash_buffer[];</code></td></tr>
@@ -2864,44 +2864,35 @@
 <tr><td><code><i>  2857</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp pksa_index;</code></td></tr>
 <tr><td><code><i>  2858</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp pksa_status;</code></td></tr>
 <tr><td><code><i>  2859</i> </code></td><td><code>&nbsp ADDRESS&nbsp flash_addr_pointer;</code></td></tr>
-<tr><td><code><i>  2860</i> </code></td><td><code>&nbsp unsigned&nbsp int&nbsp timeout&nbsp =&nbsp 0x1000;</code></td></tr>
-<tr><td><code><i>  2861</i> </code></td><td><code>&nbsp void&nbsp interrupt&nbsp isr(void)&nbsp {</code></td></tr>
-<tr><td><code><i>  2862</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2863</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2864</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2865</i> </code></td><td><code>&nbsp #&nbsp 32</code></td></tr>
-<tr><td><code><i>  2866</i> </code></td><td><code>&nbsp #asm</code></td></tr>
-<tr><td><code><i>  2867</i> </code></td><td><code>&nbsp PSECT&nbsp intentry</code></td></tr>
-<tr><td><code><i>  2868</i> </code></td><td><code>&nbsp GOTO&nbsp 0x204</code></td></tr>
-<tr><td><code><i>  2869</i> </code></td><td><code>&nbsp #endasm&nbsp </code></td></tr>
-<tr><td><code><i>  2870</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2871</i> </code></td><td><code>&nbsp void&nbsp main(void)&nbsp {</code></td></tr>
+<tr><td><code><i>  2860</i> </code></td><td><code>&nbsp unsigned&nbsp int&nbsp timeout;</code></td></tr>
+<tr><td><code><i>  2861</i> </code></td><td><code>&nbsp </code></td></tr>
+<tr><td><code><i>  2862</i> </code></td><td><code>&nbsp void&nbsp interrupt&nbsp isr(void)&nbsp {</code></td></tr>
+<tr><td><code><i>  2863</i> </code></td><td><code>&nbsp asm("goto&nbsp 0x204");</code></td></tr>
+<tr><td><code><i>  2864</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2865</i> </code></td><td><code>&nbsp </code></td></tr>
+<tr><td><code><i>  2866</i> </code></td><td><code>&nbsp #&nbsp 39</code></td></tr>
+<tr><td><code><i>  2867</i> </code></td><td><code>&nbsp void&nbsp main(void)&nbsp {</code></td></tr>
+<tr><td><code><i>  2868</i> </code></td><td><code>&nbsp </code></td></tr>
+<tr><td><code><i>  2869</i> </code></td><td><code>&nbsp if(&nbsp PCONbits.nRI&nbsp ==&nbsp 0)&nbsp {</code></td></tr>
+<tr><td><code><i>  2870</i> </code></td><td><code>&nbsp asm("goto&nbsp 0x200");</code></td></tr>
+<tr><td><code><i>  2871</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>  2872</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2873</i> </code></td><td><code>&nbsp if(&nbsp PCONbits.nRI&nbsp ==&nbsp 0)&nbsp {</code></td></tr>
-<tr><td><code><i>  2874</i> </code></td><td><code>&nbsp asm("goto&nbsp 0x200");</code></td></tr>
-<tr><td><code><i>  2875</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2876</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2877</i> </code></td><td><code>&nbsp OSCCON&nbsp =&nbsp 0b01101000;</code></td></tr>
-<tr><td><code><i>  2878</i> </code></td><td><code>&nbsp SSPSTAT&nbsp =&nbsp 0b11000000;</code></td></tr>
-<tr><td><code><i>  2879</i> </code></td><td><code>&nbsp SSPADD&nbsp =&nbsp (unsigned&nbsp char)&nbsp (0x11&nbsp&lsaquo &lsaquo &nbsp 1);</code></td></tr>
-<tr><td><code><i>  2880</i> </code></td><td><code>&nbsp SSPCON1&nbsp =&nbsp 0b00110110;</code></td></tr>
-<tr><td><code><i>  2881</i> </code></td><td><code>&nbsp SSPCON2&nbsp =&nbsp 0b00000001;</code></td></tr>
-<tr><td><code><i>  2882</i> </code></td><td><code>&nbsp SSPCON3&nbsp =&nbsp 0b01101000;</code></td></tr>
-<tr><td><code><i>  2883</i> </code></td><td><code>&nbsp timeout&nbsp =&nbsp 0x2000;</code></td></tr>
-<tr><td><code><i>  2884</i> </code></td><td><code>&nbsp OPTION_REG&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2885</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2886</i> </code></td><td><code>&nbsp while&nbsp (1)&nbsp {</code></td></tr>
-<tr><td><code><i>  2887</i> </code></td><td><code>&nbsp if(do_i2c_tasks())&nbsp {</code></td></tr>
-<tr><td><code><i>  2888</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>  2889</i> </code></td><td><code>&nbsp OPTION_REG&nbsp =&nbsp 0b11111111;</code></td></tr>
-<tr><td><code><i>  2890</i> </code></td><td><code>&nbsp SSPSTAT&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2891</i> </code></td><td><code>&nbsp SSPADD&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2892</i> </code></td><td><code>&nbsp SSPCON1&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2893</i> </code></td><td><code>&nbsp SSPCON2&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2894</i> </code></td><td><code>&nbsp SSPCON3&nbsp =&nbsp 0x00;</code></td></tr>
-<tr><td><code><i>  2895</i> </code></td><td><code>&nbsp OSCCON&nbsp =&nbsp 0b00111000;</code></td></tr>
-<tr><td><code><i>  2896</i> </code></td><td><code>&nbsp asm("reset");</code></td></tr>
-<tr><td><code><i>  2897</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2898</i> </code></td><td><code>&nbsp }</code></td></tr>
-<tr><td><code><i>  2899</i> </code></td><td><code>&nbsp }</code></code></BODY>
+<tr><td><code><i>  2873</i> </code></td><td><code>&nbsp OSCCON&nbsp =&nbsp 0b01101000;</code></td></tr>
+<tr><td><code><i>  2874</i> </code></td><td><code>&nbsp SSPSTAT&nbsp =&nbsp 0b11000000;</code></td></tr>
+<tr><td><code><i>  2875</i> </code></td><td><code>&nbsp SSPADD&nbsp =&nbsp (unsigned&nbsp char)&nbsp (0x11&nbsp&lsaquo &lsaquo &nbsp 1);</code></td></tr>
+<tr><td><code><i>  2876</i> </code></td><td><code>&nbsp SSPCON1&nbsp =&nbsp 0b00110110;</code></td></tr>
+<tr><td><code><i>  2877</i> </code></td><td><code>&nbsp SSPCON2&nbsp =&nbsp 0b00000001;</code></td></tr>
+<tr><td><code><i>  2878</i> </code></td><td><code>&nbsp SSPCON3&nbsp =&nbsp 0b01101000;</code></td></tr>
+<tr><td><code><i>  2879</i> </code></td><td><code>&nbsp timeout&nbsp =&nbsp 0x2000;</code></td></tr>
+<tr><td><code><i>  2880</i> </code></td><td><code>&nbsp pksa_wd_address&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2881</i> </code></td><td><code>&nbsp pksa_index&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2882</i> </code></td><td><code>&nbsp pksa_status=0;</code></td></tr>
+<tr><td><code><i>  2883</i> </code></td><td><code>&nbsp flash_addr_pointer.word.address&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>  2884</i> </code></td><td><code>&nbsp </code></td></tr>
+<tr><td><code><i>  2885</i> </code></td><td><code>&nbsp OPTION_REG&nbsp =&nbsp 0x00;</code></td></tr>
+<tr><td><code><i>  2886</i> </code></td><td><code>&nbsp </code></td></tr>
+<tr><td><code><i>  2887</i> </code></td><td><code>&nbsp while&nbsp (1)&nbsp {</code></td></tr>
+<tr><td><code><i>  2888</i> </code></td><td><code>&nbsp do_i2c_tasks();</code></td></tr>
+<tr><td><code><i>  2889</i> </code></td><td><code>&nbsp }</code></td></tr>
+<tr><td><code><i>  2890</i> </code></td><td><code>&nbsp }</code></code></BODY>
 </HTML>
