@@ -43,11 +43,22 @@ void i2c_init() {
 
 void InitApp(void)
 {
-    TRISA   = 0b11111111; // CPS0_RB0(p21) CPS3_RB3(p24)
+    TRISA   = 0b11111111; // RA4(p3): AN3
     i2c_init();
 
-    ANSELA  = 0b00000000; // RB0,RB3 = Analog
+    ANSELA = 0b00010000;// RA4(p3): AN3
+    ADCON1 = 0b11000000;// ADFM=1, ADCS = 100 (Fosc/4, TAD = 1uS), ADPREF = 00 (VDD)
+    ADCON0 = 0b00001101;// CHS = 0b00011; // GO = 0,ADON = 1
 
+    /* Timrt1 configuration */
+    TMR1CS1 = 0; TMR1CS0 = 1; // System Clock (FOSC)
+    /* Timer1 interrupt on overflow */
+    TMR1GE = 0; // always count!
+    TMR1ON = 0; // initially disable
+    TMR1H = 0;
+    TMR1L = 0;
+    TMR1IF = 0;
+    TMR1IE = 1;
     /* Enable interrupts */
     PEIE = 1;
     GIE  = 1;

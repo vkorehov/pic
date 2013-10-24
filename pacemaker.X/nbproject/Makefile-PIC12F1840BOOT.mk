@@ -180,12 +180,12 @@ dist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJ
 	@${RM} dist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.hex 
 	
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    ../bootloader.X/dist/PIC16F1938/production/bootloader.X.production.hex
+dist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    ../bootloader.X/dist/PIC12F1840/production/bootloader.X.production.hex
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.map  --double=24 --float=24 --opt=default,+asm,-asmfile,+speed,-space,-debug --addrqual=ignore --mode=free -D__PICCPRO__ -P -N255 --warn=0 --asmlist --summary=default,+psect,-class,+mem,+hex,+file --codeoffset=0x200 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf "--errformat=%%f:%%l: error: %%s" "--warnformat=%%f:%%l: warning: %%s" "--msgformat=%%f:%%l: advisory: %%s"   -odist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 	@echo "Creating unified hex file"
-	@"E:/Microchip/MPLABX/mplab_ide/mplab_ide/modules/../../bin/hexmate" --edf="E:/Microchip/MPLABX/mplab_ide/mplab_ide/modules/../../dat/en_msgs.txt" dist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.hex ../bootloader.X/dist/PIC16F1938/production/bootloader.X.production.hex -odist/${CND_CONF}/production/pacemaker.X.production.unified.hex
+	@"E:/Microchip/MPLABX/mplab_ide/mplab_ide/modules/../../bin/hexmate" --edf="E:/Microchip/MPLABX/mplab_ide/mplab_ide/modules/../../dat/en_msgs.txt" dist/${CND_CONF}/${IMAGE_TYPE}/pacemaker.X.${IMAGE_TYPE}.hex ../bootloader.X/dist/PIC12F1840/production/bootloader.X.production.hex -odist/${CND_CONF}/production/pacemaker.X.production.unified.hex
 
 endif
 
@@ -193,15 +193,15 @@ endif
 # Subprojects
 .build-subprojects:
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-	cd /D ../bootloader.X && ${MAKE} MAKE_OPTIONS="" -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN
+	cd /D ../bootloader.X && ${MAKE} MAKE_OPTIONS="" -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN
 else
-	cd /D ../bootloader.X && ${MAKE} MAKE_OPTIONS="" -f Makefile CONF=PIC16F1938
+	cd /D ../bootloader.X && ${MAKE} MAKE_OPTIONS="" -f Makefile CONF=PIC12F1840
 endif
 
 
 # Subprojects
 .clean-subprojects:
-	cd /D ../bootloader.X && rm -rf "build/PIC16F1938" "dist/PIC16F1938"
+	cd /D ../bootloader.X && rm -rf "build/PIC12F1840" "dist/PIC12F1840"
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}

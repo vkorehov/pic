@@ -47,18 +47,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -101,18 +101,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -153,18 +153,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -207,18 +207,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -259,18 +259,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -313,18 +313,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -365,18 +365,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -419,18 +419,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -473,18 +473,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -542,18 +542,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -636,6 +636,7 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
@@ -683,18 +684,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -824,18 +825,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -966,18 +967,18 @@
         <loading>
           <makeArtifact PL="../bootloader.X"
                         CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
+                        CN="PIC12F1840"
+                        AC="false"
                         BL="true"
                         WD="../bootloader.X"
-                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
@@ -1060,7 +1061,6 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

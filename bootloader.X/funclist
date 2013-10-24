@@ -1,9 +1,9 @@
-_flash_memory_read: CODE, 445 0 19
-_main: CODE, 379 0 25
-__WriteData: CODE, 464 0 9
-__initialization: CODE, 404 0 18
+_flash_memory_read: CODE, 449 0 19
+_main: CODE, 367 0 41
+__WriteData: CODE, 468 0 9
+__initialization: CODE, 408 0 18
 _isr: CODE, 5 0 7
-_flash_memory_erase: CODE, 425 0 20
-_flash_memory_write: CODE, 313 0 66
-_do_i2c_tasks: CODE, 14 0 299
-Total: 463
+_flash_memory_erase: CODE, 429 0 20
+_flash_memory_write: CODE, 301 0 66
+_do_i2c_tasks: CODE, 14 0 287
+Total: 467

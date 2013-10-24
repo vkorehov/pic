@@ -23,7 +23,7 @@ void _WriteData(unsigned char data) {
     CKP = 1;
 }
 
-void do_i2c_tasks() {
+unsigned char do_i2c_tasks() {
     unsigned int dat = 0;
     unsigned char temp, idx;
     if (SSPIF) {
@@ -91,17 +91,7 @@ void do_i2c_tasks() {
                     // jump to appplication code
                     _WriteData(0xA0);
 appjmp:
-                    // restore POR values
-                    OPTION_REG = 0b11111111;
-                    SSPSTAT = 0x00; // clear status register
-                    SSPADD = 0x00; // Slave address
-                    SSPCON1 = 0x00; // 8:WCOL(0) 7:SSPOV(0) 6:SSPEN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address))
-                    SSPCON2 = 0x00; // 8:GCEN(0) 7:ACKSTAT(0) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
-                    SSPCON3 = 0x00; // 8:ACKTIM(0) 7:PCIE(1) 6:SCIE(1) 5:BOEN(1) 4:SDAHT(1) 3:SBCDE() 2:AHEN(0) 1:DHEN(1)
-                    OSCCON = 0b00111000;
-#asm
-                    goto 0x200;
-#endasm
+                    return 1;
                 }
             } else if (SSPSTATbits.R_nW && SSPSTATbits.D_nA && !SSPSTATbits.BF) { //MASTER READS DATA STATE
                 if (pksa_wd_address == 0x01) // buffer word address
@@ -130,4 +120,5 @@ stop:
         }
         TMR0IF = 0;
     }
+    return 0;
 }

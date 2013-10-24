@@ -14,7 +14,7 @@
 #include "system.h"
 #include "user.h"
 
-unsigned char i2c_own_bus; //
+unsigned char i2c_own_bus;
 unsigned char i2c_retry;
 
 static void i2c_Start(void);
@@ -41,7 +41,7 @@ static void handle_restart() {
     }
 }
 
-static unsigned char handle_error(unsigned char waitAck) {
+static unsigned char handle_error() {
     i2c_ack = 0;
     i2c_Wait(); // Wait first for last operation completion!
     if (i2c_error) {
@@ -50,43 +50,26 @@ static unsigned char handle_error(unsigned char waitAck) {
             i2c_own_bus = 0;
         }
         i2c_error = 0;
-        __delay_us(I2C_RETRY_DELAY);
         i2c_init(); // Clear all flags
         return 1;
-    }
-    if (waitAck) {
-        unsigned char maxwait = 10;
-        while (maxwait-- > 0) {
-            if (i2c_ack) {
-                return 0;
-            }
-            __delay_us(1);
-        }
-        i2c_init(); // Clear all flags
-        __delay_us(I2C_RETRY_DELAY);
-        return 2; // Error no ACK received!
     }
     return 0;
 }
 
 void i2c_command0() {
-    unsigned char current_command;
     i2c_retry = I2C_RETRIES;
     i2c_own_bus = 0;
     while (i2c_retry-- > 0) {
         handle_restart();
-        if (handle_error(0)) continue;
+        if (handle_error()) continue;
         i2c_own_bus = 1;
 
         i2c_Address(I2C_SLAVE, I2C_WRITE); // Send slave address - write operation
-        if (handle_error(0)) continue;
-
-        i2c_Write(I2C_MYADDR); //
-        if (handle_error(0)) continue;
+        if (handle_error()) continue;
 
         i2c_Stop(); // send Stop
         i2c_own_bus = 0;
-        if (handle_error(0)) continue;
+        if (handle_error()) continue;
         return; // Success
     }
     if (i2c_own_bus) {
