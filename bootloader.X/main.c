@@ -35,6 +35,10 @@ GOTO 0x204
 #endasm
 
 void main(void) {
+
+    if( PCONbits.nRI == 0) {
+       asm("goto 0x200");
+    }
     // Configure to 4 MHz
     OSCCON = 0b01101000; // 8:SPLLEN(0 by confb) 4..7:IRCF(1101 4 MHz) 1..2:SCS(00 use FOSC in confbits)
     SSPSTAT = 0b11000000; // Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
@@ -55,14 +59,7 @@ void main(void) {
             SSPCON2 = 0x00; // 8:GCEN(0) 7:ACKSTAT(0) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
             SSPCON3 = 0x00; // 8:ACKTIM(0) 7:PCIE(1) 6:SCIE(1) 5:BOEN(1) 4:SDAHT(1) 3:SBCDE() 2:AHEN(0) 1:DHEN(1)
             OSCCON = 0b00111000;
-            // clear memory from 0x10 to 0x7f
-//    asm("movlw 0x20");
-//    asm("movwf FSR0");
-//    asm("loop clrf INDF");
-//    asm("incf FSR, F");
-//    asm("btfsc FSR, 7");
-//    asm("goto loop");
-            asm("goto 0x200");
+            asm("reset");
         }
     }
 }
