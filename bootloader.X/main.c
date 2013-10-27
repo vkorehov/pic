@@ -20,14 +20,14 @@
 /* Main Program                                                               */
 
 /******************************************************************************/
-unsigned char flash_buffer[FLASH_BLOCK_BYTES];
-unsigned char pksa_wd_address;
-unsigned char pksa_index;
-unsigned char pksa_status;
-ADDRESS flash_addr_pointer;
-unsigned int timeout;
+unsigned char __bootloader_flash_buffer[FLASH_BLOCK_BYTES];
+unsigned char __bootloader_pksa_wd_address;
+unsigned char __bootloader_pksa_index;
+unsigned char __bootloader_pksa_status;
+ADDRESS __bootloader_flash_addr_pointer;
+unsigned int __bootloader_timeout;
 
-void interrupt isr(void) {
+void interrupt __bootloader_isr(void) {
     asm("goto 0x204");
 }
 
@@ -48,15 +48,15 @@ void main(void) {
     SSPCON1 = 0b00110110; // 8:WCOL(0) 7:SSPOV(0) 6:SSPEN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address))
     SSPCON2 = 0b00000001; // 8:GCEN(0) 7:ACKSTAT(0) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
     SSPCON3 = 0b01101000; // 8:ACKTIM(0) 7:PCIE(1) 6:SCIE(1) 5:BOEN(1) 4:SDAHT(1) 3:SBCDE() 2:AHEN(0) 1:DHEN(1)
-    timeout = 0x2000;
-    pksa_wd_address = 0;
-    pksa_index = 0;
-    pksa_status=0;
-    flash_addr_pointer.word.address = 0;
+    __bootloader_timeout = 0x2000;
+    __bootloader_pksa_wd_address = 0;
+    __bootloader_pksa_index = 0;
+    __bootloader_pksa_status=0;
+    __bootloader_flash_addr_pointer.word.address = 0;
 
     OPTION_REG = 0x00;// Enable timer 0
     // main program loop
     while (1) {
-        do_i2c_tasks();
+        __bootloader_do_i2c_tasks();
     }
 }

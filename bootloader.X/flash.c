@@ -18,18 +18,16 @@
 //
 //****************************************************************
 
-unsigned int flash_memory_read(unsigned int address) {
+unsigned int __bootloader_flash_memory_read(unsigned int address) {
     EEADRL = ((address)&0xff);
     EEADRH = ((address) >> 8);
     CFGS = 0; // access FLASH program, not config
     EEPGD = 1;
     LWLO = 0;
     RD = 1;
-#asm
-    NOP
-    NOP
-#endasm
-   return ( (EEDATL) << 8 | (EEDATH));
+    asm("NOP");
+    asm("NOP");
+    return ( (EEDATL) << 8 | (EEDATH));
 }
 //****************************************************************
 //  FLASH MEMORY WRITE
@@ -37,7 +35,7 @@ unsigned int flash_memory_read(unsigned int address) {
 //
 //****************************************************************
 
-void flash_memory_write(unsigned int address, unsigned char *data) {
+void __bootloader_flash_memory_write(unsigned int address, unsigned char *data) {
     unsigned char wdi;
     EECON1 = 0;
     EEADRL = ((address)&0xff); // load address
@@ -53,21 +51,17 @@ void flash_memory_write(unsigned int address, unsigned char *data) {
         EECON2 = 0x55;
         EECON2 = 0xAA;
         WR = 1; // set WR to begin write
-#asm
-        NOP
-        NOP
-#endasm
-                EEADR++;
+        asm("NOP");
+        asm("NOP");
+        EEADR++;
     }
     EEADR--;
     LWLO = 0;
     EECON2 = 0x55;
     EECON2 = 0xAA;
     WR = 1; // set WR to begin write
-#asm
-    NOP
-    NOP
-#endasm
+    asm("NOP");
+    asm("NOP");
     WREN = 0; // disallow program/erase
 }
 //****************************************************************
@@ -77,7 +71,7 @@ void flash_memory_write(unsigned int address, unsigned char *data) {
 //
 //****************************************************************
 
-void flash_memory_erase(unsigned int address) {
+void __bootloader_flash_memory_erase(unsigned int address) {
     EEADRL = ((address)&0xff); // load address
     EEADRH = ((address) >> 8); // load address
     CFGS = 0; // access FLASH program, not config
@@ -88,9 +82,7 @@ void flash_memory_erase(unsigned int address) {
     EECON2 = 0x55; // required sequence
     EECON2 = 0xAA; // required sequence
     WR = 1; // set WR to begin erase cycle
-#asm
-    NOP
-    NOP
-#endasm
+    asm("NOP");
+    asm("NOP");
     WREN = 0; // disallow program/erase
 }

@@ -13,91 +13,59 @@
 #include "system.h"
 #include "user.h"
 
-unsigned short hz100_bres; // Bresenham's Algorithm counter
-unsigned short hz100_period = 10000; // meassured in uS
-unsigned int syncperiod = 0;// measured in uS
-
-
-unsigned char i2c_state; /*0 Idle, 1 Started receive, 2 Address matched **/
-unsigned char i2c_error;
-unsigned short i2c_collisions;
-unsigned short i2c_response;
-unsigned char i2c_command[4];
-
-static void i2c_handle_error() {
-    i2c_state = 0;
-    i2c_error = 0;
-    i2c_destroy();
-    i2c_init();
-}
+#define PEAK_TO_ZC1 (0xffff - 17000)
+#define ZC1_TO_ZC2 (0xffff - 40000)
 
 void interrupt isr(void) {
-    if (TMR0IE && TMR0IF) {
+    if(TMR0IE && TMR0IF) {
         TMR0IF = 0;
-        hz100_bres += 16; // add 256 ticks to bresenham total// because we are running on 1/16 prescaler
-        syncperiod += 16;
-        if (hz100_bres >= hz100_period) // if reached period!
-        {
-            hz100_bres -= hz100_period; // subtract period, retain error
-            hz100_clock();
-        }
-        hz100_1mhz();
+        TMR0IE = 0;
+        PORTBbits.RB3 = 0;
     }
-    if (BCLIE && BCLIF) {
-        BCLIF = 0;
-        i2c_error = 1;
-        i2c_collisions++;
-    }
-    if (SSPIE && SSPIF) {
-        SSPIE = 0; // Disable interrupts. Everythong is synchronous here
-        i2c_check_error();
-        if (!i2c_error) {
-            if (SSPSTATbits.S) {
-                i2c_state = 1;
-            } else if (SSPSTATbits.P) {
-                i2c_state = 0;
+    if(TMR1IE && TMR1IF) {
+        TMR1IF = 0;
+        TMR1ON = 0;
+        if(state == 0) {
+            state = 1;
+            // Zero Crossing1
+            if(dim > 0x01) {
+                PORTBbits.RB3 = 1;
+            } else {
+                PORTBbits.RB3 = 0;
             }
-            if (SSPSTATbits.BF) {
-                if (i2c_state == 0) {
-                    volatile unsigned char unused = SSPBUF;
-                } else if (i2c_state == 1) {
-                    unsigned char addr = SSPBUF;
-                    if(addr == 0x00) { // general call (Used for 50hz strobing)
-                        i2c_state = 1;
-                        hz100_sync();
-                    } else if (addr == (I2C_MYADDR << 1)) { // write requesdt
-                        i2c_state = 2;
-                    } else if (addr == ((I2C_MYADDR << 1) + 1)) { // read request
-                        i2c_state = 1;
-                        i2c_Wait();
-                        i2c_Write((i2c_response >> 8));
-                        i2c_Wait();
-                        if (i2c_error) {
-                            i2c_handle_error();
-                        } else {
-                            i2c_Write(i2c_response);
-                            i2c_Wait();
-                            if (i2c_error) {
-                                i2c_handle_error();
-                            }
-                        }
-                    } else { // crazy shit
-                        i2c_state = 0;
-                    }
-                } else if (i2c_state >= 2 && i2c_state <= 5) {
-                    i2c_command[i2c_state - 2] = SSPBUF;
-                    i2c_state++;
-                    if (i2c_state >= 6) {
-                        i2c_state = 1;
-                        i2c_response = i2c_on_command(i2c_command);
-                    }
-                }
+            if(dim != 0xff) {
+                TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
+                TMR0IF = 0;
+                TMR0IE = 1;
+            } else {
+                TMR0IE = 0;
             }
-        } else {
-            i2c_handle_error();
+            // Endof zero crossing
+            write_tmr1(ZC1_TO_ZC2);
+            TMR1ON = 1;
+        } else if(state == 1) {
+            // Zero Crossing2
+            if(dim > 0x01) {
+                PORTBbits.RB3 = 1;
+            } else {
+                PORTBbits.RB3 = 0;
+            }
+            if(dim != 0xff) {
+                TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
+                TMR0IF = 0;
+                TMR0IE = 1;
+            } else {
+                TMR0IE = 0;
+            }
+            // Endof zero crossing
         }
-        SSPIF = 0;
-        SSPIE = 1; // Reenable interrupts
+    }
+    if (C1IF && C1IE) {
+        C1IF = 0;
+        TMR1ON = 0;
+        write_tmr1(PEAK_TO_ZC1);
+        state = 0;
+        TMR1ON = 1;
     }
 }
 

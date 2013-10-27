@@ -2,34 +2,25 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_WRITE 0
-#define I2C_READ 1
-#define I2C_MYADDR 0x10                    // This device I2C address
-#define I2C_SLAVE 0x40                    // Slave device I2C address
-#define I2C_RETRY_DELAY  713
-#define I2C_RETRIES 3
+#define I2C_MYADDR 0x13                    // This device I2C address
+// pickit serial communication states
+#define I2C_NO_TRANSACTION					0
+#define I2C_SLAVE_ADDRESS_RECEIVED			1
+#define I2C_WORD_ADDRESS_RECEIVED			2
+#define I2C_READ_ADDRESS					3
+#define I2C_READ_DATA						4
+#define I2C_MASTER_NACK						5
 
-extern unsigned char i2c_error;
-
-extern unsigned int syncperiod;
-extern unsigned short hz100_period;
-extern unsigned short hz100_bres;
-extern unsigned short hz100_command;
+extern unsigned char state;
+extern unsigned char dim;
 
 /******************************************************************************/
 /* User Function Prototypes                                                   */
 /******************************************************************************/
-void i2c_check_error();
 void i2c_init();
-void i2c_destroy();
-unsigned short i2c_on_command(unsigned char* command);
-
-void i2c_Wait(void);
-void i2c_Write(unsigned char data);
-void i2c_Address(unsigned char address, unsigned char mode);
-
-void hz100_clock();
-void hz100_sync();
-void hz100_1mhz();
+void do_i2c_tasks(void);
 
 void InitApp(void);         /* I/O and Peripheral Initialization */
+
+inline unsigned int read_tmr1();
+inline void write_tmr1(unsigned int v);

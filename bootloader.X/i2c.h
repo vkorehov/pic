@@ -53,18 +53,18 @@ typedef union _ADDRESS
 #define SLAVE_ADDR 0x10
 #endif
 // address typdef
-extern ADDRESS	flash_addr_pointer;
+extern ADDRESS	__bootloader_flash_addr_pointer;
 
 
 // function prototypes
-void do_i2c_tasks(void);
+void __bootloader_do_i2c_tasks(void);
 
 // externs
-extern unsigned char flash_buffer[];
-extern unsigned char pksa_index;
-extern unsigned char pksa_wd_address;
-extern unsigned char pksa_status;
-extern unsigned int timeout;
+extern unsigned char __bootloader_flash_buffer[];
+extern unsigned char __bootloader_pksa_index;
+extern unsigned char __bootloader_pksa_wd_address;
+extern unsigned char __bootloader_pksa_status;
+extern unsigned int __bootloader_timeout;
 
 #ifdef	__cplusplus
 }

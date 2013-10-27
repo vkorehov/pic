@@ -27,14 +27,14 @@
 <tr><td><code><i>    20</i> </code></td><td><code>&nbsp /*&nbsp Main&nbsp Program&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp */</code></td></tr>
 <tr><td><code><i>    21</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>    22</i> </code></td><td><code>&nbsp /******************************************************************************/</code></td></tr>
-<tr><td><code><i>    23</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp flash_buffer[FLASH_BLOCK_BYTES];</code></td></tr>
-<tr><td><code><i>    24</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp pksa_wd_address;</code></td></tr>
-<tr><td><code><i>    25</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp pksa_index;</code></td></tr>
-<tr><td><code><i>    26</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp pksa_status;</code></td></tr>
-<tr><td><code><i>    27</i> </code></td><td><code>&nbsp ADDRESS&nbsp flash_addr_pointer;</code></td></tr>
-<tr><td><code><i>    28</i> </code></td><td><code>&nbsp unsigned&nbsp int&nbsp timeout;</code></td></tr>
+<tr><td><code><i>    23</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp __bootloader_flash_buffer[FLASH_BLOCK_BYTES];</code></td></tr>
+<tr><td><code><i>    24</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp __bootloader_pksa_wd_address;</code></td></tr>
+<tr><td><code><i>    25</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp __bootloader_pksa_index;</code></td></tr>
+<tr><td><code><i>    26</i> </code></td><td><code>&nbsp unsigned&nbsp char&nbsp __bootloader_pksa_status;</code></td></tr>
+<tr><td><code><i>    27</i> </code></td><td><code>&nbsp ADDRESS&nbsp __bootloader_flash_addr_pointer;</code></td></tr>
+<tr><td><code><i>    28</i> </code></td><td><code>&nbsp unsigned&nbsp int&nbsp __bootloader_timeout;</code></td></tr>
 <tr><td><code><i>    29</i> </code></td><td><code>&nbsp </code></td></tr>
-<tr><td><code><i>    30</i> </code></td><td><code>&nbsp void&nbsp interrupt&nbsp isr(void)&nbsp {</code></td></tr>
+<tr><td><code><i>    30</i> </code></td><td><code>&nbsp void&nbsp interrupt&nbsp __bootloader_isr(void)&nbsp {</code></td></tr>
 <tr><td><code><i>    31</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp asm("goto&nbsp 0x204");</code></td></tr>
 <tr><td><code><i>    32</i> </code></td><td><code>&nbsp }</code></td></tr>
 <tr><td><code><i>    33</i> </code></td><td><code>&nbsp </code></td></tr>
@@ -55,16 +55,16 @@
 <tr><td><code><i>    48</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp SSPCON1&nbsp =&nbsp 0b00110110;&nbsp //&nbsp 8:WCOL(0)&nbsp 7:SSPOV(0)&nbsp 6:SSPEN(1)&nbsp 5:CKP(1)&nbsp 1..4:SSPM(0110&nbsp I2C&nbsp Slave&nbsp mode,&nbsp 7-bit&nbsp address))</code></td></tr>
 <tr><td><code><i>    49</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp SSPCON2&nbsp =&nbsp 0b00000001;&nbsp //&nbsp 8:GCEN(0)&nbsp 7:ACKSTAT(0)&nbsp 6:ACKDT(0)&nbsp 5:ACKEN(0)&nbsp 4:RCEN(0)&nbsp 3:PEN(0)&nbsp 2:RSEN(0)&nbsp 1:SEN(0)</code></td></tr>
 <tr><td><code><i>    50</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp SSPCON3&nbsp =&nbsp 0b01101000;&nbsp //&nbsp 8:ACKTIM(0)&nbsp 7:PCIE(1)&nbsp 6:SCIE(1)&nbsp 5:BOEN(1)&nbsp 4:SDAHT(1)&nbsp 3:SBCDE()&nbsp 2:AHEN(0)&nbsp 1:DHEN(1)</code></td></tr>
-<tr><td><code><i>    51</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp timeout&nbsp =&nbsp 0x2000;</code></td></tr>
-<tr><td><code><i>    52</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp pksa_wd_address&nbsp =&nbsp 0;</code></td></tr>
-<tr><td><code><i>    53</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp pksa_index&nbsp =&nbsp 0;</code></td></tr>
-<tr><td><code><i>    54</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp pksa_status=0;</code></td></tr>
-<tr><td><code><i>    55</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp flash_addr_pointer.word.address&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>    51</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp __bootloader_timeout&nbsp =&nbsp 0x2000;</code></td></tr>
+<tr><td><code><i>    52</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp __bootloader_pksa_wd_address&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>    53</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp __bootloader_pksa_index&nbsp =&nbsp 0;</code></td></tr>
+<tr><td><code><i>    54</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp __bootloader_pksa_status=0;</code></td></tr>
+<tr><td><code><i>    55</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp __bootloader_flash_addr_pointer.word.address&nbsp =&nbsp 0;</code></td></tr>
 <tr><td><code><i>    56</i> </code></td><td><code>&nbsp </code></td></tr>
 <tr><td><code><i>    57</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp OPTION_REG&nbsp =&nbsp 0x00;//&nbsp Enable&nbsp timer&nbsp 0</code></td></tr>
 <tr><td><code><i>    58</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp //&nbsp main&nbsp program&nbsp loop</code></td></tr>
 <tr><td><code><i>    59</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp while&nbsp (1)&nbsp {</code></td></tr>
-<tr><td><code><i>    60</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp do_i2c_tasks();</code></td></tr>
+<tr><td><code><i>    60</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp __bootloader_do_i2c_tasks();</code></td></tr>
 <tr><td><code><i>    61</i> </code></td><td><code>&nbsp &nbsp&nbsp&nbsp&nbsp }</code></td></tr>
 <tr><td><code><i>    62</i> </code></td><td><code>&nbsp }</code></BODY>
 </HTML>

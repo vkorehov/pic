@@ -10,30 +10,40 @@
 <code>-q</code><br>
 <code>--UDF=html\bootloader.X.debug.cgen.html</code><br>
 <code>-E1</code><br>
-<code>-Ddist/PIC12F1840/debug\bootloader.X.debug.sdb</code><br>
+<code>-Ddist/PIC16F1938/debug\bootloader.X.debug.sdb</code><br>
 <code>-PMS0:code:40000@CONST=00h-0FFhx2</code><br>
 <code>-PMS0:code:40000@CODE=00h-01FFh</code><br>
 <code>-PMS0:code:40000@STRCODE=00h-01FFh</code><br>
 <code>-PMS1:data:0@COMMON=070h-07Fh</code><br>
 <code>-PMS1:data:0@BANK0=020h-06Fh</code><br>
 <code>-PMS1:data:0@BANK1=0A0h-0EFh</code><br>
-<code>-PMS1:data:0@BANK2=0120h-0164h</code><br>
-<code>-PMS1:data:0@BIGRAM=02000h-020E4h</code><br>
-<code>-PMS1:data:0@RAM=020h-06Fh,0A0h-0EFh,0120h-0164h</code><br>
-<code>-PMS1:data:0@ABS1=020h-07Fh,0A0h-0EFh,0120h-016Fh</code><br>
+<code>-PMS1:data:0@BANK2=0120h-016Fh</code><br>
+<code>-PMS1:data:0@BANK3=01A0h-01EFh</code><br>
+<code>-PMS1:data:0@BANK4=0220h-026Fh</code><br>
+<code>-PMS1:data:0@BANK5=02A0h-02EFh</code><br>
+<code>-PMS1:data:0@BANK6=0320h-036Fh</code><br>
+<code>-PMS1:data:0@BANK7=03A0h-03EFh</code><br>
+<code>-PMS1:data:0@BANK8=0420h-046Fh</code><br>
+<code>-PMS1:data:0@BANK9=04A0h-04EFh</code><br>
+<code>-PMS1:data:0@BANK10=0520h-056Fh</code><br>
+<code>-PMS1:data:0@BANK11=05A0h-05EFh</code><br>
+<code>-PMS1:data:0@BANK12=0620h-064Fh</code><br>
+<code>-PMS1:data:0@BIGRAM=02000h-023EFh</code><br>
+<code>-PMS1:data:0@RAM=020h-06Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-026Fh,02A0h-02EFh,0320h-036Fh,03A0h-03EFh,0420h-046Fh,04A0h-04EFh,0520h-056Fh,05A0h-05EFh,0620h-064Fh</code><br>
+<code>-PMS1:data:0@ABS1=020h-07Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-026Fh,02A0h-02EFh,0320h-036Fh,03A0h-03EFh,0420h-046Fh,04A0h-04EFh,0520h-056Fh,05A0h-05EFh,0620h-064Fh</code><br>
 <code>-PMS1:data:0@SFR0=00h-01Fh</code><br>
 <code>-PMS1:data:0@SFR1=080h-09Fh</code><br>
 <code>-PMS1:data:0@SFR2=0100h-011Fh</code><br>
-<code>-PMS1:data:0@SFR3=0180h-01EFh</code><br>
-<code>-PMS1:data:0@SFR4=0200h-026Fh</code><br>
-<code>-PMS1:data:0@SFR5=0280h-02EFh</code><br>
-<code>-PMS1:data:0@SFR6=0300h-036Fh</code><br>
-<code>-PMS1:data:0@SFR7=0380h-03EFh</code><br>
-<code>-PMS1:data:0@SFR8=0400h-046Fh</code><br>
-<code>-PMS1:data:0@SFR9=0480h-04EFh</code><br>
-<code>-PMS1:data:0@SFR10=0500h-056Fh</code><br>
-<code>-PMS1:data:0@SFR11=0580h-05EFh</code><br>
-<code>-PMS1:data:0@SFR12=0600h-066Fh</code><br>
+<code>-PMS1:data:0@SFR3=0180h-019Fh</code><br>
+<code>-PMS1:data:0@SFR4=0200h-021Fh</code><br>
+<code>-PMS1:data:0@SFR5=0280h-029Fh</code><br>
+<code>-PMS1:data:0@SFR6=0300h-031Fh</code><br>
+<code>-PMS1:data:0@SFR7=0380h-039Fh</code><br>
+<code>-PMS1:data:0@SFR8=0400h-041Fh</code><br>
+<code>-PMS1:data:0@SFR9=0480h-049Fh</code><br>
+<code>-PMS1:data:0@SFR10=0500h-051Fh</code><br>
+<code>-PMS1:data:0@SFR11=0580h-059Fh</code><br>
+<code>-PMS1:data:0@SFR12=0600h-061Fh</code><br>
 <code>-PMS1:data:0@SFR13=0680h-06EFh</code><br>
 <code>-PMS1:data:0@SFR14=0700h-076Fh</code><br>
 <code>-PMS1:data:0@SFR15=0780h-07EFh</code><br>
@@ -56,20 +66,20 @@
 <code>-PMS3:eedata:40000@EEDATA=00h-0FFh/0F000h</code><br>
 <code>-PMS4:config:40000@CONFIG=08007h-08008h</code><br>
 <code>-PMS5:idloc:40000@IDLOC=08000h-08003h</code><br>
-<code>--cfgdata=E:\Microchip\xc8\v1.20\dat\cfgdata\12f1840.cfgdata</code><br>
+<code>--cfgdata=E:\Microchip\xc8\v1.20\dat\cfgdata\16f1938.cfgdata</code><br>
 <code>--cfgprefix=__CFG_</code><br>
 <code>--stack=compiled</code><br>
-<code>-PPICCP12F1840</code><br>
-<code>-AC:\Users\vlad\AppData\Local\Temp\s4qo.</code><br>
-<code>--funcdat=C:\Users\vlad\AppData\Local\Temp\s4qo.5</code><br>
+<code>-PPICCP16F1938</code><br>
+<code>-AC:\Users\vlad\AppData\Local\Temp\s5q0.</code><br>
+<code>--funcdat=C:\Users\vlad\AppData\Local\Temp\s5q0.5</code><br>
 <code>--addrqual=ignore</code><br>
 <code>--runtime=init</code><br>
 <code>--runtime=clear</code><br>
-<code>build/PIC12F1840/debug/configuration_bits.p1</code><br>
-<code>build/PIC12F1840/debug/main.p1</code><br>
-<code>build/PIC12F1840/debug/i2c.p1</code><br>
-<code>build/PIC12F1840/debug/flash.p1</code><br>
-<code>E:\Microchip\xc8\v1.20\lib\pic-eeprom-12f1840.lpp</code><br>
+<code>build/PIC16F1938/debug/configuration_bits.p1</code><br>
+<code>build/PIC16F1938/debug/main.p1</code><br>
+<code>build/PIC16F1938/debug/i2c.p1</code><br>
+<code>build/PIC16F1938/debug/flash.p1</code><br>
+<code>E:\Microchip\xc8\v1.20\lib\pic-eeprom-16f1938.lpp</code><br>
 <code>E:\Microchip\xc8\v1.20\lib\pic-stdlib-d24.lpp</code><br>
 <a name="1"><h2 class="">C Symbol Information
 </h2>
@@ -125,57 +135,57 @@
 <tr><td><code>___lwtoft</code></td><td><code>FTN(unsigned int ,)float </code></td><td>COMMON</td><td>3</td><td>E:\Microchip\xc8\v1.20\sources\pic\lwtoft.c</td><td>29</td></tr>
 <tr><td><code>___tmul</code></td><td><code>FTN(unsigned um,unsigned um,)unsigned um</code></td><td>COMMON</td><td>3</td><td>E:\Microchip\xc8\v1.20\sources\pic\tmul.c</td><td>3</td></tr>
 <tr><td><code>___wmul</code></td><td><code>FTN(unsigned int ,unsigned int ,)unsigned int </code></td><td>COMMON</td><td>2</td><td>E:\Microchip\xc8\v1.20\sources\pic\wmul.c</td><td>3</td></tr>
-<tr><td><code>_flash_memory_read</code></td><td><code>FTN(unsigned int ,)unsigned int </code></td><td>COMMON</td><td>2</td><td>flash.c</td><td>21</td></tr>
-<tr><td><code>_flash_memory_write</code></td><td><code>FTN(unsigned int ,PTR unsigned char ,)void </code></td><td>COMMON</td><td>0</td><td>flash.c</td><td>40</td></tr>
-<tr><td><code>_flash_memory_erase</code></td><td><code>FTN(unsigned int ,)void </code></td><td>COMMON</td><td>0</td><td>flash.c</td><td>80</td></tr>
-<tr><td><code>__WriteData</code></td><td><code>FTN(unsigned char ,)void </code></td><td>COMMON</td><td>0</td><td>i2c.c</td><td>18</td></tr>
-<tr><td><code>_do_i2c_tasks</code></td><td><code>FTN()void </code></td><td>COMMON</td><td>0</td><td>i2c.c</td><td>26</td></tr>
-<tr><td><code>_isr</code></td><td><code>interrupt FTN()void </code></td><td>COMMON</td><td>0</td><td>main.c</td><td>30</td></tr>
+<tr><td><code>___bootloader_flash_memory_read</code></td><td><code>FTN(unsigned int ,)unsigned int </code></td><td>COMMON</td><td>2</td><td>flash.c</td><td>21</td></tr>
+<tr><td><code>___bootloader_flash_memory_write</code></td><td><code>FTN(unsigned int ,PTR unsigned char ,)void </code></td><td>COMMON</td><td>0</td><td>flash.c</td><td>38</td></tr>
+<tr><td><code>___bootloader_flash_memory_erase</code></td><td><code>FTN(unsigned int ,)void </code></td><td>COMMON</td><td>0</td><td>flash.c</td><td>74</td></tr>
+<tr><td><code>___bootloader__WriteData</code></td><td><code>FTN(unsigned char ,)void </code></td><td>COMMON</td><td>0</td><td>i2c.c</td><td>18</td></tr>
+<tr><td><code>___bootloader_do_i2c_tasks</code></td><td><code>FTN()void </code></td><td>COMMON</td><td>0</td><td>i2c.c</td><td>26</td></tr>
+<tr><td><code>___bootloader_isr</code></td><td><code>interrupt FTN()void </code></td><td>COMMON</td><td>0</td><td>main.c</td><td>30</td></tr>
 <tr><td><code>_main</code></td><td><code>FTN()void </code></td><td>COMMON</td><td>0</td><td>main.c</td><td>39</td></tr>
-<tr><td><code>_OPTION_REG</code></td><td><code>volatile unsigned char </code></td><td>BITSFR1</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>1117</td></tr>
-<tr><td><code>_PCONbits</code></td><td><code>volatile struct .</code></td><td>BITSFR1</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>1215</td></tr>
-<tr><td><code>_OSCCON</code></td><td><code>volatile unsigned char </code></td><td>BITSFR1</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>1364</td></tr>
-<tr><td><code>_EEADR</code></td><td><code>volatile unsigned short </code></td><td>BITSFR3</td><td>2</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2382</td></tr>
-<tr><td><code>_EEADRL</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2388</td></tr>
-<tr><td><code>_EEADRH</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2407</td></tr>
-<tr><td><code>_EEDATL</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2432</td></tr>
-<tr><td><code>_EEDATA</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2437</td></tr>
-<tr><td><code>_EEDATH</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2469</td></tr>
-<tr><td><code>_EECON1</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2488</td></tr>
-<tr><td><code>_EECON2</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2549</td></tr>
-<tr><td><code>_SSPBUF</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2930</td></tr>
-<tr><td><code>_SSPADD</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>2967</td></tr>
-<tr><td><code>_SSPSTAT</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>3041</td></tr>
-<tr><td><code>_SSPSTATbits</code></td><td><code>volatile struct .</code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>3113</td></tr>
-<tr><td><code>_SSPCON1</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>3162</td></tr>
-<tr><td><code>_SSPCON2</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>3365</td></tr>
-<tr><td><code>_SSPCON3</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>3486</td></tr>
-<tr><td><code>_CARRY</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4791</td></tr>
-<tr><td><code>_CFGS</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4819</td></tr>
-<tr><td><code>_CKP</code></td><td><code>volatile bit </code></td><td>BITSFR4</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4833</td></tr>
-<tr><td><code>_EEPGD</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4907</td></tr>
-<tr><td><code>_FREE</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4911</td></tr>
-<tr><td><code>_GIE</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4919</td></tr>
-<tr><td><code>_LWLO</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>4997</td></tr>
-<tr><td><code>_RD</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5127</td></tr>
-<tr><td><code>_SSP1IF</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5201</td></tr>
-<tr><td><code>_SSPEN</code></td><td><code>volatile bit </code></td><td>BITSFR4</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5203</td></tr>
-<tr><td><code>_TMR0IF</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5283</td></tr>
-<tr><td><code>_WCOL</code></td><td><code>volatile bit </code></td><td>BITSFR4</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5357</td></tr>
-<tr><td><code>_WR</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5381</td></tr>
-<tr><td><code>_WREN</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic12f1840.h</td><td>5383</td></tr>
-<tr><td><code>_flash_buffer</code></td><td><code>unsigned char [16]</code></td><td>BANK0</td><td>16</td><td>main.c</td><td>23</td></tr>
-<tr><td><code>_pksa_wd_address</code></td><td><code>unsigned char </code></td><td>COMMON</td><td>1</td><td>main.c</td><td>24</td></tr>
-<tr><td><code>_pksa_index</code></td><td><code>unsigned char </code></td><td>COMMON</td><td>1</td><td>main.c</td><td>25</td></tr>
-<tr><td><code>_pksa_status</code></td><td><code>unsigned char </code></td><td>COMMON</td><td>1</td><td>main.c</td><td>26</td></tr>
-<tr><td><code>_flash_addr_pointer</code></td><td><code>struct _ADDRESS</code></td><td>BANK0</td><td>2</td><td>main.c</td><td>27</td></tr>
-<tr><td><code>_timeout</code></td><td><code>unsigned int </code></td><td>BANK0</td><td>2</td><td>main.c</td><td>28</td></table>
+<tr><td><code>_OPTION_REG</code></td><td><code>volatile unsigned char </code></td><td>BITSFR1</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>1555</td></tr>
+<tr><td><code>_PCONbits</code></td><td><code>volatile struct .</code></td><td>BITSFR1</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>1653</td></tr>
+<tr><td><code>_OSCCON</code></td><td><code>volatile unsigned char </code></td><td>BITSFR1</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>1802</td></tr>
+<tr><td><code>_EEADR</code></td><td><code>volatile unsigned short </code></td><td>BITSFR3</td><td>2</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3119</td></tr>
+<tr><td><code>_EEADRL</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3125</td></tr>
+<tr><td><code>_EEADRH</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3144</td></tr>
+<tr><td><code>_EEDATL</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3169</td></tr>
+<tr><td><code>_EEDATA</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3174</td></tr>
+<tr><td><code>_EEDATH</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3206</td></tr>
+<tr><td><code>_EECON1</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3225</td></tr>
+<tr><td><code>_EECON2</code></td><td><code>volatile unsigned char </code></td><td>BITSFR3</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3286</td></tr>
+<tr><td><code>_SSPBUF</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3661</td></tr>
+<tr><td><code>_SSPADD</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3680</td></tr>
+<tr><td><code>_SSPSTAT</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3718</td></tr>
+<tr><td><code>_SSPSTATbits</code></td><td><code>volatile struct .</code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3735</td></tr>
+<tr><td><code>_SSPCON1</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3779</td></tr>
+<tr><td><code>_SSPCON2</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3900</td></tr>
+<tr><td><code>_SSPCON3</code></td><td><code>volatile unsigned char </code></td><td>BITSFR4</td><td>1</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>3961</td></tr>
+<tr><td><code>_CARRY</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7068</td></tr>
+<tr><td><code>_CFGS</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7162</td></tr>
+<tr><td><code>_CKP</code></td><td><code>volatile bit </code></td><td>BITSFR4</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7176</td></tr>
+<tr><td><code>_EEPGD</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7258</td></tr>
+<tr><td><code>_FREE</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7262</td></tr>
+<tr><td><code>_GIE</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7270</td></tr>
+<tr><td><code>_LWLO</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7446</td></tr>
+<tr><td><code>_RD</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7620</td></tr>
+<tr><td><code>_SSPEN</code></td><td><code>volatile bit </code></td><td>BITSFR4</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7854</td></tr>
+<tr><td><code>_SSPIF</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7858</td></tr>
+<tr><td><code>_TMR0IF</code></td><td><code>volatile bit </code></td><td>BITSFR0</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>7986</td></tr>
+<tr><td><code>_WCOL</code></td><td><code>volatile bit </code></td><td>BITSFR4</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>8112</td></tr>
+<tr><td><code>_WR</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>8146</td></tr>
+<tr><td><code>_WREN</code></td><td><code>volatile bit </code></td><td>BITSFR3</td><td>0</td><td>E:\Microchip\xc8\v1.20\include\pic16f1938.h</td><td>8148</td></tr>
+<tr><td><code>___bootloader_flash_buffer</code></td><td><code>unsigned char [16]</code></td><td>BANK0</td><td>16</td><td>main.c</td><td>23</td></tr>
+<tr><td><code>___bootloader_pksa_wd_address</code></td><td><code>unsigned char </code></td><td>COMMON</td><td>1</td><td>main.c</td><td>24</td></tr>
+<tr><td><code>___bootloader_pksa_index</code></td><td><code>unsigned char </code></td><td>COMMON</td><td>1</td><td>main.c</td><td>25</td></tr>
+<tr><td><code>___bootloader_pksa_status</code></td><td><code>unsigned char </code></td><td>COMMON</td><td>1</td><td>main.c</td><td>26</td></tr>
+<tr><td><code>___bootloader_flash_addr_pointer</code></td><td><code>struct _ADDRESS</code></td><td>BANK0</td><td>2</td><td>main.c</td><td>27</td></tr>
+<tr><td><code>___bootloader_timeout</code></td><td><code>unsigned int </code></td><td>BANK0</td><td>2</td><td>main.c</td><td>28</td></table>
 <a name="2"><h2 class="">Pointer list with targets</h2>
 <table class="">
 <tr><td><b>Pointer Name</b></td><td><b>Pointer Type</b></td><td><b>Pointer Size</b></td><td><b>Largest Pointer Target</b></td></tr>
 <tr><td></td><td><b>-> Target Name</b></td><td><b>Target Space</b></td><td><b>Target Size</b></td></tr>
-<tr><td>flash_memory_write@data</td><td>PTR unsigned char </td><td>1</td><td>16</td></tr>
-<tr><td></td><td>-> flash_buffer</td><td>BANK0</td><td>16</td></table>
+<tr><td>__bootloader_flash_memory_write@data</td><td>PTR unsigned char </td><td>1</td><td>16</td></tr>
+<tr><td></td><td>-> __bootloader_flash_buffer</td><td>BANK0</td><td>16</td></table>
 <a name="3"><h2 class="">Function Information</h2>
 <table class="funcinfo">
 <tr><td><code>_main</code></td><td><h4 class="funcinfo">Parameters</h4>
@@ -186,7 +196,7 @@ type: void
 size: 0
 <h4 class="funcinfo">Registers used</h4>
 wreg, fsr1l, fsr1h, status,2, status,0, pclath, cstack</td></tr>
-<tr><td><code>_do_i2c_tasks</code></td><td><h4 class="funcinfo">Parameters</h4>
+<tr><td><code>___bootloader_do_i2c_tasks</code></td><td><h4 class="funcinfo">Parameters</h4>
 <br>
 None<h4 class="funcinfo">Auto variables</h4>
 <table class="funcinfo">
@@ -199,7 +209,7 @@ type: void
 size: 0
 <h4 class="funcinfo">Registers used</h4>
 wreg, fsr1l, fsr1h, status,2, status,0, pclath, cstack</td></tr>
-<tr><td><code>_flash_memory_write</code></td><td><h4 class="funcinfo">Parameters</h4>
+<tr><td><code>___bootloader_flash_memory_write</code></td><td><h4 class="funcinfo">Parameters</h4>
 <table class="funcinfo">
 <tr><td><b>Name</b></td><td><b>Size</b></td><td><b>Reg/space</b></td><td><b>Type</b></td></tr>
 <tr><td><code>address</code></td><td>2</td><td>1[COMMON] </td><td>unsigned int </td></tr>
@@ -213,7 +223,7 @@ type: void
 size: 0
 <h4 class="funcinfo">Registers used</h4>
 wreg, fsr1l, fsr1h, status,2, status,0</td></tr>
-<tr><td><code>_flash_memory_erase</code></td><td><h4 class="funcinfo">Parameters</h4>
+<tr><td><code>___bootloader_flash_memory_erase</code></td><td><h4 class="funcinfo">Parameters</h4>
 <table class="funcinfo">
 <tr><td><b>Name</b></td><td><b>Size</b></td><td><b>Reg/space</b></td><td><b>Type</b></td></tr>
 <tr><td><code>address</code></td><td>2</td><td>1[COMMON] </td><td>unsigned int </td></table>
@@ -223,7 +233,7 @@ type: void
 size: 0
 <h4 class="funcinfo">Registers used</h4>
 wreg, status,2</td></tr>
-<tr><td><code>_flash_memory_read</code></td><td><h4 class="funcinfo">Parameters</h4>
+<tr><td><code>___bootloader_flash_memory_read</code></td><td><h4 class="funcinfo">Parameters</h4>
 <table class="funcinfo">
 <tr><td><b>Name</b></td><td><b>Size</b></td><td><b>Reg/space</b></td><td><b>Type</b></td></tr>
 <tr><td><code>address</code></td><td>2</td><td>1[COMMON] </td><td>unsigned int </td></table>
@@ -233,7 +243,7 @@ type: unsigned int
 size: 2
 <h4 class="funcinfo">Registers used</h4>
 wreg, status,2, status,0</td></tr>
-<tr><td><code>__WriteData</code></td><td><h4 class="funcinfo">Parameters</h4>
+<tr><td><code>___bootloader__WriteData</code></td><td><h4 class="funcinfo">Parameters</h4>
 <table class="funcinfo">
 <tr><td><b>Name</b></td><td><b>Size</b></td><td><b>Reg/space</b></td><td><b>Type</b></td></tr>
 <tr><td><code>data</code></td><td>1</td><td>wreg</td><td>unsigned char </td></table>
@@ -246,7 +256,7 @@ type: void
 size: 0
 <h4 class="funcinfo">Registers used</h4>
 wreg</td></tr>
-<tr><td><code>_isr</code></td><td><h4 class="funcinfo">Parameters</h4>
+<tr><td><code>___bootloader_isr</code></td><td><h4 class="funcinfo">Parameters</h4>
 <br>
 None<h4 class="funcinfo">Auto variables</h4>
 None<h4 class="funcinfo">Return value</h4>

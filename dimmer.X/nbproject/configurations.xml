@@ -16,7 +16,6 @@
       <itemPath>system.c</itemPath>
       <itemPath>user.c</itemPath>
       <itemPath>i2c.c</itemPath>
-      <itemPath>hz100.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -46,6 +45,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -119,6 +133,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -156,6 +185,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -196,6 +240,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -233,6 +292,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -272,6 +346,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -309,6 +398,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -348,6 +452,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -387,6 +506,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -401,6 +535,23 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <HI-TECH-COMP>
+        <property key="define-macros" value=""/>
+        <property key="extra-include-directories" value=""/>
+        <property key="identifier-length" value="31"/>
+        <property key="operation-mode" value="lite"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="optimization-assembler-files" value="false"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="optimization-global" value="true"/>
+        <property key="optimization-level" value="9"/>
+        <property key="optimization-set" value="default"/>
+        <property key="optimization-speed" value="false"/>
+        <property key="preprocess-assembler" value="false"/>
+        <property key="undefine-macros" value=""/>
+        <property key="verbose" value="false"/>
+        <property key="warning-level" value="0"/>
+        <property key="what-to-do" value="ignore"/>
+        <property key="what-to-do-ex" value="ignore"/>
       </HI-TECH-COMP>
       <HI-TECH-LINK>
       </HI-TECH-LINK>
@@ -424,6 +575,21 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -440,6 +606,147 @@
       <HI-TECH-COMP>
         <property key="asmlist" value="true"/>
         <property key="define-macros" value="__PICCPRO__"/>
+        <property key="extra-include-directories" value=""/>
+        <property key="identifier-length" value="255"/>
+        <property key="operation-mode" value="free"/>
+        <property key="opt-xc8-compiler-strict_ansi" value="false"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="optimization-assembler-files" value="false"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="optimization-global" value="true"/>
+        <property key="optimization-level" value="9"/>
+        <property key="optimization-set" value="default"/>
+        <property key="optimization-speed" value="true"/>
+        <property key="preprocess-assembler" value="true"/>
+        <property key="undefine-macros" value=""/>
+        <property key="use-cci" value="false"/>
+        <property key="verbose" value="false"/>
+        <property key="warning-level" value="0"/>
+        <property key="what-to-do" value="ignore"/>
+      </HI-TECH-COMP>
+      <HI-TECH-LINK>
+        <property key="additional-options-checksum" value=""/>
+        <property key="additional-options-code-offset" value=""/>
+        <property key="additional-options-command-line" value=""/>
+        <property key="additional-options-errata" value=""/>
+        <property key="additional-options-extend-address" value="false"/>
+        <property key="additional-options-trace-type" value=""/>
+        <property key="additional-options-use-response-files" value="false"/>
+        <property key="backup-reset-condition-flags" value="false"/>
+        <property key="calibrate-oscillator" value="true"/>
+        <property key="calibrate-oscillator-value" value=""/>
+        <property key="clear-bss" value="true"/>
+        <property key="code-model-external" value="wordwrite"/>
+        <property key="code-model-rom" value=""/>
+        <property key="create-html-files" value="true"/>
+        <property key="data-model-ram" value=""/>
+        <property key="data-model-size-of-double" value="24"/>
+        <property key="data-model-size-of-float" value="24"/>
+        <property key="display-class-usage" value="true"/>
+        <property key="display-hex-usage" value="true"/>
+        <property key="display-overall-usage" value="true"/>
+        <property key="display-psect-usage" value="true"/>
+        <property key="fill-flash-options-addr" value=""/>
+        <property key="fill-flash-options-const" value=""/>
+        <property key="fill-flash-options-how" value="0"/>
+        <property key="fill-flash-options-inc-const" value="1"/>
+        <property key="fill-flash-options-increment" value=""/>
+        <property key="fill-flash-options-seq" value=""/>
+        <property key="fill-flash-options-what" value="0"/>
+        <property key="format-hex-file-for-download" value="false"/>
+        <property key="initialize-data" value="true"/>
+        <property key="keep-generated-startup.as" value="false"/>
+        <property key="link-in-c-library" value="true"/>
+        <property key="link-in-peripheral-library" value="true"/>
+        <property key="managed-stack" value="false"/>
+        <property key="opt-xc8-linker-file" value="true"/>
+        <property key="opt-xc8-linker-link_startup" value="false"/>
+        <property key="opt-xc8-linker-serial" value=""/>
+        <property key="program-the-device-with-default-config-words" value="true"/>
+      </HI-TECH-LINK>
+      <PICkit3PlatformTool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="Freeze Peripherals" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="false"/>
+        <property key="memories.configurationmemory" value="false"/>
+        <property key="memories.eeprom" value="false"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="false"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.end" value="0xfff"/>
+        <property key="memories.programmemory.start" value="0x0"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmertogo.imagename" value=""/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmspeed" value="2"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogramrange.end" value="0xfff"/>
+        <property key="programoptions.preserveprogramrange.start" value="0x0"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VPPFirst"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
+        <property key="voltagevalue" value="5.0"/>
+      </PICkit3PlatformTool>
+      <XC8-config-global>
+        <property key="output-file-format" value="-mcof,+elf"/>
+      </XC8-config-global>
+    </conf>
+    <conf name="PIC16F1938" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>PIC16F1938</targetDevice>
+        <targetHeader></targetHeader>
+        <targetPluginBoard></targetPluginBoard>
+        <platformTool>PICkit3PlatformTool</platformTool>
+        <languageToolchain>XC8</languageToolchain>
+        <languageToolchainVersion>1.20</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+        <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
+          <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <alternateLoadableFile></alternateLoadableFile>
+        </loading>
+      </compileType>
+      <makeCustomizationType>
+        <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeCustomizationPreStep></makeCustomizationPreStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
+        <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
+        <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
+      </makeCustomizationType>
+      <HI-TECH-COMP>
+        <property key="asmlist" value="true"/>
+        <property key="define-macros" value=""/>
         <property key="extra-include-directories" value=""/>
         <property key="identifier-length" value="255"/>
         <property key="operation-mode" value="free"/>
@@ -533,7 +840,7 @@
         <property key="output-file-format" value="-mcof,+elf"/>
       </XC8-config-global>
     </conf>
-    <conf name="PIC16F1938" type="2">
+    <conf name="PIC16F1938BOOT" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC16F1938</targetDevice>
@@ -550,6 +857,36 @@
           </linkerLibItems>
         </linkerTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
@@ -565,7 +902,7 @@
       </makeCustomizationType>
       <HI-TECH-COMP>
         <property key="asmlist" value="true"/>
-        <property key="define-macros" value=""/>
+        <property key="define-macros" value="__PICCPRO__"/>
         <property key="extra-include-directories" value=""/>
         <property key="identifier-length" value="255"/>
         <property key="operation-mode" value="free"/>
@@ -586,7 +923,7 @@
       </HI-TECH-COMP>
       <HI-TECH-LINK>
         <property key="additional-options-checksum" value=""/>
-        <property key="additional-options-code-offset" value=""/>
+        <property key="additional-options-code-offset" value="0x200"/>
         <property key="additional-options-command-line" value=""/>
         <property key="additional-options-errata" value=""/>
         <property key="additional-options-extend-address" value="false"/>
@@ -631,6 +968,164 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="false"/>
+        <property key="memories.configurationmemory" value="false"/>
+        <property key="memories.eeprom" value="false"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="false"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.end" value="0xfff"/>
+        <property key="memories.programmemory.start" value="0x0"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmertogo.imagename" value=""/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmspeed" value="2"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogramrange.end" value="0xfff"/>
+        <property key="programoptions.preserveprogramrange.start" value="0x0"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VPPFirst"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
+        <property key="voltagevalue" value="5.0"/>
+      </PICkit3PlatformTool>
+      <XC8-config-global>
+        <property key="output-file-format" value="-mcof,+elf"/>
+      </XC8-config-global>
+    </conf>
+    <conf name="PIC12F1840BOOT" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>PIC12F1840</targetDevice>
+        <targetHeader></targetHeader>
+        <targetPluginBoard></targetPluginBoard>
+        <platformTool>PICkit3PlatformTool</platformTool>
+        <languageToolchain>XC8</languageToolchain>
+        <languageToolchainVersion>1.20</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+        <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC16F1938"
+                        AC="false"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938"
+                        DBC="${MAKE} MAKE_OPTIONS=&quot;&quot; -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/PIC16F1938&quot; &quot;dist/PIC16F1938&quot;"
+                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
+                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
+                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
+          </makeArtifact>
+          <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <alternateLoadableFile></alternateLoadableFile>
+        </loading>
+      </compileType>
+      <makeCustomizationType>
+        <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeCustomizationPreStep></makeCustomizationPreStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
+        <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
+        <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
+      </makeCustomizationType>
+      <HI-TECH-COMP>
+        <property key="asmlist" value="true"/>
+        <property key="define-macros" value="__PICCPRO__"/>
+        <property key="extra-include-directories" value=""/>
+        <property key="identifier-length" value="255"/>
+        <property key="operation-mode" value="free"/>
+        <property key="opt-xc8-compiler-strict_ansi" value="false"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="optimization-assembler-files" value="false"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="optimization-global" value="true"/>
+        <property key="optimization-level" value="9"/>
+        <property key="optimization-set" value="default"/>
+        <property key="optimization-speed" value="true"/>
+        <property key="preprocess-assembler" value="true"/>
+        <property key="undefine-macros" value=""/>
+        <property key="use-cci" value="false"/>
+        <property key="verbose" value="false"/>
+        <property key="warning-level" value="0"/>
+        <property key="what-to-do" value="ignore"/>
+      </HI-TECH-COMP>
+      <HI-TECH-LINK>
+        <property key="additional-options-checksum" value=""/>
+        <property key="additional-options-code-offset" value="0x200"/>
+        <property key="additional-options-command-line" value=""/>
+        <property key="additional-options-errata" value=""/>
+        <property key="additional-options-extend-address" value="false"/>
+        <property key="additional-options-trace-type" value=""/>
+        <property key="additional-options-use-response-files" value="false"/>
+        <property key="backup-reset-condition-flags" value="false"/>
+        <property key="calibrate-oscillator" value="true"/>
+        <property key="calibrate-oscillator-value" value=""/>
+        <property key="clear-bss" value="true"/>
+        <property key="code-model-external" value="wordwrite"/>
+        <property key="code-model-rom" value=""/>
+        <property key="create-html-files" value="false"/>
+        <property key="data-model-ram" value=""/>
+        <property key="data-model-size-of-double" value="24"/>
+        <property key="data-model-size-of-float" value="24"/>
+        <property key="display-class-usage" value="false"/>
+        <property key="display-hex-usage" value="false"/>
+        <property key="display-overall-usage" value="true"/>
+        <property key="display-psect-usage" value="false"/>
+        <property key="fill-flash-options-addr" value=""/>
+        <property key="fill-flash-options-const" value=""/>
+        <property key="fill-flash-options-how" value="0"/>
+        <property key="fill-flash-options-inc-const" value="1"/>
+        <property key="fill-flash-options-increment" value=""/>
+        <property key="fill-flash-options-seq" value=""/>
+        <property key="fill-flash-options-what" value="0"/>
+        <property key="format-hex-file-for-download" value="false"/>
+        <property key="initialize-data" value="true"/>
+        <property key="keep-generated-startup.as" value="false"/>
+        <property key="link-in-c-library" value="true"/>
+        <property key="link-in-peripheral-library" value="true"/>
+        <property key="managed-stack" value="false"/>
+        <property key="opt-xc8-linker-file" value="false"/>
+        <property key="opt-xc8-linker-link_startup" value="false"/>
+        <property key="opt-xc8-linker-serial" value=""/>
+        <property key="program-the-device-with-default-config-words" value="true"/>
+      </HI-TECH-LINK>
+      <PICkit3PlatformTool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="Freeze Peripherals" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
