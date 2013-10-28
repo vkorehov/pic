@@ -31,7 +31,7 @@ void i2c_init() {
 
 void InitApp(void)
 {
-    FVRCONbits.CDAFVR = 0b10; // 2V
+    FVRCONbits.CDAFVR = 0b11; // 4V
     FVRCONbits.FVREN = 1;
     while(!FVRCONbits.FVRRDY) {
     }
@@ -86,6 +86,7 @@ void InitApp(void)
     T1CONbits.TMR1CS = 0b01;
     T1CONbits.nT1SYNC = 0;
     T1CONbits.T1CKPS = 0b00;
+    write_tmr1(0);
     TMR1IF = 0;
     TMR1IE = 1;
     /* Enable interrupts */

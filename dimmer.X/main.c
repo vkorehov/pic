@@ -43,7 +43,7 @@ void main(void)
     ConfigureOscillator();
 
     state = 0;
-    dim = 0x00;
+    dim = 0x50;
     /* Initialize I/O and Peripherals for application */
     InitApp();
     
