@@ -31,7 +31,7 @@ void i2c_init() {
 
 void InitApp(void)
 {
-    FVRCONbits.CDAFVR = 0b11; // 4V
+    FVRCONbits.CDAFVR = 0b10; // 2V
     FVRCONbits.FVREN = 1;
     while(!FVRCONbits.FVRRDY) {
     }

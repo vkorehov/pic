@@ -13,8 +13,8 @@
 #include "system.h"
 #include "user.h"
 
-#define PEAK_TO_ZC1 (0xffff - 17000)
-#define ZC1_TO_ZC2 (0xffff - 40000)
+#define PEAK_TO_ZC1 (0xffff - 4500)
+#define ZC1_TO_ZC2 (0xffff - 40500)
 
 void interrupt isr(void) {
     if(TMR0IE && TMR0IF) {
