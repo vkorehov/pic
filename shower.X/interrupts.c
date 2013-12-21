@@ -37,13 +37,14 @@ void interrupt isr(void) {
         } else {
             running = 0;
             PORTA = 0b00000000;
+            state = 0;
         }
     }
     if (ADIF && ADIE) {
         ADIF = 0;
         if (running) {
             unsigned int v = ((ADRESH) << 8 | (ADRESL));
-            if (v > 0x2A7) { // > 2.8V
+            if (v > 0x340) { // 1a0 > 2.0V
                 stop = 1;
             }
         }

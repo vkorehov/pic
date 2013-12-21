@@ -1,11 +1,11 @@
-i1_write_tmr1: CODE, 914 0 6
-_write_tmr1: CODE, 908 0 6
-_ConfigureOscillator: CODE, 920 0 4
-_main: CODE, 842 0 27
-__WriteData: CODE, 884 0 12
-_InitApp: CODE, 775 0 67
-__initialization: CODE, 869 0 12
-_isr: CODE, 516 0 93
-_do_i2c_tasks: CODE, 611 0 164
-_i2c_init: CODE, 896 0 12
-Total: 403
+i1_write_tmr1: CODE, 909 0 6
+_write_tmr1: CODE, 903 0 6
+_ConfigureOscillator: CODE, 915 0 4
+_main: CODE, 844 0 20
+__WriteData: CODE, 879 0 12
+_InitApp: CODE, 777 0 67
+__initialization: CODE, 864 0 12
+_isr: CODE, 516 0 95
+_do_i2c_tasks: CODE, 613 0 164
+_i2c_init: CODE, 891 0 12
+Total: 398

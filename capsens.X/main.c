@@ -23,14 +23,24 @@
 void main(void) {
     /* Configure the oscillator for the device */
     ConfigureOscillator();
-
+    for(int i = 0;i < 6;i++) {
+        raw[i] = 0;
+        average[i] = 0;
+        trip[i] = 32;
+        state[i] = 0;
+    }
     /* Initialize I/O and Peripherals for application */
     InitApp();
 
-
+    //PORTA = 0b1110;
+    unsigned int c = 0;
+    //CPSCON0bits.CPSRNG = 0b00; // Noise detection
     while (1) {
-        i2c_command16(cps0_value);
-        __delay_ms(1000);
+        //asm("nop");
+        if(c == 0) {
+            i2c_command16(raw[0]);
+        }
+        c++;
     }
 
 }

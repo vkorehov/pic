@@ -2,7 +2,7 @@
 /* System Level #define Macros                                                */
 /******************************************************************************/
 /* Microcontroller MIPs (FCY) */
-#define SYS_FREQ        4000000L
+#define SYS_FREQ        32000000L
 #define _XTAL_FREQ      SYS_FREQ
 #define FCY             SYS_FREQ/4
 

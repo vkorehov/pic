@@ -54,8 +54,8 @@ void main(void)
     while(1)
     {
         do_i2c_tasks();
-        if(adc_freq++ == 0) {
-            GO = 1; // start ADC
+        if(adc_freq++ % 1024 == 0) {
+            //GO = 1; // start ADC
         }
     }
 

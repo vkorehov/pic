@@ -17,47 +17,72 @@
 
 /* Baseline devices don't have interrupts. Unfortunately the baseline detection 
  * macro is named _PIC12 */
-unsigned short cps0_value;
-unsigned short cps1_value;
-unsigned short cps2_value;
-unsigned short cps3_value;
+unsigned int raw[6];
+unsigned int average[6];
+unsigned int trip[6];
+unsigned char state[6]; // 0: init // >0: Counted // 1: Unpressed // 2 : Pressed
+
 unsigned char i2c_ack;
 unsigned char i2c_error;
 unsigned short i2c_collisions;
+unsigned char avgIndex = 0;
 
 void interrupt isr(void) {
     if (TMR1GIE && TMR1GIF) {
+        unsigned char ch = CPSCON1;
         TMR1ON = 0; // Stop Timer1
-        TMR1GIF = 0;
-        if (CPSCON1 == 3) {
-            cps3_value = (TMR1H << 8) + TMR1L;
-            // Switch to CPS0
-            CPSCON1 = 0;
-        } else if (CPSCON1 == 2) {
-            cps2_value = (TMR1H << 8) + TMR1L;
-        } else if (CPSCON1 == 1) {
-            cps1_value = (TMR1H << 8) + TMR1L;
-        } else if (CPSCON1 == 0) {
-            cps0_value = (TMR1H << 8) + TMR1L;
-            // Switch to CPS3
-            CPSCON1 = 3;
-        }
-        TMR1L = 0x00; // Reset Timer1
+        //
+        raw[ch] = TMR1L + (unsigned int) (TMR1H << 8);
+        //
+        TMR1L = 0x00;
         TMR1H = 0x00;
+        if (++CPSCON1 > 2) {
+            CPSCON1 = 0;
+        }
         TMR1ON = 1; // Restart Timer1
+
+
+        if (state[ch] == 0) { // skip first iteration, no reading yet
+            state[ch] = 1;
+            goto end_tmr1gi;
+        }
+
+        if (average[ch] == 0) {
+            average[ch] = raw[ch] - trip[ch];
+        }
+
+        if (raw[ch] < (average[ch] - trip[ch])) {
+            state[ch] = 2;
+            // Turned on
+            if (ch == 0) {
+                PORTA = 0b00011110;
+            }
+        } else if (raw[ch] > (average[ch] - trip[ch] + 4)) {
+            state[ch] = 1;
+            // Turned off
+            if (ch == 0) {
+                PORTA = 0b00000110;
+            }
+            //
+        }
+        if(state[ch] == 1) { // Average only during idle
+            average[ch] = average[ch] + (((long) raw[ch]-(long) average[ch]) >> 4);
+        }
+end_tmr1gi:
+        //
+        TMR1GIF = 0;
     }
     if (BCLIE && BCLIF) {
-        BCLIF = 0;
         i2c_error = 1;
         i2c_collisions++;
+        BCLIF = 0;
     }
     if (SSPIE && SSPIF) {
-        SSPIF = 0;
         if (!ACKSTAT) {
             i2c_ack = 1;
         }
+        SSPIF = 0;
     }
-
 }
 
 

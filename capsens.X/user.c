@@ -33,7 +33,9 @@ void i2c_init() {
     SSPCON2  = 0b01000000; // 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
     SSPCON3  = 0b00000000; // 8:ACKTIM(0) 7:PCIE(0) 6:SCIE(0) 5:BOEN(0) 4:SDAHT(0) 3:SBCDE() 2:AHEN() 1:DHEN(0)
     // I2C Master mode, clock = FOSC/(4 * (SSPADD + 1))
-    SSPADD = 9;    		// 100Khz @ 4Mhz Fosc
+    //SSPADD = 9;    		// 100Khz @ 4Mhz Fosc
+    //SSPADD = 79;    		// 100Khz @ 32Mhz Fosc
+    SSPADD = 79;
     SSPSTAT = 0b11000000; 	// Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
     BCLIF = 0; // Clear I2C Bus Collision Flag
     BCLIE = 1; // Enable I2C Bus Collision Interrupts
@@ -43,14 +45,38 @@ void i2c_init() {
 
 void InitApp(void)
 {
+    // setup references
+    DACCON0bits.DACPSS = 0b10; // FVR BUFFER2
+    DACNSS = 0b00; // GND
+    DACCON0bits.DACOE = 0;
+    DACCON1bits.DACR = 8;// FVRBUFFER2/2
+    DACEN = 1;
+    //Setup FVR
+    FVRCONbits.CDAFVR = 0b11; // 4.086V
+    FVRCONbits.FVREN = 1;
+    while(!FVRCONbits.FVRRDY) {
+        asm("nop");
+    }
+
+    //
+    PORTA = 0b00000110; // A1 = 1 A2 = 1
+    TRISAbits.TRISA1 = 0; // U/D as output
+    TRISAbits.TRISA2 = 0; // nCS as output
+    TRISAbits.TRISA3 = 0; // nCS as output
+    TRISAbits.TRISA4 = 0; // nCS as output
+    //
+    dpot_increment(100); // this resets pot to minimum voltage!
+    dpot_decrement(45);
+
+    
     TRISB   = 0b00001001; // CPS0_RB0(p21) CPS3_RB3(p24)
     TRISC   = 0b00011000; //RC3(p14):SCL RC4(p15):SDA
     i2c_init();
 
     ANSELB  = 0b00001001; // RB0,RB3 = Analog
 
-    CPSCON0 = 0b10001100; // 8:CPSON(1) 7:CPSRM(0) 3..4:CPSRNG(11 High Range) 2:CPSOUT(0) 1:T0XCS(0)
-    CPSCON1 = 0b00000011; // 1..2:CPSCH(00 CPS0, 11 CPS3)
+    CPSCON0 = 0b11001100; // 8:CPSON(1) 7:CPSRM(1) 3..4:CPSRNG(11 High Range) 2:CPSOUT(0) 1:T0XCS(0)
+    CPSCON1 = 0b00000000; // 1..2:CPSCH(00 CPS0, 11 CPS3)
 
 
     //TIMER0 SETUP
