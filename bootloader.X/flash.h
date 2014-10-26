@@ -12,9 +12,9 @@
 extern "C" {
 #endif
 
-unsigned int __bootloader_flash_memory_read (unsigned int address);
-void __bootloader_flash_memory_write (unsigned int address, unsigned char *data);
-void __bootloader_flash_memory_erase (unsigned int address);
+unsigned int _bl_flash_memory_read (unsigned int address);
+void _bl_flash_memory_write (unsigned int address, unsigned char *data);
+void _bl_flash_memory_erase (unsigned int address);
 
 
 #ifdef	__cplusplus

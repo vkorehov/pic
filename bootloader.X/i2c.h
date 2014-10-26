@@ -38,33 +38,16 @@ typedef union _ADDRESS
 
 #endif
 
-// pickit serial communication states
-#define I2C_NO_TRANSACTION					0
-#define I2C_SLAVE_ADDRESS_RECEIVED			1
-#define I2C_WORD_ADDRESS_RECEIVED			2
-#define I2C_READ_ADDRESS					3
-#define I2C_READ_DATA						4
-#define I2C_MASTER_NACK						5
-
 // slave address definition
-#ifdef _12F1840
-#define SLAVE_ADDR 0x11
-#else
-#define SLAVE_ADDR 0x10
-#endif
-// address typdef
-extern ADDRESS	__bootloader_flash_addr_pointer;
+#define SLAVE_ADDR 0x13
 
+extern ADDRESS	_bl_flash_addr_pointer;
+extern unsigned char _bl_flash_buffer[];
+extern unsigned char _bl_pksa_wd_address;
+extern unsigned int _bl_timeout;
 
 // function prototypes
-void __bootloader_do_i2c_tasks(void);
-
-// externs
-extern unsigned char __bootloader_flash_buffer[];
-extern unsigned char __bootloader_pksa_index;
-extern unsigned char __bootloader_pksa_wd_address;
-extern unsigned char __bootloader_pksa_status;
-extern unsigned int __bootloader_timeout;
+void _bl_do_i2c_tasks(void);
 
 #ifdef	__cplusplus
 }

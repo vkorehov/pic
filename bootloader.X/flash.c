@@ -18,7 +18,7 @@
 //
 //****************************************************************
 
-unsigned int __bootloader_flash_memory_read(unsigned int address) {
+unsigned int _bl_flash_memory_read(unsigned int address) {
     EEADRL = ((address)&0xff);
     EEADRH = ((address) >> 8);
     CFGS = 0; // access FLASH program, not config
@@ -35,7 +35,7 @@ unsigned int __bootloader_flash_memory_read(unsigned int address) {
 //
 //****************************************************************
 
-void __bootloader_flash_memory_write(unsigned int address, unsigned char *data) {
+void _bl_flash_memory_write(unsigned int address, unsigned char *data) {
     unsigned char wdi;
     EECON1 = 0;
     EEADRL = ((address)&0xff); // load address
@@ -71,7 +71,7 @@ void __bootloader_flash_memory_write(unsigned int address, unsigned char *data) 
 //
 //****************************************************************
 
-void __bootloader_flash_memory_erase(unsigned int address) {
+void _bl_flash_memory_erase(unsigned int address) {
     EEADRL = ((address)&0xff); // load address
     EEADRH = ((address) >> 8); // load address
     CFGS = 0; // access FLASH program, not config

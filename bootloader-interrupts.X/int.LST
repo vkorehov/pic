@@ -1,0 +1,35 @@
+MPASM 5.57                           INT.ASM   10-26-2014  7:13:57         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001  LIST    P=PIC16F1938
+0004                  00002  org 0x0004
+0004   3182           00003  pagesel 0x204
+0005   2A04           00004  goto 0x204
+                      00005  end
+MPASM 5.57                           INT.ASM   10-26-2014  7:13:57         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16F1938                         00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : ----XX---------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     2
+Program Memory Words Free: 16382
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

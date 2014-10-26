@@ -20,7 +20,7 @@ void interrupt isr(void) {
     if(TMR0IE && TMR0IF) {
         TMR0IF = 0;
         TMR0IE = 0;
-        PORTBbits.RB3 = 0;
+        PORTAbits.RA0 = 0;
     }
     if(TMR1IE && TMR1IF) {
         TMR1IF = 0;
@@ -29,9 +29,9 @@ void interrupt isr(void) {
             state = 1;
             // Zero Crossing1
             if(dim > 0x01) {
-                PORTBbits.RB3 = 1;
+                PORTAbits.RA0 = 1;
             } else {
-                PORTBbits.RB3 = 0;
+                PORTAbits.RA0 = 0;
             }
             if(dim != 0xff) {
                 TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
@@ -46,9 +46,9 @@ void interrupt isr(void) {
         } else if(state == 1) {
             // Zero Crossing2
             if(dim > 0x01) {
-                PORTBbits.RB3 = 1;
+                PORTAbits.RA0 = 1;
             } else {
-                PORTBbits.RB3 = 0;
+                PORTAbits.RA0 = 0;
             }
             if(dim != 0xff) {
                 TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!

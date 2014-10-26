@@ -42,8 +42,8 @@ void main(void)
     /* Configure the oscillator for the device */
     ConfigureOscillator();
 
-    state = 0;
-    dim = 0x0;
+    state = 0x0;
+    dim = 0x20;
     /* Initialize I/O and Peripherals for application */
     InitApp();
     

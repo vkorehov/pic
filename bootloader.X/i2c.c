@@ -15,109 +15,106 @@
 #define SSPIF SSP1IF
 #endif
 
-void __bootloader__WriteData(unsigned char data) {
+static unsigned char _bl_index;
+static unsigned char _bl_command;
+static unsigned char _bl_temp;
+
+static void _bl_write_i2c(unsigned char b) {
     do {
-        WCOL = 0;
-        SSPBUF = data;
-    } while (WCOL);
-    CKP = 1;
+        SSPCONbits.WCOL = 0b0;
+        SSPBUF = b;
+    } while (SSPCONbits.WCOL);
 }
 
-void __bootloader_do_i2c_tasks() {
-    unsigned int dat = 0;
-    unsigned char temp, idx;
+void _bl_do_i2c_tasks() {
     if (SSPIF) {
-        if (SSPSTATbits.S) {
-            if (SSPSTATbits.D_nA && !SSPSTATbits.BF && CKP) { // Master NACK
-                goto __bootloader_stop;
-            } else if (!SSPSTATbits.R_nW && !SSPSTATbits.D_nA && SSPSTATbits.BF) { //MASTER WRITES ADDRESS STATE
+        unsigned char i2c_state = SSPSTAT & 0b00100100;
+        // 0b00100000 = D/nA
+        // 0b00000100 = R/nW
+        // prevent overflow
+        switch (i2c_state) {
+            case 0b00000000: // STATE1: Maser Write, Last Byte = Address
                 // Disable timeout
-                OPTION_REG = 0b11111111;
-                temp = SSPBUF;
-                __bootloader_pksa_status = I2C_SLAVE_ADDRESS_RECEIVED;
-            } else if (!SSPSTATbits.R_nW && SSPSTATbits.D_nA && SSPSTATbits.BF) { // MWD: //MASTER WRITES DATA STATE
-                temp = SSPBUF;
-                if (__bootloader_pksa_status == I2C_SLAVE_ADDRESS_RECEIVED) { // first time we get the slave address, after that set to word address
-                    __bootloader_pksa_wd_address = temp;
-                    __bootloader_pksa_index = 0;
-                    __bootloader_pksa_status = I2C_WORD_ADDRESS_RECEIVED;
-                } else if (__bootloader_pksa_status == I2C_WORD_ADDRESS_RECEIVED) { // second time we get the word address, so look into word address
-                    if (__bootloader_pksa_wd_address == 0x01) { // 0x01 is buffer word address
-                        if (__bootloader_pksa_index == 0) {
-                            __bootloader_flash_addr_pointer.bytes.byte_L = temp;
-                            __bootloader_pksa_index++;
-                        } else if (__bootloader_pksa_index == 1) {
-                            __bootloader_flash_addr_pointer.bytes.byte_H = temp;
-                        }
-                    } else if (__bootloader_pksa_wd_address == 0x02) { // 0x02 write data word address
-                        if (__bootloader_pksa_index < FLASH_BLOCK_BYTES) {
-                            __bootloader_flash_buffer[__bootloader_pksa_index] = temp;
-                        }
-                        __bootloader_pksa_index++;
-                    }
+                _bl_timeout = 0xffff;
+                _bl_index = 0;
+                _bl_command = 0;
+                // do a dummy read
+                _bl_temp = SSPBUF;
+                break;
+            case 0b00100000: // STATE2: Maser Write, Last Byte = Data
+                _bl_temp = SSPBUF;
+                if(_bl_index == 0) {
+                    _bl_command = _bl_temp;
+                    _bl_index++;
+                    break;
                 }
-            } else if (SSPSTATbits.R_nW && !SSPSTATbits.D_nA) { //MASTER READS ADDRESS STATE
-                // Disable timeout
-                OPTION_REG = 0b11111111;
-                if (__bootloader_pksa_wd_address == 0x01) { // buffer word address
-                    // Send first byte here, next byte will be send at MRD case, see below
-                    __bootloader__WriteData(__bootloader_flash_addr_pointer.bytes.byte_L);
-                } else if (__bootloader_pksa_wd_address == 0x03) { // read data from flash memory
-                    if (__bootloader_pksa_index == 0) {
-                        // read data into flash_buffer
-                        for (idx = 0; idx < FLASH_BLOCK_BYTES; idx += 2) {
-                            dat = __bootloader_flash_memory_read(__bootloader_flash_addr_pointer.word.address);
-                            __bootloader_flash_buffer[idx ] = dat >> 8;
-                            __bootloader_flash_buffer[idx + 1] = dat & 0xFF;
-                            __bootloader_flash_addr_pointer.word.address++;
+                switch(_bl_command) {
+                    case 0x01:
+                        switch(_bl_index) {
+                            case 1:
+                                _bl_flash_addr_pointer.bytes.byte_L = _bl_temp;
+                                break;
+                            case 2:
+                                _bl_flash_addr_pointer.bytes.byte_H = _bl_temp;
+                                break;
                         }
-                        // send first byte, the rest will be sent at MRD, see below
-                        __bootloader__WriteData(__bootloader_flash_buffer[__bootloader_pksa_index]);
-                        __bootloader_pksa_index++;
-                    }
-                } else if (__bootloader_pksa_wd_address == 0x04) {
-                    // erase command, erases a row of ERASE_BLOCK_WORDS words
-                    __bootloader_flash_memory_erase(__bootloader_flash_addr_pointer.word.address);
-                    __bootloader_flash_addr_pointer.word.address += ERASE_BLOCK_WORDS;
-                    __bootloader__WriteData(0x00);
-                } else if (__bootloader_pksa_wd_address == 0x05) {
-                    // write command. What's stored into flash_buffer is written
-                    // to FLASH memory at the address pointed to by the address pointer.
-                    // The address pointer automatically increments by FLASH_BLOCK_WORDS units.
-                    __bootloader_flash_memory_write(__bootloader_flash_addr_pointer.word.address, __bootloader_flash_buffer);
-                    __bootloader_flash_addr_pointer.word.address += FLASH_BLOCK_WORDS;
-                    __bootloader__WriteData(0x00);
-                } else if (__bootloader_pksa_wd_address == 0x06) {
-                    // jump to appplication code
-                    __bootloader__WriteData(0xA0);
-__bootloader_appjmp:
-                    asm("reset");
+                        break;
+                    case 0x02:
+                        if (_bl_index <= FLASH_BLOCK_BYTES) {
+                            _bl_flash_buffer[_bl_index-1] = _bl_temp;
+                        }
+                        break;
                 }
-            } else if (SSPSTATbits.R_nW && SSPSTATbits.D_nA && !SSPSTATbits.BF) { //MASTER READS DATA STATE
-                if (__bootloader_pksa_wd_address == 0x01) // buffer word address
-                {
-                    __bootloader__WriteData(__bootloader_flash_addr_pointer.bytes.byte_H);
-                } else if (__bootloader_pksa_wd_address == 0x03) {
-                    if (__bootloader_pksa_index < FLASH_BLOCK_BYTES) {
-                        __bootloader__WriteData(__bootloader_flash_buffer[__bootloader_pksa_index]);
-                    }
-                    __bootloader_pksa_index++;
+                _bl_index++;
+                break;
+            case 0b00000100: // STATE3: Maser Read, Last Byte = Address
+                _bl_index = 0;
+            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
+                _bl_temp = 0x0;
+                switch(_bl_command) {
+                    case 0x01:
+                        _bl_temp = _bl_index == 0 ? _bl_flash_addr_pointer.bytes.byte_L : _bl_flash_addr_pointer.bytes.byte_H;
+                        break;
+                    case 0x03:
+                        if(_bl_index == 0) {
+                            // read data into flash_buffer
+                            for (unsigned char idx = 0; idx < FLASH_BLOCK_BYTES; idx += 2) {
+                                unsigned int dat = _bl_flash_memory_read(_bl_flash_addr_pointer.word.address);
+                                _bl_flash_buffer[idx ] = dat >> 8;
+                                _bl_flash_buffer[idx + 1] = dat & 0xFF;
+                                _bl_flash_addr_pointer.word.address++;
+                            }
+                        }
+                        if (_bl_index < FLASH_BLOCK_BYTES) {
+                            _bl_temp = _bl_flash_buffer[_bl_index];
+                        }
+                        break;
+                    case 0x04:
+                        if (_bl_index == 0) {
+                            // erase command, erases a row of ERASE_BLOCK_WORDS words
+                            _bl_flash_memory_erase(_bl_flash_addr_pointer.word.address);
+                            _bl_flash_addr_pointer.word.address += ERASE_BLOCK_WORDS;
+                        }
+                        break;
+                    case 0x05:
+                        if(_bl_index == 0) {
+                            // write command. What's stored into flash_buffer is written
+                            // to FLASH memory at the address pointed to by the address pointer.
+                            // The address pointer automatically increments by FLASH_BLOCK_WORDS units.
+                            _bl_flash_memory_write(_bl_flash_addr_pointer.word.address, _bl_flash_buffer);
+                            _bl_flash_addr_pointer.word.address += FLASH_BLOCK_WORDS;
+                        }
+                        break;
+                    case 0x06:
+                        _bl_write_i2c(0xA0);
+                        asm("reset");
+                        break;
                 }
-            }
+                _bl_write_i2c(_bl_temp);
+                _bl_index++;
+                break;
         }
-        if (SSPSTATbits.P) { //STOP or NACK state
-__bootloader_stop:
-            // reset status register
-            SSPSTAT = 0b11000000; // Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
-            __bootloader_pksa_status = I2C_NO_TRANSACTION;
-        }
+        SSPCON1bits.CKP = 1;
         SSPIF = 0;
-        SSPEN = 1;
-        CKP = 1; //release clock
-    } else if(TMR0IF) {
-        if(!(--__bootloader_timeout)) {
-            goto __bootloader_appjmp;
-        }
-        TMR0IF = 0;
     }
 }

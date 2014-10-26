@@ -2,7 +2,7 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x13                    // This device I2C address
+#define I2C_MYADDR 0x14                    // This device I2C address
 // pickit serial communication states
 #define I2C_NO_TRANSACTION					0
 #define I2C_SLAVE_ADDRESS_RECEIVED			1
@@ -11,6 +11,7 @@
 #define I2C_READ_DATA						4
 #define I2C_MASTER_NACK						5
 
+extern unsigned int switch_count;
 extern unsigned char state;
 extern unsigned char dim;
 

@@ -19,11 +19,12 @@
 #define SSPIF SSP1IF
 #endif
 
+volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
 
-unsigned char pksa_index = 0;
-unsigned char pksa_wd_address = 0;
 unsigned char pksa_status = 0;
 unsigned char after=10;
+
+
 void _WriteData(unsigned char data) {
     do {
         WCOL = 0;
@@ -42,64 +43,24 @@ void do_i2c_tasks(void) {
             } else if (!SSPSTATbits.R_nW && !SSPSTATbits.D_nA && SSPSTATbits.BF) { //MASTER WRITES ADDRESS STATE
                 temp = SSPBUF;
                 pksa_status = I2C_SLAVE_ADDRESS_RECEIVED;
-                if(temp == 0x00) { // general call = Sync request from pacemaker
-
-                }
+                //if(temp == 0x00) general call
             } else if (!SSPSTATbits.R_nW && SSPSTATbits.D_nA && SSPSTATbits.BF) { // MWD: //MASTER WRITES DATA STATE
                 temp = SSPBUF;
                 if (pksa_status == I2C_SLAVE_ADDRESS_RECEIVED) { // first time we get the slave address, after that set to word address
-                    pksa_wd_address = temp;
-                    pksa_index = 0;
-                    pksa_status = I2C_WORD_ADDRESS_RECEIVED;
-                } else if (pksa_status == I2C_WORD_ADDRESS_RECEIVED) { // second time we get the word address, so look into word address
-                    if (pksa_wd_address == 0x01) { // 0x01 is buffer word address
-                        if (pksa_index == 0) {
-                            // TODO
-                            pksa_index++;
-                        } else if (pksa_index == 1) {
-                            // TODO
-                        }
-                    } else if (pksa_wd_address == 0x02) { // 0x02 write data word address
-                        if (pksa_index < 50) {
-                            // TODO
-                        }
-                        pksa_index++;
+                    if(temp == 0x78) { // enter bootloader command
+                        ENTER_BOOTLOADER = 1;
+                        asm("goto 0x000");
+                    } else if (temp == 0x01) { // turn on command
+                        //TMR0 = 0x00;
+                        switch_count = 0;
+                        //TMR0IE = 1;
+                        PORTAbits.RA0 = 1;
                     }
                 }
             } else if (SSPSTATbits.R_nW && !SSPSTATbits.D_nA) { //MASTER READS ADDRESS STATE
-                if (pksa_wd_address == 0x01) { // buffer word address
-                    // Send first byte here, next byte will be send at MRD case, see below
-                    // TODO
-                    _WriteData(0x10);
-                } else if (pksa_wd_address == 0x03) { // read data from flash memory
-                    if (pksa_index == 0) {
-                        // send first byte, the rest will be sent at MRD, see below
-                        // TODO
-                        _WriteData(0x20);
-                        pksa_index++;
-                    }
-                } else if (pksa_wd_address == 0x04) {
-                    // TODO
-                    _WriteData(0x01);
-                } else if (pksa_wd_address == 0x05) {
-                    // TODO
-                    _WriteData(0x00);
-                } else if (pksa_wd_address == 0x06) {
-                    // TODO
-                    _WriteData(0xA0);
-                }
+                _WriteData(I2C_MYADDR);
             } else if (SSPSTATbits.R_nW && SSPSTATbits.D_nA && !SSPSTATbits.BF) { //MASTER READS DATA STATE
-                if (pksa_wd_address == 0x01) // buffer word address
-                {
-                    // TODO
-                    _WriteData(0x30);
-                } else if (pksa_wd_address == 0x03) {
-                    if (pksa_index < 50) {
-                        // TODO
-                        _WriteData(0x10);
-                    }
-                    pksa_index++;
-                }
+                _WriteData(I2C_MYADDR);
             }
         }
         if (SSPSTATbits.P) { //STOP or NACK state
