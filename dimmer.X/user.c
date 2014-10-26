@@ -13,6 +13,10 @@
 
 #include "user.h"
 unsigned int switch_count;
+#ifdef _12F1840
+#define SSPIE SSP1IE
+#define SSPIF SSP1IF
+#endif
 
 /******************************************************************************/
 /* User Functions                                                             */
@@ -20,13 +24,11 @@ unsigned int switch_count;
 
 void i2c_init() {
     // Initialise I2C MSSP
-    SSPCON1  = 0b00110110; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(1) 5:CKP(1) 1..4:SSPM(1110 I2C Slave mode, 7-bit address with Start and Stop bit interrupts enabled)
-    //SSPCON2  = 0b00000001; // 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(1) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
-    SSPCON3  = 0b01101000; // 8:ACKTIM(0) 7:PCIE(1) 6:SCIE(1) 5:BOEN(0) 4:SDAHT(0) 3:SBCDE(0) 2:AHEN(0) 1:DHEN(0)
-
+    SSPCON1  = 0b00110110; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address)
+    SSPCON2  = 0b00000001; // Slave Clock stretching on rceive and send 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(1) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(1)
+    SSPCON3  = 0b00001000; //SDA Thold=300ns 8:ACKTIM(0) 7:PCIE(0) 6:SCIE(0) 5:BOEN(0) 4:SDAHT(1) 3:SBCDE(0) 2:AHEN(0) 1:DHEN(0)
+    SSPSTAT = 0b11000000; // Slew rate disabled, SMBus compat. timings. SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
     SSPADD = I2C_MYADDR << 1; // My address
-    SSPSTAT = 0b11000000; // Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
-
 }
 
 
@@ -37,30 +39,8 @@ void InitApp(void)
     while(!FVRCONbits.FVRRDY) {
     }
 
-//#ifndef _12F1840
-//    APFCONbits.CCP2SEL = 1; // RB3 to be CCP2/P2A
-//#endif
-//    CCPTMRS0bits.C2TSEL = 0b00; // Timer2
-//    PR2 = period; // period of 10mS (155)
-//    CCP2CONbits.P2M = 0b00; // Use only P2A
-//    CCP2CONbits.CCP2M = 0b1100; // PWM mode P2A active high!
-//    // Load duty cycle value
-//    // Range is: (1024/255) * 155 = 622.2 = 623
-//    CCPR2L = (unsigned char)((command >> 2) & 0xff);
-//    CCP2CONbits.DC2B = (command & 0b11);
-    
-//    TMR2IF = 0;
-//    T2CONbits.T2CKPS = 0b11; // 1:64 pre-scaler
-//    T2CONbits.TMR2ON = 1;
-//    while(!TMR2IF) {
-//    }
-//    TMR2IF = 0;
-//    TMR2IE = 1;
-//    TRISBbits.TRISB3 = 1;
     i2c_init();
     ANSELAbits.ANSA4 = 1;//C1IN1- pin
-//    ADCON1 = 0b11000000;// ADFM=1, ADCS = 100 (Fosc/4, TAD = 1uS), ADPREF = 00 (VDD)
-//    ADCON0 = 0b00000001;// AD0 = 0b00000; // GO = 0,ADON = 1
 
     CM1CON1bits.C1NCH = 0b01; // C1VN connects to C1IN1- pin
     CM1CON1bits.C1PCH = 0b10; // FVR
@@ -89,8 +69,10 @@ void InitApp(void)
     T1CONbits.T1CKPS = 0b00;
     write_tmr1(0);
     TMR1IF = 0;
-    TMR1IE = 1;
+    SSPIF = 0;
     /* Enable interrupts */
+    TMR1IE = 1;
+    SSPIE = 1;
     PEIE = 1;
     GIE  = 1;
 }

@@ -45,9 +45,17 @@ void InitApp(void)
     TRISAbits.TRISA0 = 0;
     PORTAbits.RA0 = 0;
 
+    // Timer1
+    TMR1GE = 0; // no gate needed
+    TMR1ON = 0; // do not start immediately
+    T1CONbits.TMR1CS = 0b00; // FOSC/4
+    T1CONbits.nT1SYNC = 0; // synchronization enabled
+    T1CONbits.T1CKPS = 0b11; // div8 prescaler
+    TMR1IF = 0;
+    TMR1IE = 0;
+
     // Timer0
     //TMR0 = 0;
-    switch_count = 0;
     tick_count = 0;
     temperature = 0;
     humidity = 0;

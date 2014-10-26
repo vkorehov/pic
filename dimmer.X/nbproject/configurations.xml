@@ -15,7 +15,6 @@
       <itemPath>main.c</itemPath>
       <itemPath>system.c</itemPath>
       <itemPath>user.c</itemPath>
-      <itemPath>i2c.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -47,21 +46,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        CT="1"
-                        CN="PIC12F1840"
-                        AC="true"
-                        BL="true"
-                        WD="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
-                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
-                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
-                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -201,21 +185,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        CT="1"
-                        CN="PIC12F1840"
-                        AC="true"
-                        BL="true"
-                        WD="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
-                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
-                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
-                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -355,21 +324,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        CT="1"
-                        CN="PIC12F1840"
-                        AC="true"
-                        BL="true"
-                        WD="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
-                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
-                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
-                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -509,21 +463,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        CT="1"
-                        CN="PIC12F1840"
-                        AC="true"
-                        BL="true"
-                        WD="C:/Users/vlad/Documents/GitHub/pic/bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
-                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/PIC12F1840&quot; &quot;dist/PIC12F1840&quot;"
-                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
-                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -532,7 +471,7 @@
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep>upload.bat ${ImagePath} ${ImageName} 13 14</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>

@@ -1,9 +1,9 @@
-_ConfigureOscillator: CODE, 746 0 4
-_main: CODE, 686 0 21
-_InitApp: CODE, 660 0 26
-__initialization: CODE, 707 0 11
-_isr: CODE, 516 0 142
-_write_i2c: CODE, 733 0 8
-_on: CODE, 741 0 5
-_i2c_init: CODE, 721 0 12
-Total: 229
+_ConfigureOscillator: CODE, 725 0 4
+_main: CODE, 651 0 21
+_InitApp: CODE, 672 0 16
+__initialization: CODE, 688 0 9
+_isr: CODE, 516 0 133
+_write_i2c: CODE, 712 0 8
+_on: CODE, 720 0 5
+_i2c_init: CODE, 700 0 12
+Total: 208

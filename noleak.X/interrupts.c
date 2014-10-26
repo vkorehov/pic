@@ -55,16 +55,19 @@ void interrupt isr(void) {
                     asm("pagesel 0x000");
                     asm("goto 0x000");
                 }
-                if (rx_index == 1 && rx_buffer[0] == 0x01) {
-                    on();
+                if (rx_index == 1 && rx_buffer[0] == 0x02) {
+                    allow();
+                }
+                if (rx_index == 1 && rx_buffer[0] == 0x03) {
+                    release();
                 }
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // Diagnostics output
-                rx_buffer[0] = tick_count & 0xff;
-                rx_buffer[1] = tick_count >> 8;
+                rx_buffer[0] = state & 0xff;
+                rx_buffer[1] = 0 >> 8;
                 write_i2c(rx_buffer[rx_index++]);
                 break;
         }
@@ -73,6 +76,15 @@ void interrupt isr(void) {
     }
     if(IOCIF) {
         tick_count++;
+        leak();
         IOCBF = 0x0;
+    }
+    if(TMR1IF) {
+        TMR1IF = 0;
+        if(timeout == 0 || timeout > ALLOW_TIMEOUT) {
+            reset();
+        } else {
+            timeout--;
+        }
     }
 }

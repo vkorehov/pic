@@ -43,13 +43,13 @@ void main(void)
     ConfigureOscillator();
 
     state = 0x0;
-    dim = 0x20;
+    dim = 0x0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
     
     while(1)
     {
-        do_i2c_tasks();
+
     }
 
 }

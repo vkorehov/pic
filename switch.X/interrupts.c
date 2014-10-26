@@ -14,7 +14,6 @@
 #include "user.h"
 
 volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
-
 #ifdef _12F1840
 #define SSPIF SSP1IF
 #endif
@@ -63,16 +62,12 @@ void interrupt isr(void) {
                 rx_index = 0;
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // Diagnostics output
-                rx_buffer[0] = tick_count & 0xff;
-                rx_buffer[1] = tick_count >> 8;
+                rx_buffer[0] = switch_count & 0xff;
+                rx_buffer[1] = switch_count >> 8;
                 write_i2c(rx_buffer[rx_index++]);
                 break;
         }
         SSPCON1bits.CKP = 1;
         SSPIF = 0;
-    }
-    if(IOCIF) {
-        tick_count++;
-        IOCBF = 0x0;
     }
 }

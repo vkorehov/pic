@@ -13,7 +13,6 @@
 
 #include "user.h"
 unsigned int switch_count;
-unsigned int tick_count;
 unsigned char temperature;
 unsigned char humidity;
 #ifdef _12F1840
@@ -48,17 +47,11 @@ void InitApp(void)
     // Timer0
     //TMR0 = 0;
     switch_count = 0;
-    tick_count = 0;
     temperature = 0;
     humidity = 0;
 
-    ANSELB = 0x00; // for some stupid reason this is not default
-    TRISBbits.TRISB0 = 1;
-    IOCBNbits.IOCBN0 = 1;
-
     SSPIF = 0;
     /* Enable interrupts */
-    IOCIE = 1;
     SSPIE = 1;
     PEIE = 1;
     GIE  = 1;

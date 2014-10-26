@@ -6,7 +6,6 @@
 
 #define SWITCH_ON_DURATION                                      0xfff0
 extern unsigned int switch_count;
-extern unsigned int tick_count;
 extern unsigned char temperature;
 extern unsigned char humidity;
 
