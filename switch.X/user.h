@@ -6,8 +6,6 @@
 
 #define SWITCH_ON_DURATION                                      0xfff0
 extern unsigned int switch_count;
-extern unsigned char temperature;
-extern unsigned char humidity;
 #define DHT22_MAX_BYTES 5
 #define DHT22_CUTOFF_TIME 0x18
 extern unsigned char dht22_state;

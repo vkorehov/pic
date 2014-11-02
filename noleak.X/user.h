@@ -6,8 +6,6 @@
 #define ALLOW_TIMEOUT 10
 
 extern unsigned int tick_count;
-extern unsigned char temperature;
-extern unsigned char humidity;
 extern unsigned char state;
 extern unsigned char timeout;
 

@@ -27,6 +27,11 @@ volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootlo
 static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static void write_i2c(unsigned char b) {
+    // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
+    for (int i = 0; i < 8; i++) {
+        asm("nop");
+    }
+
     do {
         SSPCONbits.WCOL = 0b0;
         SSPBUF = b;

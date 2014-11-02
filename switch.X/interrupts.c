@@ -61,7 +61,6 @@ void interrupt isr(void) {
                     dht22_index++;
                 }
                 if (t > DHT22_CUTOFF_TIME) {
-                    PORTAbits.RA0 = 1;
                     dht22_bits[dht22_index] |= (1 << (7 - dht22_bit_index));
                 }
                 dht22_bit_index++;
