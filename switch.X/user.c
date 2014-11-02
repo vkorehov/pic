@@ -44,12 +44,32 @@ void InitApp(void)
     TRISAbits.TRISA0 = 0;
     PORTAbits.RA0 = 0;
 
-    // Timer0
-    //TMR0 = 0;
     switch_count = 0;
     temperature = 0;
     humidity = 0;
+    dht22_state = 0;
+    dht22_index = 0;
+    dht22_bit_index = 0;
+    for(int i = 0; i < DHT22_MAX_BYTES; i++) {
+        dht22_bits[i] = 0;
+    }
 
+    ANSELB = 0;// stupid
+    TRISBbits.TRISB0 = 1;
+
+    // TIMER2
+    TMR2ON = 0;
+    TMR2 = 0x00;
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b00; // 1:64
+    T2CONbits.T2OUTPS = 0b0000;// 1:16 post scaler
+    TMR2IF = 0;
+
+    IOCBNbits.IOCBN0 = 0;
+    IOCBPbits.IOCBP0 = 0;
+    /* Enable interrupts */
+    IOCBF = 0;
+    IOCIE = 1;
     SSPIF = 0;
     /* Enable interrupts */
     SSPIE = 1;

@@ -1,9 +1,12 @@
-_ConfigureOscillator: CODE, 725 0 4
-_main: CODE, 651 0 21
-_InitApp: CODE, 672 0 16
-__initialization: CODE, 688 0 9
-_isr: CODE, 516 0 133
-_write_i2c: CODE, 712 0 8
-_on: CODE, 720 0 5
-_i2c_init: CODE, 700 0 12
-Total: 208
+_start_read_dht22_pullup: CODE, 922 0 36
+_ConfigureOscillator: CODE, 1055 0 4
+_main: CODE, 1041 0 9
+_InitApp: CODE, 786 0 74
+__initialization: CODE, 993 0 18
+_start_read_dht22: CODE, 860 0 62
+_isr: CODE, 516 0 268
+_write_i2c: CODE, 958 0 35
+_on: CODE, 1050 0 5
+_dht22_abort: CODE, 1014 0 15
+_i2c_init: CODE, 1029 0 12
+Total: 538

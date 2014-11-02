@@ -35,11 +35,11 @@ void main(void)
     InitApp();
     while(1)
     {
-        if(switch_count >= SWITCH_ON_DURATION) {
+        //if(switch_count >= SWITCH_ON_DURATION) {
             PORTAbits.RA0 = 0;
-        } else {
-            switch_count++;
-        }
+        //} else {
+        //    switch_count++;
+        //}
     }
 }
 
