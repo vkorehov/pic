@@ -12,7 +12,6 @@
 #include <stdbool.h>        /* For true/false definition */
 
 #include "user.h"
-unsigned int switch_count;
 #ifdef _12F1840
 #define SSPIE SSP1IE
 #define SSPIF SSP1IF
@@ -34,40 +33,39 @@ void i2c_init() {
 
 void InitApp(void)
 {
-//#ifndef _12F1840
-//    APFCONbits.CCP2SEL = 1; // RB3 to be CCP2/P2A
-//#endif
     i2c_init();
-    // Output pin
-    TRISAbits.TRISA0 = 0;
-    PORTAbits.RA0 = 0;
+    // OMRON input voltage pin
+    // A0 = AN0 is analog
+    TRISAbits.TRISA0 = 1;
+    ANSELAbits.ANSA0 = 1;
 
-    switch_count = 0;
-    dht22_state = 0;
-    dht22_index = 0;
-    dht22_bit_index = 0;
-    for(int i = 0; i < DHT22_MAX_BYTES; i++) {
-        dht22_bits[i] = 0;
-    }
-
-    ANSELB = 0;// stupid
-    TRISBbits.TRISB0 = 1;
-
-    // TIMER2
-    TMR2ON = 0;
-    TMR2 = 0x00;
-    PR2 = 0xFF;
-    T2CONbits.T2CKPS = 0b00; // 1:64
-    T2CONbits.T2OUTPS = 0b0000;// 1:16 post scaler
-    TMR2IF = 0;
-
-    IOCBNbits.IOCBN0 = 0;
-    IOCBPbits.IOCBP0 = 0;
-    /* Enable interrupts */
-    IOCBF = 0;
-    IOCIE = 1;
+    ANSELBbits.ANSB0 = 0;
+    TRISBbits.TRISB0 = 0;
+    // FVR
+    adc_band = ADC_MIN_BAND; // Start with minimum
+    FVRCONbits.ADFVR = adc_band;
+    FVRCONbits.FVREN = 1;
+    while(!FVRCONbits.FVRRDY) {}
+    //
+    // ADC
+    ADCON0bits.CHS = 0b00000; // ANO
+    ADCON1bits.ADNREF = 0; // GND
+    ADCON1bits.ADPREF = 0b11; // FVR Buffer 1
+    ADCON1bits.ADFM = 1;// right justify
+    ADCON1bits.ADCS = 0b010;// Tad = 1us @32Mhz
+    ADCON0bits.ADON = 1;
+    // TMR0
+    TMR0 = 0x00;
+    OPTION_REGbits.nWPUEN = 1;
+    OPTION_REGbits.TMR0CS = 0;
+    OPTION_REGbits.PS = 0b111; // Max pre-scaler
+    OPTION_REGbits.PSA = 0;
     SSPIF = 0;
+    ADIF = 0;
+    TMR0IF = 0;
     /* Enable interrupts */
+    TMR0IE = 1;
+    ADIE = 1;
     SSPIE = 1;
     PEIE = 1;
     GIE  = 1;

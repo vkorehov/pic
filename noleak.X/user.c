@@ -14,8 +14,6 @@
 #include "user.h"
 unsigned int switch_count;
 unsigned int tick_count;
-unsigned char temperature;
-unsigned char humidity;
 #ifdef _12F1840
 #define SSPIE SSP1IE
 #define SSPIF SSP1IF
@@ -57,8 +55,6 @@ void InitApp(void)
     // Timer0
     //TMR0 = 0;
     tick_count = 0;
-    temperature = 0;
-    humidity = 0;
 
     ANSELB = 0x00; // for some stupid reason this is not default
     TRISBbits.TRISB0 = 1;

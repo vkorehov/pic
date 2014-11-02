@@ -14,7 +14,7 @@
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp */
 
-#define MAX_ADC_VALUE 0b100110010 // 0.3 * MAX(=0b1111111111) //
+#define MAX_d6f_valUE 0b100110010 // 0.3 * MAX(=0b1111111111) //
 
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
