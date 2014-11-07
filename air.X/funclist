@@ -1,15 +1,15 @@
-__stringtab: STRING, 1249 0 1
-_ConfigureOscillator: CODE, 1254 0 4
-_main: CODE, 1209 0 12
-_lerp_multiplier_lofi: STRING, 1252 0 2
-_InitApp: CODE, 990 0 55
-__initialization: CODE, 1233 0 7
-___lwdiv: CODE, 1045 0 54
-_isr: CODE, 516 0 235
-_write_i2c: CODE, 1145 0 35
-_d6f_lerp: CODE, 753 0 237
-_i2c_init: CODE, 1221 0 12
-_lerp_multiplier: STRING, 1250 0 2
-___wmul: CODE, 1180 0 29
-_d6f_init: CODE, 1099 0 46
-Total: 731
+__stringtab: STRING, 1280 0 1
+_ConfigureOscillator: CODE, 1285 0 4
+_main: CODE, 1238 0 12
+_lerp_multiplier_lofi: STRING, 1283 0 2
+_InitApp: CODE, 1019 0 55
+__initialization: CODE, 1262 0 7
+___lwdiv: CODE, 1074 0 54
+_isr: CODE, 516 0 264
+_write_i2c: CODE, 1174 0 35
+_d6f_lerp: CODE, 782 0 237
+_i2c_init: CODE, 1250 0 12
+_lerp_multiplier: STRING, 1281 0 2
+___wmul: CODE, 1209 0 29
+_d6f_init: CODE, 1128 0 46
+Total: 760

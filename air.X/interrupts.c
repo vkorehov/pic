@@ -26,7 +26,9 @@ static unsigned char rx_index;
 unsigned int d6f_val;
 unsigned char adc_band;
 
-
+#define AVERAGE_SAMPLES_SHIFT 7
+#define AVERAGE_SAMPLES 128
+#define AVERAGE_SAMPLES_MINUS_ONE 127
 
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
@@ -54,15 +56,14 @@ void interrupt isr(void) {
             // go LOW only if it is possible to measure more precize
             adc_band--;
             FVRCONbits.ADFVR = adc_band;
-            d6f_val = 0;// 0 indicates switching of ranges
         } else if(adc_band < ADC_MAX_BAND && temp > (0x3ff - ADC_BAND_SWITCH_HISTERESIS)) {
             // go UP only if you have to
             adc_band++;
             FVRCONbits.ADFVR = adc_band;
-            d6f_val = 0;// 0 indicates switching of ranges
         } else {
             // get pure voltage and then apply lerp
-            d6f_val = d6f_lerp((temp << (adc_band - 1)) - (4 << (adc_band - 1)) + 8);
+            unsigned int current = d6f_lerp((temp << (adc_band - 1)) - (4 << (adc_band - 1)) + 8);
+            d6f_val = (d6f_val*AVERAGE_SAMPLES_MINUS_ONE + current) >> AVERAGE_SAMPLES_SHIFT;
         }
     }
     if (SSPIF) {
