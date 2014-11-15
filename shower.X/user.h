@@ -25,8 +25,6 @@ void off(unsigned char sw);
 #define STEPS_SLOW 48
 #define STEPS_MED 128
 
-#define EEPROM_COLD_ADDR 0
-#define EEPROM_HOT_ADDR 2
 unsigned char eeprom_read(unsigned char address);
 void eeprom_write(unsigned char address, unsigned char data);
 /******************************************************************************/

@@ -228,6 +228,24 @@ void interrupt isr(void) {
                 if (rx_index == 1 && rx_buffer[0] == 0x06) {
                    on(3);
                 }
+                if (rx_index == 1 && rx_buffer[0] == 0x59) { // recalibrate
+                   steps_to_move[0] = 0x3000;
+                   move_direction[0] = 1;
+                   current_steps[0] = STEPS_MED;
+                   eeprom_write(0, 0);
+                   eeprom_write(1, 0);
+                   write_tmr1(WAIT_FAST);
+                   TMR1ON = 1;
+                }
+                if (rx_index == 1 && rx_buffer[0] == 0x67) {
+                   steps_to_move[1] = 0x3000;
+                   move_direction[1] = 1;
+                   current_steps[1] = STEPS_MED;
+                   eeprom_write(2, 0);
+                   eeprom_write(3, 0);
+                   write_tmr1(WAIT_FAST);
+                   TMR1ON = 1;
+                }
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;

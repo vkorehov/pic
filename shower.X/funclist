@@ -1,14 +1,14 @@
-_write_tmr1: CODE, 1925 0 6
-_ConfigureOscillator: CODE, 1931 0 4
-_main: CODE, 1380 0 216
-_InitApp: CODE, 1596 0 118
-__initialization: CODE, 1860 0 17
-_isr: CODE, 516 0 862
-_write_i2c: CODE, 1762 0 35
-_on: CODE, 1714 0 48
-_i2c_init: CODE, 1898 0 12
-_off: CODE, 1797 0 34
-___wmul: CODE, 1831 0 29
-_eeprom_read: CODE, 1910 0 9
-_eeprom_write: CODE, 1880 0 18
-Total: 1408
+_write_tmr1: CODE, 1999 0 6
+_ConfigureOscillator: CODE, 2005 0 4
+_main: CODE, 1454 0 216
+_InitApp: CODE, 1670 0 118
+__initialization: CODE, 1934 0 17
+_isr: CODE, 516 0 936
+_write_i2c: CODE, 1836 0 35
+_on: CODE, 1788 0 48
+_i2c_init: CODE, 1972 0 12
+_off: CODE, 1871 0 34
+___wmul: CODE, 1905 0 29
+_eeprom_read: CODE, 1984 0 9
+_eeprom_write: CODE, 1954 0 18
+Total: 1482
