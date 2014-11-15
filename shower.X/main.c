@@ -21,12 +21,6 @@
 /******************************************************************************/
 
 /* i.e. uint8_t <variable_name>; */
-unsigned char running;
-unsigned char state; // 0 = Peak Detected
-                    // 1 = Zero Crossing1
-                    // 2 = Zero Crossing2
-unsigned char dim; // Dim level 0xff fully on 0x00 fully off
-unsigned char stop;
 
 inline unsigned int read_tmr1() {
   return ( (TMR1H) << 8 | (TMR1L));
@@ -44,18 +38,34 @@ void main(void)
     /* Configure the oscillator for the device */
     ConfigureOscillator();
 
-    state = 0;
-    stop = 0;
-    dim = 0x0;
-    running = 0;
+    sensor_average_every = 0;
+    for(int i = 0; i < 4; i++) {
+        sensor_values[i] = 0;
+        sensor_values_averages[i] = 0;
+    }
+    for(int i = 0; i < 2; i++) {
+        move_direction[i] = 0;
+        steps_to_move[i] = 0;
+        current_steps[i] = 0;
+        new_steps[i] = 0;
+    }
+    port_c_switches = 0;
+    for(unsigned char i = 0; i < 4; i++) {
+        switch_timeouts[i] = 0xffffffff;        
+    }
+
     /* Initialize I/O and Peripherals for application */
     InitApp();
     
     while(1)
     {
-        do_i2c_tasks();
-        if(adc_freq++ % 1024 == 0) {
-            //GO = 1; // start ADC
+        for(unsigned char i = 0; i < 4; i++) {
+            if(switch_timeouts[i] > SWITCH_TIMEOUT) {
+                off(i);
+            }
+            else {
+                switch_timeouts[i]++;
+            }
         }
     }
 

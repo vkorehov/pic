@@ -12,9 +12,10 @@
 #include <stdbool.h>        /* For true/false definition */
 #include "system.h"
 #include "user.h"
-
-#define PEAK_TO_ZC1 (0xffff - 4500)
-#define ZC1_TO_ZC2 (0xffff - 40500)
+//4500
+//40500
+#define PEAK_TO_ZC1 (0xffff - 10)
+#define ZC1_TO_ZC2 (0xffff - 40000)
 
 
 volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
@@ -22,10 +23,12 @@ volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootlo
 #define SSPIF SSP1IF
 #endif
 
+unsigned char skip;
 
 #define RX_SIZE 4
 static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
+
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
     for (int i = 0; i < 8; i++) {
@@ -38,57 +41,48 @@ static void write_i2c(unsigned char b) {
     } while (SSPCONbits.WCOL);
 }
 
-
 void interrupt isr(void) {
-    if(TMR0IF) {
+    if (C1IF) {
+        C1IF = 0;
+        // Zero Crossing1
+        if (dim > 0x01) {
+            PORTAbits.RA0 = 1;
+        } else {
+            PORTAbits.RA0 = 0;
+        }
+        if (dim != 0xff) {
+            TMR0IF = 0;
+            TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
+            TMR0IE = 1;
+        } else {
+            TMR0IE = 0;
+        }
+        // Endof zero crossing
+        write_tmr1(ZC1_TO_ZC2);
+        TMR1ON = 1;
+    }
+    if (TMR0IF && TMR0IE) {
         TMR0IF = 0;
         TMR0IE = 0;
         PORTAbits.RA0 = 0;
     }
-    if(TMR1IF) {
+    if (TMR1IF) {
         TMR1IF = 0;
         TMR1ON = 0;
-        if(state == 0) {
-            state = 1;
-            // Zero Crossing1
-            if(dim > 0x01) {
-                PORTAbits.RA0 = 1;
-            } else {
-                PORTAbits.RA0 = 0;
-            }
-            if(dim != 0xff) {
-                TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
-                TMR0IF = 0;
-                TMR0IE = 1;
-            } else {
-                TMR0IE = 0;
-            }
-            // Endof zero crossing
-            write_tmr1(ZC1_TO_ZC2);
-            TMR1ON = 1;
-        } else if(state == 1) {
-            // Zero Crossing2
-            if(dim > 0x01) {
-                PORTAbits.RA0 = 1;
-            } else {
-                PORTAbits.RA0 = 0;
-            }
-            if(dim != 0xff) {
-                TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
-                TMR0IF = 0;
-                TMR0IE = 1;
-            } else {
-                TMR0IE = 0;
-            }
-            // Endof zero crossing
+        // Zero Crossing2
+        if (dim > 0x01) {
+            PORTAbits.RA0 = 1;
+        } else {
+            PORTAbits.RA0 = 0;
         }
-    }
-    if (C1IF) {
-        C1IF = 0;
-        TMR1ON = 0;
-        write_tmr1(PEAK_TO_ZC1);
-        state = 0;
-        TMR1ON = 1;
+        if (dim != 0xff) {
+            TMR0IF = 0;
+            TMR0 = 0xff - dim; // Start timer0 in order to turn off output pin!
+            TMR0IE = 1;
+        } else {
+            TMR0IE = 0;
+        }
+        // Endof zero crossing
     }
     if (SSPIF) {
         unsigned char i2c_state = SSPSTAT & 0b00100100;
@@ -122,8 +116,8 @@ void interrupt isr(void) {
                 rx_index = 0;
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // Diagnostics output
-                rx_buffer[0] = switch_count & 0xff;
-                rx_buffer[1] = switch_count >> 8;
+                rx_buffer[0] = dim & 0xff;
+                rx_buffer[1] = 0 >> 8;
                 write_i2c(rx_buffer[rx_index++]);
                 break;
         }

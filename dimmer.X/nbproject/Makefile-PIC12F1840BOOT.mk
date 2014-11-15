@@ -71,8 +71,25 @@ LDLIBSOPTIONS=
 # fixDeps replaces a bunch of sed/cat/printf statements that slow down the build
 FIXDEPS=fixDeps
 
+# The following macros may be used in the pre and post step lines
+Device=PIC12F1840
+ProjectDir="C:\Users\vlad\Documents\GitHub\pic\dimmer.X"
+ConfName=PIC12F1840BOOT
+ImagePath="dist\PIC12F1840BOOT\${IMAGE_TYPE}\dimmer.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ImageDir="dist\PIC12F1840BOOT\${IMAGE_TYPE}"
+ImageName="dimmer.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+IsDebug="true"
+else
+IsDebug="false"
+endif
+
 .build-conf:  ${BUILD_SUBPROJECTS}
 	${MAKE}  -f nbproject/Makefile-PIC12F1840BOOT.mk dist/${CND_CONF}/${IMAGE_TYPE}/dimmer.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	@echo "--------------------------------------"
+	@echo "User defined post-build step: [upload.bat ${ImagePath} ${ImageName} 13 14]"
+	@upload.bat ${ImagePath} ${ImageName} 13 14
+	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=12F1840
 # ------------------------------------------------------------------------------------

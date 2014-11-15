@@ -2,27 +2,37 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x13                    // This device I2C address
-// pickit serial communication states
-#define I2C_NO_TRANSACTION					0
-#define I2C_SLAVE_ADDRESS_RECEIVED			1
-#define I2C_WORD_ADDRESS_RECEIVED			2
-#define I2C_READ_ADDRESS					3
-#define I2C_READ_DATA						4
-#define I2C_MASTER_NACK						5
+#define I2C_MYADDR 0x14                    // This device I2C address
 
-extern unsigned char state;
 extern int steps;
-extern unsigned char stop;
-extern unsigned char running;
-#define WAIT (0xffff - 100000)
+extern unsigned char sensor_average_every;
+extern unsigned int sensor_values[4];
+extern unsigned int sensor_values_averages[4];
+extern unsigned char move_direction[2];
+extern unsigned int steps_to_move[2];
+extern unsigned int current_steps[2];
+extern unsigned int new_steps[2];
 
+extern unsigned char port_c_switches;
+extern unsigned long long switch_timeouts[4];
+#define SWITCH_TIMEOUT 0x12000
+void on(unsigned char sw);
+void off(unsigned char sw);
+
+#define WAIT_SLOW (0xffff - 32000)
+#define WAIT_MED (0xffff - 16000)
+#define WAIT_FAST (0xffff - 10000)
+#define STEPS_SLOW 48
+#define STEPS_MED 128
+
+#define EEPROM_COLD_ADDR 0
+#define EEPROM_HOT_ADDR 2
+unsigned char eeprom_read(unsigned char address);
+void eeprom_write(unsigned char address, unsigned char data);
 /******************************************************************************/
 /* User Function Prototypes                                                   */
 /******************************************************************************/
 void i2c_init();
-void do_i2c_tasks(void);
-
 void InitApp(void);         /* I/O and Peripheral Initialization */
 
 inline unsigned int read_tmr1();

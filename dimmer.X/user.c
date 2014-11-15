@@ -12,7 +12,6 @@
 #include <stdbool.h>        /* For true/false definition */
 
 #include "user.h"
-unsigned int switch_count;
 #ifdef _12F1840
 #define SSPIE SSP1IE
 #define SSPIF SSP1IF
@@ -34,7 +33,7 @@ void i2c_init() {
 
 void InitApp(void)
 {
-    FVRCONbits.CDAFVR = 0b10; // 2V
+    FVRCONbits.CDAFVR = 0b11; // 1.024V
     FVRCONbits.FVREN = 1;
     while(!FVRCONbits.FVRRDY) {
     }
@@ -60,13 +59,13 @@ void InitApp(void)
     // Timer0    
     OPTION_REGbits.T0CS = 0;
     OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS = 0b100; // 1:32
+    OPTION_REGbits.PS = 0b111; // 1:256
 
     // Timer1
     TMR1GE = 0;
-    T1CONbits.TMR1CS = 0b01;
+    T1CONbits.TMR1CS = 0b01; // Fosc
     T1CONbits.nT1SYNC = 0;
-    T1CONbits.T1CKPS = 0b00;
+    T1CONbits.T1CKPS = 0b11; // 1:8 pre-scaler
     write_tmr1(0);
     TMR1IF = 0;
     SSPIF = 0;
