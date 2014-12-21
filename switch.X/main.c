@@ -17,15 +17,73 @@
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
+inline void write_tmr1(unsigned int v) {
+    TMR1L = ((v)&0xff);
+    TMR1H = ((v) >> 8);
+}
 
 /******************************************************************************/
 /* Main Program                                                               */
 /******************************************************************************/
+unsigned char switch_dur_mult;
 
-void on(void) {
-    PORTAbits.RA0 = 1;
-    switch_count = 0;
+void pwm_init(void) {
+    // Make sure RA2 could be used by MSSP
+    // Relocate its function to RA5
+    APFCON0bits.CCP1SEL = 1;
+
+    CCP1ASbits.CCP1AS = 0b000; // disable automatic shutdown
+    // Shutdown by default
+    CCP1ASbits.PSS1BD = 0b00;
+    CCP1ASbits.CCP1ASE = 1;
+    TRISAbits.TRISA0 = 1;
+
+    // initialize to 0% PWM
+    CCPR1L = 0;
+    CCP1CONbits.DC1B = 0b11;
+
+    // Configure PWM Enchanced mode steering options
+    CCP1CONbits.CCP1M = 0b1100; // P1A = P1B = active high, PWM
+    CCP1CONbits.P1M = 0b00;
+    PSTR1CONbits.STR1A = 0b0;
+    PSTR1CONbits.STR1B = 0b1;
+
+    // TIMER2
+    TMR2ON = 0;
+    TMR2IF = 0;
+    TMR2 = 0x00;
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b00; // 1:1 pre-scaler
+    T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler
+
+    TMR2ON = 1;
 }
+
+void on(unsigned char dim) {
+    // Disable output
+    TRISAbits.TRISA0 = 1;
+    CCP1ASbits.CCP1ASE = 1;
+
+    // shutdown timer
+    TMR1ON = 0;
+    switch_dur_mult = 0;
+    write_tmr1(0xffff - SWITCH_ON_DURATION);
+    TMR1IF = 0;
+    TMR1ON = 1;
+
+    // change dim
+    CCPR1L = dim;
+    // Enable output
+    TRISAbits.TRISA0 = 0;
+    CCP1ASbits.CCP1ASE = 0;
+}
+
+void off(void) {
+    // Disable output
+    TRISAbits.TRISA0 = 1;
+    CCP1ASbits.CCP1ASE = 1;
+}
+
 
 void main(void)
 {
@@ -35,11 +93,6 @@ void main(void)
     InitApp();
     while(1)
     {
-        if(switch_count >= SWITCH_ON_DURATION) {
-            PORTAbits.RA0 = 0;
-        } else {
-            switch_count++;
-        }
     }
 }
 

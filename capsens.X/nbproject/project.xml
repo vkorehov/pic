@@ -9,9 +9,8 @@
             <cpp-extensions/>
             <header-extensions>h</header-extensions>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
-            <make-dep-projects>
-                <make-dep-project>../bootloader.X</make-dep-project>
-            </make-dep-projects>
+            <asminc-extensions/>
+            <make-dep-projects/>
         </data>
     </configuration>
 </project>

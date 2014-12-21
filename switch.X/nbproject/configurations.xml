@@ -7,6 +7,10 @@
       <itemPath>system.h</itemPath>
       <itemPath>user.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="f1" displayName="New Folder 1" projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="f2" displayName="New Folder 2" projectFiles="true">
+    </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
@@ -473,7 +477,7 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>upload.bat ${ImagePath} ${ImageName} 13 14</makeCustomizationPostStep>
+        <makeCustomizationPostStep>upload.bat ${ImagePath} ${ImageName} 49 49</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>

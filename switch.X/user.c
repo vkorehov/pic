@@ -12,7 +12,6 @@
 #include <stdbool.h>        /* For true/false definition */
 
 #include "user.h"
-unsigned int switch_count;
 #ifdef _12F1840
 #define SSPIE SSP1IE
 #define SSPIF SSP1IF
@@ -39,10 +38,9 @@ void InitApp(void)
 //#endif
     i2c_init();
     // Output pin
-    TRISAbits.TRISA0 = 0;
-    PORTAbits.RA0 = 0;
+    //TRISAbits.TRISA0 = 1;
+    //PORTAbits.RA0 = 0;
 
-    switch_count = 0;
     dht22_state = 0;
     dht22_index = 0;
     dht22_bit_index = 0;
@@ -50,22 +48,18 @@ void InitApp(void)
         dht22_bits[i] = 0;
     }
 
-    ANSELB = 0;// stupid
-    TRISBbits.TRISB0 = 1;
+    // TIMER1
+    switch_dur_mult= 0;
+    TMR1GE = 0;
+    T1CONbits.TMR1CS = 0b01; // Fosc
+    T1CONbits.nT1SYNC = 0;
+    T1CONbits.T1CKPS = 0b11; // 1:8 pre-scaler
+    write_tmr1(0);
+    TMR1IF = 0;
 
-    // TIMER2
-    TMR2ON = 0;
-    TMR2 = 0x00;
-    PR2 = 0xFF;
-    T2CONbits.T2CKPS = 0b00; // 1:64
-    T2CONbits.T2OUTPS = 0b0000;// 1:16 post scaler
-    TMR2IF = 0;
+    pwm_init();
 
-    IOCBNbits.IOCBN0 = 0;
-    IOCBPbits.IOCBP0 = 0;
-    /* Enable interrupts */
-    IOCBF = 0;
-    IOCIE = 1;
+    TMR1IE = 1;
     SSPIF = 0;
     /* Enable interrupts */
     SSPIE = 1;

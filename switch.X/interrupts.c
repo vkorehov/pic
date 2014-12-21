@@ -22,7 +22,7 @@ volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootlo
 static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static unsigned char command;
-
+static unsigned char counter;
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
     for (int i = 0; i < 8; i++) {
@@ -35,6 +35,15 @@ static void write_i2c(unsigned char b) {
 }
 
 void interrupt isr(void) {
+    if (TMR1IF) {
+        TMR1IF = 0;
+        if(switch_dur_mult >= SWITCH_ON_DURATION_MULT) {
+           off();
+        } else {
+           switch_dur_mult++;
+        }
+    }
+#ifdef DHT22_ENABLED
     if (TMR2IF) {
         TMR2IF = 0;
         switch (dht22_state) {
@@ -45,14 +54,25 @@ void interrupt isr(void) {
                 dht22_abort();
         }
     }
+#endif
     if (IOCIF) {
         asm("MOVLW 0xff");
+#ifdef _12F1840
+        asm("banksel IOCAF");
+        asm("XORWF IOCAF, W");
+        asm("ANDWF IOCAF, F");
+#else
         asm("banksel IOCBF");
         asm("XORWF IOCBF, W");
         asm("ANDWF IOCBF, F");
+#endif
         unsigned char t = TMR2;
         TMR2 = 0; // reset timeout
-        if (PORTBbits.RB0 == 0) {// we care only about HI => LO transition
+#ifdef _12F1840
+        if (PORTAbits.RA4 == 0) {// we care only about HI => LO transition
+#else
+        if (PORTBbits.RB0 == 0) {// we care only about HI => LO transition            
+#endif
             if (dht22_state < 4) {
                 dht22_state++;
             } else {
@@ -106,11 +126,17 @@ void interrupt isr(void) {
                             asm("pagesel 0x000");
                             asm("goto 0x000");
                             break;
-                        case 0x01:
-                            on();
-                            break;
-                        case 0x02:
+                        case 0x12:
                             start_read_dht22();
+                            break;
+                    }
+                }
+                if (rx_index == 2) {
+                    // input
+                    switch (command) {
+                        case 0x01:
+                            counter++;
+                            on(rx_buffer[1]);
                             break;
                     }
                 }
@@ -120,11 +146,15 @@ void interrupt isr(void) {
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
-                    case 0x03: // read humidity
+                    case 0x01:
+                        if(rx_index == 0)
+                            rx_buffer[0] = counter;
+                        break;
+                    case 0x13: // read humidity
                         rx_buffer[0] = dht22_bits[1];
                         rx_buffer[1] = dht22_bits[0];
                         break;
-                    case 0x04: // // read temperature
+                    case 0x14: // // read temperature
                         rx_buffer[0] = dht22_bits[3];
                         rx_buffer[1] = dht22_bits[2];
                         break;

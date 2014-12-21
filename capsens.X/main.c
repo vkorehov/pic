@@ -38,7 +38,7 @@ void main(void) {
     while (1) {
         //asm("nop");
         if(c == 0) {
-            i2c_command16(raw[0]);
+            i2c_command16(i2c_collisions);
         }
         c++;
     }

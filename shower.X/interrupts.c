@@ -23,11 +23,17 @@ unsigned char move_direction[2];
 unsigned int steps_to_move[2];
 unsigned int current_steps[2];
 unsigned int new_steps[2];
+unsigned char i2c_master;
 volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
 
 #define RX_SIZE 4
 static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
+static unsigned char dht22_start_timer;
+static unsigned char command;
+static unsigned char i2c_error;
+static unsigned char i2c_collisions;
+static bit i2c_ack;
 
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
@@ -42,9 +48,53 @@ static void write_i2c(unsigned char b) {
 }
 
 void interrupt isr(void) {
+    if (TMR2IF) {
+        TMR2IF = 0;
+        switch (dht22_state) {
+            case 1:
+                start_read_dht22_pullup();
+                break;
+            default:
+                dht22_abort();
+        }
+    }
+    if (IOCIF) {
+        asm("MOVLW 0xff");
+        asm("banksel IOCBF");
+        asm("XORWF IOCBF, W");
+        asm("ANDWF IOCBF, F");
+        unsigned char t = TMR2;
+        TMR2 = 0; // reset timeout
+        if (PORTBbits.RB6 == 0) {// we care only about HI => LO transition
+            if (dht22_state < 4) {
+                dht22_state++;
+            } else {
+                if (dht22_bit_index > 7) {
+                    dht22_bit_index = 0;
+                    dht22_index++;
+                }
+                if (t > DHT22_CUTOFF_TIME) {
+                    dht22_bits[dht22_index] |= (1 << (7 - dht22_bit_index));
+                }
+                dht22_bit_index++;
+                if (dht22_bit_index == 8 &&
+                        dht22_index >= (DHT22_MAX_BYTES - 1)) {
+                    unsigned char sum = dht22_bits[0] + dht22_bits[1] + dht22_bits[2] + dht22_bits[3];
+                    if (sum != dht22_bits[4]) {// checksum doesn't match up?
+                        // indicate error
+                        dht22_bits[0] = dht22_bits[1] = dht22_bits[2] = dht22_bits[3] = 0;
+                    }
+                    dht22_abort();
+                }
+            }
+        }
+    }
     if (TMR0IF) {
         TMR0IF = 0;
         ADCON0bits.GO = 1;
+        if(dht22_start_timer++ == 0xff) {
+            start_read_dht22();
+        }
     }
     if (TMR1IF) {
         TMR1IF = 0;
@@ -162,7 +212,15 @@ void interrupt isr(void) {
             }
         }
     }
+    if (BCLIF) {
+        i2c_error = 1;
+        i2c_collisions++;
+        BCLIF = 0;
+    }
     if (SSPIF) {
+        if (!ACKSTAT) {
+            i2c_ack = 1;
+        }
         unsigned char i2c_state = SSPSTAT & 0b00100100;
         // 0b00100000 = D/nA
         // 0b00000100 = R/nW
@@ -181,6 +239,9 @@ void interrupt isr(void) {
                 break;
             case 0b00100000: // STATE2: Maser Write, Last Byte = Data
                 rx_buffer[rx_index++] = SSPBUF;
+                if(rx_index == 1) {
+                    command = rx_buffer[0];
+                }
                 if (rx_index == 1 && rx_buffer[0] == 0x78) {
                     ENTER_BOOTLOADER = 1;
                     asm("pagesel 0x000");
@@ -250,9 +311,19 @@ void interrupt isr(void) {
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
-                // Diagnostics output
-                rx_buffer[0] = sensor_values_averages[0] & 0xff;
-                rx_buffer[1] = sensor_values_averages[0] >> 8;
+                // output
+                switch (command) {
+                    case 0x07: // read humidity
+                        rx_buffer[0] = dht22_bits[1];
+                        rx_buffer[1] = dht22_bits[0];
+                        break;
+                    case 0x08: // // read temperature
+                        rx_buffer[0] = dht22_bits[3];
+                        rx_buffer[1] = dht22_bits[2];
+                        break;
+                    default:
+                        rx_buffer[0] = rx_buffer[1] = 0;
+                }
                 write_i2c(rx_buffer[rx_index++]);
                 break;
         }

@@ -37,7 +37,7 @@ void main(void)
 {
     /* Configure the oscillator for the device */
     ConfigureOscillator();
-
+    notify_state = 0;
     sensor_average_every = 0;
     for(int i = 0; i < 4; i++) {
         sensor_values[i] = 0;

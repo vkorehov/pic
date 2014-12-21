@@ -18,6 +18,7 @@
 /******************************************************************************/
 
 void i2c_init() {
+    i2c_master = 0; // slave mode by default
     // Initialise I2C MSSP
     SSPCON1  = 0b00110110; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address)
     SSPCON2  = 0b00000001; // Slave Clock stretching on rceive and send 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(1) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(1)
@@ -85,6 +86,26 @@ void InitApp(void)
     TRISAbits.TRISA3 = 1;
     ANSELAbits.ANSA3 = 1; // AN3
 
+    // DHT22 pin (B6)
+    TRISBbits.TRISB6 = 1;
+    dht22_state = 0;
+    dht22_index = 0;
+    dht22_bit_index = 0;
+    for(int i = 0; i < DHT22_MAX_BYTES; i++) {
+        dht22_bits[i] = 0;
+    }
+    // TIMER2
+    TMR2ON = 0;
+    TMR2 = 0x00;
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b00; // 1:64
+    T2CONbits.T2OUTPS = 0b0000;// 1:16 post scaler
+    TMR2IF = 0;
+    // IoC
+    IOCBNbits.IOCBN0 = 0;
+    IOCBPbits.IOCBP0 = 0;
+
+
     // ADC
     ADCON0bits.CHS = 0b01000; // AN8
     ADCON1bits.ADNREF = 0b1; // VREF-
@@ -109,7 +130,9 @@ void InitApp(void)
     ADIF = 0;
     TMR0IF = 0;
     TMR1IF = 0;
+    IOCBF = 0;
     /* Enable interrupts */
+    IOCIE = 1;
     ADIE = 1;
     TMR0IE = 1;
     TMR1IE = 1;

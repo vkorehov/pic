@@ -15,6 +15,8 @@ extern unsigned char state[];
 
 extern unsigned char i2c_error;
 extern unsigned char i2c_ack;
+extern unsigned int i2c_collisions;
+
 /******************************************************************************/
 /* User Function Prototypes                                                   */
 /******************************************************************************/

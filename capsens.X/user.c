@@ -55,15 +55,14 @@ void InitApp(void)
     FVRCONbits.CDAFVR = 0b11; // 4.086V
     FVRCONbits.FVREN = 1;
     while(!FVRCONbits.FVRRDY) {
-        asm("nop");
     }
 
     //
-    PORTA = 0b00000110; // A1 = 1 A2 = 1
-    TRISAbits.TRISA1 = 0; // U/D as output
+    PORTA = 0b00000101; // A0 = 1 A2 = 1
+    TRISAbits.TRISA0 = 0; // U/D as output
+    TRISAbits.TRISA1 = 0; // EN as output
     TRISAbits.TRISA2 = 0; // nCS as output
-    TRISAbits.TRISA3 = 0; // nCS as output
-    TRISAbits.TRISA4 = 0; // nCS as output
+    TRISAbits.TRISA3 = 0; // BUZZ as output
     //
     dpot_increment(100); // this resets pot to minimum voltage!
     dpot_decrement(45);

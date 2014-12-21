@@ -23,9 +23,39 @@ unsigned char dht22_index;
 unsigned char dht22_bit_index;
 unsigned char dht22_bits[DHT22_MAX_BYTES];
 
+void dht22_init(void) {
+    // TIMER2
+    TMR2ON = 0;
+    TMR2 = 0x00;
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b00; // 1:64
+    T2CONbits.T2OUTPS = 0b0000;// 1:16 post scaler
+    TMR2IF = 0;
+
+#ifdef _12F1840
+    IOCANbits.IOCAN4 = 0;
+    IOCAPbits.IOCAP4 = 0;
+#else
+    IOCBNbits.IOCBN0 = 0;
+    IOCBPbits.IOCBP0 = 0;
+#endif
+    /* Enable interrupts */
+#ifdef _12F1840
+    IOCAF = 0;
+#else
+    IOCBF = 0;
+#endif
+    IOCIE = 1;    
+}
+
 void start_read_dht22() {
-     IOCBPbits.IOCBP0 = 0;
-     IOCBNbits.IOCBN0 = 0;
+#ifdef _12F1840
+     IOCAPbits.IOCAP4 = 0;
+     IOCANbits.IOCAN4 = 0;
+#else
+     IOCBPbits.IOCBP6 = 0;
+     IOCBNbits.IOCBN6 = 0;
+#endif
 
      dht22_index = 0;
      dht22_bit_index = 0;
@@ -35,9 +65,13 @@ void start_read_dht22() {
      }
      
      dht22_state = 1;
-     TRISBbits.TRISB0 = 0;
-     PORTBbits.RB0 = 0;
-
+#ifdef _12F1840
+     TRISAbits.TRISA4 = 0;
+     PORTAbits.RA4 = 0;
+#else
+     TRISBbits.TRISB6 = 0;
+     PORTBbits.RB6 = 0;
+#endif
      TMR2 = 0x00;
      PR2 = 0xFF;
      T2CONbits.T2CKPS = 0b10; // 1:16 >500uS
@@ -51,15 +85,28 @@ void start_read_dht22_pullup() {
      dht22_state = 2;
      TMR2ON = 0;
 
-     PORTBbits.RB0 = 1;
+#ifdef _12F1840
+     PORTAbits.RA4 = 1;
+#else
+     PORTBbits.RB6 = 1;
+#endif
      asm("nop");
      asm("nop");
-     TRISBbits.TRISB0 = 1;
+#ifdef _12F1840
+     TRISAbits.TRISA4 = 1;
+#else
+     TRISBbits.TRISB6 = 1;
+#endif
      asm("nop");
      asm("nop");
 
-     IOCBPbits.IOCBP0 = 1;
-     IOCBNbits.IOCBN0 = 1; // we are waiting for P => N transition from DHT22
+#ifdef _12F1840
+     IOCAPbits.IOCAP4 = 1;
+     IOCANbits.IOCAN4 = 1; // we are waiting for P => N transition from DHT22
+#else
+     IOCBPbits.IOCBP6 = 1;
+     IOCBNbits.IOCBN6 = 1; // we are waiting for P => N transition from DHT22
+#endif
 
 
      TMR2IE = 0;
@@ -83,8 +130,15 @@ void dht22_abort() {
      TMR2ON = 0;
      TMR2IF = 0;
      TMR2IE = 0;
-     IOCBNbits.IOCBN0 = 0;
-     IOCBPbits.IOCBP0 = 0;
+#ifdef _12F1840
+     IOCANbits.IOCAN4 = 0;
+     IOCAPbits.IOCAP4 = 0;
+     IOCAF = 0;
+     TRISAbits.TRISA4 = 1;
+#else
+     IOCBNbits.IOCBN6 = 0;
+     IOCBPbits.IOCBP6 = 0;
      IOCBF = 0;
-     TRISBbits.TRISB0 = 1;
+     TRISBbits.TRISB6 = 1;
+#endif
 }

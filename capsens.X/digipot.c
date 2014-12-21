@@ -16,21 +16,21 @@
 void dpot_increment(unsigned char count) {
     // 0b<nCS><U/D><0>
     // Setup
-    PORTA = 0b110;
+    PORTA = 0b101;
     __delay_us(3);
-    PORTA = 0b010;
+    PORTA = 0b001;
     __delay_us(3);
     PORTA = 0b000;
     __delay_us(3);
     while(count--) {
-        PORTA = 0b010;
+        PORTA = 0b001;
         __delay_us(1);
         PORTA = 0b000;
         __delay_us(1);
     }
-    PORTA = 0b010;
+    PORTA = 0b001;
     __delay_us(3);
-    PORTA = 0b110;
+    PORTA = 0b101;
     __delay_us(3);
 }
 
@@ -42,13 +42,13 @@ void dpot_decrement(unsigned char count) {
     PORTA = 0b000;
     __delay_us(6);
     while(count--) {
-        PORTA = 0b010;
+        PORTA = 0b001;
         __delay_us(1);
         PORTA = 0b000;
         __delay_us(1);
     }
-    PORTA = 0b010;
+    PORTA = 0b001;
     __delay_us(3);
-    PORTA = 0b110;
+    PORTA = 0b101;
     __delay_us(3);
 }

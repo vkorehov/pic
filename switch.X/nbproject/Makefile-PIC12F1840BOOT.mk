@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=configuration_bits.c interrupts.c main.c system.c user.c
+SOURCEFILES_QUOTED_IF_SPACED=configuration_bits.c interrupts.c main.c system.c user.c C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/configuration_bits.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/_ext/1725896875/dht22.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/configuration_bits.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d ${OBJECTDIR}/_ext/1725896875/dht22.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1
+OBJECTFILES=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/_ext/1725896875/dht22.p1
 
 # Source Files
-SOURCEFILES=configuration_bits.c interrupts.c main.c system.c user.c
+SOURCEFILES=configuration_bits.c interrupts.c main.c system.c user.c C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c
 
 
 CFLAGS=
@@ -87,8 +87,8 @@ endif
 .build-conf:  ${BUILD_SUBPROJECTS}
 	${MAKE}  -f nbproject/Makefile-PIC12F1840BOOT.mk dist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 	@echo "--------------------------------------"
-	@echo "User defined post-build step: [upload.bat ${ImagePath} ${ImageName} 13 14]"
-	@upload.bat ${ImagePath} ${ImageName} 13 14
+	@echo "User defined post-build step: [upload.bat ${ImagePath} ${ImageName} 49 49]"
+	@upload.bat ${ImagePath} ${ImageName} 49 49
 	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=12F1840
@@ -135,6 +135,14 @@ ${OBJECTDIR}/user.p1: user.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/user.d ${OBJECTDIR}/user.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/user.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/_ext/1725896875/dht22.p1: C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/1725896875 
+	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --opt=default,+asm,-asmfile,+speed,-space,-debug --addrqual=ignore --mode=free -D__PICCPRO__ -P -N255 --warn=0 --cci --asmlist --summary=default,-psect,-class,+mem,-hex,-file --codeoffset=0x200 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1725896875/dht22.p1  C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c 
+	@-${MV} ${OBJECTDIR}/_ext/1725896875/dht22.d ${OBJECTDIR}/_ext/1725896875/dht22.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/configuration_bits.p1: configuration_bits.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -176,6 +184,14 @@ ${OBJECTDIR}/user.p1: user.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/user.d ${OBJECTDIR}/user.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/user.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/_ext/1725896875/dht22.p1: C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/1725896875 
+	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,-asmfile,+speed,-space,-debug --addrqual=ignore --mode=free -D__PICCPRO__ -P -N255 --warn=0 --cci --asmlist --summary=default,-psect,-class,+mem,-hex,-file --codeoffset=0x200 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1725896875/dht22.p1  C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c 
+	@-${MV} ${OBJECTDIR}/_ext/1725896875/dht22.d ${OBJECTDIR}/_ext/1725896875/dht22.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 endif
 
 # ------------------------------------------------------------------------------------
@@ -193,28 +209,19 @@ dist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECT
 	@${RM} dist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.hex 
 	
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    C:/Users/vlad/Documents/GitHub/pic/bootloader.X/dist/PIC12F1840/production/bootloader.X.production.hex C:/Users/vlad/Documents/GitHub/pic/bootloader-interrupts.X/int.HEX
+dist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.map  --double=24 --float=24 --opt=default,+asm,-asmfile,+speed,-space,-debug --addrqual=ignore --mode=free -D__PICCPRO__ -P -N255 --warn=0 --cci --asmlist --summary=default,-psect,-class,+mem,-hex,-file --codeoffset=0x200 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     -odist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
-	@echo "Creating unified hex file"
-	@"C:/Program Files/Microchip/MPLABX/mplab_ide/mplab_ide/modules/../../bin/hexmate" --edf="C:/Program Files/Microchip/MPLABX/mplab_ide/mplab_ide/modules/../../dat/en_msgs.txt" dist/${CND_CONF}/${IMAGE_TYPE}/switch.X.${IMAGE_TYPE}.hex C:/Users/vlad/Documents/GitHub/pic/bootloader.X/dist/PIC12F1840/production/bootloader.X.production.hex C:/Users/vlad/Documents/GitHub/pic/bootloader-interrupts.X/int.HEX -odist/${CND_CONF}/production/switch.X.production.unified.hex
-
 endif
 
 
 # Subprojects
 .build-subprojects:
-ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-	cd /D C:/Users/vlad/Documents/GitHub/pic/bootloader.X && ${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN
-else
-	cd /D C:/Users/vlad/Documents/GitHub/pic/bootloader.X && ${MAKE}  -f Makefile CONF=PIC12F1840
-endif
 
 
 # Subprojects
 .clean-subprojects:
-	cd /D C:/Users/vlad/Documents/GitHub/pic/bootloader.X && rm -rf "build/PIC12F1840" "dist/PIC12F1840"
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}

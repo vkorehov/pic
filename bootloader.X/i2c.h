@@ -39,7 +39,7 @@ typedef union _ADDRESS
 #endif
 
 // slave address definition
-#define SLAVE_ADDR 0x13
+#define SLAVE_ADDR 0x10
 
 extern ADDRESS	_bl_flash_addr_pointer;
 extern unsigned char _bl_flash_buffer[];

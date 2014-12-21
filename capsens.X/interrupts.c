@@ -24,7 +24,7 @@ unsigned char state[6]; // 0: init // >0: Counted // 1: Unpressed // 2 : Pressed
 
 unsigned char i2c_ack;
 unsigned char i2c_error;
-unsigned short i2c_collisions;
+unsigned int i2c_collisions;
 unsigned char avgIndex = 0;
 
 void interrupt isr(void) {
@@ -55,13 +55,13 @@ void interrupt isr(void) {
             state[ch] = 2;
             // Turned on
             if (ch == 0) {
-                PORTA = 0b00011110;
+                PORTA = 0b0000111;
             }
         } else if (raw[ch] > (average[ch] - trip[ch] + 4)) {
             state[ch] = 1;
             // Turned off
             if (ch == 0) {
-                PORTA = 0b00000110;
+                PORTA = 0b00000101;
             }
             //
         }
