@@ -1,15 +1,15 @@
-i1_write_tmr1: CODE, 1096 0 6
-_write_tmr1: CODE, 1090 0 6
-_ConfigureOscillator: CODE, 1107 0 4
-_main: CODE, 1083 0 7
-_InitApp: CODE, 809 0 71
-__initialization: CODE, 1037 0 16
-_start_read_dht22: CODE, 880 0 63
-_isr: CODE, 516 0 291
-_write_i2c: CODE, 943 0 35
-_on: CODE, 1012 0 25
-_dht22_abort: CODE, 1056 0 15
-_pwm_init: CODE, 978 0 34
-_i2c_init: CODE, 1071 0 12
-_off: CODE, 1102 0 5
-Total: 590
+i1_write_tmr1: CODE, 1099 0 6
+_write_tmr1: CODE, 1093 0 6
+_ConfigureOscillator: CODE, 1110 0 4
+_main: CODE, 1086 0 7
+_InitApp: CODE, 831 0 71
+__initialization: CODE, 811 0 16
+_start_read_dht22: CODE, 902 0 63
+_isr: CODE, 516 0 293
+_write_i2c: CODE, 965 0 35
+_on: CODE, 1034 0 25
+_dht22_abort: CODE, 1059 0 15
+_pwm_init: CODE, 1000 0 34
+_i2c_init: CODE, 1074 0 12
+_off: CODE, 1105 0 5
+Total: 592

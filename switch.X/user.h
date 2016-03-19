@@ -2,11 +2,11 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x49                   // This device I2C address
+#define I2C_MYADDR 0x3c                   // This device I2C address
 
 
 #define SWITCH_ON_DURATION                                      0xffff
-#define SWITCH_ON_DURATION_MULT                                 4
+#define SWITCH_ON_DURATION_MULT                                 40
 
 extern unsigned char switch_dur_mult;
 
