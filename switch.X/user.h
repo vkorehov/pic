@@ -2,7 +2,7 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x3c                   // This device I2C address
+#define I2C_MYADDR 0x34                   // This device I2C address
 
 
 #define SWITCH_ON_DURATION                                      0xffff

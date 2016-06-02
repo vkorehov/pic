@@ -2,7 +2,7 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x14                    // This device I2C address
+#define I2C_MYADDR 0x13                    // This device I2C address
 extern unsigned char i2c_master;
 extern unsigned char notify_state;
 

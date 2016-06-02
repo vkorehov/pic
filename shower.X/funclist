@@ -1,17 +1,17 @@
-_start_read_dht22_pullup: CODE, 3997 0 36
-_write_tmr1: CODE, 3813 0 6
+_start_read_dht22_pullup: CODE, 1989 0 36
+_write_tmr1: CODE, 3775 0 6
 _ConfigureOscillator: CODE, 2043 0 4
-_main: CODE, 1605 0 216
-_InitApp: CODE, 1821 0 174
-__initialization: CODE, 3879 0 17
-_start_read_dht22: CODE, 4033 0 63
-_isr: CODE, 516 0 1087
-_write_i2c: CODE, 3962 0 35
-_on: CODE, 1995 0 48
-_dht22_abort: CODE, 3846 0 15
-_i2c_init: CODE, 3834 0 12
-_off: CODE, 3928 0 34
-___wmul: CODE, 3899 0 29
-_eeprom_read: CODE, 3825 0 9
-_eeprom_write: CODE, 3861 0 18
-Total: 1803
+_main: CODE, 1661 0 217
+_InitApp: CODE, 3922 0 174
+__initialization: CODE, 1639 0 18
+_start_read_dht22: CODE, 1878 0 63
+_isr: CODE, 516 0 1121
+_write_i2c: CODE, 3887 0 35
+_on: CODE, 1941 0 48
+_dht22_abort: CODE, 3809 0 15
+_i2c_init: CODE, 3796 0 13
+_off: CODE, 3853 0 34
+___wmul: CODE, 3824 0 29
+_eeprom_read: CODE, 3787 0 9
+_eeprom_write: CODE, 2025 0 18
+Total: 1840
