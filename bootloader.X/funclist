@@ -1,8 +1,8 @@
-__bl_flash_memory_read: CODE, 93 0 19
-__bl_write_i2c: CODE, 68 0 8
-_main: CODE, 132 0 62
-__initialization: CODE, 76 0 14
-__bl_flash_memory_erase: CODE, 112 0 20
-__bl_flash_memory_write: CODE, 194 0 66
-__bl_do_i2c_tasks: CODE, 260 0 252
-Total: 441
+__bl_flash_memory_read: CODE, 73 0 19
+__bl_write_i2c: CODE, 65 0 8
+_main: CODE, 112 0 62
+__initialization: CODE, 494 0 14
+__bl_flash_memory_erase: CODE, 92 0 20
+__bl_flash_memory_write: CODE, 174 0 67
+__bl_do_i2c_tasks: CODE, 241 0 253
+Total: 443

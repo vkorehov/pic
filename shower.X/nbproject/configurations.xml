@@ -18,6 +18,7 @@
       <itemPath>C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c</itemPath>
       <itemPath>C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c</itemPath>
       <itemPath>C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c</itemPath>
+      <itemPath>pwm.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -49,6 +50,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC12F1840"
+                        AC="true"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -197,6 +213,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC12F1840"
+                        AC="true"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -282,6 +313,7 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

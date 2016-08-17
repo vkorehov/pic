@@ -10,16 +10,14 @@ extern int steps;
 extern unsigned char sensor_average_every;
 extern unsigned int sensor_values[4];
 extern unsigned int sensor_values_averages[4];
-extern unsigned char move_direction[2];
-extern unsigned int steps_to_move[2];
-extern unsigned int current_steps[2];
-extern unsigned int new_steps[2];
 
 extern unsigned char port_c_switches;
 extern unsigned long long switch_timeouts[4];
 #define SWITCH_TIMEOUT 0x12000
 void on(unsigned char sw);
 void off(unsigned char sw);
+void pwm1_en(unsigned short duty);
+void pwm0_en(unsigned short duty);
 
 #define WAIT_SLOW (0xffff - 32000)
 #define WAIT_MED (0xffff - 16000)

@@ -44,12 +44,6 @@ void main(void)
         sensor_values[i] = 0;
         sensor_values_averages[i] = 0;
     }
-    for(int i = 0; i < 2; i++) {
-        move_direction[i] = 0;
-        steps_to_move[i] = 0;
-        current_steps[i] = 0;
-        new_steps[i] = 0;
-    }
     port_c_switches = 0;
     for(unsigned char i = 0; i < 4; i++) {
         switch_timeouts[i] = 0xffffffff;        
@@ -57,7 +51,7 @@ void main(void)
 
     /* Initialize I/O and Peripherals for application */
     InitApp();
-    
+    pwm1_en(0);
     while(1)
     {
         for(unsigned char i = 0; i < 4; i++) {

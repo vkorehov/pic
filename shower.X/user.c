@@ -38,23 +38,23 @@ void InitApp(void)
 
     i2c_init();
     // Motor1
-    PORTAbits.RA4 = 0;
-    PORTAbits.RA5 = 0;
-    PORTAbits.RA7 = 0;
-    PORTAbits.RA6 = 0;
-    TRISAbits.TRISA4 = 0;
-    TRISAbits.TRISA5 = 0;
-    TRISAbits.TRISA7 = 0;
-    TRISAbits.TRISA6 = 0;
+    //PORTAbits.RA4 = 0;
+    //PORTAbits.RA5 = 0;
+    //PORTAbits.RA7 = 0;
+    //PORTAbits.RA6 = 0;
+    //TRISAbits.TRISA4 = 0;
+    //TRISAbits.TRISA5 = 0;
+    //TRISAbits.TRISA7 = 0;
+    //TRISAbits.TRISA6 = 0;
     // Motor2
     PORTCbits.RC2 = 0;
-    PORTCbits.RC5 = 0;
+    //PORTCbits.RC5 = 0;
     PORTCbits.RC6 = 0;
-    PORTCbits.RC7 = 0;
+    //PORTCbits.RC7 = 0;
     TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC5 = 0;
+    //TRISCbits.TRISC5 = 0;
     TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 0;
+    //TRISCbits.TRISC7 = 0;
 
     // Valve outputs
     PORTBbits.RB0 = 0;
@@ -120,22 +120,13 @@ void InitApp(void)
     OPTION_REGbits.PS = 0b111; // Max pre-scaler
     OPTION_REGbits.PSA = 0;
 
-    // Timer1
-    TMR1GE = 0;
-    T1CONbits.TMR1CS = 0b00; // Fosc/4
-    T1CONbits.nT1SYNC = 0;
-    T1CONbits.T1CKPS = 0b11;
-    TMR1ON = 0;
-
     ADIF = 0;
     TMR0IF = 0;
-    TMR1IF = 0;
     IOCBF = 0;
     /* Enable interrupts */
     IOCIE = 1;
     ADIE = 1;
     TMR0IE = 1;
-    TMR1IE = 1;
     PEIE = 1;
     GIE  = 1;
 }

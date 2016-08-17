@@ -8,7 +8,7 @@
 #ifndef I2C_H
 #define	I2C_H
 
-#ifdef	__cplusplus
+#ifdef	__cplusplus  
 extern "C" {
 #endif
 
@@ -39,7 +39,7 @@ typedef union _ADDRESS
 #endif
 
 // slave address definition
-#define SLAVE_ADDR 0x10
+#define SLAVE_ADDR 0x13
 
 extern ADDRESS	_bl_flash_addr_pointer;
 extern unsigned char _bl_flash_buffer[];

@@ -17,6 +17,6 @@
 oscillator configurations and to compiler documentation for macro details. */
 void ConfigureOscillator(void)
 {
-    // Configure to 4 MHz
+    // Configure to 32 MHz
     OSCCON = 0b11110000; // 8:SPLLEN(1 Yes) 4..7:IRCF(1110 8 (32) MHz) 1..2:SCS(00 use FOSC in confbits)
 }
