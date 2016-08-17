@@ -16,9 +16,8 @@ extern unsigned long long switch_timeouts[4];
 #define SWITCH_TIMEOUT 0x12000
 void on(unsigned char sw);
 void off(unsigned char sw);
-void pwm1_en(unsigned short duty);
-void pwm0_en(unsigned short duty);
-
+void pwm_en();
+void pwm_duty(unsigned char duty1_l, unsigned char duty1_h, unsigned char duty2_l, unsigned char duty2_h);
 #define WAIT_SLOW (0xffff - 32000)
 #define WAIT_MED (0xffff - 16000)
 #define WAIT_FAST (0xffff - 10000)

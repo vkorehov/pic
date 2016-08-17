@@ -20,6 +20,7 @@ unsigned char sensor_average_every;
 unsigned int sensor_values[4];
 unsigned int sensor_values_averages[4];
 unsigned char i2c_master;
+
 volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
 
 #define RX_SIZE 4
@@ -163,16 +164,19 @@ void interrupt isr(void) {
                     asm("pagesel 0x000");
                     asm("goto 0x000");
                 }
-                if (rx_index == 1 && rx_buffer[0] == 0x03) {
+                if (rx_index == 5 && command == 0x01) {
+                   pwm_duty(rx_buffer[1], rx_buffer[2], rx_buffer[3], rx_buffer[4]);
+                }                                
+                if (rx_index == 1 && rx_buffer[0] == 0x02) {
                    on(0);
                 }
-                if (rx_index == 1 && rx_buffer[0] == 0x04) {
+                if (rx_index == 1 && rx_buffer[0] == 0x03) {
                    on(1);
                 }
-                if (rx_index == 1 && rx_buffer[0] == 0x05) {
+                if (rx_index == 1 && rx_buffer[0] == 0x04) {
                    on(2);
                 }
-                if (rx_index == 1 && rx_buffer[0] == 0x06) {
+                if (rx_index == 1 && rx_buffer[0] == 0x05) {
                    on(3);
                 }
                 break;
@@ -181,11 +185,11 @@ void interrupt isr(void) {
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
-                    case 0x07: // read humidity
+                    case 0x06: // read humidity
                         rx_buffer[0] = dht22_bits[1];
                         rx_buffer[1] = dht22_bits[0];
                         break;
-                    case 0x08: // // read temperature
+                    case 0x07: // // read temperature
                         rx_buffer[0] = dht22_bits[3];
                         rx_buffer[1] = dht22_bits[2];
                         break;

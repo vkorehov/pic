@@ -51,7 +51,8 @@ void main(void)
 
     /* Initialize I/O and Peripherals for application */
     InitApp();
-    pwm1_en(0);
+    pwm_en();
+
     while(1)
     {
         for(unsigned char i = 0; i < 4; i++) {
