@@ -8,11 +8,12 @@ extern unsigned char notify_state;
 
 extern int steps;
 extern unsigned char sensor_average_every;
-extern unsigned int sensor_values[4];
-extern unsigned int sensor_values_averages[4];
-
-extern unsigned char port_c_switches;
+extern unsigned int sensor_values[2];
+extern unsigned int sensor_values_averages[2];
+extern unsigned char pulses[4];
+extern unsigned char pulse_rates[4];
 extern unsigned long long switch_timeouts[4];
+extern unsigned short ticks;
 #define SWITCH_TIMEOUT 0x12000
 void on(unsigned char sw);
 void off(unsigned char sw);

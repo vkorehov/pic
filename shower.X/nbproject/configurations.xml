@@ -50,21 +50,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="../bootloader.X"
-                        CT="1"
-                        CN="PIC12F1840"
-                        AC="true"
-                        BL="true"
-                        WD="../bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
-                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
-                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
-                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
-                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -213,21 +198,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="../bootloader.X"
-                        CT="1"
-                        CN="PIC12F1840"
-                        AC="true"
-                        BL="true"
-                        WD="../bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
-                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
-                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
-                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
-                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
-                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -285,7 +255,7 @@
         <property key="data-model-size-of-double" value="24"/>
         <property key="data-model-size-of-float" value="24"/>
         <property key="display-class-usage" value="false"/>
-        <property key="display-hex-usage" value="false"/>
+        <property key="display-hex-usage" value="true"/>
         <property key="display-overall-usage" value="true"/>
         <property key="display-psect-usage" value="false"/>
         <property key="fill-flash-options-addr" value=""/>
@@ -313,7 +283,6 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

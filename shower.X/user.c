@@ -68,13 +68,18 @@ void InitApp(void)
     PORTCbits.RC1 = 0;
     TRISCbits.TRISC1 = 0;
 
+    // Counters
+    TRISBbits.TRISB2 = 1;
+    ANSELBbits.ANSB2 = 0; // important
+    TRISBbits.TRISB3 = 1;
+    ANSELBbits.ANSB3 = 0; // important
+    TRISBbits.TRISB6 = 1;
+    TRISBbits.TRISB7 = 1;
+
+    
     TRISAbits.TRISA0 = 1;
     ANSELAbits.ANSA0 = 1; // AN0
 
-    TRISBbits.TRISB2 = 1;
-    ANSELBbits.ANSB2 = 1; // AN8
-    TRISBbits.TRISB3 = 1;
-    ANSELBbits.ANSB3 = 1; // AN9
     TRISBbits.TRISB4 = 1;
     ANSELBbits.ANSB4 = 1; // AN11
     TRISBbits.TRISB5 = 1;
@@ -86,8 +91,8 @@ void InitApp(void)
     TRISAbits.TRISA3 = 1;
     ANSELAbits.ANSA3 = 1; // AN3
 
-    // DHT22 pin (B6)
-    TRISBbits.TRISB6 = 1;
+    // DHT22 pin (B5)
+    TRISBbits.TRISB5 = 1;
     dht22_state = 0;
     dht22_index = 0;
     dht22_bit_index = 0;
@@ -102,12 +107,15 @@ void InitApp(void)
     T2CONbits.T2OUTPS = 0b0000;// 1:16 post scaler
     TMR2IF = 0;
     // IoC
-    IOCBNbits.IOCBN0 = 0;
-    IOCBPbits.IOCBP0 = 0;
-
-
+    IOCBNbits.IOCBN0 = 0; //??
+    IOCBPbits.IOCBP0 = 0; // ??
+    IOCBPbits.IOCBP2 = 1;
+    IOCBPbits.IOCBP3 = 1;
+    IOCBPbits.IOCBP6 = 1;
+    IOCBPbits.IOCBP7 = 1;
+    //
     // ADC
-    ADCON0bits.CHS = 0b01000; // AN8
+    ADCON0bits.CHS = 0b01011; // AN11
     ADCON1bits.ADNREF = 0b1; // VREF-
     ADCON1bits.ADPREF = 0b10; // VREF+
     ADCON1bits.ADFM = 1;// right justify

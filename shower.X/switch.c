@@ -13,7 +13,6 @@
 
 #include "user.h"
 
-unsigned char port_c_switches;
 unsigned long long switch_timeouts[4];
 
 void on(unsigned char sw) {
@@ -29,11 +28,9 @@ void on(unsigned char sw) {
             PORTBbits.RB1 = 1;
             break;
         case 2:
-            port_c_switches |= 0b01;
             PORTCbits.RC0 = 1;
             break;
         case 3:
-            port_c_switches |= 0b10;
             PORTCbits.RC1 = 1;
             break;
     }
@@ -53,11 +50,9 @@ void off(unsigned char sw) {
             PORTBbits.RB1 = 0;
             break;
         case 2:
-            port_c_switches &= ~0b01;
             PORTCbits.RC0 = 0;
             break;
         case 3:
-            port_c_switches &= ~0b10;
             PORTCbits.RC1 = 0;
             break;
     }

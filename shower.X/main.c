@@ -40,19 +40,22 @@ void main(void)
     ConfigureOscillator();
     notify_state = 0;
     sensor_average_every = 0;
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < 2; i++) {
         sensor_values[i] = 0;
         sensor_values_averages[i] = 0;
     }
-    port_c_switches = 0;
     for(unsigned char i = 0; i < 4; i++) {
         switch_timeouts[i] = 0xffffffff;        
     }
-
+    for(unsigned char i = 0; i < 4; i++) {
+        pulses[i] = 0;
+        pulse_rates[i] = 0;        
+    }
+    ticks = 0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
     pwm_en();
-
+    //pwm_duty(0x00, 0x0, 0x00, 0x0);    
     while(1)
     {
         for(unsigned char i = 0; i < 4; i++) {
