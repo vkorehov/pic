@@ -28,7 +28,8 @@ unsigned int i2c_collisions;
 unsigned char avgIndex = 0;
 
 void interrupt isr(void) {
-    if (TMR1GIE && TMR1GIF) {
+    if (TMR1GIF) {
+        TMR1GIF = 0;
         unsigned char ch = CPSCON1;
         TMR1ON = 0; // Stop Timer1
         //
@@ -44,44 +45,41 @@ void interrupt isr(void) {
 
         if (state[ch] == 0) { // skip first iteration, no reading yet
             state[ch] = 1;
-            goto end_tmr1gi;
-        }
+        } else {
 
-        if (average[ch] == 0) {
-            average[ch] = raw[ch] - trip[ch];
-        }
+            if (average[ch] == 0) {
+                average[ch] = raw[ch] - trip[ch];
+            }
 
-        if (raw[ch] < (average[ch] - trip[ch])) {
-            state[ch] = 2;
-            // Turned on
-            if (ch == 0) {
-                PORTA = 0b0000111;
+            if (raw[ch] < (average[ch] - trip[ch])) {
+                state[ch] = 2;
+                // Turned on
+                if (ch == 0) {
+                    //PORTA = 0b0000111;
+                }
+            } else if (raw[ch] > (average[ch] - trip[ch] + 4)) {
+                state[ch] = 1;
+                // Turned off
+                if (ch == 0) {
+                    //PORTA = 0b00000101;
+                }
+                //
             }
-        } else if (raw[ch] > (average[ch] - trip[ch] + 4)) {
-            state[ch] = 1;
-            // Turned off
-            if (ch == 0) {
-                PORTA = 0b00000101;
+            if (state[ch] == 1) { // Average only during idle
+                average[ch] = average[ch] + (((long) raw[ch]-(long) average[ch]) >> 4);
             }
-            //
         }
-        if(state[ch] == 1) { // Average only during idle
-            average[ch] = average[ch] + (((long) raw[ch]-(long) average[ch]) >> 4);
-        }
-end_tmr1gi:
-        //
-        TMR1GIF = 0;
     }
-    if (BCLIE && BCLIF) {
+    if (BCLIF) {
+        BCLIF = 0;
         i2c_error = 1;
         i2c_collisions++;
-        BCLIF = 0;
     }
-    if (SSPIE && SSPIF) {
+    if (SSPIF) {
+        SSPIF = 0;
         if (!ACKSTAT) {
             i2c_ack = 1;
         }
-        SSPIF = 0;
     }
 }
 

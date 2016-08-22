@@ -16,39 +16,65 @@
 void dpot_increment(unsigned char count) {
     // 0b<nCS><U/D><0>
     // Setup
-    PORTA = 0b101;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 1;
     __delay_us(3);
-    PORTA = 0b001;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;   
     __delay_us(3);
-    PORTA = 0b000;
+    PORTAbits.RA0 = 0;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;       
     __delay_us(3);
     while(count--) {
-        PORTA = 0b001;
+        PORTAbits.RA0 = 1;
+        PORTAbits.RA1 = 0;
+        PORTAbits.RA2 = 0;           
         __delay_us(1);
-        PORTA = 0b000;
+        PORTAbits.RA0 = 0;
+        PORTAbits.RA1 = 0;
+        PORTAbits.RA2 = 0;           
         __delay_us(1);
     }
-    PORTA = 0b001;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;           
     __delay_us(3);
-    PORTA = 0b101;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 1;           
     __delay_us(3);
 }
 
 void dpot_decrement(unsigned char count) {
     // 0b<nCS><U/D><0>
     // Setup
-    PORTA = 0b100;
+    PORTAbits.RA0 = 0;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 1;     
     __delay_us(3);
-    PORTA = 0b000;
+    PORTAbits.RA0 = 0;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;     
     __delay_us(6);
     while(count--) {
-        PORTA = 0b001;
+        PORTAbits.RA0 = 1;
+        PORTAbits.RA1 = 0;
+        PORTAbits.RA2 = 0;         
         __delay_us(1);
-        PORTA = 0b000;
+        PORTAbits.RA0 = 0;
+        PORTAbits.RA1 = 0;
+        PORTAbits.RA2 = 0; 
         __delay_us(1);
     }
-    PORTA = 0b001;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;     
     __delay_us(3);
-    PORTA = 0b101;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 1; 
     __delay_us(3);
 }

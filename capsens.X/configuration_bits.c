@@ -36,3 +36,4 @@
  * Dont configure here anything, it will be ignored!
  *
  */
+#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
