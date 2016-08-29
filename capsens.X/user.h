@@ -3,19 +3,21 @@
 /******************************************************************************/
 #define I2C_WRITE 0
 #define I2C_READ 1
-#define I2C_MYADDR 0x10                    // This device I2C address
+#define I2C_MYADDR 0x67                    // This device I2C address
 #define I2C_SLAVE 0x40                    // Slave device I2C address
 #define I2C_RETRY_DELAY  713
-#define I2C_RETRIES 3
+#define I2C_RETRIES 1
 
 extern unsigned int raw[];
 extern unsigned int average[];
 extern unsigned int trip[];
 extern unsigned char state[];
+extern unsigned char button_state[];
 
 extern unsigned char i2c_error;
 extern unsigned char i2c_ack;
 extern unsigned int i2c_collisions;
+extern unsigned short beep;
 
 /******************************************************************************/
 /* User Function Prototypes                                                   */

@@ -11,70 +11,52 @@
 #include "user.h"
 
 // MCP4011 digipot control
-
+void delay(unsigned int cycles) {    
+    for(unsigned int i = 0; i < cycles; i++) {
+        asm("nop");
+    }
+}
 
 void dpot_increment(unsigned char count) {
     // 0b<nCS><U/D><0>
     // Setup
     PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 1;
-    __delay_us(3);
-    PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
+    delay(4);
     PORTAbits.RA2 = 0;   
-    __delay_us(3);
+    delay(4);
     PORTAbits.RA0 = 0;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 0;       
-    __delay_us(3);
+    delay(4);
     while(count--) {
         PORTAbits.RA0 = 1;
-        PORTAbits.RA1 = 0;
-        PORTAbits.RA2 = 0;           
-        __delay_us(1);
+        delay(1);
         PORTAbits.RA0 = 0;
-        PORTAbits.RA1 = 0;
-        PORTAbits.RA2 = 0;           
-        __delay_us(1);
+        delay(1);
     }
     PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 0;           
-    __delay_us(3);
-    PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
+    delay(4);
     PORTAbits.RA2 = 1;           
-    __delay_us(3);
+    delay(4);
 }
 
 void dpot_decrement(unsigned char count) {
     // 0b<nCS><U/D><0>
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA2 = 1;     
+    delay(4);    
     // Setup
     PORTAbits.RA0 = 0;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 1;     
-    __delay_us(3);
-    PORTAbits.RA0 = 0;
-    PORTAbits.RA1 = 0;
+    delay(4);
     PORTAbits.RA2 = 0;     
-    __delay_us(6);
+    delay(8);
     while(count--) {
         PORTAbits.RA0 = 1;
-        PORTAbits.RA1 = 0;
-        PORTAbits.RA2 = 0;         
-        __delay_us(1);
+        delay(1);
         PORTAbits.RA0 = 0;
-        PORTAbits.RA1 = 0;
-        PORTAbits.RA2 = 0; 
-        __delay_us(1);
+        delay(1);
     }
     PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 0;     
-    __delay_us(3);
-    PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
+    delay(4);
     PORTAbits.RA2 = 1; 
-    __delay_us(3);
+    delay(4);
 }

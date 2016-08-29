@@ -47,6 +47,7 @@ void i2c_init() {
 }
 
 void InitApp(void) {
+    //
     // setup references
     DACCON0bits.DACPSS = 0b10; // FVR BUFFER2
     DACNSS = 0b00; // GND
@@ -61,7 +62,6 @@ void InitApp(void) {
     ANSELAbits.ANSA0 = 0;
     ANSELAbits.ANSA1 = 0;
     ANSELAbits.ANSA2 = 0;
-
     //
     PORTAbits.RA0 = 1;
     PORTAbits.RA1 = 0;
@@ -70,42 +70,74 @@ void InitApp(void) {
     TRISAbits.TRISA0 = 0; // U/D as output
     TRISAbits.TRISA1 = 0; // EN as output
     TRISAbits.TRISA2 = 0; // nCS as output
-    TRISAbits.TRISA3 = 0; // BUZZ as output
-    //
+
     dpot_increment(100); // this resets pot to minimum voltage!
     dpot_decrement(20);
     PORTAbits.RA0 = 1;
     PORTAbits.RA1 = 1;
     PORTAbits.RA2 = 1;
 
-    //TRISB   = 0b00001001; // CPS0_RB0(p21) CPS3_RB3(p24)
+    // CPS0_RB0 CPS6_RA4 CPS7_RA5
     TRISBbits.TRISB0 = 1;
-    TRISBbits.TRISB3 = 1;
     ANSELBbits.ANSB0 = 1;
-    ANSELBbits.ANSB3 = 1;
+    TRISAbits.TRISA4 = 1;
+    ANSELAbits.ANSA4 = 1;
+    TRISAbits.TRISA5 = 1;
+    ANSELAbits.ANSA5 = 1;
+
     //TRISC   = 0b00011000; //RC3(p14):SCL RC4(p15):SDA
+    PORTCbits.RC5 = 0;
+    PORTCbits.RC6 = 0;
+    PORTCbits.RC7 = 0;    
     TRISCbits.TRISC3 = 1; // SCL
     TRISCbits.TRISC4 = 1; // SDA
     TRISCbits.TRISC5 = 0; // output
     TRISCbits.TRISC6 = 0; // output
     TRISCbits.TRISC7 = 0; // output
-    PORTCbits.RC5 = 1;
-    PORTCbits.RC6 = 1;
-    PORTCbits.RC7 = 1;
+    
+    // buzzer    
+    ANSELAbits.ANSA3 = 0;
+    PORTAbits.RA3 = 0;
+    TRISAbits.TRISA3 = 0; // BUZZ as output
+    
     i2c_init();
 
 
-    CPSCON0 = 0b11001100; // 8:CPSON(1) 7:CPSRM(1) 3..4:CPSRNG(11 High Range) 2:CPSOUT(0) 1:T0XCS(0)
-    CPSCON1 = 0b00000000; // 1..2:CPSCH(00 CPS0, 11 CPS3)
+    // 8:CPSON(1) 7:CPSRM(1) 3..4:CPSRNG(11 High Range) 2:CPSOUT(0) 1:T0XCS(0)
+    CPSCON0bits.CPSON = 1;
+    CPSCON0bits.CPSRM = 1;
+    CPSCON0bits.CPSRNG = 0b11;
+    CPSCON0bits.CPSOUT = 0;
+    CPSCON0bits.T0XCS = 0;
+    
+    // 1..2:CPSCH(00 CPS0, 11 CPS3)
+    CPSCON1bits.CPSCH = 0b0000; // CPS0
 
-
-    //TIMER0 SETUP
-    OPTION_REG = 0b01000111; // 8:WPUEN(0) 7:INTEDG(1) 6:TMR0CS(0) 5:TMR0SE(0) 4:PSA(0 Timer0) 1..3:PS(111 1:256)
-    TMR0IF = 0; // clear TMR0 interrupt flag
-    TMR0IE = 0; // enable TMR0 interrupt
-
+    //TIMER0 used for CPS
+    // 8:WPUEN(1) 7:INTEDG(1) 6:TMR0CS(0) 5:TMR0SE(0) 4:PSA(0 Timer0) 1..3:PS(111 1:256)
+    OPTION_REGbits.nWPUEN = 1;
+    OPTION_REGbits.INTEDG = 1;
+    OPTION_REGbits.TMR0CS = 0;
+    OPTION_REGbits.TMR0SE = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS = 0b111;
+    
+    //Timer2
+    T2CONbits.T2CKPS = 0b11;
+    T2CONbits.T2OUTPS = 0b0000;
+    PR2 = 0x10;
+    T2CONbits.TMR2ON = 1;
+    TMR2IF = 0;
+    TMR2IE = 1;    
+    
     //TIMER1 SETUP
-    T1CON = 0b11000101; //  7..8:TMR1CS(11 Capacitive Sensing Oscillator) 5..6:T1CKPS(00 Disabled) 4:T1OSCEN(0) 3:T1SYNC(1) 1:TMR1ON(1)
+    //  7..8:TMR1CS(11 Capacitive Sensing Oscillator) 5..6:T1CKPS(00 Disabled) 4:T1OSCEN(0) 3:T1SYNC(1) 1:TMR1ON(1)    
+    T1CONbits.TMR1CS = 0b11;
+    T1CONbits.T1CKPS = 0b00;
+    T1CONbits.T1OSCEN = 0;
+    T1CONbits.nT1SYNC = 1;
+    T1CONbits.TMR1ON = 1;
+    
     T1GCON = 0b11100001; // 8:TMR1GE(1) 7:T1GPOL(1) 6:T1GTM(1 pass signal thru flipflop) 5:T1GSPM(0 no 'single pulse' mode) 4:T1GGO(0 no single pulse) 3:T1GVAL(0 Gate value) 1..2:T1GSS(01 From Timer0 OF)
     TMR1GIF = 0; // Clear Gate Interrupt Flag
     TMR1GIE = 1; // Enable Gate Interrupt
