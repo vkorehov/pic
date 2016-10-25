@@ -22,29 +22,32 @@
 
 void main(void) {
     /* Configure the oscillator for the device */
-    ConfigureOscillator();
+    ConfigureOscillator();    
     for(int i = 0;i < 8;i++) {
-        raw[i] = 0;
+        average_every[i] = 2;
         average[i] = 0;
-        trip[i] = 32;
-        state[i] = 0;
-        button_state[i] = 0;
+        button_trigger_on[i] = 0;
+        sequential_press[i] = 0;
     }
-    beep = 1000;
+    beep = 3000;
+    command_to_send = 0;
+    skip_cps = 256;
+    debug_byte0 = 0;
+    debug_byte1 = 0;
+    debug_byte2 = 0;
+    debug_byte3 = 0;
+    debug = 0;    
+    tmr2_ticks = 1;
     /* Initialize I/O and Peripherals for application */
     InitApp();
 
     //PORTA = 0b1110;
-    unsigned int c = 0;
-    unsigned char once = 0;
     //CPSCON0bits.CPSRNG = 0b00; // Noise detection
     while (1) {
-        //asm("nop");
-        if(once == 0 && (button_state[0] || button_state[6] || button_state[7])) {
-            i2c_command8(0xBE);
-            once = 1;
+        if(debug > 0) {
+            i2c_dbg(debug_byte0, debug_byte1, debug_byte2, debug_byte3);
+            debug = 0;
         }
-        c++;
     }
 }
 

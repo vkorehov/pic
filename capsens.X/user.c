@@ -47,18 +47,19 @@ void i2c_init() {
 }
 
 void InitApp(void) {
-    //
+    //Setup FVR
+    FVRCONbits.CDAFVR = 0b11; // 4.086V
+    FVRCONbits.ADFVR = 0b01; // 1.024V   
+    FVRCONbits.FVREN = 1;   
+    while (!FVRCONbits.FVRRDY) {
+    }    
     // setup references
     DACCON0bits.DACPSS = 0b10; // FVR BUFFER2
     DACNSS = 0b00; // GND
     DACCON0bits.DACOE = 0;
-    DACCON1bits.DACR = 8; // FVRBUFFER2/2
+    DACCON1bits.DACR = 0; // 4.086 * (16/32)
     DACEN = 1;
-    //Setup FVR
-    FVRCONbits.CDAFVR = 0b11; // 4.086V
-    FVRCONbits.FVREN = 1;
-    while (!FVRCONbits.FVRRDY) {
-    }
+    
     ANSELAbits.ANSA0 = 0;
     ANSELAbits.ANSA1 = 0;
     ANSELAbits.ANSA2 = 0;
@@ -77,18 +78,20 @@ void InitApp(void) {
     PORTAbits.RA1 = 1;
     PORTAbits.RA2 = 1;
 
-    // CPS0_RB0 CPS6_RA4 CPS7_RA5
+    // CPS0_RB0 CPS2_RB2 CPS4_RB4
     TRISBbits.TRISB0 = 1;
     ANSELBbits.ANSB0 = 1;
-    TRISAbits.TRISA4 = 1;
-    ANSELAbits.ANSA4 = 1;
-    TRISAbits.TRISA5 = 1;
-    ANSELAbits.ANSA5 = 1;
+    TRISBbits.TRISB2 = 1;
+    ANSELBbits.ANSB2 = 1;
+    TRISBbits.TRISB4 = 1;
+    ANSELBbits.ANSB4 = 1;
 
     //TRISC   = 0b00011000; //RC3(p14):SCL RC4(p15):SDA
-    PORTCbits.RC5 = 0;
-    PORTCbits.RC6 = 0;
-    PORTCbits.RC7 = 0;    
+    PORTC = PORTC | (LED4_BIT | LED2_BIT | LED0_BIT);
+            
+    //PORTCbits.RC5 = 0;
+    //PORTCbits.RC6 = 0;
+    //PORTCbits.RC7 = 0;    
     TRISCbits.TRISC3 = 1; // SCL
     TRISCbits.TRISC4 = 1; // SDA
     TRISCbits.TRISC5 = 0; // output
@@ -106,7 +109,7 @@ void InitApp(void) {
     // 8:CPSON(1) 7:CPSRM(1) 3..4:CPSRNG(11 High Range) 2:CPSOUT(0) 1:T0XCS(0)
     CPSCON0bits.CPSON = 1;
     CPSCON0bits.CPSRM = 1;
-    CPSCON0bits.CPSRNG = 0b11;
+    CPSCON0bits.CPSRNG = 0b11; // High Range
     CPSCON0bits.CPSOUT = 0;
     CPSCON0bits.T0XCS = 0;
     
@@ -138,7 +141,14 @@ void InitApp(void) {
     T1CONbits.nT1SYNC = 1;
     T1CONbits.TMR1ON = 1;
     
-    T1GCON = 0b11100001; // 8:TMR1GE(1) 7:T1GPOL(1) 6:T1GTM(1 pass signal thru flipflop) 5:T1GSPM(0 no 'single pulse' mode) 4:T1GGO(0 no single pulse) 3:T1GVAL(0 Gate value) 1..2:T1GSS(01 From Timer0 OF)
+    // 8:TMR1GE(1) 7:T1GPOL(1) 6:T1GTM(1 pass signal thru flipflop) 5:T1GSPM(0 no 'single pulse' mode) 4:T1GGO(0 no single pulse) 3:T1GVAL(0 Gate value) 1..2:T1GSS(01 From Timer0 OF)
+    T1GCONbits.TMR1GE = 1;
+    T1GCONbits.T1GPOL = 0;
+    T1GCONbits.T1GTM = 0;// skip flip flop
+    T1GCONbits.T1GSPM = 0;
+    T1GCONbits.T1GGO = 0;
+    T1GCONbits.T1GVAL = 0;
+    T1GCONbits.T1GSS = 0b01;
     TMR1GIF = 0; // Clear Gate Interrupt Flag
     TMR1GIE = 1; // Enable Gate Interrupt
 

@@ -106,6 +106,40 @@ static unsigned char handle_error(unsigned char waitAck) {
     return 0;
 }
 
+void i2c_dbg(unsigned char b1, unsigned char b2, unsigned char b3, unsigned char b4) {
+    i2c_retry = I2C_RETRIES;
+    i2c_own_bus = 0;
+    while (i2c_retry-- > 0) {
+        handle_restart();
+        if (handle_error(0)) continue;
+        i2c_own_bus = 1;
+
+        i2c_Address(I2C_SLAVE, I2C_WRITE); // Send slave address - write operation
+        if (handle_error(1)) continue;
+
+        i2c_Write(b1); //
+        if (handle_error(1)) continue;
+
+        i2c_Write(b2); //
+        if (handle_error(1)) continue;
+
+        i2c_Write(b3); //
+        if (handle_error(1)) continue;
+
+        i2c_Write(b4); //
+        if (handle_error(1)) continue;
+
+        i2c_Stop(); // send Stop
+        i2c_own_bus = 0;
+        if (handle_error(0)) continue;
+        return; // Success
+    }
+    if (i2c_own_bus) {
+        i2c_Stop();
+        i2c_own_bus = 0;
+    }
+}
+
 void i2c_command8(unsigned char command) {
     unsigned char current_command;
     unsigned char pec;
