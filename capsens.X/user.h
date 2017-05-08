@@ -16,8 +16,7 @@ extern unsigned int last_readings[8];
 extern unsigned int readings[8];
 extern unsigned int readings_counter;
 extern unsigned int beep;
-extern unsigned char state[3];
-
+extern unsigned char state;
 
 #ifdef SIMULATOR
 void run_tests();

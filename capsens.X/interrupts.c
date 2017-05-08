@@ -24,7 +24,6 @@ static unsigned int ticks;
 static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static unsigned char command;
-static unsigned char counter;
 
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
@@ -45,7 +44,7 @@ inline void process_cps(unsigned char ch, unsigned int raw) {
     // Slew Rate Limiter
     if(raw > readings[ch])
         readings[ch]++;
-    else
+    else if(readings[ch] != 0) // avoid flipping
         readings[ch]--;
     readings_counter++; 
 }
@@ -69,6 +68,7 @@ void interrupt isr(void) {
                 CPSCON1 = 0;
                 break;
             default:
+                printf("Should not happen\n");
                 CPSCON1 = 0;
                 break;
         }
@@ -116,14 +116,14 @@ void interrupt isr(void) {
                             ENTER_BOOTLOADER = 1;
                             asm("pagesel 0x000");
                             asm("goto 0x000");
-                            break;                            
+                            break;
                     }
                 }
                 if (rx_index == 2) {
                     // input
                     switch (command) {
                         case 0x01:
-                            counter++;
+                            state = rx_buffer[1];
                             break;
                     }
                 }
@@ -134,13 +134,13 @@ void interrupt isr(void) {
                 // output
                 switch (command) {
                     case 0x01: // read command
-                        rx_buffer[0] = 0;// button pressed
-                        rx_buffer[1] = 0;                        
+                        rx_buffer[0] = state;// buttons pressed
+                        rx_buffer[1] = 0;
                         break;
                     case 0x02: // read command
                         rx_buffer[0] = 2 & 0xff; // raw[2]
                         rx_buffer[1] = 1 >> 8; // raw[2]
-                        break;                                                
+                        break;
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
                 }

@@ -19,7 +19,7 @@ unsigned int last_readings[8];
 unsigned int readings[8];
 unsigned int readings_counter;
 unsigned int beep;
-unsigned char state[3];
+unsigned char state;
 
 #ifdef SIMULATOR
 
@@ -52,9 +52,7 @@ void main(void) {
         tripped_readings[i] = 0;       
     }
     beep = 0;
-    for (int i = 0; i < 3; i++) {
-        state[i] = 0;
-    }    
+    state = 0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
     printf("Started App\n");
@@ -74,21 +72,21 @@ void main(void) {
             readings_counter = 0;
             if (training == 0 && tripped_readings[4] == 0 && last_readings[4] > readings[4] && last_readings[4] - readings[4] > 6) {
                 tripped_readings[4] = last_readings[4];
-                state[0] = ~state[0];
+                state ^= 0b001;
                 beep = 500;
             } else if (training == 0 && tripped_readings[4] != 0 && readings[4] + 4 > tripped_readings[4]) {
                 tripped_readings[4] = 0;
             }
             if (training == 0 && tripped_readings[2] == 0 && last_readings[2] > readings[2] && last_readings[2] - readings[2] > 6) {
                 tripped_readings[2] = last_readings[2];
-                state[1] = ~state[1];
+                state ^= 0b010;
                 beep = 500;                                
             } else if (training == 0 && tripped_readings[2] != 0 && readings[2] + 4 > tripped_readings[2]) {
                 tripped_readings[2] = 0;
             }
             if (training == 0 && tripped_readings[0] == 0 && last_readings[0] > readings[0] && last_readings[0] - readings[0] > 6) {
                 tripped_readings[0] = last_readings[0];
-                state[2] = ~state[2];                
+                state ^= 0b100;
                 beep = 500;                                                
             } else if (training == 0 && tripped_readings[0] != 0 && readings[0] + 4 > tripped_readings[0]) {
                 tripped_readings[0] = 0;
@@ -102,9 +100,9 @@ void main(void) {
             last_readings[4] = readings[4];
             printf("%d %d %d\n", readings[0], readings[2], readings[4]);
         }
-        PORTCbits.RC0 = state[0];
-        PORTCbits.RC1 = state[1];
-        PORTCbits.RC5 = state[2];
+        PORTCbits.RC0 = (state & 0b001) >> 0;
+        PORTCbits.RC1 = (state & 0b010) >> 1;
+        PORTCbits.RC5 = (state & 0b100) >> 2;
     }
 }
 
