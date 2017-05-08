@@ -15,15 +15,22 @@
 
 #include "user.h"
 
+unsigned long long pwm_timeout;
+
 void pwm_duty(unsigned char duty1_l, unsigned char duty1_h, unsigned char duty2_l, unsigned char duty2_h) {
-    CCPR3L = duty2_h;
-    CCPR1L = duty1_h;
-     
-    CCP3CONbits.DC3B0 = (0b00000001 & duty2_l);
-    CCP3CONbits.DC3B1 = (0b00000010 & duty2_l) >> 1;
-    
-    CCP1CONbits.DC1B0 = (0b00000001 & duty1_l);
-    CCP1CONbits.DC1B1 = (0b00000010 & duty1_l) >> 1;
+    if(duty2_h != CCPR3L)
+        CCPR3L = duty2_h;
+    if(duty1_h != CCPR1L)    
+        CCPR1L = duty1_h;
+    if((0b00000001 & duty2_l) != CCP3CONbits.DC3B0)
+        CCP3CONbits.DC3B0 = (0b00000001 & duty2_l);
+    if(((0b00000010 & duty2_l) >> 1) != CCP3CONbits.DC3B1)
+        CCP3CONbits.DC3B1 = (0b00000010 & duty2_l) >> 1;
+    if((0b00000001 & duty1_l) != CCP1CONbits.DC1B0)
+        CCP1CONbits.DC1B0 = (0b00000001 & duty1_l);
+    if(((0b00000010 & duty1_l) >> 1) != CCP1CONbits.DC1B1)
+        CCP1CONbits.DC1B1 = (0b00000010 & duty1_l) >> 1;
+    pwm_timeout = 0;
 }
 
 void pwm_en() {

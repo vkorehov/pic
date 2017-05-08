@@ -202,6 +202,18 @@ void interrupt isr(void) {
                 if (rx_index == 1 && rx_buffer[0] == 0x05) {
                    on(3);
                 }
+                if (rx_index == 1 && rx_buffer[0] == 0x20) {
+                   off(0);
+                }
+                if (rx_index == 1 && rx_buffer[0] == 0x30) {
+                   off(1);
+                }
+                if (rx_index == 1 && rx_buffer[0] == 0x40) {
+                   off(2);
+                }
+                if (rx_index == 1 && rx_buffer[0] == 0x50) {
+                   off(3);
+                }                
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;

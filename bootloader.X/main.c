@@ -28,12 +28,10 @@ unsigned int _bl_timeout;
 //    asm("pagesel 0x204");
 //    asm("goto 0x204");
 //}
+//asm("PSECT intentry");
+//asm("pagesel 0x204");
+//asm("goto 0x204");
 
-
-//#asm
-//PSECT intentry
-//GOTO 0x204
-//#endasm
 
 void main(void) {
 

@@ -44,6 +44,7 @@ void main(void)
         sensor_values[i] = 0;
         sensor_values_averages[i] = 0;
     }
+    pwm_timeout = 0xffffffff;
     for(unsigned char i = 0; i < 4; i++) {
         switch_timeouts[i] = 0xffffffff;        
     }
@@ -58,6 +59,11 @@ void main(void)
     //pwm_duty(0x00, 0x0, 0x00, 0x0);    
     while(1)
     {
+        if(pwm_timeout > PWM_TIMEOUT) {
+            pwm_duty(0, 0, 0, 0);
+        } else {
+            pwm_timeout++;
+        }
         for(unsigned char i = 0; i < 4; i++) {
             if(switch_timeouts[i] > SWITCH_TIMEOUT) {
                 off(i);

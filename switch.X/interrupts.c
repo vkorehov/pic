@@ -25,7 +25,7 @@ static unsigned char command;
 static unsigned char counter;
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 64; i++) {
         asm("nop");
     }
     do {
@@ -54,7 +54,6 @@ void interrupt isr(void) {
                 dht22_abort();
         }
     }
-#endif
     if (IOCIF) {
         asm("MOVLW 0xff");
 #ifdef _12F1840
@@ -96,6 +95,7 @@ void interrupt isr(void) {
             }
         }
     }
+#endif
 
     if (SSPIF) {
         unsigned char i2c_state = SSPSTAT & 0b00100100;
@@ -125,10 +125,12 @@ void interrupt isr(void) {
                             ENTER_BOOTLOADER = 1;
                             asm("pagesel 0x000");
                             asm("goto 0x000");
-                            break;
+                            break;                            
+#ifdef DHT22_ENABLED                            
                         case 0x12:
                             start_read_dht22();
                             break;
+#endif                            
                     }
                 }
                 if (rx_index == 2) {
@@ -138,6 +140,12 @@ void interrupt isr(void) {
                             counter++;
                             on(rx_buffer[1]);
                             break;
+#ifdef MOVEMENT_ENABLED  
+                        case 0x20:
+                            counter++;
+                            movement_on_dim = rx_buffer[1];
+                            break;                            
+#endif
                     }
                 }
                 break;
@@ -150,6 +158,13 @@ void interrupt isr(void) {
                         if(rx_index == 0)
                             rx_buffer[0] = counter;
                         break;
+#ifdef MOVEMENT_ENABLED
+                    case 0x20: // read movement
+                        rx_buffer[0] = movement_state;
+                        rx_buffer[1] = 0x00;
+                        break;
+#endif
+#ifdef DHT22_ENABLED                                                    
                     case 0x13: // read humidity
                         rx_buffer[0] = dht22_bits[1];
                         rx_buffer[1] = dht22_bits[0];
@@ -158,6 +173,7 @@ void interrupt isr(void) {
                         rx_buffer[0] = dht22_bits[3];
                         rx_buffer[1] = dht22_bits[2];
                         break;
+#endif                        
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
                 }

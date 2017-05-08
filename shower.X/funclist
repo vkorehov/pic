@@ -1,13 +1,15 @@
-_ConfigureOscillator: CODE, 1657 0 4
-_main: CODE, 1053 0 188
-_InitApp: CODE, 1241 0 157
-__initialization: CODE, 1029 0 20
-_isr: CODE, 516 0 511
-_write_i2c: CODE, 1548 0 35
-_on: CODE, 1502 0 46
-_i2c_init: CODE, 1638 0 13
-_off: CODE, 1612 0 26
-___wmul: CODE, 1583 0 29
-_pwm_en: CODE, 1398 0 56
-_pwm_duty: CODE, 1454 0 48
-Total: 1133
+_ConfigureOscillator: CODE, 2000 0 4
+_main: CODE, 1111 0 230
+_InitApp: CODE, 1341 0 157
+__initialization: CODE, 1081 0 26
+_isr: CODE, 516 0 563
+_write_i2c: CODE, 1862 0 35
+_on: CODE, 1816 0 46
+i1_off: CODE, 1897 0 29
+_i2c_init: CODE, 1981 0 13
+_off: CODE, 1955 0 26
+___wmul: CODE, 1926 0 29
+_pwm_en: CODE, 1760 0 56
+_pwm_duty: CODE, 1498 0 143
+i1_pwm_duty: CODE, 1641 0 119
+Total: 1476

@@ -13,8 +13,11 @@ extern unsigned int sensor_values_averages[2];
 extern unsigned char pulses[4];
 extern unsigned char pulse_rates[4];
 extern unsigned long long switch_timeouts[4];
+extern unsigned long long pwm_timeout;
 extern unsigned short ticks;
-#define SWITCH_TIMEOUT 0x12000
+#define SWITCH_TIMEOUT 0x16000
+#define PWM_TIMEOUT 0x10000
+
 void on(unsigned char sw);
 void off(unsigned char sw);
 void pwm_en();

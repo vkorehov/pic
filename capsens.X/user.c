@@ -18,32 +18,34 @@
 /* User Functions                                                             */
 /******************************************************************************/
 
-/* <Initialize variables in user.h and insert code for user algorithms.> */
-void i2c_destroy() {
-    // Clear  SSP1CON1
-    SSPCON1 = 0b00000000; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(0) 5:CKP(0) 1..4:SSPM(1000 I2C Master mode, clock = FOSC / (4 * (SSPADD+1)))
-    BCLIE = 0; // Disable I2C Bus Collision Interrupts
-    BCLIF = 0; // Clear I2C Bus Collision Flag
-    SSPIE = 0; // Disable interrupt on ACK
-    SSPIF = 0; // Clear interrupt on ACK flag
-
-}
+///* <Initialize variables in user.h and insert code for user algorithms.> */
+//void i2c_destroy() {
+//    // Clear  SSP1CON1
+//    SSPCON1 = 0b00000000; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(0) 5:CKP(0) 1..4:SSPM(1000 I2C Master mode, clock = FOSC / (4 * (SSPADD+1)))
+//    BCLIE = 0; // Disable I2C Bus Collision Interrupts
+//    BCLIF = 0; // Clear I2C Bus Collision Flag
+//    SSPIE = 0; // Disable interrupt on ACK
+//    SSPIF = 0; // Clear interrupt on ACK flag
+//}
 
 void i2c_init() {
+//    // Initialise I2C MSSP
+//    SSPCON1 = 0b00101000; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(1) 5:CKP(0) 1..4:SSPM(1000 I2C Master mode, clock = FOSC / (4 * (SSPADD+1)))
+//    SSPCON2 = 0b01000000; // 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
+//    SSPCON3 = 0b00000000; // 8:ACKTIM(0) 7:PCIE(0) 6:SCIE(0) 5:BOEN(0) 4:SDAHT(0) 3:SBCDE() 2:AHEN() 1:DHEN(0)
+//    // I2C Master mode, clock = FOSC/(4 * (SSPADD + 1))
+//    //SSPADD = 9;    		// 100Khz @ 4Mhz Fosc
+//    //SSPADD = 79;    		// 100Khz @ 32Mhz Fosc
+//    SSPADD = 79;
+//    SSPSTAT = 0b11000000; // Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
+//    SSPIF = 0; // Clear interrupt on ACK flag
+//    SSPIE = 1; // Enable interrupt on ACK
     // Initialise I2C MSSP
-    SSPCON1 = 0b00101000; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(1) 5:CKP(0) 1..4:SSPM(1000 I2C Master mode, clock = FOSC / (4 * (SSPADD+1)))
-    SSPCON2 = 0b01000000; // 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(0) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(0)
-    SSPCON3 = 0b00000000; // 8:ACKTIM(0) 7:PCIE(0) 6:SCIE(0) 5:BOEN(0) 4:SDAHT(0) 3:SBCDE() 2:AHEN() 1:DHEN(0)
-    // I2C Master mode, clock = FOSC/(4 * (SSPADD + 1))
-    //SSPADD = 9;    		// 100Khz @ 4Mhz Fosc
-    //SSPADD = 79;    		// 100Khz @ 32Mhz Fosc
-    SSPADD = 79;
-    SSPSTAT = 0b11000000; // Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
-    BCLIF = 0; // Clear I2C Bus Collision Flag
-    BCLIE = 1; // Enable I2C Bus Collision Interrupts
-    SSPIF = 0; // Clear interrupt on ACK flag
-    SSPIE = 1; // Enable interrupt on ACK
-
+    SSPCON1  = 0b00110110; // 8:WCOL(0) 7:SSP1OV(0) 6:SSP1EN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address)
+    SSPCON2  = 0b00000001; // Slave Clock stretching on rceive and send 8:GCEN(0) 7:ACKSTAT(1) 6:ACKDT(1) 5:ACKEN(0) 4:RCEN(0) 3:PEN(0) 2:RSEN(0) 1:SEN(1)
+    SSPCON3  = 0b00001000; //SDA Thold=300ns 8:ACKTIM(0) 7:PCIE(0) 6:SCIE(0) 5:BOEN(0) 4:SDAHT(1) 3:SBCDE(0) 2:AHEN(0) 1:DHEN(0)
+    SSPSTAT = 0b11000000; // Slew rate disabled, SMBus compat. timings. SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
+    SSPADD = I2C_MYADDR << 1; // My address    
 }
 
 void InitApp(void) {
@@ -51,8 +53,10 @@ void InitApp(void) {
     FVRCONbits.CDAFVR = 0b11; // 4.086V
     FVRCONbits.ADFVR = 0b01; // 1.024V   
     FVRCONbits.FVREN = 1;   
+#ifndef SIMULATOR    
     while (!FVRCONbits.FVRRDY) {
     }    
+#endif    
     // setup references
     DACCON0bits.DACPSS = 0b10; // FVR BUFFER2
     DACNSS = 0b00; // GND
@@ -87,16 +91,28 @@ void InitApp(void) {
     ANSELBbits.ANSB4 = 1;
 
     //TRISC   = 0b00011000; //RC3(p14):SCL RC4(p15):SDA
-    PORTC = PORTC | (LED4_BIT | LED2_BIT | LED0_BIT);
+    //PORTC = PORTC | (LED4_BIT | LED2_BIT | LED0_BIT);// LED4_BIT | LED2_BIT | LED0_BIT
             
     //PORTCbits.RC5 = 0;
     //PORTCbits.RC6 = 0;
     //PORTCbits.RC7 = 0;    
     TRISCbits.TRISC3 = 1; // SCL
     TRISCbits.TRISC4 = 1; // SDA
+    TRISCbits.TRISC0 = 0; // output
+    TRISCbits.TRISC1 = 0; // output    
     TRISCbits.TRISC5 = 0; // output
-    TRISCbits.TRISC6 = 0; // output
-    TRISCbits.TRISC7 = 0; // output
+    TRISCbits.TRISC6 = 0; // output // TX
+    TRISCbits.TRISC7 = 1; // output // RX
+    
+    // UART
+    BAUDCONbits.BRG16 = 1;
+    TXSTAbits.BRGH = 1;
+    SPBRGL = 42; // 51.0 = 9600 // 68.4 = 115200
+    SPBRGH = 0; 
+    SCKP = 0;
+    TXEN = 1;
+    SYNC = 0;
+    SPEN = 1;
     
     // buzzer    
     ANSELAbits.ANSA3 = 0;
@@ -123,15 +139,13 @@ void InitApp(void) {
     OPTION_REGbits.TMR0CS = 0;
     OPTION_REGbits.TMR0SE = 0;
     OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS = 0b111;
+    OPTION_REGbits.PS = 0b010;
     
     //Timer2
     T2CONbits.T2CKPS = 0b11;
     T2CONbits.T2OUTPS = 0b0000;
-    PR2 = 0x10;
+    PR2 = 0x0b;
     T2CONbits.TMR2ON = 1;
-    TMR2IF = 0;
-    TMR2IE = 1;    
     
     //TIMER1 SETUP
     //  7..8:TMR1CS(11 Capacitive Sensing Oscillator) 5..6:T1CKPS(00 Disabled) 4:T1OSCEN(0) 3:T1SYNC(1) 1:TMR1ON(1)    
@@ -149,10 +163,14 @@ void InitApp(void) {
     T1GCONbits.T1GGO = 0;
     T1GCONbits.T1GVAL = 0;
     T1GCONbits.T1GSS = 0b01;
-    TMR1GIF = 0; // Clear Gate Interrupt Flag
-    TMR1GIE = 1; // Enable Gate Interrupt
 
     /* Enable interrupts */
+    TMR2IF = 0;
+    TMR2IE = 1;    
+    TMR1GIF = 0; // Clear Gate Interrupt Flag
+    TMR1GIE = 1; // Enable Gate Interrupt
+    SSPIF = 0; // Clear interrupt on ACK flag
+    SSPIE = 1; // Enable interrupt on ACK    
     PEIE = 1;
     GIE = 1;
 }

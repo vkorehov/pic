@@ -13,7 +13,8 @@
 
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp */
-
+unsigned char movement_on_dim;
+unsigned char movement_state;
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
@@ -52,10 +53,16 @@ void pwm_init(void) {
     TMR2ON = 0;
     TMR2IF = 0;
     TMR2 = 0x00;
+#ifdef PWM_32K    
     PR2 = 0xFF;
-    T2CONbits.T2CKPS = 0b00; // 1:1 pre-scaler
+    T2CONbits.T2CKPS = 0b00; // 1:1 pre-scaler    
     T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler
-
+#endif
+#ifdef PWM_500H
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b11; // 1:64 pre-scaler    
+    T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler    
+#endif
     TMR2ON = 1;
 }
 
@@ -89,10 +96,22 @@ void main(void)
 {
     /* Configure the oscillator for the device */
     ConfigureOscillator();
+    movement_on_dim = 0xff;
+    movement_state = 0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
     while(1)
     {
+#ifdef MOVEMENT_ENABLED        
+        if(PORTAbits.RA4) {
+            if(!movement_state) {
+                on(movement_on_dim);
+            }
+            movement_state = 1;
+        } else {
+            movement_state = 0;            
+        }
+#endif        
     }
 }
 

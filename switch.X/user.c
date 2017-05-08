@@ -37,17 +37,18 @@ void InitApp(void)
 //    APFCONbits.CCP2SEL = 1; // RB3 to be CCP2/P2A
 //#endif
     i2c_init();
-    // Output pin
-    //TRISAbits.TRISA0 = 1;
-    //PORTAbits.RA0 = 0;
-
+#ifdef MOVEMENT_ENABLED
+    TRISAbits.TRISA4 = 1; // enable input
+    ANSELAbits.ANSA4 = 0;
+ #endif
+#ifdef DHT22_ENABLED
     dht22_state = 0;
     dht22_index = 0;
     dht22_bit_index = 0;
     for(int i = 0; i < DHT22_MAX_BYTES; i++) {
         dht22_bits[i] = 0;
     }
-
+#endif
     // TIMER1
     switch_dur_mult= 0;
     TMR1GE = 0;

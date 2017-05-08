@@ -2,13 +2,18 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x34                   // This device I2C address
+#define I2C_MYADDR 0x46                   // This device I2C address
+//#define MOVEMENT_ENABLED
 
 
 #define SWITCH_ON_DURATION                                      0xffff
-#define SWITCH_ON_DURATION_MULT                                 40
+#define SWITCH_ON_DURATION_MULT                                 255
+//#define PWM_32K
+#define PWM_500H
 
 extern unsigned char switch_dur_mult;
+extern unsigned char movement_on_dim;
+extern unsigned char movement_state;
 
 #define DHT22_MAX_BYTES 5
 #define DHT22_CUTOFF_TIME 0x18
