@@ -11,11 +11,12 @@
 #define SCANS_PER_DECODE 300
 
 //#define SIMULATOR
-extern int tripped_readings[8];
-extern int last_readings[8];
-extern int readings[8];
+extern unsigned int tripped_readings[8];
+extern unsigned int last_readings[8];
+extern unsigned int readings[8];
 extern unsigned int readings_counter;
 extern unsigned int beep;
+extern unsigned char state[3];
 
 
 #ifdef SIMULATOR
