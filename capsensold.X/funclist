@@ -1,0 +1,17 @@
+___awdiv: CODE, 1559 0 83
+_process_cps: CODE, 816 0 461
+_delay: CODE, 1892 0 18
+__stringdata: STRCODE, 2048 0 13
+_putch: CODE, 1932 0 1
+_ConfigureOscillator: CODE, 1928 0 4
+_main: CODE, 1277 0 152
+_InitApp: CODE, 1429 0 130
+__initialization: CODE, 789 0 23
+___lwdiv: CODE, 1772 0 54
+_isr: CODE, 516 0 271
+_write_i2c: CODE, 1826 0 37
+_dpot_increment: CODE, 1642 0 65
+_printf: CODE, 1863 0 29
+_dpot_decrement: CODE, 1707 0 65
+_i2c_init: CODE, 1910 0 12
+Total: 1418

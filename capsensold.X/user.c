@@ -53,8 +53,13 @@ void InitApp(void) {
     FVRCONbits.CDAFVR = 0b11; // 4.086V
     FVRCONbits.ADFVR = 0b01; // 1.024V   
     FVRCONbits.FVREN = 1;   
+#ifndef SIMULATOR    
     while (!FVRCONbits.FVRRDY) {
     }    
+#else
+    TXSTAbits.TXEN = 1;               // enable transmitter
+    RCSTAbits.SPEN = 1;               // enable serial port    
+#endif    
     // setup references
     DACCON0bits.DACPSS = 0b10; // FVR BUFFER2
     DACNSS = 0b00; // GND
@@ -89,28 +94,16 @@ void InitApp(void) {
     ANSELBbits.ANSB4 = 1;
 
     //TRISC   = 0b00011000; //RC3(p14):SCL RC4(p15):SDA
-    //PORTC = PORTC | (LED4_BIT | LED2_BIT | LED0_BIT);// LED4_BIT | LED2_BIT | LED0_BIT
+    PORTC = PORTC | (LED4_BIT | LED2_BIT | LED0_BIT);
             
     //PORTCbits.RC5 = 0;
     //PORTCbits.RC6 = 0;
     //PORTCbits.RC7 = 0;    
     TRISCbits.TRISC3 = 1; // SCL
     TRISCbits.TRISC4 = 1; // SDA
-    TRISCbits.TRISC0 = 0; // output
-    TRISCbits.TRISC1 = 0; // output    
     TRISCbits.TRISC5 = 0; // output
-    TRISCbits.TRISC6 = 0; // output // TX
-    TRISCbits.TRISC7 = 1; // output // RX
-    
-    // UART
-    BAUDCONbits.BRG16 = 1;
-    TXSTAbits.BRGH = 1;
-    SPBRGL = 42; // 51.0 = 9600 // 68.4 = 115200
-    SPBRGH = 0; 
-    SCKP = 0;
-    TXEN = 1;
-    SYNC = 0;
-    SPEN = 1;
+    TRISCbits.TRISC6 = 0; // output
+    TRISCbits.TRISC7 = 0; // output
     
     // buzzer    
     ANSELAbits.ANSA3 = 0;
@@ -137,12 +130,12 @@ void InitApp(void) {
     OPTION_REGbits.TMR0CS = 0;
     OPTION_REGbits.TMR0SE = 0;
     OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS = 0b010;
+    OPTION_REGbits.PS = 0b111;
     
     //Timer2
     T2CONbits.T2CKPS = 0b11;
     T2CONbits.T2OUTPS = 0b0000;
-    PR2 = 0x0b;
+    PR2 = 0x10;
     T2CONbits.TMR2ON = 1;
     
     //TIMER1 SETUP

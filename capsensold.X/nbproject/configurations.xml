@@ -15,7 +15,9 @@
       <itemPath>main.c</itemPath>
       <itemPath>system.c</itemPath>
       <itemPath>user.c</itemPath>
+      <itemPath>i2c.c</itemPath>
       <itemPath>digipot.c</itemPath>
+      <itemPath>unittests.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -34,7 +36,7 @@
         <targetDevice>PIC16F1938</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>1.33</languageToolchainVersion>
         <platform>3</platform>
@@ -47,21 +49,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="../bootloader.X"
-                        CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
-                        BL="true"
-                        WD="../bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE}  -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="${MAKE}  -f Makefile CONF=PIC16F1938 clean"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -447,21 +434,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="../bootloader.X"
-                        CT="1"
-                        CN="PIC16F1938"
-                        AC="true"
-                        BL="true"
-                        WD="../bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=PIC16F1938"
-                        DBC="${MAKE}  -f Makefile CONF=PIC16F1938 TYPE_IMAGE=DEBUG_RUN"
-                        CC="${MAKE}  -f Makefile CONF=PIC16F1938 clean"
-                        OP="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        DOP="dist/PIC16F1938/debug/bootloader.X.debug.elf"
-                        FL="dist/PIC16F1938/production/bootloader.X.production.hex"
-                        PD="dist/PIC16F1938/production/bootloader.X.production.elf"
-                        DD="dist/PIC16F1938/debug/bootloader.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>

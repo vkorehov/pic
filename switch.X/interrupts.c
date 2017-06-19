@@ -23,6 +23,8 @@ static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
+static unsigned char counter;
+
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
     for (int i = 0; i < 64; i++) {
@@ -138,7 +140,9 @@ void interrupt isr(void) {
                     switch (command) {
                         case 0x01:
                             counter++;
+#ifndef FAUCET_ENABLED                              
                             on(rx_buffer[1]);
+#endif                            
                             break;
 #ifdef MOVEMENT_ENABLED  
                         case 0x20:
@@ -146,6 +150,14 @@ void interrupt isr(void) {
                             movement_on_dim = rx_buffer[1];
                             break;                            
 #endif
+#ifdef FAUCET_ENABLED  
+                        case 0x30:
+                            counter++;
+                            faucet_on = rx_buffer[1];
+                            faucet_timeout = FAUCET_TIMEOUT;                            
+                            break;                            
+#endif
+
                     }
                 }
                 break;
@@ -163,6 +175,20 @@ void interrupt isr(void) {
                         rx_buffer[0] = movement_state;
                         rx_buffer[1] = 0x00;
                         break;
+#endif
+#ifdef FAUCET_ENABLED
+                    case 0x30: // read faucet
+                        rx_buffer[0] = faucet_on;
+                        rx_buffer[1] = 0x00;
+                        break;
+                    case 0x31: // read faucet
+                        rx_buffer[0] = hit_a3;
+                        rx_buffer[1] = 0x00;
+                        break;
+                    case 0x32: // read faucet
+                        rx_buffer[0] = hit_a5;
+                        rx_buffer[1] = 0x00;
+                        break;                        
 #endif
 #ifdef DHT22_ENABLED                                                    
                     case 0x13: // read humidity

@@ -31,16 +31,58 @@ void i2c_init() {
 }
 
 
+void pwm_init(void) {
+    // Make sure RA2 could be used by MSSP
+    // Relocate its function to RA5
+    APFCON0bits.CCP1SEL = 1;
+
+    CCP1ASbits.CCP1AS = 0b000; // disable automatic shutdown
+    // Shutdown by default
+    CCP1ASbits.PSS1BD = 0b00;
+    CCP1ASbits.CCP1ASE = 1;
+    TRISAbits.TRISA0 = 1;
+
+    // initialize to 0% PWM
+    CCPR1L = 0;
+    CCP1CONbits.DC1B = 0b11;
+
+    // Configure PWM Enchanced mode steering options
+    CCP1CONbits.CCP1M = 0b1100; // P1A = P1B = active high, PWM
+    CCP1CONbits.P1M = 0b00;
+    PSTR1CONbits.STR1A = 0b0;
+    PSTR1CONbits.STR1B = 0b1;
+
+    // TIMER2
+    TMR2ON = 0;
+    TMR2IF = 0;
+    TMR2 = 0x00;
+#ifdef PWM_32K    
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b00; // 1:1 pre-scaler    
+    T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler
+#endif
+#ifdef PWM_500H
+    PR2 = 0xFF;
+    T2CONbits.T2CKPS = 0b11; // 1:64 pre-scaler    
+    T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler    
+#endif
+    TMR2ON = 1;
+}
+
 void InitApp(void)
 {
 //#ifndef _12F1840
 //    APFCONbits.CCP2SEL = 1; // RB3 to be CCP2/P2A
 //#endif
     i2c_init();
+#ifdef FAUCET_ENABLED
+    TRISAbits.TRISA5 = 1; // enable input
+    TRISAbits.TRISA2 = 1; // enable input    
+#endif
 #ifdef MOVEMENT_ENABLED
     TRISAbits.TRISA4 = 1; // enable input
     ANSELAbits.ANSA4 = 0;
- #endif
+#endif
 #ifdef DHT22_ENABLED
     dht22_state = 0;
     dht22_index = 0;
@@ -60,6 +102,14 @@ void InitApp(void)
 
     pwm_init();
 
+#ifdef FAUCET_ENABLED
+    //OPTION_REGbits.nWPUEN = 0;
+    //WPUA3 = 1;
+    //WPUA5 = 1;
+    TRISAbits.TRISA5 = 1; // enable input
+    TRISAbits.TRISA3 = 1; // enable input    
+#endif
+    
     TMR1IE = 1;
     SSPIF = 0;
     /* Enable interrupts */

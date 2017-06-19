@@ -21,22 +21,14 @@ unsigned int readings_counter;
 unsigned int beep;
 unsigned char state;
 
-#ifdef SIMULATOR
-
-void putch(unsigned char data) {
-    while (!PIR1bits.TXIF) // wait until the transmitter is ready
-        continue;
-    TXREG = data; // send one character
-}
-
-#else
-
+#ifdef DEBUG
 void putch(unsigned char data) {
     while (!PIR1bits.TXIF) // wait until the transmitter is ready
         continue;
     TXREG = data; // send one character
 }
 #endif
+
 /******************************************************************************/
 /* Main Program                                                               */
 
@@ -45,6 +37,7 @@ void putch(unsigned char data) {
 void main(void) {
     /* Configure the oscillator for the device */
     ConfigureOscillator();
+
     readings_counter = 0;
     for (int i = 0; i < 8; i++) {
         readings[i] = 0;
@@ -55,12 +48,10 @@ void main(void) {
     state = 0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
-    printf("Started App\n");
+    printf("Started App: %d \n", readings[0]);
     dpot_increment(100); // this resets pot to minimum voltage!
     dpot_decrement(30);
-#ifdef SIMULATOR
-    run_tests();
-#endif
+    
     PORTCbits.RC0 = 0;
     PORTCbits.RC1 = 0;
     PORTCbits.RC5 = 0;

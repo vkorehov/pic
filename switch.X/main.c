@@ -15,6 +15,9 @@
 #include "user.h"          /* User funct/params, such as InitApp */
 unsigned char movement_on_dim;
 unsigned char movement_state;
+unsigned char faucet_on;
+unsigned int faucet_timeout;
+
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
@@ -28,45 +31,17 @@ inline void write_tmr1(unsigned int v) {
 /******************************************************************************/
 unsigned char switch_dur_mult;
 
-void pwm_init(void) {
-    // Make sure RA2 could be used by MSSP
-    // Relocate its function to RA5
-    APFCON0bits.CCP1SEL = 1;
+unsigned char last_dimm;
 
-    CCP1ASbits.CCP1AS = 0b000; // disable automatic shutdown
-    // Shutdown by default
-    CCP1ASbits.PSS1BD = 0b00;
-    CCP1ASbits.CCP1ASE = 1;
-    TRISAbits.TRISA0 = 1;
+unsigned char hit_a3;
+unsigned char hit_a5;
 
-    // initialize to 0% PWM
-    CCPR1L = 0;
-    CCP1CONbits.DC1B = 0b11;
-
-    // Configure PWM Enchanced mode steering options
-    CCP1CONbits.CCP1M = 0b1100; // P1A = P1B = active high, PWM
-    CCP1CONbits.P1M = 0b00;
-    PSTR1CONbits.STR1A = 0b0;
-    PSTR1CONbits.STR1B = 0b1;
-
-    // TIMER2
-    TMR2ON = 0;
-    TMR2IF = 0;
-    TMR2 = 0x00;
-#ifdef PWM_32K    
-    PR2 = 0xFF;
-    T2CONbits.T2CKPS = 0b00; // 1:1 pre-scaler    
-    T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler
-#endif
-#ifdef PWM_500H
-    PR2 = 0xFF;
-    T2CONbits.T2CKPS = 0b11; // 1:64 pre-scaler    
-    T2CONbits.T2OUTPS = 0b0000;// 1:1 post scaler    
-#endif
-    TMR2ON = 1;
-}
 
 void on(unsigned char dim) {
+    if (last_dimm == dim) {
+        return;
+    }
+    last_dimm = dim;
     // Disable output
     TRISAbits.TRISA0 = 1;
     CCP1ASbits.CCP1ASE = 1;
@@ -86,11 +61,13 @@ void on(unsigned char dim) {
 }
 
 void off(void) {
+    last_dimm = 0;
     // Disable output
     TRISAbits.TRISA0 = 1;
     CCP1ASbits.CCP1ASE = 1;
 }
 
+static unsigned char ticker = 0;
 
 void main(void)
 {
@@ -98,6 +75,11 @@ void main(void)
     ConfigureOscillator();
     movement_on_dim = 0xff;
     movement_state = 0;
+    last_dimm = 0;
+    faucet_on = 0;
+    faucet_timeout = 0;    
+    ticker = 0;
+
     /* Initialize I/O and Peripherals for application */
     InitApp();
     while(1)
@@ -111,7 +93,36 @@ void main(void)
         } else {
             movement_state = 0;            
         }
-#endif        
+#endif
+#ifdef FAUCET_ENABLED       
+        if(PORTAbits.RA3 == 0) {
+            hit_a3++;
+            faucet_on = 0;
+            faucet_timeout = 0;
+        }
+        if(PORTAbits.RA5 == 0) {
+            hit_a5++;            
+            faucet_on = 1;
+            faucet_timeout = FAUCET_TIMEOUT;
+        }
+
+        ticker--;
+                
+        if (ticker == 0 && faucet_timeout > 0) {
+            faucet_timeout--;            
+        }
+        
+        if (faucet_timeout <= 0) {
+            faucet_on = 0;
+        }
+        
+        if (faucet_on == 1) {
+            on(0xff);
+        }
+        if (faucet_on == 0) {
+            off();
+        }
+#endif
     }
 }
 

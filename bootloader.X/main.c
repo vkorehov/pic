@@ -44,7 +44,7 @@ void main(void) {
     ENTER_BOOTLOADER = 0; // reset enter bootloader state
 
     // Configure to 4 MHz
-    OSCCON = 0b01101000; // 8:SPLLEN(0 by confb) 4..7:IRCF(1101 4 MHz) 1..2:SCS(00 use FOSC in confbits)
+    OSCCON = 0b01101010; // 8:SPLLEN(0 by confb) 4..7:IRCF(1101 4 MHz) 1..2:SCS(10 use IRCF in confbits)
     SSPSTAT = 0b11000000; // Slew rate disabled SSPSTAT:  8:SMP  7:CKE     6:D/A   5:P     4:S    3:R/W 2:UA   1:BF
     SSPADD = (unsigned char) (SLAVE_ADDR << 1); // Slave address
     SSPCON1 = 0b00110110; // 8:WCOL(0) 7:SSPOV(0) 6:SSPEN(1) 5:CKP(1) 1..4:SSPM(0110 I2C Slave mode, 7-bit address))

@@ -2,8 +2,10 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x46                   // This device I2C address
+#define I2C_MYADDR 0x42                   // This device I2C address
 //#define MOVEMENT_ENABLED
+#define FAUCET_ENABLED
+#define FAUCET_TIMEOUT 0xf000
 
 
 #define SWITCH_ON_DURATION                                      0xffff
@@ -14,6 +16,10 @@
 extern unsigned char switch_dur_mult;
 extern unsigned char movement_on_dim;
 extern unsigned char movement_state;
+extern unsigned char faucet_on;
+extern unsigned int faucet_timeout;
+extern unsigned char hit_a3;
+extern unsigned char hit_a5;
 
 #define DHT22_MAX_BYTES 5
 #define DHT22_CUTOFF_TIME 0x18

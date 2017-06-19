@@ -19,4 +19,12 @@ void ConfigureOscillator(void)
 {
     // Configure to 32 MHz
     OSCCON = 0b11110000; // 8:SPLLEN(1 Yes) 4..7:IRCF(1110 8 MHz(32Mhz)) 1..2:SCS(00 use FOSC in confbits)
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");    
 }
