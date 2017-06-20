@@ -98,10 +98,11 @@ void InitApp(void) {
     TRISCbits.TRISC4 = 1; // SDA
     TRISCbits.TRISC0 = 0; // output
     TRISCbits.TRISC1 = 0; // output    
-    TRISCbits.TRISC5 = 0; // output
+    TRISCbits.TRISC5 = 0; // output    
     TRISCbits.TRISC6 = 0; // output // TX
-    TRISCbits.TRISC7 = 1; // output // RX
-    
+    TRISCbits.TRISC7 = 0; // output
+
+#ifdef DEBUG  
     // UART
     BAUDCONbits.BRG16 = 1;
     TXSTAbits.BRGH = 1;
@@ -111,7 +112,7 @@ void InitApp(void) {
     TXEN = 1;
     SYNC = 0;
     SPEN = 1;
-    
+#endif        
     // buzzer    
     ANSELAbits.ANSA3 = 0;
     PORTAbits.RA3 = 0;
