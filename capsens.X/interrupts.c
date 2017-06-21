@@ -68,7 +68,9 @@ void interrupt isr(void) {
                 CPSCON1 = 0;
                 break;
             default:
+#ifdef DEBUG              
                 printf("Should not happen\n");
+#endif                
                 CPSCON1 = 0;
                 break;
         }

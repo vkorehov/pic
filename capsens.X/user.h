@@ -3,7 +3,9 @@
 /******************************************************************************/
 #define I2C_WRITE 0
 #define I2C_READ 1
-#define I2C_MYADDR 0x65                    // This device I2C address
+// This device I2C address
+#define I2C_MYADDR 0x64
+
 #define I2C_SLAVE 0x40                    // Slave device I2C address
 #define I2C_RETRY_DELAY  713
 #define I2C_RETRIES 1
