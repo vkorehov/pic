@@ -10,7 +10,6 @@
 
 #include <stdint.h>         /* For uint8_t definition */
 #include <stdbool.h>        /* For true/false definition */
-#include <stdio.h>
 #include "user.h"        /* For true/false definition */
 
 /******************************************************************************/
@@ -49,29 +48,26 @@ inline void process_cps(unsigned char ch, unsigned int raw) {
     readings_counter++; 
 }
 
-void interrupt isr(void) {    
+void interrupt isr(void) {
     if (TMR1GIF) {
         TMR1GIF = 0;
-        unsigned char ch = CPSCON1;
+        unsigned char ch = CPSCON1bits.CPSCH;
         unsigned char low = TMR1L;
         unsigned char hi = TMR1H;
         unsigned int raw = low + (unsigned int) (hi << 8);
         // switch channel
         switch (ch) {
             case 0:
-                CPSCON1 = 2;
+                CPSCON1bits.CPSCH = 2;
                 break;
             case 2:
-                CPSCON1 = 4;
+                CPSCON1bits.CPSCH = 4;
                 break;
             case 4:
-                CPSCON1 = 0;
+                CPSCON1bits.CPSCH = 0;
                 break;
             default:
-#ifdef DEBUG              
-                printf("Should not happen\n");
-#endif                
-                CPSCON1 = 0;
+                CPSCON1bits.CPSCH = 0;
                 break;
         }
         TMR1L = 0x00;

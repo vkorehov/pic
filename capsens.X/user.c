@@ -51,16 +51,17 @@ void i2c_init() {
 void InitApp(void) {
     //Setup FVR
     FVRCONbits.CDAFVR = 0b11; // 4.086V
-    FVRCONbits.ADFVR = 0b01; // 1.024V   
+    FVRCONbits.ADFVR = 0b00; // 0ff   
     FVRCONbits.FVREN = 1;   
     while (!FVRCONbits.FVRRDY) {
     }    
     // setup references
-    DACCON0bits.DACPSS = 0b10; // FVR BUFFER2
-    DACNSS = 0b00; // GND
+    DACCON0bits.DACPSS = 0b10; // FVR BUFFER2 = CDAFVR
+    DACCON0bits.DACNSS = 0b00; // GND
+    DACCON0bits.DACLPS = 0;
     DACCON0bits.DACOE = 0;
-    DACCON1bits.DACR = 0; // 4.086 * (16/32)
-    DACEN = 1;
+    DACCON1bits.DACR = 0b00111; // (4.086 - 0) * (1/32) + 0 = 0.8V
+    DACCON0bits.DACEN = 1;
     
     ANSELAbits.ANSA0 = 0;
     ANSELAbits.ANSA1 = 0;
@@ -123,9 +124,9 @@ void InitApp(void) {
 
     // 8:CPSON(1) 7:CPSRM(1) 3..4:CPSRNG(11 High Range) 2:CPSOUT(0) 1:T0XCS(0)
     CPSCON0bits.CPSON = 1;
-    CPSCON0bits.CPSRM = 1;
+    CPSCON0bits.CPSRM = 1;// 1 variable
     CPSCON0bits.CPSRNG = 0b11; // High Range
-    CPSCON0bits.CPSOUT = 0;
+    //CPSCON0bits.CPSOUT = 0;
     CPSCON0bits.T0XCS = 0;
     
     // 1..2:CPSCH(00 CPS0, 11 CPS3)

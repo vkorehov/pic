@@ -20,7 +20,7 @@ void ConfigureOscillator(void)
     // Configure to HS
     OSCCONbits.SPLLEN = 0; // xtal wont supoport PLL
     OSCCONbits.SCS = 0b00; // by CONFIG (bootloader set to HS)
-    OSCCONbits.IRCF = 0b0000;
+    OSCCONbits.IRCF = 0b1111;
     asm("NOP");
     asm("NOP");
     asm("NOP");
@@ -29,4 +29,13 @@ void ConfigureOscillator(void)
     asm("NOP");
     asm("NOP");
     asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    asm("NOP");
+    
 }

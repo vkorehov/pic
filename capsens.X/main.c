@@ -10,9 +10,7 @@
 
 #include <stdint.h>        /* For uint8_t definition */
 #include <stdbool.h>       /* For true/false definition */
-#ifdef DEBUG
 #include <stdio.h>
-#endif
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp */
 
@@ -51,7 +49,7 @@ void main(void) {
     /* Initialize I/O and Peripherals for application */
     InitApp();
 #ifdef DEBUG
-    printf("Started App: %d \n", readings[0]);
+    printf("Started App: OSTS:%d \n", OSCSTATbits.OSTS);
 #endif    
     dpot_increment(100); // this resets pot to minimum voltage!
     dpot_decrement(30);
@@ -91,9 +89,14 @@ void main(void) {
             last_readings[2] = readings[2];
             last_readings[4] = readings[4];
 #ifdef DEBUG
-            printf("%d %d %d\n", readings[0], readings[2], readings[4]);
+            printf("%d %d %d S%d\n", readings[0], readings[2], readings[4], state);
 #endif
         }
+#if I2C_MYADDR == 0x69
+        PORTCbits.RC0 = (state & 0b001) >> 0;
+        PORTCbits.RC1 = (state & 0b010) >> 1;
+        PORTCbits.RC5 = (state & 0b100) >> 2;
+#endif
 #if I2C_MYADDR == 0x65
         PORTCbits.RC0 = (state & 0b001) >> 0;
         PORTCbits.RC1 = (state & 0b010) >> 1;

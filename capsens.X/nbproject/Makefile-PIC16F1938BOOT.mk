@@ -85,7 +85,7 @@ FIXDEPS=fixDeps
 
 # The following macros may be used in the pre and post step lines
 Device=PIC16F1938
-ProjectDir="C:\Users\lina\Documents\pic\capsens.X"
+ProjectDir="C:\pic\capsens.X"
 ConfName=PIC16F1938BOOT
 ImagePath="dist\PIC16F1938BOOT\${IMAGE_TYPE}\capsens.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
 ImageDir="dist\PIC16F1938BOOT\${IMAGE_TYPE}"
@@ -229,7 +229,7 @@ dist/${CND_CONF}/${IMAGE_TYPE}/capsens.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJEC
 	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/capsens.X.${IMAGE_TYPE}.map  --double=24 --float=24 --opt=+asm,-asmfile,+speed,-space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  --summary=default,+psect,-class,+mem,+hex,+file --codeoffset=0x200 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     $(COMPARISON_BUILD) --memorysummary dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -odist/${CND_CONF}/${IMAGE_TYPE}/capsens.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 	@echo "Creating unified hex file"
-	@"C:/Program Files (x86)/Microchip/MPLABX/v3.61/mplab_ide/platform/../mplab_ide/modules/../../bin/hexmate" --edf="C:/Program Files (x86)/Microchip/MPLABX/v3.61/mplab_ide/platform/../mplab_ide/modules/../../dat/en_msgs.txt" dist/${CND_CONF}/${IMAGE_TYPE}/capsens.X.${IMAGE_TYPE}.hex ../bootloader.X/dist/PIC16F1938/production/bootloader.X.production.hex -odist/${CND_CONF}/production/capsens.X.production.unified.hex
+	@"C:/Program Files (x86)/Microchip/MPLABX/v3.65/mplab_ide/platform/../mplab_ide/modules/../../bin/hexmate" --edf="C:/Program Files (x86)/Microchip/MPLABX/v3.65/mplab_ide/platform/../mplab_ide/modules/../../dat/en_msgs.txt" dist/${CND_CONF}/${IMAGE_TYPE}/capsens.X.${IMAGE_TYPE}.hex ../bootloader.X/dist/PIC16F1938/production/bootloader.X.production.hex -odist/${CND_CONF}/production/capsens.X.production.unified.hex
 
 endif
 
