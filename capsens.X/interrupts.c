@@ -38,7 +38,7 @@ static void write_i2c(unsigned char b) {
 inline void process_cps(unsigned char ch, unsigned int raw) {
     // Initialize
     if (readings[ch] == 0) {
-        readings[ch] = raw;
+        readings[ch] = INIT_VECTOR;
     }
     // Slew Rate Limiter
     if(raw > readings[ch])
