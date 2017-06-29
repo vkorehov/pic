@@ -94,7 +94,7 @@ void main(void) {
         }
 #if I2C_MYADDR == 0x61
         PORTCbits.RC5 = (state & 0b001) >> 0;
-        PORTCbits.RC6 = (state & 0b010) >> 1;
+        PORTCbits.RC1 = (state & 0b010) >> 1;
         PORTCbits.RC7 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x69
