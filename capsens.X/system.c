@@ -19,6 +19,10 @@ void ConfigureOscillator(void)
 {
     // Configure to HS
     OSCCONbits.SPLLEN = 0; // xtal wont supoport PLL
-    OSCCONbits.SCS = 0b00; // by CONFIG (bootloader set to HS)
+#if I2C_MYADDR == 0x67
+    OSCCONbits.SCS = 0b10; // by CONFIG (bootloader set to HS)
+#else
+    OSCCONbits.SCS = 0b00; // by CONFIG (bootloader set to HS)    
+#endif
     OSCCONbits.IRCF = 0b1111;    
 }
