@@ -42,7 +42,7 @@ void main(void) {
     for (int i = 0; i < 8; i++) {
         readings[i] = 0;
         last_readings[i] = 0;
-        tripped_readings[i] = 0;       
+        tripped_readings[i] = 0;
     }
     beep = 0;
     state = 0;
@@ -93,9 +93,9 @@ void main(void) {
 #endif
         }
 #if I2C_MYADDR == 0x61
-        PORTCbits.RC5 = (state & 0b001) >> 0;
-        PORTCbits.RC1 = (state & 0b010) >> 1;
-        PORTCbits.RC7 = (state & 0b100) >> 2;
+        PORTCbits.RC7 = (state & 0b001) >> 0;
+        PORTCbits.RC5 = (state & 0b010) >> 1;
+        PORTCbits.RC1 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x69
         PORTCbits.RC0 = (state & 0b001) >> 0;
