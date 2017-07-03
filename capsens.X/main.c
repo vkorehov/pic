@@ -103,14 +103,14 @@ void main(void) {
         PORTCbits.RC5 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x65
-        PORTCbits.RC0 = (state & 0b001) >> 0;
+        PORTCbits.RC5 = (state & 0b001) >> 0;
         PORTCbits.RC1 = (state & 0b010) >> 1;
-        PORTCbits.RC5 = (state & 0b100) >> 2;
+        PORTCbits.RC0 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x67
         PORTCbits.RC5 = (state & 0b001) >> 0;
-        PORTCbits.RC6 = (state & 0b010) >> 1;
-        PORTCbits.RC7 = (state & 0b100) >> 2;
+        PORTCbits.RC7 = (state & 0b010) >> 1;
+        PORTCbits.RC6 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x64
         PORTCbits.RC6 = (state & 0b010) >> 1;

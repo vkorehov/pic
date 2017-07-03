@@ -117,11 +117,12 @@ void interrupt isr(void) {
                             break;
                     }
                 }
-                if (rx_index == 2) {
+                if (rx_index == 3) {
                     // input
                     switch (command) {
                         case 0x01:
-                            state = rx_buffer[1];
+                            if (crc8_table[rx_buffer[1]] == rx_buffer[2])
+                                state = rx_buffer[1];
                             break;
                     }
                 }
@@ -133,7 +134,7 @@ void interrupt isr(void) {
                 switch (command) {
                     case 0x01: // read command
                         rx_buffer[0] = state;// buttons pressed
-                        rx_buffer[1] = 0;
+                        rx_buffer[1] = crc8_table[state];
                         break;
                     case 0x02: // read command
                         rx_buffer[0] = 2 & 0xff; // raw[2]
