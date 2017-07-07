@@ -41,11 +41,11 @@ inline void process_cps(unsigned char ch, unsigned int raw) {
         readings[ch] = INIT_VECTOR;
     }
     // Slew Rate Limiter
-    if(raw > readings[ch])
+    if (raw > readings[ch])
         readings[ch]++;
-    else if(readings[ch] != 0) // avoid flipping
+    else if (readings[ch] != 0) // avoid flipping
         readings[ch]--;
-    readings_counter++; 
+    readings_counter++;
 }
 
 void interrupt isr(void) {
@@ -73,13 +73,13 @@ void interrupt isr(void) {
         TMR1L = 0x00;
         TMR1H = 0x00;
         TMR1ON = 1; // Restart Timer1
-        TMR0 = 0;        
+        TMR0 = 0;
         TMR0IF = 0;
-        process_cps(ch, raw);        
+        process_cps(ch, raw);
     }
     if (TMR2IF) {
         TMR2IF = 0;
-        if(beep > 0) {
+        if (beep > 0) {
             beep--;
             PORTAbits.RA3 = ticks & 0b1;
         }
@@ -99,22 +99,37 @@ void interrupt isr(void) {
             case 0b00000000: // STATE1: Maser Write, Last Byte = Address
                 rx_index = 0;
                 command = 0;
-                // do a dummy read
-                rx_buffer[0] = SSPBUF;
+                ACKDT = 0;
                 for (int i = 0; i < RX_SIZE; i++) {
                     rx_buffer[i] = 0;
+                }                
+                if(SSPSTATbits.BF == 0) {
+                    break;
                 }
+                // do a dummy read
+                rx_buffer[0] = SSPBUF;
                 break;
             case 0b00100000: // STATE2: Maser Write, Last Byte = Data
+                if(SSPSTATbits.BF == 0) {
+                    break;
+                }
                 rx_buffer[rx_index++] = SSPBUF;
                 if (rx_index == 1) {
                     command = rx_buffer[0]; // save command
+                }
+                if (rx_index == 2) {
                     // input
                     switch (command) {
                         case 0x78:
-                            ENTER_BOOTLOADER = 1;
-                            asm("pagesel 0x000");
-                            asm("goto 0x000");
+                            crc = crc8_table[crc ^ 0x78];
+                            crc = crc8_table[crc ^ I2C_MYADDR];
+                            if (crc == rx_buffer[1]) {
+                                ENTER_BOOTLOADER = 1;
+                                asm("pagesel 0x000");
+                                asm("goto 0x000");
+                            } else {
+                                ACKDT = 1;
+                            }
                             break;
                     }
                 }
@@ -124,9 +139,11 @@ void interrupt isr(void) {
                         case 0x01:
                             crc = crc8_table[rx_buffer[1]];
                             crc = crc8_table[crc ^ 0x01];
-                            crc = crc8_table[crc ^ I2C_MYADDR];                                 
+                            crc = crc8_table[crc ^ I2C_MYADDR];
                             if (crc == rx_buffer[2])
                                 state = rx_buffer[1];
+                            else
+                                ACKDT = 1;
                             break;
                     }
                 }

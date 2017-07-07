@@ -4,7 +4,7 @@
 #define I2C_WRITE 0
 #define I2C_READ 1
 // This device I2C address
-#define I2C_MYADDR 0x64
+#define I2C_MYADDR 0x67
 //#define DEBUG
 #define I2C_SLAVE 0x40                    // Slave device I2C address
 #define I2C_RETRY_DELAY  713
