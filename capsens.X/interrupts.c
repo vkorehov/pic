@@ -87,6 +87,7 @@ void interrupt isr(void) {
     }
     if (SSPIF) {
         SSPIF = 0;
+        unsigned char crc = 0;
         unsigned char i2c_state = SSPSTAT & 0b00100100;
         // 0b00100000 = D/nA
         // 0b00000100 = R/nW
@@ -121,7 +122,10 @@ void interrupt isr(void) {
                     // input
                     switch (command) {
                         case 0x01:
-                            if (crc8_table[rx_buffer[1]] == rx_buffer[2])
+                            crc = crc8_table[rx_buffer[1]];
+                            crc = crc8_table[crc ^ 0x01];
+                            crc = crc8_table[crc ^ I2C_MYADDR];                                 
+                            if (crc == rx_buffer[2])
                                 state = rx_buffer[1];
                             break;
                     }
@@ -133,8 +137,11 @@ void interrupt isr(void) {
                 // output
                 switch (command) {
                     case 0x01: // read command
-                        rx_buffer[0] = state;// buttons pressed
-                        rx_buffer[1] = crc8_table[state];
+                        crc = crc8_table[state];
+                        crc = crc8_table[crc ^ 0x01];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = state;
+                        rx_buffer[1] = crc;
                         break;
                     case 0x02: // read command
                         rx_buffer[0] = 2 & 0xff; // raw[2]
