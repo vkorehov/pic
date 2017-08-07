@@ -1,4 +1,4 @@
-/*******************************************************************************/
+/******************************************************************************/
 /* Main Files to Include                                                      */
 /******************************************************************************/
 
@@ -29,9 +29,8 @@
 /* paste into this project.                                                   */
 /*                                                                            */
 /******************************************************************************/
-
 // CONFIG1
-#pragma config FOSC = INTOSC//HS    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
 #pragma config WDTE = OFF       // Watchdog Timer Enable (WDT enabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
 #pragma config MCLRE = OFF      // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
@@ -51,5 +50,3 @@
 #pragma config STVREN = ON      // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will cause a Reset)
 #pragma config BORV = LO        // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), low trip point selected.)
 #pragma config LVP = OFF         // Low-Voltage Programming Enable (Low-voltage programming enabled)
-
-

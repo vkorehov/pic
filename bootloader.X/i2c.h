@@ -11,8 +11,10 @@
 #ifdef	__cplusplus  
 extern "C" {
 #endif
-
-    #ifndef _ADDRESS_TYPEDEF
+// slave address definition
+#define SLAVE_ADDR 0x70
+    
+#ifndef _ADDRESS_TYPEDEF
 #define _ADDRESS_TYPEDEF
 
 
@@ -38,8 +40,7 @@ typedef union _ADDRESS
 
 #endif
 
-// slave address definition
-#define SLAVE_ADDR 0x61
+
 
 extern ADDRESS	_bl_flash_addr_pointer;
 extern unsigned char _bl_flash_buffer[];

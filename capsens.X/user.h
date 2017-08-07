@@ -12,6 +12,8 @@
 
 #define SCANS_PER_DECODE 300
 #define INIT_VECTOR 0x100
+#define TIMEOUT_STEPS 64
+
 
 //#define DEBUG
 extern unsigned int tripped_readings[8];

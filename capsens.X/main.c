@@ -57,34 +57,50 @@ void main(void) {
     //PORTA = 0b1110;
     //CPSCON0bits.CPSRNG = 0b00; // Noise detection
     unsigned char training = 64;
+    unsigned char timeout0 = 0;
+    unsigned char timeout2 = 0;
+    unsigned char timeout4 = 0;
     while (1) {
         if (readings_counter >= SCANS_PER_DECODE) {
             readings_counter = 0;
-            if (training == 0 && tripped_readings[4] == 0 && last_readings[4] > readings[4] && last_readings[4] - readings[4] > 6) {
+            if (training == 0 && tripped_readings[4] == 0 && last_readings[4] > readings[4] && last_readings[4] - readings[4] > 8) {
                 tripped_readings[4] = last_readings[4];
                 state ^= 0b001;
                 beep = 500;
-            } else if (training == 0 && tripped_readings[4] != 0 && readings[4] + 4 > tripped_readings[4]) {
+                timeout4 = TIMEOUT_STEPS;                
+            } else if (training == 0 && ((tripped_readings[4] != 0 && readings[4] + 4 > tripped_readings[4]) || timeout4 == 0)) {
                 tripped_readings[4] = 0;
             }
-            if (training == 0 && tripped_readings[2] == 0 && last_readings[2] > readings[2] && last_readings[2] - readings[2] > 6) {
+            if (training == 0 && tripped_readings[2] == 0 && last_readings[2] > readings[2] && last_readings[2] - readings[2] > 8) {
                 tripped_readings[2] = last_readings[2];
                 state ^= 0b010;
                 beep = 500;                                
-            } else if (training == 0 && tripped_readings[2] != 0 && readings[2] + 4 > tripped_readings[2]) {
+                timeout2 = TIMEOUT_STEPS;                
+            } else if (training == 0 && ((tripped_readings[2] != 0 && readings[2] + 4 > tripped_readings[2]) || timeout2 == 0)) {
                 tripped_readings[2] = 0;
             }
-            if (training == 0 && tripped_readings[0] == 0 && last_readings[0] > readings[0] && last_readings[0] - readings[0] > 6) {
+            if (training == 0 && tripped_readings[0] == 0 && last_readings[0] > readings[0] && last_readings[0] - readings[0] > 8) {
                 tripped_readings[0] = last_readings[0];
                 state ^= 0b100;
-                beep = 500;                                                
-            } else if (training == 0 && tripped_readings[0] != 0 && readings[0] + 4 > tripped_readings[0]) {
+                beep = 500;                            
+                timeout0 = TIMEOUT_STEPS;
+            } else if (training == 0 && ((tripped_readings[0] != 0 && readings[0] + 4 > tripped_readings[0]) || timeout0 == 0)) {
                 tripped_readings[0] = 0;
             }
 
             if (training > 0) {
                 training--;
             }
+            if (timeout0 > 0) {
+                timeout0--;
+            }
+            if (timeout2 > 0) {
+                timeout2--;
+            }
+            if (timeout4 > 0) {
+                timeout4--;
+            }
+            
             last_readings[0] = readings[0];
             last_readings[2] = readings[2];
             last_readings[4] = readings[4];
@@ -113,8 +129,8 @@ void main(void) {
         PORTCbits.RC6 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x64
-        PORTCbits.RC6 = (state & 0b010) >> 1;
-        PORTCbits.RC5 = (state & 0b100) >> 2;
+        PORTCbits.RC5 = (state & 0b010) >> 1;
+        PORTCbits.RC6 = (state & 0b100) >> 2;
 #endif
 #if I2C_MYADDR == 0x63
         PORTCbits.RC7 = (state & 0b010) >> 1;
