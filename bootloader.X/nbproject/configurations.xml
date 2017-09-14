@@ -47,7 +47,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -394,7 +394,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -669,7 +669,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -1016,7 +1016,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -1291,7 +1291,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -1638,7 +1638,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -1913,7 +1913,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -2260,7 +2260,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -2607,7 +2607,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -2901,7 +2901,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -3052,7 +3052,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../bootloader-interrupts.X/int-16F1938.HEX</loadableFile>
+          <loadableFile>../bootloader-interrupts.X/int-12F1840.HEX</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>

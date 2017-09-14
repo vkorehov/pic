@@ -95,11 +95,25 @@ void interrupt isr(void) {
                             crc = crc8_table[crc ^ 0x01];
                             crc = crc8_table[crc ^ I2C_MYADDR];
                             if (crc == rx_buffer[2]) {
-                                // TODO: ad here
+                                command_position = (unsigned int)rx_buffer[1];
                             } else {
                                 ACKDT = 1;
                             }
                             break;
+                        case 0x02:
+                            crc = crc8_table[rx_buffer[1]];
+                            crc = crc8_table[crc ^ 0x02];
+                            crc = crc8_table[crc ^ I2C_MYADDR];
+                            if (crc == rx_buffer[2]) {
+                                position = next_position = (unsigned int)rx_buffer[1];
+                                TMR1H = 0;
+                                TMR1L = 0;
+                                eeprom_write(0x00, position & 0xFF);
+                                eeprom_write(0x01, (position >> 8) & 0xFF);    
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;                                                        
                     }
                 }
                 break;

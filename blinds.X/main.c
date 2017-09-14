@@ -18,6 +18,7 @@
 
 unsigned int position = 0;
 unsigned int next_position = 0;
+unsigned int command_position = 0;
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
@@ -103,6 +104,10 @@ void main(void)
         } else if(tmr1 == 0) {
             // idle
             // update next_position here only
+            if(command_position != 0) {
+                next_position = command_position;
+                command_position = 0;
+            }
         }
     }
 }
