@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 // slave address definition
-#define SLAVE_ADDR 0x5e
+#define SLAVE_ADDR 0x71
     
 #ifndef _ADDRESS_TYPEDEF
 #define _ADDRESS_TYPEDEF
