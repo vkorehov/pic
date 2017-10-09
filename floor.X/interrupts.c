@@ -24,51 +24,22 @@ static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
+static unsigned char div14;
 
 static void write_i2c(unsigned char b) {
     // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
-    for (int i = 0; i < 64; i++) {
-        asm("nop");
-    }
-    do {
-        SSPCONbits.WCOL = 0b0;
-        SSPBUF = b;
-    } while (SSPCONbits.WCOL);
+    //for (int i = 0; i < 128; i++) {
+    //    asm("nop");
+    //}
+    //do {
+    //    SSPCONbits.WCOL = 0b0;
+    SSPBUF = b;        
 }
 
 void interrupt isr(void) {
-    if (TMR1IF) {
-        TMR1IF = 0;
-        GO = 1;
-        if (counter++ == 0) {
-            if (floor_timeout != 0) {
-                floor_timeout--;
-            }
-            if (floor_timeout == 0 && floor_recovery_timeout != 0) {
-                floor_recovery_timeout--;
-            }            
-        }
-    }
-    if (ADIF) {
-        //unsigned int reading;
-        ADIF = 0;
-        reading = ADRESL;
-        reading |= (ADRESH << 8);
-
-        // Initialize
-        if (sensor1 == 0) {
-            sensor1 = INIT_VECTOR;
-        }
-        // Slew Rate Limiter
-        if (reading > sensor1)
-            sensor1++;
-        else if (sensor1 != 0) // avoid flipping
-            sensor1--;
-        write_tmr1(AD_DELAY);
-        TMR1ON = 1;
-    }
     if (SSPIF) {
         SSPIF = 0;
+        unsigned char tmp;
         unsigned char r = 0;
         unsigned char crc = 0;
         unsigned char i2c_state = SSPSTAT & 0b00100100;
@@ -134,7 +105,6 @@ void interrupt isr(void) {
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;
-            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
                     case 0x01: // read command
@@ -169,10 +139,60 @@ void interrupt isr(void) {
                         break;
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
+                }                
+                if (SSPSTATbits.BF == 0) {
+                    break;
+                }
+                // do a dummy read
+                tmp = SSPBUF;
+                if (SSPSTATbits.BF == 1) {
+                    break;
                 }
                 write_i2c(rx_buffer[rx_index++]);
                 break;
+            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                if(rx_index >=RX_SIZE) { // prevent overflow
+                    write_i2c(0);                                    
+                } else {
+                    write_i2c(rx_buffer[rx_index++]);                
+                }
+                break;
         }
-        SSPCON1bits.CKP = 1;
+        SSPCON1bits.CKP = 1;        
     }
+    if (TMR1IF) {
+        TMR1IF = 0;
+        GO = 1;
+        if (counter++ == 0 && div14-- == 0) {
+            div14 = 14;
+            if (floor_timeout != 0) {
+                floor_timeout--;
+            }
+            if (floor_timeout == 0 && floor_recovery_timeout != 0) {
+                floor_recovery_timeout--;
+            }
+        }
+    }
+    if (ADIF) {
+        //unsigned int reading;
+        ADIF = 0;
+        reading = ADRESL;
+        reading |= (ADRESH << 8);
+
+        // Initialize
+        if (sensor1 == 0) {
+            sensor1 = INIT_VECTOR;
+        }
+        // Slew Rate Limiter
+        if (reading > sensor1)
+            sensor1++;
+        else if (sensor1 != 0) // avoid flipping
+            sensor1--;
+        write_tmr1(AD_DELAY);
+        TMR1ON = 1;
+    }
+    
 }
