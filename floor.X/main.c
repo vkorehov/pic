@@ -22,7 +22,7 @@ unsigned char timeout_count;
 unsigned char enabled;
 unsigned int reading;
 unsigned int state;
-
+unsigned int average;
 
 #ifdef DEBUG
 void putch(unsigned char data) {
@@ -78,6 +78,9 @@ void main(void)
 #ifdef DEBUG
     printf("Started App: OSTS:%d \n", OSCSTATbits.OSTS);
 #endif    
+    sensor1 = INIT_VECTOR; // initialize to MAX ADC       
+    
+    
     while(1)
     {
         if (enabled == 0) {
@@ -92,7 +95,7 @@ void main(void)
             floor_timer = 0;            
             floor_timeout = 0;
             floor_recovery_timeout = 0;            
-        } else if (sensor1 < (AD_CUTOFF-AD_CUTOFF_HIST)) {
+        } else if (sensor1 < (AD_CUTOFF_RESET)) {
             if(floor_timer == 0) {
                 floor_timer = 1;
                 floor_timeout = FL_TIMEOUT;

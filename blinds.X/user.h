@@ -16,3 +16,4 @@ void eeprom_write(unsigned char address, unsigned char data);
 extern unsigned int position;
 extern unsigned int next_position;
 extern unsigned int command_position;
+extern unsigned char state;

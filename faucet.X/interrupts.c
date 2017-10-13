@@ -24,17 +24,6 @@ static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
 
-static void write_i2c(unsigned char b) {
-    // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
-    for (int i = 0; i < 64; i++) {
-        asm("nop");
-    }
-    do {
-        SSPCONbits.WCOL = 0b0;
-        SSPBUF = b;
-    } while (SSPCONbits.WCOL);
-}
-
 void interrupt isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
@@ -73,6 +62,8 @@ void interrupt isr(void) {
     }
     if (SSPIF) {
         SSPIF = 0;
+        unsigned char tmp;
+        unsigned char r = 0;
         unsigned char crc = 0;
         unsigned char i2c_state = SSPSTAT & 0b00100100;
         // 0b00100000 = D/nA
@@ -127,7 +118,14 @@ void interrupt isr(void) {
                             crc = crc8_table[crc ^ 0x01];
                             crc = crc8_table[crc ^ I2C_MYADDR];
                             if (crc == rx_buffer[2]) {
-                                // TODO: ad here
+                                //
+                                if(rx_buffer[1] == 1) {
+                                    faucet_on = 1;
+                                    faucet_timeout = FAUCET_TIMEOUT;
+                                } else {
+                                    faucet_on = 0;
+                                    faucet_timeout = 0;                                    
+                                }
                             } else {
                                 ACKDT = 1;
                             }
@@ -137,23 +135,71 @@ void interrupt isr(void) {
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;
-            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
                     case 0x01: // read command
-                        // TODO: read
-                        crc = crc8_table[0];
+                        crc = crc8_table[faucet_on];
                         crc = crc8_table[crc ^ 0x01];
                         crc = crc8_table[crc ^ I2C_MYADDR];
-                        rx_buffer[0] = 0;
+                        rx_buffer[0] = faucet_on;
                         rx_buffer[1] = crc;
                         break;
+                    case 0x02: // read command
+                        r = sensor1 & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x02];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x03: // read command
+                        r = (sensor1 >> 8) & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x03];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;                        
+                    case 0x04: // read command
+                        r = sensor2 & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x04];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x05: // read command
+                        r = (sensor2 >> 8) & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x05];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;                        
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
+                }                
+                if (SSPSTATbits.BF == 0) {
+                    break;
                 }
-                write_i2c(rx_buffer[rx_index++]);
+                // do a dummy read
+                tmp = SSPBUF;
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                SSPBUF = rx_buffer[rx_index++];
+                break;
+            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                if(rx_index >=RX_SIZE) { // prevent overflow
+                    SSPBUF = 0;
+                } else {
+                    SSPBUF = rx_buffer[rx_index++];
+                }
                 break;
         }
-        SSPCON1bits.CKP = 1;
-    }
+        SSPCON1bits.CKP = 1;        
+    }    
 }

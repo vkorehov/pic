@@ -64,9 +64,11 @@ void main(void)
 
     while(1)
     {
-        //if(sensor1 > AD_CUTOFF || sensor2 > AD_CUTOFF) {
+#ifdef DEBUG
         printf("S1:%d S2:%d\n", sensor1, sensor2);            
-        //}
+#endif            
+        if(sensor1 > AD_CUTOFF || sensor2 > AD_CUTOFF) {
+        }
     }
 }
 

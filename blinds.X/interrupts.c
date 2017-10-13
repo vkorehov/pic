@@ -39,8 +39,11 @@ void interrupt isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
     }
+    
     if (SSPIF) {
         SSPIF = 0;
+        unsigned char tmp;
+        unsigned char r = 0;
         unsigned char crc = 0;
         unsigned char i2c_state = SSPSTAT & 0b00100100;
         // 0b00100000 = D/nA
@@ -95,7 +98,7 @@ void interrupt isr(void) {
                             crc = crc8_table[crc ^ 0x01];
                             crc = crc8_table[crc ^ I2C_MYADDR];
                             if (crc == rx_buffer[2]) {
-                                command_position = (unsigned int)rx_buffer[1];
+                                command_position = (unsigned int)rx_buffer[1];                                
                             } else {
                                 ACKDT = 1;
                             }
@@ -113,29 +116,77 @@ void interrupt isr(void) {
                             } else {
                                 ACKDT = 1;
                             }
-                            break;                                                        
+                            break;                            
                     }
                 }
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;
-            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
                     case 0x01: // read command
-                        // TODO: read
-                        crc = crc8_table[0];
+                        crc = crc8_table[state];
                         crc = crc8_table[crc ^ 0x01];
                         crc = crc8_table[crc ^ I2C_MYADDR];
-                        rx_buffer[0] = 0;
+                        rx_buffer[0] = state;
                         rx_buffer[1] = crc;
                         break;
+                    case 0x02: // read command
+                        r = eeprom_read(0x00);
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x02];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x03: // read command
+                        r = eeprom_read(0x01);
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x03];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;                        
+                    case 0x04: // read command
+                        r = TMR1L;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x04];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x05: // read command
+                        r = TMR1H;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x05];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;                        
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
+                }                
+                if (SSPSTATbits.BF == 0) {
+                    break;
                 }
-                write_i2c(rx_buffer[rx_index++]);
+                // do a dummy read
+                tmp = SSPBUF;
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                SSPBUF = rx_buffer[rx_index++];
+                break;
+            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                if(rx_index >=RX_SIZE) { // prevent overflow
+                    SSPBUF = 0;
+                } else {
+                    SSPBUF = rx_buffer[rx_index++];
+                }
                 break;
         }
-        SSPCON1bits.CKP = 1;
-    }
+        SSPCON1bits.CKP = 1;        
+    }        
 }

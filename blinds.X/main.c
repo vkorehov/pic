@@ -19,6 +19,7 @@
 unsigned int position = 0;
 unsigned int next_position = 0;
 unsigned int command_position = 0;
+unsigned char state = 0;
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/

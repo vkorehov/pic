@@ -24,16 +24,16 @@ static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
-static unsigned char div14;
+static unsigned char div7;
 
-static void write_i2c(unsigned char b) {
-    // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
-    //for (int i = 0; i < 128; i++) {
-    //    asm("nop");
-    //}
-    //do {
-    //    SSPCONbits.WCOL = 0b0;
-    SSPBUF = b;        
+
+unsigned int ApproximateSimpleMovingAverage(unsigned int new_value) {
+  const unsigned int period_minus_1 = AVERAGE_PERIOD - 1;
+  unsigned int new_average = average;
+  new_average *= period_minus_1;
+  new_average += new_value;
+  new_average /= AVERAGE_PERIOD;
+  return new_average;
 }
 
 void interrupt isr(void) {
@@ -148,16 +148,16 @@ void interrupt isr(void) {
                 if (SSPSTATbits.BF == 1) {
                     break;
                 }
-                write_i2c(rx_buffer[rx_index++]);
+                SSPBUF = rx_buffer[rx_index++];
                 break;
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 if (SSPSTATbits.BF == 1) {
                     break;
                 }
                 if(rx_index >=RX_SIZE) { // prevent overflow
-                    write_i2c(0);                                    
+                    SSPBUF = 0;
                 } else {
-                    write_i2c(rx_buffer[rx_index++]);                
+                    SSPBUF = rx_buffer[rx_index++];
                 }
                 break;
         }
@@ -166,8 +166,8 @@ void interrupt isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
         GO = 1;
-        if (counter++ == 0 && div14-- == 0) {
-            div14 = 14;
+        if (counter++ == 0 && div7-- == 0) {
+            div7 = 7;
             if (floor_timeout != 0) {
                 floor_timeout--;
             }
@@ -182,10 +182,6 @@ void interrupt isr(void) {
         reading = ADRESL;
         reading |= (ADRESH << 8);
 
-        // Initialize
-        if (sensor1 == 0) {
-            sensor1 = INIT_VECTOR;
-        }
         // Slew Rate Limiter
         if (reading > sensor1)
             sensor1++;
@@ -193,6 +189,7 @@ void interrupt isr(void) {
             sensor1--;
         write_tmr1(AD_DELAY);
         TMR1ON = 1;
+        //average = ApproximateSimpleMovingAverage(reading);
     }
     
 }

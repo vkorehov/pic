@@ -9,11 +9,13 @@
 #define SWITCH_ON_DURATION_MULT                                 255
 //#define PWM_32K
 #define PWM_500H
-#define DEBUG
+//#define DEBUG
 #define AD_DELAY     0x1
 #define AD_CUTOFF    512
 #define INIT_VECTOR  100
 
+
+#define FAUCET_TIMEOUT 100
 
 extern unsigned char switch_dur_mult;
 extern unsigned char movement_on_dim;
@@ -43,7 +45,7 @@ void dht22_init(void);
 void on(unsigned char dim);
 void off(void);
 inline void write_tmr1(unsigned int v);
-extern unsigned char crc8_table[];
+extern const unsigned char crc8_table[];
 extern unsigned int sensor1;
 extern unsigned int sensor2;
 
