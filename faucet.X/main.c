@@ -17,6 +17,25 @@
 unsigned char faucet_on;
 unsigned int faucet_timeout;
 
+static unsigned char state = 0;
+void hot_on() {
+    if(faucet_on == 0) {
+        faucet_on = 1;
+        faucet_timeout = FAUCET_TIMEOUT;
+    }    
+    PORTBbits.RB1 = 1;    
+}
+void cold_on() {
+    if(faucet_on == 0) {
+        faucet_on = 1;
+        faucet_timeout = FAUCET_TIMEOUT;
+    }
+    PORTBbits.RB0 = 1;    
+}
+void off() {
+    PORTBbits.RB1 = 0;    
+    PORTBbits.RB0 = 0;        
+}
 
 #ifdef DEBUG
 void putch(unsigned char data) {
@@ -42,9 +61,10 @@ inline void write_tmr1(unsigned int val) {
 unsigned char switch_dur_mult;
 
 
-static unsigned char ticker = 0;
+unsigned int ticker = 0;
 unsigned int sensor1 = 0;
 unsigned int sensor2 = 0;
+unsigned int sensor3 = 0; // temperature sensor
 
 void main(void)
 {
@@ -55,7 +75,7 @@ void main(void)
     ticker = 0;
     sensor1 = 0;
     sensor2 = 0;
-    
+    sensor3 = 0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
 #ifdef DEBUG
@@ -65,10 +85,22 @@ void main(void)
     while(1)
     {
 #ifdef DEBUG
-        printf("S1:%d S2:%d\n", sensor1, sensor2);            
+        printf("S1:%d S2:%d S3:%d\n", sensor1, sensor2, sensor3);            
 #endif            
-        if(sensor1 > AD_CUTOFF || sensor2 > AD_CUTOFF) {
+        if(sensor1 > AD_CUTOFF1 /*sensor2 > AD_CUTOFF2 */) {
+            if (faucet_on == 1 && faucet_timeout == 0 ) {
+                // timeout occured force off
+                off();
+            } else {
+                hot_on();
+                if(sensor3 > AD_30DEG) {
+                    cold_on();
+                }
+            }
+        } else if(sensor1 < (AD_CUTOFF1 - 50) /*&& sensor2 < (AD_CUTOFF2 - 50)*/) {
+            off();
+            faucet_on = 0;
+            faucet_timeout = 0;                
         }
     }
 }
-

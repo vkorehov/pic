@@ -46,10 +46,20 @@ void InitApp(void)
 #endif        
     
     i2c_init();
-    ANSELBbits.ANSB0 = 1; // AN12
     ANSELBbits.ANSB2 = 1;
-    TRISBbits.TRISB0 = 1;// AN8
+    ANSELBbits.ANSB3 = 1;
+    ANSELBbits.ANSB4 = 1;    
     TRISBbits.TRISB2 = 1;
+    TRISBbits.TRISB3 = 1;
+    TRISBbits.TRISB4 = 1;
+    // output valve
+    ANSELBbits.ANSB0 = 0;
+    ANSELBbits.ANSB1 = 0;
+    TRISBbits.TRISB0 = 0;
+    TRISBbits.TRISB1 = 0;
+    PORTBbits.RB0 = 0;
+    PORTBbits.RB1 = 0;
+    
     
     ADPREF0=1;
     ADPREF1=1;    
@@ -62,7 +72,7 @@ void InitApp(void)
     }
     
     ADFM = 1;
-    ADCON0bits.CHS = 8;
+    ADCON0bits.CHS = 8;// AN8, AN9, AN11
     ADCON1bits.ADCS = 0b110;
     
     ADIF = 0;

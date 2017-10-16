@@ -28,14 +28,23 @@ void interrupt isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
         GO = 1;
+        if (counter++ >= 60) {
+            counter = 0;
+            if (faucet_timeout != 0) {
+                faucet_timeout--;
+            }
+        }
     }
     if (ADIF) {
         unsigned int reading;
         ADIF = 0;
         reading = ADRESL;
-        reading |= (ADRESH << 8);        
+        reading |= (ADRESH << 8);
         if (ADCON0bits.CHS == 8) {
-            ADCON0bits.CHS = 12;
+            ADCON0bits.CHS = 9;
+            ADPREF0 = 1;
+            ADPREF1 = 1;
+            ADNREF = 0;
             // Initialize
             if (sensor1 == 0) {
                 sensor1 = INIT_VECTOR;
@@ -44,9 +53,14 @@ void interrupt isr(void) {
             if (reading > sensor1)
                 sensor1++;
             else if (sensor1 != 0) // avoid flipping
-                sensor1--;            
-        } else {
-            ADCON0bits.CHS = 8;
+                sensor1--;
+
+        } else if (ADCON0bits.CHS == 9) {
+            ADCON0bits.CHS = 11;
+            ADPREF0 = 0; // Vref+
+            ADPREF1 = 1;
+            ADNREF = 1; // Vref-
+
             // Initialize
             if (sensor2 == 0) {
                 sensor2 = INIT_VECTOR;
@@ -55,7 +69,23 @@ void interrupt isr(void) {
             if (reading > sensor2)
                 sensor2++;
             else if (sensor2 != 0) // avoid flipping
-                sensor2--;                        
+                sensor2--;
+
+        } else {
+            ADCON0bits.CHS = 8;
+            ADPREF0 = 1;
+            ADPREF1 = 1;
+            ADNREF = 0;
+
+            // Initialize
+            if (sensor3 == 0) {
+                sensor3 = INIT_VECTOR;
+            }
+            // Slew Rate Limiter
+            if (reading > sensor3)
+                sensor3++;
+            else if (sensor3 != 0) // avoid flipping
+                sensor3--;
         }
         write_tmr1(AD_DELAY);
         TMR1ON = 1;
@@ -119,12 +149,12 @@ void interrupt isr(void) {
                             crc = crc8_table[crc ^ I2C_MYADDR];
                             if (crc == rx_buffer[2]) {
                                 //
-                                if(rx_buffer[1] == 1) {
+                                if (rx_buffer[1] == 1) {
                                     faucet_on = 1;
                                     faucet_timeout = FAUCET_TIMEOUT;
                                 } else {
                                     faucet_on = 0;
-                                    faucet_timeout = 0;                                    
+                                    faucet_timeout = 0;
                                 }
                             } else {
                                 ACKDT = 1;
@@ -159,7 +189,7 @@ void interrupt isr(void) {
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = r;
                         rx_buffer[1] = crc;
-                        break;                        
+                        break;
                     case 0x04: // read command
                         r = sensor2 & 0xFF;
                         crc = crc8_table[r];
@@ -175,10 +205,26 @@ void interrupt isr(void) {
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = r;
                         rx_buffer[1] = crc;
-                        break;                        
+                        break;
+                    case 0x06: // read command
+                        r = sensor3 & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x06];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x07: // read command
+                        r = (sensor3 >> 8) & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x07];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
-                }                
+                }
                 if (SSPSTATbits.BF == 0) {
                     break;
                 }
@@ -193,13 +239,13 @@ void interrupt isr(void) {
                 if (SSPSTATbits.BF == 1) {
                     break;
                 }
-                if(rx_index >=RX_SIZE) { // prevent overflow
+                if (rx_index >= RX_SIZE) { // prevent overflow
                     SSPBUF = 0;
                 } else {
                     SSPBUF = rx_buffer[rx_index++];
                 }
                 break;
         }
-        SSPCON1bits.CKP = 1;        
-    }    
+        SSPCON1bits.CKP = 1;
+    }
 }
