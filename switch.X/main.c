@@ -38,6 +38,13 @@ unsigned char hit_a5;
 
 
 void on(unsigned char dim) {
+    // shutdown timer
+    TMR1ON = 0;
+    switch_dur_mult = 0;
+    write_tmr1(0xffff - SWITCH_ON_DURATION);
+    TMR1IF = 0;
+    TMR1ON = 1;
+    
     if (last_dimm == dim) {
         return;
     }
@@ -45,13 +52,6 @@ void on(unsigned char dim) {
     // Disable output
     TRISAbits.TRISA0 = 1;
     CCP1ASbits.CCP1ASE = 1;
-
-    // shutdown timer
-    TMR1ON = 0;
-    switch_dur_mult = 0;
-    write_tmr1(0xffff - SWITCH_ON_DURATION);
-    TMR1IF = 0;
-    TMR1ON = 1;
 
     // change dim
     CCPR1L = dim;
@@ -92,35 +92,6 @@ void main(void)
             movement_state = 1;
         } else {
             movement_state = 0;            
-        }
-#endif
-#ifdef FAUCET_ENABLED       
-        if(PORTAbits.RA3 == 0) {
-            hit_a3++;
-            faucet_on = 0;
-            faucet_timeout = 0;
-        }
-        if(PORTAbits.RA5 == 0) {
-            hit_a5++;            
-            faucet_on = 1;
-            faucet_timeout = FAUCET_TIMEOUT;
-        }
-
-        ticker--;
-                
-        if (ticker == 0 && faucet_timeout > 0) {
-            faucet_timeout--;            
-        }
-        
-        if (faucet_timeout <= 0) {
-            faucet_on = 0;
-        }
-        
-        if (faucet_on == 1) {
-            on(0xff);
-        }
-        if (faucet_on == 0) {
-            off();
         }
 #endif
     }

@@ -12,6 +12,8 @@
 #define AD_DELAY     0x100
 #define AD_CUTOFF1   900
 #define AD_CUTOFF2   500
+#define AD_WATER_CUTOFF1   560
+#define AD_WATER_CUTOFF2   1022
 
 #define AD_36DEG     865 // 
 #define AD_30DEG     800 // 
@@ -20,7 +22,7 @@
 #define INIT_VECTOR  100
 
 
-#define FAUCET_TIMEOUT 4000
+#define FAUCET_TIMEOUT 3000
 
 extern unsigned char faucet_on;
 extern unsigned int faucet_timeout;

@@ -16,6 +16,8 @@
 #include "user.h"          /* User funct/params, such as InitApp */
 unsigned char faucet_on;
 unsigned int faucet_timeout;
+static unsigned int water = 0;
+static unsigned int water_pause = 0;
 
 static unsigned char state = 0;
 void hot_on() {
@@ -76,6 +78,8 @@ void main(void)
     sensor1 = 0;
     sensor2 = 0;
     sensor3 = 0;
+    water = 0;
+    water_pause = 0;
     /* Initialize I/O and Peripherals for application */
     InitApp();
 #ifdef DEBUG
@@ -86,8 +90,17 @@ void main(void)
     {
 #ifdef DEBUG
         printf("S1:%d S2:%d S3:%d\n", sensor1, sensor2, sensor3);            
-#endif            
-        if(sensor1 > AD_CUTOFF1 /*sensor2 > AD_CUTOFF2 */) {
+#endif         
+        if(water_pause != 0) {
+            water_pause--;
+        }
+        if(sensor1 > (AD_WATER_CUTOFF1 - 20) && sensor1 < (AD_WATER_CUTOFF1 + 20) &&
+                sensor2 > (AD_WATER_CUTOFF2 - 20) && sensor2 < (AD_WATER_CUTOFF2 + 20)){
+            water++;
+        } else {
+            water = 0;
+        }
+        if((sensor1 > AD_CUTOFF1 || sensor2 > AD_CUTOFF2) && water_pause == 0) {
             if (faucet_on == 1 && faucet_timeout == 0 ) {
                 // timeout occured force off
                 off();
@@ -97,7 +110,10 @@ void main(void)
                     cold_on();
                 }
             }
-        } else if(sensor1 < (AD_CUTOFF1 - 50) /*&& sensor2 < (AD_CUTOFF2 - 50)*/) {
+        } else if((sensor1 < (AD_CUTOFF1 - 50) && sensor2 < (AD_CUTOFF2 - 50)) || water > 1000) {
+            if(water > 1000) {
+                water_pause = 5000;
+            }
             off();
             faucet_on = 0;
             faucet_timeout = 0;                

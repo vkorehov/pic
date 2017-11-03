@@ -2,10 +2,10 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x42                   // This device I2C address
+#define I2C_MYADDR 0x3c                   // This device I2C address
 //#define MOVEMENT_ENABLED
-#define FAUCET_ENABLED
-#define FAUCET_TIMEOUT 0xf000
+//#define FAUCET_ENABLED
+//#define FAUCET_TIMEOUT 0xf000
 
 
 #define SWITCH_ON_DURATION                                      0xffff
@@ -13,6 +13,8 @@
 //#define PWM_32K
 #define PWM_500H
 
+extern unsigned char last_dimm;
+extern const unsigned char crc8_table[];
 extern unsigned char switch_dur_mult;
 extern unsigned char movement_on_dim;
 extern unsigned char movement_state;

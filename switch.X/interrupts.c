@@ -25,17 +25,6 @@ static unsigned char command;
 static unsigned char counter;
 static unsigned char counter;
 
-static void write_i2c(unsigned char b) {
-    // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
-    for (int i = 0; i < 64; i++) {
-        asm("nop");
-    }
-    do {
-        SSPCONbits.WCOL = 0b0;
-        SSPBUF = b;
-    } while (SSPCONbits.WCOL);
-}
-
 void interrupt isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
@@ -100,6 +89,10 @@ void interrupt isr(void) {
 #endif
 
     if (SSPIF) {
+        SSPIF = 0;
+        unsigned char tmp;
+        unsigned char r = 0;
+        unsigned char crc = 0;
         unsigned char i2c_state = SSPSTAT & 0b00100100;
         // 0b00100000 = D/nA
         // 0b00000100 = R/nW
@@ -111,103 +104,97 @@ void interrupt isr(void) {
             case 0b00000000: // STATE1: Maser Write, Last Byte = Address
                 rx_index = 0;
                 command = 0;
-                // do a dummy read
-                rx_buffer[0] = SSPBUF;
+                ACKDT = 0;
                 for (int i = 0; i < RX_SIZE; i++) {
                     rx_buffer[i] = 0;
                 }
+                if (SSPSTATbits.BF == 0) {
+                    break;
+                }
+                // do a dummy read
+                rx_buffer[0] = SSPBUF;
                 break;
             case 0b00100000: // STATE2: Maser Write, Last Byte = Data
+                if (SSPSTATbits.BF == 0) {
+                    break;
+                }
                 rx_buffer[rx_index++] = SSPBUF;
                 if (rx_index == 1) {
                     command = rx_buffer[0]; // save command
-                    // input
-                    switch (command) {
-                        case 0x78:
-                            ENTER_BOOTLOADER = 1;
-                            asm("pagesel 0x000");
-                            asm("goto 0x000");
-                            break;                            
-#ifdef DHT22_ENABLED                            
-                        case 0x12:
-                            start_read_dht22();
-                            break;
-#endif                            
-                    }
                 }
                 if (rx_index == 2) {
                     // input
                     switch (command) {
-                        case 0x01:
-                            counter++;
-#ifndef FAUCET_ENABLED                              
-                            on(rx_buffer[1]);
-#endif                            
+                        case 0x78:
+                            crc = crc8_table[crc ^ 0x78];
+                            crc = crc8_table[crc ^ I2C_MYADDR];
+                            if (crc == rx_buffer[1]) {
+                                ENTER_BOOTLOADER = 1;
+                                asm("pagesel 0x000");
+                                asm("goto 0x000");
+                            } else {
+                                ACKDT = 1;
+                            }
                             break;
-#ifdef MOVEMENT_ENABLED  
-                        case 0x20:
-                            counter++;
-                            movement_on_dim = rx_buffer[1];
-                            break;                            
-#endif
-#ifdef FAUCET_ENABLED  
-                        case 0x30:
-                            counter++;
-                            faucet_on = rx_buffer[1];
-                            faucet_timeout = FAUCET_TIMEOUT;                            
-                            break;                            
-#endif
-
+                    }
+                }
+                if (rx_index == 3) {
+                    // input
+                    switch (command) {
+                        case 0x01:
+                            crc = crc8_table[rx_buffer[1]];
+                            crc = crc8_table[crc ^ 0x01];
+                            crc = crc8_table[crc ^ I2C_MYADDR];
+                            if (crc == rx_buffer[2]) {
+                                //
+                                if (rx_buffer[1] != 0x00) {
+                                    on(rx_buffer[1]);
+                                } else {
+                                    off();
+                                }
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;
                     }
                 }
                 break;
             case 0b00000100: // STATE3: Maser Read, Last Byte = Address
                 rx_index = 0;
-            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
-                    case 0x01:
-                        if(rx_index == 0)
-                            rx_buffer[0] = counter;
+                    case 0x01: // read command
+                        crc = crc8_table[last_dimm];
+                        crc = crc8_table[crc ^ 0x01];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = last_dimm;
+                        rx_buffer[1] = crc;
                         break;
-#ifdef MOVEMENT_ENABLED
-                    case 0x20: // read movement
-                        rx_buffer[0] = movement_state;
-                        rx_buffer[1] = 0x00;
-                        break;
-#endif
-#ifdef FAUCET_ENABLED
-                    case 0x30: // read faucet
-                        rx_buffer[0] = faucet_on;
-                        rx_buffer[1] = 0x00;
-                        break;
-                    case 0x31: // read faucet
-                        rx_buffer[0] = hit_a3;
-                        rx_buffer[1] = 0x00;
-                        break;
-                    case 0x32: // read faucet
-                        rx_buffer[0] = hit_a5;
-                        rx_buffer[1] = 0x00;
-                        break;                        
-#endif
-#ifdef DHT22_ENABLED                                                    
-                    case 0x13: // read humidity
-                        rx_buffer[0] = dht22_bits[1];
-                        rx_buffer[1] = dht22_bits[0];
-                        break;
-                    case 0x14: // // read temperature
-                        rx_buffer[0] = dht22_bits[3];
-                        rx_buffer[1] = dht22_bits[2];
-                        break;
-#endif                        
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
                 }
-                write_i2c(rx_buffer[rx_index++]);
+                if (SSPSTATbits.BF == 0) {
+                    break;
+                }
+                // do a dummy read
+                tmp = SSPBUF;
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                SSPBUF = rx_buffer[rx_index++];
+                break;
+            case 0b00100100: // STATE4: Maser Read, Last Byte = Data
+                if (SSPSTATbits.BF == 1) {
+                    break;
+                }
+                if (rx_index >= RX_SIZE) { // prevent overflow
+                    SSPBUF = 0;
+                } else {
+                    SSPBUF = rx_buffer[rx_index++];
+                }
                 break;
         }
         SSPCON1bits.CKP = 1;
-        SSPIF = 0;
     }
 
 }
