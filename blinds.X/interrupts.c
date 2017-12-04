@@ -24,22 +24,10 @@ static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
 
-static void write_i2c(unsigned char b) {
-    // insert slight delay, otherwise raspbery pi reads first bit as zero i.e. 0x81 => 0x01
-    for (int i = 0; i < 64; i++) {
-        asm("nop");
-    }
-    do {
-        SSPCONbits.WCOL = 0b0;
-        SSPBUF = b;
-    } while (SSPCONbits.WCOL);
-}
-
 void interrupt isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
     }
-    
     if (SSPIF) {
         SSPIF = 0;
         unsigned char tmp;
@@ -116,7 +104,7 @@ void interrupt isr(void) {
                             } else {
                                 ACKDT = 1;
                             }
-                            break;                            
+                            break;
                     }
                 }
                 break;
@@ -132,7 +120,7 @@ void interrupt isr(void) {
                         rx_buffer[1] = crc;
                         break;
                     case 0x02: // read command
-                        r = eeprom_read(0x00);
+                        r =  eeprom_read(0);
                         crc = crc8_table[r];
                         crc = crc8_table[crc ^ 0x02];
                         crc = crc8_table[crc ^ I2C_MYADDR];
@@ -140,13 +128,13 @@ void interrupt isr(void) {
                         rx_buffer[1] = crc;
                         break;
                     case 0x03: // read command
-                        r = eeprom_read(0x01);
+                        r = eeprom_read(1);
                         crc = crc8_table[r];
                         crc = crc8_table[crc ^ 0x03];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = r;
                         rx_buffer[1] = crc;
-                        break;                        
+                        break;
                     case 0x04: // read command
                         r = TMR1L;
                         crc = crc8_table[r];
@@ -162,10 +150,58 @@ void interrupt isr(void) {
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = r;
                         rx_buffer[1] = crc;
+                        break;
+                    case 0x06: // read command
+                        r = position & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x06];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x07: // read command
+                        r = (position >> 8) & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x07];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x08: // read command
+                        r = next_position & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x08];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x09: // read command
+                        r = (next_position >> 8) & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x09];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x0a: // read command
+                        r = command_position & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x0a];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x0b: // read command
+                        r = (command_position >> 8) & 0xFF;
+                        crc = crc8_table[r];
+                        crc = crc8_table[crc ^ 0x0b];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = r;
+                        rx_buffer[1] = crc;                        
                         break;                        
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
-                }                
+                }
                 if (SSPSTATbits.BF == 0) {
                     break;
                 }
@@ -180,13 +216,13 @@ void interrupt isr(void) {
                 if (SSPSTATbits.BF == 1) {
                     break;
                 }
-                if(rx_index >=RX_SIZE) { // prevent overflow
+                if (rx_index >= RX_SIZE) { // prevent overflow
                     SSPBUF = 0;
                 } else {
                     SSPBUF = rx_buffer[rx_index++];
                 }
                 break;
         }
-        SSPCON1bits.CKP = 1;        
-    }        
+        SSPCON1bits.CKP = 1;
+    }
 }

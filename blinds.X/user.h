@@ -2,7 +2,13 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x5e                   // This device I2C address
+#define I2C_MYADDR 0x5e                  // This device I2C address
+//#define I2C_MYADDR 0x58                  // This device I2C address
+//#define I2C_MYADDR 0x59                  // This device I2C address
+//#define I2C_MYADDR 0x5a                  // This device I2C address
+//#define I2C_MYADDR 0x5b                  // This device I2C address
+//#define I2C_MYADDR 0x5d                  // This device I2C address
+//#define I2C_MYADDR 0x5e                  // This device I2C address
 
 /******************************************************************************/
 /* User Function Prototypes                                                   */

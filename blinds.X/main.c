@@ -74,12 +74,16 @@ void main(void)
             last_dir = 0;
         } else if (next_position < position && (tmr1 > position || position - tmr1 < next_position)) {
             stop();
-            position = position - tmr1;
+            if(tmr1 > position) {
+                position = 0;
+            } else {
+                position = position - tmr1;
+            }
             next_position = position;
             TMR1H = 0;
-            TMR1L = 0;            
+            TMR1L = 0;
             eeprom_write(0x00, position & 0xFF);
-            eeprom_write(0x01, (position >> 8) & 0xFF);             
+            eeprom_write(0x01, (position >> 8) & 0xFF);
             last_dir = 1;
         } else if(next_position > position){
             ccv();
@@ -95,7 +99,11 @@ void main(void)
                 eeprom_write(0x00, position & 0xFF);
                 eeprom_write(0x01, (position >> 8) & 0xFF);                    
             } else {
-                position = position - tmr1;
+                if(tmr1 > position) {
+                    position = 0;
+                } else {
+                    position = position - tmr1;                    
+                }
                 next_position = position;
                 TMR1H = 0;
                 TMR1L = 0;            
