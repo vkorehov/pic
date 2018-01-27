@@ -23,7 +23,6 @@ static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
-static unsigned char counter;
 
 void interrupt isr(void) {
     if (TMR1IF) {
@@ -156,6 +155,18 @@ void interrupt isr(void) {
                                 ACKDT = 1;
                             }
                             break;
+#ifdef SHOWER_ENABLED
+                        case 0x30:
+                            crc = crc8_table[rx_buffer[1]];
+                            crc = crc8_table[crc ^ 0x30];
+                            crc = crc8_table[crc ^ I2C_MYADDR];
+                            if (crc == rx_buffer[2]) {
+                                shower_allow_on = rx_buffer[1];
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;                            
+#endif                            
                     }
                 }
                 break;
@@ -170,6 +181,38 @@ void interrupt isr(void) {
                         rx_buffer[0] = last_dimm;
                         rx_buffer[1] = crc;
                         break;
+#ifdef MOVEMENT_ENABLED                        
+                    case 0x20: // read command
+                        crc = crc8_table[movement_state];
+                        crc = crc8_table[crc ^ 0x20];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = movement_state;
+                        rx_buffer[1] = crc;
+                        break;
+#endif                        
+#ifdef SHOWER_ENABLED                        
+                    case 0x30: // read command
+                        crc = crc8_table[shower_state];
+                        crc = crc8_table[crc ^ 0x30];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = shower_state;
+                        rx_buffer[1] = crc;
+                        break;
+#endif                                                
+                    case 0x31: // read command
+                        crc = crc8_table[ra4];
+                        crc = crc8_table[crc ^ 0x31];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = ra4;
+                        rx_buffer[1] = crc;
+                        break;
+                    case 0x32: // read command
+                        crc = crc8_table[ra5];
+                        crc = crc8_table[crc ^ 0x32];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = ra5;
+                        rx_buffer[1] = crc;
+                        break;                        
                     default:
                         rx_buffer[0] = rx_buffer[1] = 0;
                 }

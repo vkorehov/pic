@@ -79,6 +79,10 @@ void InitApp(void)
     TRISAbits.TRISA4 = 1; // enable input
     ANSELAbits.ANSA4 = 0;
 #endif
+#ifdef SHOWER_ENABLED
+    TRISAbits.TRISA4 = 1; // enable input
+    ANSELAbits.ANSA4 = 0;
+#endif
 #ifdef DHT22_ENABLED
     dht22_state = 0;
     dht22_index = 0;

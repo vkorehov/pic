@@ -2,16 +2,24 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x3c                   // This device I2C address
+#define I2C_MYADDR 0x44                   // This device I2C address
+#define SHOWER_ENABLED
+#define SHOWER_TIMEOUT 100
+
 //#define MOVEMENT_ENABLED
-//#define FAUCET_ENABLED
-//#define FAUCET_TIMEOUT 0xf000
 
 
 #define SWITCH_ON_DURATION                                      0xffff
 #define SWITCH_ON_DURATION_MULT                                 255
 //#define PWM_32K
 #define PWM_500H
+
+extern unsigned char ra4;
+extern unsigned char ra5;
+
+extern unsigned char shower_allow_on;
+extern unsigned char shower_state;
+extern unsigned int shower_timeout;
 
 extern unsigned char last_dimm;
 extern const unsigned char crc8_table[];
@@ -20,8 +28,6 @@ extern unsigned char movement_on_dim;
 extern unsigned char movement_state;
 extern unsigned char faucet_on;
 extern unsigned int faucet_timeout;
-extern unsigned char hit_a3;
-extern unsigned char hit_a5;
 
 #define DHT22_MAX_BYTES 5
 #define DHT22_CUTOFF_TIME 0x18
