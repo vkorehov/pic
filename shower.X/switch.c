@@ -1,19 +1,14 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
-
-#if defined(__XC)
-    #include <xc.h>         /* XC8 General Include File */
-#elif defined(HI_TECH_C)
-    #include <htc.h>        /* HiTech General Include File */
-#endif
+#include <xc.h>         /* XC8 General Include File */
 
 #include <stdint.h>         /* For uint8_t definition */
 #include <stdbool.h>        /* For true/false definition */
 
 #include "user.h"
 
-unsigned long long switch_timeouts[4];
+unsigned long switch_timeouts[4];
 
 void on(unsigned char sw) {
     // B0 = V-1

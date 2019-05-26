@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=configuration_bits.c interrupts.c main.c system.c user.c C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c pwm.c crc8.c
+SOURCEFILES_QUOTED_IF_SPACED=configuration_bits.c crc8.c eeprom.c interrupts.c main.c pwm.c switch.c system.c user.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/_ext/1978935541/eeprom.p1 ${OBJECTDIR}/_ext/1978935541/switch.p1 ${OBJECTDIR}/_ext/1725896875/dht22.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/crc8.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/configuration_bits.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d ${OBJECTDIR}/_ext/1978935541/eeprom.p1.d ${OBJECTDIR}/_ext/1978935541/switch.p1.d ${OBJECTDIR}/_ext/1725896875/dht22.p1.d ${OBJECTDIR}/pwm.p1.d ${OBJECTDIR}/crc8.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/crc8.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/switch.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/configuration_bits.p1.d ${OBJECTDIR}/crc8.p1.d ${OBJECTDIR}/eeprom.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/pwm.p1.d ${OBJECTDIR}/switch.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/_ext/1978935541/eeprom.p1 ${OBJECTDIR}/_ext/1978935541/switch.p1 ${OBJECTDIR}/_ext/1725896875/dht22.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/crc8.p1
+OBJECTFILES=${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/crc8.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/switch.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1
 
 # Source Files
-SOURCEFILES=configuration_bits.c interrupts.c main.c system.c user.c C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c pwm.c crc8.c
+SOURCEFILES=configuration_bits.c crc8.c eeprom.c interrupts.c main.c pwm.c switch.c system.c user.c
 
 
 CFLAGS=
@@ -97,142 +97,128 @@ ${OBJECTDIR}/configuration_bits.p1: configuration_bits.c  nbproject/Makefile-${C
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/configuration_bits.p1.d 
 	@${RM} ${OBJECTDIR}/configuration_bits.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/configuration_bits.p1 configuration_bits.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/configuration_bits.p1 configuration_bits.c 
 	@${FIXDEPS} ${OBJECTDIR}/configuration_bits.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/crc8.p1: crc8.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/crc8.p1.d 
+	@${RM} ${OBJECTDIR}/crc8.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/crc8.p1 crc8.c 
+	@${FIXDEPS} ${OBJECTDIR}/crc8.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/eeprom.p1: eeprom.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/eeprom.p1.d 
+	@${RM} ${OBJECTDIR}/eeprom.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/eeprom.p1 eeprom.c 
+	@${FIXDEPS} ${OBJECTDIR}/eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/interrupts.p1.d 
 	@${RM} ${OBJECTDIR}/interrupts.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/interrupts.p1 interrupts.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/interrupts.p1 interrupts.c 
 	@${FIXDEPS} ${OBJECTDIR}/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.p1.d 
 	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/pwm.p1: pwm.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pwm.p1.d 
+	@${RM} ${OBJECTDIR}/pwm.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/pwm.p1 pwm.c 
+	@${FIXDEPS} ${OBJECTDIR}/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/switch.p1: switch.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/switch.p1.d 
+	@${RM} ${OBJECTDIR}/switch.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/switch.p1 switch.c 
+	@${FIXDEPS} ${OBJECTDIR}/switch.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/system.p1: system.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/system.p1.d 
 	@${RM} ${OBJECTDIR}/system.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/system.p1 system.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/system.p1 system.c 
 	@${FIXDEPS} ${OBJECTDIR}/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/user.p1: user.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/user.p1.d 
 	@${RM} ${OBJECTDIR}/user.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/user.p1 user.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/user.p1 user.c 
 	@${FIXDEPS} ${OBJECTDIR}/user.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/1978935541/eeprom.p1: C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1978935541" 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/eeprom.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/eeprom.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1978935541/eeprom.p1 C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1978935541/eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/1978935541/switch.p1: C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1978935541" 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/switch.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/switch.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1978935541/switch.p1 C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1978935541/switch.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/1725896875/dht22.p1: C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1725896875" 
-	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1725896875/dht22.p1 C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/pwm.p1: pwm.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pwm.p1.d 
-	@${RM} ${OBJECTDIR}/pwm.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/pwm.p1 pwm.c 
-	@${FIXDEPS} ${OBJECTDIR}/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/crc8.p1: crc8.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/crc8.p1.d 
-	@${RM} ${OBJECTDIR}/crc8.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/crc8.p1 crc8.c 
-	@${FIXDEPS} ${OBJECTDIR}/crc8.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/configuration_bits.p1: configuration_bits.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/configuration_bits.p1.d 
 	@${RM} ${OBJECTDIR}/configuration_bits.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/configuration_bits.p1 configuration_bits.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/configuration_bits.p1 configuration_bits.c 
 	@${FIXDEPS} ${OBJECTDIR}/configuration_bits.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/crc8.p1: crc8.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/crc8.p1.d 
+	@${RM} ${OBJECTDIR}/crc8.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/crc8.p1 crc8.c 
+	@${FIXDEPS} ${OBJECTDIR}/crc8.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/eeprom.p1: eeprom.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/eeprom.p1.d 
+	@${RM} ${OBJECTDIR}/eeprom.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/eeprom.p1 eeprom.c 
+	@${FIXDEPS} ${OBJECTDIR}/eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/interrupts.p1.d 
 	@${RM} ${OBJECTDIR}/interrupts.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/interrupts.p1 interrupts.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/interrupts.p1 interrupts.c 
 	@${FIXDEPS} ${OBJECTDIR}/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.p1.d 
 	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/pwm.p1: pwm.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pwm.p1.d 
+	@${RM} ${OBJECTDIR}/pwm.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/pwm.p1 pwm.c 
+	@${FIXDEPS} ${OBJECTDIR}/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/switch.p1: switch.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/switch.p1.d 
+	@${RM} ${OBJECTDIR}/switch.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/switch.p1 switch.c 
+	@${FIXDEPS} ${OBJECTDIR}/switch.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/system.p1: system.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/system.p1.d 
 	@${RM} ${OBJECTDIR}/system.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/system.p1 system.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/system.p1 system.c 
 	@${FIXDEPS} ${OBJECTDIR}/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/user.p1: user.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/user.p1.d 
 	@${RM} ${OBJECTDIR}/user.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/user.p1 user.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/user.p1 user.c 
 	@${FIXDEPS} ${OBJECTDIR}/user.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/1978935541/eeprom.p1: C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1978935541" 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/eeprom.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/eeprom.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1978935541/eeprom.p1 C:/Users/vlad/Documents/GitHub/pic/shower.X/eeprom.c 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1978935541/eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/1978935541/switch.p1: C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1978935541" 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/switch.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1978935541/switch.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1978935541/switch.p1 C:/Users/vlad/Documents/GitHub/pic/shower.X/switch.c 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1978935541/switch.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/1725896875/dht22.p1: C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1725896875" 
-	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1725896875/dht22.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1725896875/dht22.p1 C:/Users/vlad/Documents/GitHub/pic/switch.X/dht22.c 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1725896875/dht22.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/pwm.p1: pwm.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pwm.p1.d 
-	@${RM} ${OBJECTDIR}/pwm.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/pwm.p1 pwm.c 
-	@${FIXDEPS} ${OBJECTDIR}/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/crc8.p1: crc8.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/crc8.p1.d 
-	@${RM} ${OBJECTDIR}/crc8.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/crc8.p1 crc8.c 
-	@${FIXDEPS} ${OBJECTDIR}/crc8.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
@@ -253,13 +239,13 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.map  -D__DEBUG=1  -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.map  -D__DEBUG=1  -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	@${RM} dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.hex 
 	
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    ../bootloader.X/dist/PIC16F1938/production/bootloader.X.production.hex
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.map  -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1  -fno-short-double -fno-short-float -maddrqual=ignore -D__PICCPRO__ -xassembler-with-cpp -Wa,-a -msummary=-psect,-class,+mem,+hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mosccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.map  -DXPRJ_PIC16F1938BOOT=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1  -fno-short-double -fno-short-float -O3 -fasmfile -maddrqual=require -xassembler-with-cpp -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -mcodeoffset=0x200  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 	@echo "Creating unified hex file"
 	@"C:/MPLABX/v5.00/mplab_platform/platform/../mplab_ide/modules/../../bin/hexmate" --edf="C:/MPLABX/v5.00/mplab_platform/platform/../mplab_ide/modules/../../dat/en_msgs.txt" dist/${CND_CONF}/${IMAGE_TYPE}/shower.X.${IMAGE_TYPE}.hex ../bootloader.X/dist/PIC16F1938/production/bootloader.X.production.hex -odist/${CND_CONF}/production/shower.X.production.unified.hex

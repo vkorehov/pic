@@ -4,13 +4,13 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>shower</name>
-            <creation-uuid>fd17e5a7-11b6-4f8e-a0b1-1d020538f498</creation-uuid>
+            <creation-uuid>3dcdd6d6-7893-40c8-a54e-69a19525d5e1</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>
             <header-extensions>h</header-extensions>
-            <sourceEncoding>ISO-8859-1</sourceEncoding>
             <asminc-extensions/>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects>
                 <make-dep-project>../bootloader.X</make-dep-project>
             </make-dep-projects>

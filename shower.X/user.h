@@ -6,21 +6,22 @@
 extern unsigned char i2c_master;
 extern unsigned char notify_state;
 
+extern const unsigned char crc8_table[];
 extern int steps;
 extern unsigned char sensor_average_every;
 extern unsigned int sensor_values[2];
 extern unsigned int sensor_values_averages[2];
 extern unsigned char pulses[4];
 extern unsigned char pulse_rates[4];
-extern unsigned long long switch_timeouts[4];
-extern unsigned long long pwm_timeout;
+extern unsigned long switch_timeouts[4];
+extern unsigned long pwm_timeout;
 extern unsigned short ticks;
 #define SWITCH_TIMEOUT 0x16000
 #define PWM_TIMEOUT 0x10000
 
 void on(unsigned char sw);
 void off(unsigned char sw);
-void pwm_en();
+void pwm_en(void);
 void pwm_duty(unsigned char duty1_l, unsigned char duty1_h, unsigned char duty2_l, unsigned char duty2_h);
 #define WAIT_SLOW (0xffff - 32000)
 #define WAIT_MED (0xffff - 16000)

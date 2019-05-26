@@ -6,6 +6,7 @@
         <group>
             <file>file:/C:/pic/switch.X/main.c</file>
             <file>file:/C:/pic/switch.X/interrupts.c</file>
+            <file>file:/C:/pic/switch.X/Makefile</file>
             <file>file:/C:/pic/switch.X/user.h</file>
         </group>
     </open-files>

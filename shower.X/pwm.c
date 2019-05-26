@@ -4,18 +4,14 @@
  *
  * Created on August 17, 2016, 9:46 AM
  */
-#if defined(__XC)
-    #include <xc.h>         /* XC8 General Include File */
-#elif defined(HI_TECH_C)
-    #include <htc.h>        /* HiTech General Include File */
-#endif
+#include <xc.h>         /* XC8 General Include File */
 
 #include <stdint.h>         /* For uint8_t definition */
 #include <stdbool.h>        /* For true/false definition */
 
 #include "user.h"
 
-unsigned long long pwm_timeout;
+unsigned long pwm_timeout;
 
 void pwm_duty(unsigned char duty1_l, unsigned char duty1_h, unsigned char duty2_l, unsigned char duty2_h) {
     if(duty2_h != CCPR3L)
@@ -33,7 +29,7 @@ void pwm_duty(unsigned char duty1_l, unsigned char duty1_h, unsigned char duty2_
     pwm_timeout = 0;
 }
 
-void pwm_en() {
+void pwm_en(void) {
     TRISCbits.TRISC6 = 1;
     TRISCbits.TRISC2 = 1;
     
@@ -76,6 +72,5 @@ void pwm_en() {
     while(!TMR4IF) {}
     //
     TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC2 = 0;
-    
+    TRISCbits.TRISC2 = 0;    
 }

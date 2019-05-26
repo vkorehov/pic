@@ -2,17 +2,14 @@
 /* Files to Include                                                           */
 /******************************************************************************/
 
-#if defined(__XC)
-    #include <xc.h>         /* XC8 General Include File */
-#elif defined(HI_TECH_C)
-    #include <htc.h>        /* HiTech General Include File */
-#endif
+#include <xc.h>         /* XC8 General Include File */
 
 #include <stdint.h>         /* For uint8_t definition */
 #include <stdbool.h>        /* For true/false definition */
 
 #include "user.h"
 
+#ifdef EEPROM_ENABLED
 unsigned char eeprom_read(unsigned char address) {
     EEADRL = address;
     CFGS = 0; // access config program, not FLASH
@@ -25,7 +22,6 @@ unsigned char eeprom_read(unsigned char address) {
 //  needs 16 bit address pointer in address, 16 bit data pointer
 //
 //****************************************************************
-
 void eeprom_write(unsigned char address, unsigned char data) {
     EEADRL = address;
     EEDATL = data;
@@ -39,3 +35,4 @@ void eeprom_write(unsigned char address, unsigned char data) {
     }
     WREN = 0;
 }
+#endif
