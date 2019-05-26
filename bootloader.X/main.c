@@ -15,7 +15,7 @@
 #include "flash.h"         
 #include "i2c.h"
 
-volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
+volatile unsigned char ENTER_BOOTLOADER __at(0x30); /* flag in order to enter bootloader */
 
 /******************************************************************************/
 /* Main Program                                                               */

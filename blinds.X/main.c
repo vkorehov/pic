@@ -58,30 +58,26 @@ void main(void)
     
     /* Initialize I/O and Peripherals for application */
     InitApp();
-    //next_position = position - 20;
     while(1)
     {
-        //ccv();
         unsigned int tmr1 = read_tmr1();
-        if (next_position > position && position + tmr1 > next_position) {
+        if (next_position > position && position + tmr1 >= next_position) {
             stop();
-            position = position + tmr1;
+            position += tmr1;
             next_position = position;
-            TMR1H = 0;
-            TMR1L = 0;
+            write_tmr1(0);
             eeprom_write(0x00, position & 0xFF);
             eeprom_write(0x01, (position >> 8) & 0xFF);    
             last_dir = 0;
-        } else if (next_position < position && (tmr1 > position || position - tmr1 < next_position)) {
+        } else if (next_position < position && (tmr1 >= position || position - tmr1 <= next_position)) {
             stop();
-            if(tmr1 > position) {
+            if(tmr1 >= position) {
                 position = 0;
             } else {
-                position = position - tmr1;
+                position -= tmr1;
             }
             next_position = position;
-            TMR1H = 0;
-            TMR1L = 0;
+            write_tmr1(0);
             eeprom_write(0x00, position & 0xFF);
             eeprom_write(0x01, (position >> 8) & 0xFF);
             last_dir = 1;
@@ -92,21 +88,18 @@ void main(void)
         } else if (tmr1 > 0) {
             // inertia
             if (last_dir == 0) {
-                position = position + tmr1;
+                position += tmr1;
                 next_position = position;
-                TMR1H = 0;
-                TMR1L = 0;
                 eeprom_write(0x00, position & 0xFF);
                 eeprom_write(0x01, (position >> 8) & 0xFF);                    
             } else {
                 if(tmr1 > position) {
                     position = 0;
                 } else {
-                    position = position - tmr1;                    
+                    position -= tmr1;                    
                 }
                 next_position = position;
-                TMR1H = 0;
-                TMR1L = 0;            
+                write_tmr1(0);                
                 eeprom_write(0x00, position & 0xFF);
                 eeprom_write(0x01, (position >> 8) & 0xFF);                             
             }

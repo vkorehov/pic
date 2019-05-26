@@ -40,13 +40,14 @@ unsigned char switch_dur_mult;
 unsigned char last_dimm;
 
 void on(unsigned char dim) {
+#ifndef SWITCH_ON_FOREVER    
     // shutdown timer
     TMR1ON = 0;
     switch_dur_mult = 0;
     write_tmr1(0xffff - SWITCH_ON_DURATION);
     TMR1IF = 0;
     TMR1ON = 1;
-
+#endif
     if (last_dimm == dim) {
         return;
     }

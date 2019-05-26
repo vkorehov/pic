@@ -91,14 +91,6 @@ void InitApp(void)
     TRISAbits.TRISA3 = 1;
     ANSELAbits.ANSA3 = 1; // AN3
 
-    // DHT22 pin (B5)
-    TRISBbits.TRISB5 = 1;
-    dht22_state = 0;
-    dht22_index = 0;
-    dht22_bit_index = 0;
-    for(int i = 0; i < DHT22_MAX_BYTES; i++) {
-        dht22_bits[i] = 0;
-    }
     // TIMER2
     TMR2ON = 0;
     TMR2 = 0x00;
@@ -118,9 +110,10 @@ void InitApp(void)
     ADCON0bits.CHS = 0b01011; // AN11
     ADCON1bits.ADNREF = 0b1; // VREF-
     ADCON1bits.ADPREF = 0b10; // VREF+
-    ADCON1bits.ADFM = 1;// right justify
-    ADCON1bits.ADCS = 0b010;// Tad = 1us @32Mhz
+    ADCON1bits.ADFM = 1; // right justify
+    ADCON1bits.ADCS = 0b010; // Tad = 1us @32Mhz
     ADCON0bits.ADON = 1;
+    
     // TMR0
     TMR0 = 0x00;
     OPTION_REGbits.nWPUEN = 1;

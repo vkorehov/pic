@@ -2,13 +2,13 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x44                   // This device I2C address
-#define SHOWER_ENABLED
+#define I2C_MYADDR 0x47                   // This device I2C address
+//#define SHOWER_ENABLED
 #define SHOWER_TIMEOUT 100
 
 //#define MOVEMENT_ENABLED
 
-
+#define SWITCH_ON_FOREVER
 #define SWITCH_ON_DURATION                                      0xffff
 #define SWITCH_ON_DURATION_MULT                                 255
 //#define PWM_32K

@@ -31,18 +31,6 @@ void pwm_duty(unsigned char duty1_l, unsigned char duty1_h, unsigned char duty2_
 unsigned char eeprom_read(unsigned char address);
 void eeprom_write(unsigned char address, unsigned char data);
 
-#define DHT22_MAX_BYTES 5
-#define DHT22_CUTOFF_TIME 0x18
-extern unsigned char dht22_state;
-extern unsigned char dht22_index;
-extern unsigned char dht22_bit_index;
-extern unsigned char dht22_bits[DHT22_MAX_BYTES];
-
-void start_read_dht22(void);
-void start_read_dht22_pullup(void);
-void dht22_abort(void);
-
-
 /******************************************************************************/
 /* User Function Prototypes                                                   */
 /******************************************************************************/

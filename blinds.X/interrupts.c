@@ -13,7 +13,7 @@
 #include "system.h"
 #include "user.h"
 
-volatile unsigned char ENTER_BOOTLOADER @ 0x30; /* flag in order to enter bootloader */
+volatile unsigned char ENTER_BOOTLOADER __at(0x30); /* flag in order to enter bootloader */
 #ifdef _12F1840
 #define SSPIF SSP1IF
 #endif
@@ -24,7 +24,7 @@ static unsigned char rx_index;
 static unsigned char command;
 static unsigned char counter;
 
-void interrupt isr(void) {
+void __interrupt () isr(void) {
     if (TMR1IF) {
         TMR1IF = 0;
     }

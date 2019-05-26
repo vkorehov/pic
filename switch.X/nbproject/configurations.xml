@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="62">
+<configurationDescriptor version="65">
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -40,9 +40,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.42</languageToolchainVersion>
+        <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
+      <packs>
+        <pack name="PIC12-16F1xxx_DFP" vendor="Microchip" version="0.1.7"/>
+      </packs>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -51,6 +54,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC12F1840"
+                        AC="true"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -190,9 +208,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.42</languageToolchainVersion>
+        <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
+      <packs>
+        <pack name="PIC12-16F1xxx_DFP" vendor="Microchip" version="0.1.7"/>
+      </packs>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -201,6 +222,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC12F1840"
+                        AC="true"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -340,9 +376,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.42</languageToolchainVersion>
+        <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
+      <packs>
+        <pack name="PIC12-16F1xxx_DFP" vendor="Microchip" version="0.1.7"/>
+      </packs>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -351,6 +390,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC12F1840"
+                        AC="true"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -490,9 +544,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.42</languageToolchainVersion>
+        <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
+      <packs>
+        <pack name="PIC12-16F1xxx_DFP" vendor="Microchip" version="0.1.7"/>
+      </packs>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -501,6 +558,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../bootloader.X"
+                        CT="1"
+                        CN="PIC12F1840"
+                        AC="true"
+                        BL="true"
+                        WD="../bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=PIC12F1840"
+                        DBC="${MAKE}  -f Makefile CONF=PIC12F1840 TYPE_IMAGE=DEBUG_RUN"
+                        CC="${MAKE}  -f Makefile CONF=PIC12F1840 clean"
+                        OP="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        DOP="dist/PIC12F1840/debug/bootloader.X.debug.elf"
+                        FL="dist/PIC12F1840/production/bootloader.X.production.hex"
+                        PD="dist/PIC12F1840/production/bootloader.X.production.elf"
+                        DD="dist/PIC12F1840/debug/bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>

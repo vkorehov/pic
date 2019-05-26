@@ -30,7 +30,6 @@ unsigned char pulse_rates[4];
 unsigned short ticks;
 static unsigned char rx_buffer[RX_SIZE];
 static unsigned char rx_index;
-static unsigned char dht22_start_timer;
 static unsigned char command;
 static unsigned char i2c_error;
 static unsigned char i2c_collisions;
@@ -65,12 +64,8 @@ void interrupt isr(void) {
         } else {
            ticks++;
         }
-
-//        ADCON0bits.GO = 1;
-//        if(dht22_start_timer++ == 0xff) {
-//            start_read_dht22();
-//        }
-    }    
+        ADCON0bits.GO = 1;
+    }
     if (IOCIF) {
         if (IOCBFbits.IOCBF2) {
             pulses[0]++; // holodnaja tualet
@@ -88,42 +83,10 @@ void interrupt isr(void) {
         asm("banksel IOCBF");
         asm("XORWF IOCBF, W");
         asm("ANDWF IOCBF, F");        
-//        if (PORTBbits.RB5 == 0) {// we care only about HI => LO transition
-//            unsigned char t = TMR2;
-//            TMR2 = 0; // reset timeout            
-//            if (dht22_state < 4) {
-//                dht22_state++;
-//            } else {
-//                if (dht22_bit_index > 7) {
-//                    dht22_bit_index = 0;
-//                    dht22_index++;
-//                }
-//                if (t > DHT22_CUTOFF_TIME) {
-//                    dht22_bits[dht22_index] |= (1 << (7 - dht22_bit_index));
-//                }
-//                dht22_bit_index++;
-//                if (dht22_bit_index == 8 &&
-//                        dht22_index >= (DHT22_MAX_BYTES - 1)) {
-//                    unsigned char sum = dht22_bits[0] + dht22_bits[1] + dht22_bits[2] + dht22_bits[3];
-//                    if (sum != dht22_bits[4]) {// checksum doesn't match up?
-//                        // indicate error
-//                        dht22_bits[0] = dht22_bits[1] = dht22_bits[2] = dht22_bits[3] = 0;
-//                    }
-//                    dht22_abort();
-//                }
-//            }
-//        }
     }
     if (TMR2IF) {
         TMR2IF = 0;
-//        switch (dht22_state) {
-//            case 1:
-//                start_read_dht22_pullup();
-//                break;
-//            default:
-//                dht22_abort();
-//        }
-    }    
+    }
     if (ADIF) {
         ADIF = 0;
         unsigned int current = ((ADRESH) << 8 | (ADRESL));
@@ -220,13 +183,13 @@ void interrupt isr(void) {
             case 0b00100100: // STATE4: Maser Read, Last Byte = Data
                 // output
                 switch (command) {
-                    case 0x06: // read humidity
-                        rx_buffer[0] = dht22_bits[1];
-                        rx_buffer[1] = dht22_bits[0];
+                    case 0x06: // read instant values
+                        rx_buffer[0] = sensor_values[1];
+                        rx_buffer[1] = sensor_values[0];
                         break;
-                    case 0x07: // // read temperature
-                        rx_buffer[0] = dht22_bits[3];
-                        rx_buffer[1] = dht22_bits[2];
+                    case 0x07: // // read average values
+                        rx_buffer[0] = sensor_values_averages[1];
+                        rx_buffer[1] = sensor_values_averages[0];
                         break;
                     case 0x08: // // read pulses from flow meter
                         rx_buffer[0] = pulse_rates[1];

@@ -27,7 +27,7 @@ unsigned int _bl_flash_memory_read(unsigned int address) {
     RD = 1;
     asm("NOP");
     asm("NOP");
-    return ( (EEDATL) << 8 | (EEDATH));
+    return (((unsigned int)EEDATL) << 8) | ((unsigned int)EEDATH);
 }
 //****************************************************************
 //  FLASH MEMORY WRITE
