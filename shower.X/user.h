@@ -8,9 +8,7 @@ extern unsigned char notify_state;
 
 extern const unsigned char crc8_table[];
 extern int steps;
-extern unsigned char sensor_average_every;
 extern unsigned int sensor_values[2];
-extern unsigned int sensor_values_averages[2];
 extern unsigned char pulses[4];
 extern unsigned char pulse_rates[4];
 extern unsigned long switch_timeouts[4];
@@ -18,6 +16,14 @@ extern unsigned long pwm_timeout;
 extern unsigned short ticks;
 #define SWITCH_TIMEOUT 0x16000
 #define PWM_TIMEOUT 0x10000
+//#define UNITTEST
+extern unsigned char kp;
+extern unsigned char kd;
+extern unsigned char ki;
+extern unsigned char pid_enabled;
+extern unsigned int target;
+extern unsigned char last_ctrl;
+extern int last_error;
 
 void on(unsigned char sw);
 void off(unsigned char sw);

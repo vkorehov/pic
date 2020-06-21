@@ -15,7 +15,9 @@
 #include "user.h"          /* User funct/params, such as InitApp */
 unsigned char movement_on_dim;
 unsigned char movement_state;
+unsigned char kitchen_lights_state;
 
+unsigned char ra3;
 unsigned char ra4;
 unsigned char ra5;
 
@@ -77,6 +79,7 @@ void main(void) {
     ConfigureOscillator();
     movement_on_dim = 0xff;
     movement_state = 0;
+    kitchen_lights_state = 0;    
     shower_state = 0;
     shower_timeout = 0;
     shower_allow_on = 0;
@@ -94,7 +97,10 @@ void main(void) {
         } else {
             movement_state = 0;
         }
-#endif
+#endif        
+        if (PORTAbits.RA3) {
+            ra3++;
+        }        
         if (PORTAbits.RA4) {
             ra4++;
         }

@@ -37,17 +37,24 @@ inline unsigned int read_tmr1() {
 inline void ccv(void) {
         RA0 = 0;
         RA4 = 1;    
+        TRISAbits.TRISA0 = 0;
+        TRISAbits.TRISA4 = 0;        
 }
 inline void cv(void) {
         RA0 = 1;
-        RA4 = 0;        
+        RA4 = 0;
+        TRISAbits.TRISA0 = 0;
+        TRISAbits.TRISA4 = 0;                
 }
 inline void stop(void) {
         RA0 = 0;
         RA4 = 0;        
+        TRISAbits.TRISA0 = 1;
+        TRISAbits.TRISA4 = 1;                
 }
 
 static unsigned char ticker = 0;
+static unsigned int original_position = 0;
 
 void main(void)
 {
@@ -55,62 +62,41 @@ void main(void)
     /* Configure the oscillator for the device */
     ConfigureOscillator();
     ticker = 0;
-    
     /* Initialize I/O and Peripherals for application */
     InitApp();
     while(1)
     {
-        unsigned int tmr1 = read_tmr1();
-        if (next_position > position && position + tmr1 >= next_position) {
-            stop();
-            position += tmr1;
-            next_position = position;
+        if (command_position > 0) {
+            next_position = command_position;
             write_tmr1(0);
-            eeprom_write(0x00, position & 0xFF);
-            eeprom_write(0x01, (position >> 8) & 0xFF);    
-            last_dir = 0;
-        } else if (next_position < position && (tmr1 >= position || position - tmr1 <= next_position)) {
-            stop();
-            if(tmr1 >= position) {
-                position = 0;
+            original_position = position;
+            if (next_position > position) {
+                state = STATE_CCV;
+            } else if (next_position < position) {
+                state = STATE_CV;
             } else {
-                position -= tmr1;
+                state = STATE_IDLE;               
             }
-            next_position = position;
-            write_tmr1(0);
-            eeprom_write(0x00, position & 0xFF);
-            eeprom_write(0x01, (position >> 8) & 0xFF);
-            last_dir = 1;
-        } else if(next_position > position){
+            command_position = 0;
+        }
+        if (state == STATE_CCV) {
             ccv();
-        } else if(next_position < position){
-            cv();
-        } else if (tmr1 > 0) {
-            // inertia
-            if (last_dir == 0) {
-                position += tmr1;
-                next_position = position;
-                eeprom_write(0x00, position & 0xFF);
-                eeprom_write(0x01, (position >> 8) & 0xFF);                    
-            } else {
-                if(tmr1 > position) {
-                    position = 0;
-                } else {
-                    position -= tmr1;                    
-                }
-                next_position = position;
-                write_tmr1(0);                
-                eeprom_write(0x00, position & 0xFF);
-                eeprom_write(0x01, (position >> 8) & 0xFF);                             
-            }
-        } else if(tmr1 == 0) {
-            // idle
-            // update next_position here only
-            if(command_position != 0) {
-                next_position = command_position;
-                command_position = 0;
+            position = original_position + (read_tmr1() >> 4);
+            if (next_position <= position) {
+                stop();
+                next_position = position; // TODO: take into account inertia
+                state = STATE_IDLE;
             }
         }
+        if (state == STATE_CV) {
+            cv();
+            position = original_position - (read_tmr1() >> 4);
+            if (next_position >= position) {
+                stop();
+                next_position = position; // TODO: take into account inertia
+                state = STATE_IDLE;
+            }
+        }        
     }
 }
 

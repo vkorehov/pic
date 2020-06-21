@@ -8,12 +8,7 @@
 #include "system.h"
 #include "user.h"
 
-#define AVERAGE_SAMPLES_SHIFT 4
-#define AVERAGE_SAMPLES 16
-#define AVERAGE_SAMPLES_MINUS_ONE 15
-unsigned char sensor_average_every;
 unsigned int sensor_values[2];
-unsigned int sensor_values_averages[2];
 
 volatile unsigned char ENTER_BOOTLOADER __at(0x30); /* flag in order to enter bootloader */
 
@@ -81,13 +76,7 @@ void __interrupt () isr(void) {
                 break;
         }
         if (sensor < 2) {
-            sensor_values[sensor] = (sensor_values[sensor] * AVERAGE_SAMPLES_MINUS_ONE + current) >> AVERAGE_SAMPLES_SHIFT;
-        }
-        if (sensor_average_every++ > AVERAGE_SAMPLES_MINUS_ONE) {
-            sensor_average_every = 0;
-            for (int i = 0; i < 2; i++) {
-                sensor_values_averages[i] = (sensor_values_averages[i] * AVERAGE_SAMPLES_MINUS_ONE + sensor_values[i]) >> AVERAGE_SAMPLES_SHIFT;
-            }
+            sensor_values[sensor] = current;
         }
         // Re-Launch ADC
         ADCON0bits.GO = 1;        
@@ -215,6 +204,61 @@ void __interrupt () isr(void) {
                             break;
                     }
                 }
+                if (rx_index == 3) {
+                    // input
+                    switch (command) {                                            
+                        case 0x06:
+                            crc = crc8_table[crc ^ rx_buffer[1]];                            
+                            crc = crc8_table[crc ^ 0x06];
+                            crc = crc8_table[crc ^ I2C_MYADDR];                            
+                            if (crc == rx_buffer[2]) {
+                                kp = rx_buffer[1];
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;
+                        case 0x07:
+                            crc = crc8_table[crc ^ rx_buffer[1]];                            
+                            crc = crc8_table[crc ^ 0x07];
+                            crc = crc8_table[crc ^ I2C_MYADDR];                            
+                            if (crc == rx_buffer[2]) {
+                                kd = rx_buffer[1];
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;                            
+                        case 0x08:
+                            crc = crc8_table[crc ^ rx_buffer[1]];                            
+                            crc = crc8_table[crc ^ 0x08];
+                            crc = crc8_table[crc ^ I2C_MYADDR];                            
+                            if (crc == rx_buffer[2]) {
+                                ki = rx_buffer[1];
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;                                                        
+                        case 0x09:
+                            crc = crc8_table[crc ^ rx_buffer[1]];                            
+                            crc = crc8_table[crc ^ 0x09];
+                            crc = crc8_table[crc ^ I2C_MYADDR];                            
+                            if (crc == rx_buffer[2]) {
+                                target = rx_buffer[1] * 10;
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;                                                                                    
+                        case 0x10:
+                            crc = crc8_table[crc ^ rx_buffer[1]];                            
+                            crc = crc8_table[crc ^ 0x10];
+                            crc = crc8_table[crc ^ I2C_MYADDR];                            
+                            if (crc == rx_buffer[2]) {
+                                pid_enabled = rx_buffer[1];
+                            } else {
+                                ACKDT = 1;
+                            }
+                            break;                                                                                                                
+                    }
+                }
                 if (rx_index == 6) {
                     // input
                     switch (command) {
@@ -255,7 +299,7 @@ void __interrupt () isr(void) {
                         rx_buffer[1] = crc;
                         break;
                     case 0x08: // read command
-                        d = sensor_values_averages[1] & 0xff;
+                        d = last_error & 0xff;
                         crc = crc8_table[d];
                         crc = crc8_table[crc ^ 0x08];
                         crc = crc8_table[crc ^ I2C_MYADDR];
@@ -263,7 +307,7 @@ void __interrupt () isr(void) {
                         rx_buffer[1] = crc;
                         break;
                     case 0x09: // read command
-                        d = (sensor_values_averages[1] >> 8) & 0xff; 
+                        d = (last_error >> 8) & 0xff; 
                         crc = crc8_table[d];
                         crc = crc8_table[crc ^ 0x09];
                         crc = crc8_table[crc ^ I2C_MYADDR];
@@ -271,45 +315,52 @@ void __interrupt () isr(void) {
                         rx_buffer[1] = crc;
                         break;                                                
                     case 0x10: // read command
-                        crc = crc8_table[pulse_rates[0]];
+                        crc = crc8_table[last_ctrl];
                         crc = crc8_table[crc ^ 0x10];
+                        crc = crc8_table[crc ^ I2C_MYADDR];
+                        rx_buffer[0] = last_ctrl;
+                        rx_buffer[1] = crc;
+                        break;             
+                    case 0x11: // read command
+                        crc = crc8_table[pulse_rates[0]];
+                        crc = crc8_table[crc ^ 0x11];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = pulse_rates[0];
                         rx_buffer[1] = crc;
-                        break;                                                                        
-                    case 0x11: // read command
+                        break;                                                                                                                        
+                    case 0x12: // read command
                         crc = crc8_table[pulse_rates[1]];
-                        crc = crc8_table[crc ^ 0x11];
+                        crc = crc8_table[crc ^ 0x12];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = pulse_rates[1];
                         rx_buffer[1] = crc;
                         break;                                                                                                
-                    case 0x12: // read command
+                    case 0x13: // read command
                         crc = crc8_table[pulse_rates[2]];
-                        crc = crc8_table[crc ^ 0x12];
+                        crc = crc8_table[crc ^ 0x13];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = pulse_rates[2];
                         rx_buffer[1] = crc;
                         break;                                                                                                                        
-                    case 0x13: // read command
+                    case 0x14: // read command
                         crc = crc8_table[pulse_rates[3]];
-                        crc = crc8_table[crc ^ 0x13];
+                        crc = crc8_table[crc ^ 0x14];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = pulse_rates[3];
                         rx_buffer[1] = crc;
                         break;                                                                                                                                                
-                    case 0x14: // read command
+                    case 0x15: // read command
                         d = (ticks >> 8) & 0xff;
                         crc = crc8_table[d];
-                        crc = crc8_table[crc ^ 0x14];
+                        crc = crc8_table[crc ^ 0x15];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = d;
                         rx_buffer[1] = crc;
                         break;                                                                                                                                                
-                    case 0x15: // read command
+                    case 0x16: // read command
                         d = ticks & 0xff;
                         crc = crc8_table[d];
-                        crc = crc8_table[crc ^ 0x15];
+                        crc = crc8_table[crc ^ 0x16];
                         crc = crc8_table[crc ^ I2C_MYADDR];
                         rx_buffer[0] = d;
                         rx_buffer[1] = crc;

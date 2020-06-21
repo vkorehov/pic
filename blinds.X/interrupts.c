@@ -97,10 +97,9 @@ void __interrupt () isr(void) {
                             crc = crc8_table[crc ^ I2C_MYADDR];
                             if (crc == rx_buffer[2]) {
                                 position = next_position = (unsigned int)rx_buffer[1];
-                                TMR1H = 0;
-                                TMR1L = 0;
+                                write_tmr1(0);
                                 eeprom_write(0x00, position & 0xFF);
-                                eeprom_write(0x01, (position >> 8) & 0xFF);    
+                                eeprom_write(0x01, (position >> 8) & 0xFF);
                             } else {
                                 ACKDT = 1;
                             }

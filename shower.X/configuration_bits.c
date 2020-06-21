@@ -2,7 +2,10 @@
 /* Main Files to Include                                                      */
 /******************************************************************************/
 #include <xc.h>         /* XC8 General Include File */
-
+#include "user.h"
+#ifdef UNITTEST
+#pragma config WDTE=OFF
+#endif
 /******************************************************************************/
 /* Configuration Bits                                                         */
 /*                                                                            */

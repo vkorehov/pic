@@ -51,11 +51,11 @@ void InitApp(void)
     TMR1GE = 0;
     TMR1L = 0;
     TMR1H = 0;
-    //position = ((unsigned int)eeprom_read(0x01) << 8) | (unsigned int)eeprom_read(0x00);
-    //if(position == 0xFFFF) {// flash not initialied
-//        position = 0;
-    //}
-    next_position = position = 64;
+    next_position = position = ((unsigned int)eeprom_read(0x01) << 8) | (unsigned int)eeprom_read(0x00);
+    if(position == 0xFFFF) {// flash not initialied
+        next_position = position = 128;
+    }
+    //next_position = position = 128;
     command_position = 0;
     
     TMR1ON = 1;

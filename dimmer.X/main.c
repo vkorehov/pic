@@ -26,9 +26,6 @@ unsigned char state; // 0 = Peak Detected
                     // 2 = Zero Crossing2
 unsigned char dim; // Dim level 0xff fully on 0x00 fully off
 
-inline unsigned int read_tmr1() {
-  return ( (TMR1H) << 8 | (TMR1L));
-}
 inline void write_tmr1(unsigned int v) {
     TMR1L = ((v)&0xff);
     TMR1H = ((v) >> 8);

@@ -2,7 +2,7 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x0a                    // This device I2C address
+#define I2C_MYADDR 0x11                    // This device I2C address
 // pickit serial communication states
 #define I2C_NO_TRANSACTION					0
 #define I2C_SLAVE_ADDRESS_RECEIVED			1
@@ -25,3 +25,4 @@ void InitApp(void);         /* I/O and Peripheral Initialization */
 
 inline unsigned int read_tmr1();
 inline void write_tmr1(unsigned int v);
+extern const unsigned char crc8_table[];

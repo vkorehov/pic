@@ -2,7 +2,7 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 
-#define I2C_MYADDR 0x47                   // This device I2C address
+#define I2C_MYADDR 0x37                   // This device I2C address
 //#define SHOWER_ENABLED
 #define SHOWER_TIMEOUT 100
 
