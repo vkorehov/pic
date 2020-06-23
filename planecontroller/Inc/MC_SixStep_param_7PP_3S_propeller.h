@@ -112,15 +112,15 @@
 #define LF_TIMX_ARR_GUARD_TIME_CYC       ((LF_TIMX_ARR_GUARD_TIME_NS/LF_COUNTER_CYCLE_TIME_NS)+1)
 
 /*!< ********************* Open loop control *********************************/
-#define ACC                              50000     /*! RPM/s < Mechanical acceleration rate (setting available in manual mode, LOAD_TYPE = 0) Mechanical acceleration rate. This digital */
+#define ACC                             100000     /*! RPM/s < Mechanical acceleration rate (setting available in manual mode, LOAD_TYPE = 0) Mechanical acceleration rate. This digital */
 #define MINIMUM_ACC                        500     /*!< Mechanical acceleration rate for BIG load application */
-#define NUMBER_OF_STEPS                    1000     /*!< Number of elements for motor start-UP (max value 65535)*/
+#define NUMBER_OF_STEPS                   1250     /*!< Number of elements for motor start-UP (max value 65535)*/
 #define TIME_FOR_ALIGN                    200     /*!< Time for alignment (msec)*/
 #define BUTTON_DELAY                      1000     /*!< Delay time to enable push button for new command (1 = 1msec)*/
 
 /*!< ********************* Closed Loop control *******************************/
 /*!< Zero Crossing parameters */
-#define ZCD_TO_COMM                       200    /*!< Zero Crossing detection to commutation delay in 15/128 degrees */
+#define ZCD_TO_COMM                       185    /*!< Zero Crossing detection to commutation delay in 15/128 degrees */
 #define MIN_ZCD_TO_COMM                       (20)
 #define VARIABLE_ADVANCE_MUL                  (9)
 #define VARIABLE_ADVANCE_SHIFT                (10)
@@ -134,9 +134,9 @@
 #define PWM_EDGE_TO_ZC_READ_EXTRA_DELAY_NS  (0)  /*!< Additional delay between the gate driver PWM edge and the Zero Crossing reading in ns */
 #define PWM_EDGE_TO_ZC_READ_EXTRA_DELAY_CYC (PWM_EDGE_TO_ZC_READ_EXTRA_DELAY_NS/ZC_COUNTER_CYCLE_TIME_NS) /*!< Additional delay between the gate driver PWM edge and the Zero Crossing reading in ZC counter cycles */
 #define HF_COUNTER_CYCLE_TIME_NS            ((1000000000/(SYSCLOCK_FREQUENCY))*(HF_TIMX_PSC+1))
-#define ZC_READ_TO_PWM_EDGE_PRE_GUARD_TIME_NS   (1500)//(500)
+#define ZC_READ_TO_PWM_EDGE_PRE_GUARD_TIME_NS   (100)//(500)
 #define ZC_READ_TO_PWM_EDGE_PRE_GUARD_TIME_CYC  (ZC_READ_TO_PWM_EDGE_PRE_GUARD_TIME_NS/HF_COUNTER_CYCLE_TIME_NS)
-#define ZC_READ_TO_PWM_EDGE_POST_GUARD_TIME_NS   (2000) // (1000)
+#define ZC_READ_TO_PWM_EDGE_POST_GUARD_TIME_NS   (200) // (1000)
 #define ZC_READ_TO_PWM_EDGE_POST_GUARD_TIME_CYC  (ZC_READ_TO_PWM_EDGE_POST_GUARD_TIME_NS/HF_COUNTER_CYCLE_TIME_NS)
 
 /*!< Speed parameters */

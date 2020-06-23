@@ -390,7 +390,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(BSP_OC_TH_STBY_PORT, &GPIO_InitStruct);
   
   /*Set the overcurrent threshold */
-  STSPIN32F0MotorDriver.Overcurrent_Threshold_Setvalue(BSP_OC_TH_250mV);
+  STSPIN32F0MotorDriver.Overcurrent_Threshold_Setvalue(BSP_OC_TH_100mV);
   
   /*Configure the overcurrent selection GPIO pin  */
   GPIO_InitStruct.Pin = BSP_OC_SEL_PIN;
