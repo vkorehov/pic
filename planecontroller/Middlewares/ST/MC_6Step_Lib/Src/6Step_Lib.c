@@ -69,6 +69,10 @@ The main function are the following:
   * @{ 
   */
 
+uint8_t debugTxBuffer[50];
+uint8_t readTxBuffer[50];
+extern UART_HandleTypeDef huart;
+
 /* Data struct ---------------------------------------------------------------*/
 SIXSTEP_Base_InitTypeDef SIXSTEP_parameters;            /*!< Main SixStep structure*/ 
 SIXSTEP_PI_PARAM_InitTypeDef_t PI_parameters;           /*!< SixStep PI regulator structure*/
@@ -1036,6 +1040,11 @@ void MC_SixStep_Prepare_NEXT_step(void)
 void MC_SixStep_NEXT_step(void)
 {
   ARR_LF = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+  //
+  //uint32_t a = ARR_LF;
+  //sprintf((char *)readTxBuffer, ">>RARR: %ud\r\n >", a);
+  //HAL_UART_Transmit(&huart, (uint8_t *)readTxBuffer, (strlen((char *)readTxBuffer)),5000);            
+  //
   if (stepPrepared==0)
   {
     MC_SixStep_Prepare_NEXT_step();
@@ -1238,6 +1247,10 @@ void MC_SixStep_NEXT_step(void)
     else
     {
       LF_TIMx.Instance->ARR = 0xFFFF;
+      //
+      //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+      //sprintf((char *)debugTxBuffer, ">>ARR STALL: %ud\r\n >", a);
+      //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);                  
     }
   }   
 #endif
@@ -1558,10 +1571,16 @@ void MC_SixStep_RESET()
   SIXSTEP_parameters.run_attempts = SIXSTEP_parameters.start_attempts;
   SIXSTEP_parameters.start_cnt = NUMBER_OF_STEPS;
 #endif
+
   
   LF_TIMx.Instance->ARR = LF_TIMx.Init.Period;
   SIXSTEP_parameters.LF_TIMx_ARR = LF_TIMx.Init.Period;
 
+  //
+  //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+  //sprintf((char *)debugTxBuffer, ">>MC RESET: %ud\r\n >", a);
+  //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);                  
+  
 #if defined(HALL_SENSORS)  
   __HAL_TIM_SET_COMPARE(&LF_TIMx,BSP_BOARD_LF_TIMx_TRGO_CHANNEL,LF_TIMX_ARR);
 #endif
@@ -1858,6 +1877,11 @@ void MC_SixStep_ARR_step()
         if(index_ARR_step < SIXSTEP_parameters.numberofitemArr)
         {
           LF_TIMx.Instance->ARR = SIXSTEP_parameters.LF_TIMx_ARR;
+          //
+          //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+          //sprintf((char *)debugTxBuffer, ">>ARR STEP: %ud\r\n >", a);
+          //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);                  
+          //          
           index_ARR_step++;
         } 
         else if(SIXSTEP_parameters.ARR_OK == 0)
@@ -1891,6 +1915,11 @@ void MC_SixStep_ARR_step()
         if(index_ARR_step < SIXSTEP_parameters.numberofitemArr)
         {
           LF_TIMx.Instance->ARR = SIXSTEP_parameters.LF_TIMx_ARR;
+          //
+          //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+          //sprintf((char *)debugTxBuffer, ">>ARR STEP: %ud\r\n >", a);
+          //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);
+          //
           index_ARR_step++;
         } 
         else if(SIXSTEP_parameters.ARR_OK==0)
@@ -3775,13 +3804,13 @@ void MC_Zero_Crossing_Read(void)
     case 1:
     {    
       zc = LL_GPIO_IsInputPinSet(BSP_BOARD_ZCW_PORT, BSP_BOARD_ZCW_PIN);
-#if (GPIO_ZERO_CROSS!=0)
-      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);
-#endif      
       if (zcn!=0)
       {
         if ((zc!=0)&&(zcwLh[zcwIndexLh]==0))
         {
+#if (GPIO_ZERO_CROSS!=0)
+      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);
+#endif                  
           { 
             zcdTime = LL_TIM_GetCounter(LF_TIMx.Instance);
 #if defined(COMM_TIME_AVG)
@@ -3793,6 +3822,10 @@ void MC_Zero_Crossing_Read(void)
 #endif
             SIXSTEP_parameters.prev_step_pos = SIXSTEP_parameters.step_position;
             LL_TIM_SetAutoReload(LF_TIMx.Instance,commTime);
+            //
+            //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+            //sprintf((char *)debugTxBuffer, ">>1ARR: %ud\r\n >", a);
+            //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);
           }
           MC_SixStep_Prepare_NEXT_step();
         }     
@@ -3806,13 +3839,13 @@ void MC_Zero_Crossing_Read(void)
     case 2:
     {
       zc = LL_GPIO_IsInputPinSet(BSP_BOARD_ZCV_PORT, BSP_BOARD_ZCV_PIN);
-#if (GPIO_ZERO_CROSS!=0)
-      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
-#endif   
       if (zcn!=0)
       {
         if ((zc==0)&&(zcvHl[zcvIndexHl]!=0))
-          { 
+          {
+#if (GPIO_ZERO_CROSS!=0)
+      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
+#endif               
           { 
             zcdTime = LL_TIM_GetCounter(LF_TIMx.Instance);
 #if defined(COMM_TIME_AVG)
@@ -3824,6 +3857,10 @@ void MC_Zero_Crossing_Read(void)
 #endif
             SIXSTEP_parameters.prev_step_pos = SIXSTEP_parameters.step_position;
             LL_TIM_SetAutoReload(LF_TIMx.Instance,commTime);      
+            //
+            //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+            //sprintf((char *)debugTxBuffer, ">>2ARR: %ud\r\n >", a);
+            //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);
           }
           MC_SixStep_Prepare_NEXT_step();
           SIXSTEP_parameters.BEMF_Tdown_count = 0;
@@ -3838,13 +3875,13 @@ void MC_Zero_Crossing_Read(void)
     case 3:
     {
       zc = LL_GPIO_IsInputPinSet(BSP_BOARD_ZCU_PORT, BSP_BOARD_ZCU_PIN);
-#if (GPIO_ZERO_CROSS!=0)
-      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
-#endif   
       if (zcn!=0)
       {
         if ((zc!=0)&&(zcuLh[zcuIndexLh]==0))
           { 
+#if (GPIO_ZERO_CROSS!=0)
+      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
+#endif               
           { 
             zcdTime = LL_TIM_GetCounter(LF_TIMx.Instance);
 #if defined(COMM_TIME_AVG)
@@ -3856,6 +3893,10 @@ void MC_Zero_Crossing_Read(void)
 #endif
             SIXSTEP_parameters.prev_step_pos = SIXSTEP_parameters.step_position;
             LL_TIM_SetAutoReload(LF_TIMx.Instance,commTime);
+            //
+            //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+            //sprintf((char *)debugTxBuffer, ">>3ARR: %ud\r\n >", a);
+            //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);            
           }
           MC_SixStep_Prepare_NEXT_step();
         }
@@ -3870,13 +3911,13 @@ void MC_Zero_Crossing_Read(void)
     case 4:
     {
       zc = LL_GPIO_IsInputPinSet(BSP_BOARD_ZCW_PORT, BSP_BOARD_ZCW_PIN);
-#if (GPIO_ZERO_CROSS!=0)
-      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
-#endif   
       if (zcn!=0)
       {
         if ((zc==0)&&(zcwHl[zcwIndexHl]!=0))
           { 
+#if (GPIO_ZERO_CROSS!=0)
+      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
+#endif               
           { 
             zcdTime = LL_TIM_GetCounter(LF_TIMx.Instance);
 #if defined(COMM_TIME_AVG)
@@ -3888,6 +3929,10 @@ void MC_Zero_Crossing_Read(void)
 #endif
             SIXSTEP_parameters.prev_step_pos = SIXSTEP_parameters.step_position;
             LL_TIM_SetAutoReload(LF_TIMx.Instance,commTime);
+            //
+            //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+            //sprintf((char *)debugTxBuffer, ">>4ARR: %ud\r\n >", a);
+            //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);            
           }
           MC_SixStep_Prepare_NEXT_step();
           SIXSTEP_parameters.BEMF_Tdown_count = 0;
@@ -3902,13 +3947,13 @@ void MC_Zero_Crossing_Read(void)
     case 5:
     {
       zc = LL_GPIO_IsInputPinSet(BSP_BOARD_ZCV_PORT, BSP_BOARD_ZCV_PIN);
-#if (GPIO_ZERO_CROSS!=0)
-      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
-#endif   
       if (zcn!=0)
       {      
         if ((zc!=0)&&(zcvLh[zcvIndexLh]==0))
           { 
+#if (GPIO_ZERO_CROSS!=0)
+      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
+#endif               
           { 
             zcdTime = LL_TIM_GetCounter(LF_TIMx.Instance);
 #if defined(COMM_TIME_AVG)
@@ -3920,6 +3965,10 @@ void MC_Zero_Crossing_Read(void)
 #endif
             SIXSTEP_parameters.prev_step_pos = SIXSTEP_parameters.step_position;
             LL_TIM_SetAutoReload(LF_TIMx.Instance,commTime);
+            //
+            //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+            //sprintf((char *)debugTxBuffer, ">>5ARR: %ud\r\n >", a);
+            //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);            
           }
           MC_SixStep_Prepare_NEXT_step();
         }     
@@ -3933,13 +3982,13 @@ void MC_Zero_Crossing_Read(void)
     case 6:
     {
       zc = LL_GPIO_IsInputPinSet(BSP_BOARD_ZCU_PORT, BSP_BOARD_ZCU_PIN);
-#if (GPIO_ZERO_CROSS!=0)
-      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
-#endif   
       if (zcn!=0)
       {
         if ((zc==0)&&(zcuHl[zcuIndexHl]!=0))
           { 
+#if (GPIO_ZERO_CROSS!=0)
+      HAL_GPIO_TogglePin(GPIO_PORT_ZCR,GPIO_CH_ZCR);         
+#endif               
           { 
             zcdTime = LL_TIM_GetCounter(LF_TIMx.Instance);
 #if defined(COMM_TIME_AVG)
@@ -3951,6 +4000,10 @@ void MC_Zero_Crossing_Read(void)
 #endif
             SIXSTEP_parameters.prev_step_pos = SIXSTEP_parameters.step_position;
             LL_TIM_SetAutoReload(LF_TIMx.Instance,commTime);
+            //
+            //uint32_t a = __HAL_TIM_GET_AUTORELOAD(&LF_TIMx);
+            //sprintf((char *)debugTxBuffer, ">>6ARR: %ud\r\n >", a);
+            //HAL_UART_Transmit(&huart, (uint8_t *)debugTxBuffer, (strlen((char *)debugTxBuffer)),5000);            
           }
           MC_SixStep_Prepare_NEXT_step();
           SIXSTEP_parameters.BEMF_Tdown_count = 0;

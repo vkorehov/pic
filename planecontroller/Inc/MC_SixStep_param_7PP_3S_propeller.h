@@ -56,13 +56,14 @@
            ###### BASIC PARAMETERS ######
  ============================================================================== 
 **************************************************************************** */   
-#define NUM_POLE_PAIRS                       7      /*!< Number of Motor Pole pairs */
+#define NUM_POLE_PAIRS                       9      /*!< Number of Motor Pole pairs */
 #define DIRECTION                            0      /*!< Set motor direction CW = 0 and CCW = 1*/
-#define TARGET_SPEED_OPEN_LOOP            2000      /*!< Target speed in open loop control */
-#define TARGET_SPEED                     20000      /*!< Target speed in closed loop control */
+#define TARGET_SPEED_OPEN_LOOP            1000      /*!< Target speed in open loop control */
+#define TARGET_SPEED                      2000      /*!< Target speed in closed loop control */
 
-#define MIN_SPEED                         3000
+#define MIN_SPEED                         1000
 #define MAX_SPEED                        20000      /*!< Motor rated max speed */
+
 
 /* **************************************************************************** 
  ==============================================================================   
@@ -70,10 +71,11 @@
  ============================================================================== 
 **************************************************************************** */
 /*!< ********************* Open loop control *********************************/
+//#define STARTUP_DUTY_CYCLE                 200     /*!< Tenths of percentage of PWM on time */
 #if defined(FAST_DEMAG)
-  #define STARTUP_DUTY_CYCLE                   50  /*!< Tenths of percentage of PWM on time */
+  #define STARTUP_DUTY_CYCLE                   120  /*!< Tenths of percentage of PWM on time */
 #else
-  #define STARTUP_DUTY_CYCLE                   70  /*!< Tenths of percentage of PWM on time */
+  #define STARTUP_DUTY_CYCLE                   120  /*!< Tenths of percentage of PWM on time */
 #endif
 
 /*!< ********************* Closed Loop control *********************************/
@@ -103,16 +105,16 @@
 #define PULSE               ((4*HF_TIMX_ARR)/5)
 
 /*!< ********************* Step timer ****************************************/
-#define LF_TIMX_PSC                      11
-#define LF_TIMX_ARR                      65535
+#define LF_TIMX_PSC                      121
+#define LF_TIMX_ARR                      24000
 #define LF_COUNTER_CYCLE_TIME_NS         ((1000000000/(SYSCLOCK_FREQUENCY))*(LF_TIMX_PSC+1))
 #define LF_TIMX_ARR_GUARD_TIME_NS        (700)
 #define LF_TIMX_ARR_GUARD_TIME_CYC       ((LF_TIMX_ARR_GUARD_TIME_NS/LF_COUNTER_CYCLE_TIME_NS)+1)
 
 /*!< ********************* Open loop control *********************************/
-#define ACC                              70000     /*!< Mechanical acceleration rate (setting available in manual mode, LOAD_TYPE = 0) */
+#define ACC                              50000     /*! RPM/s < Mechanical acceleration rate (setting available in manual mode, LOAD_TYPE = 0) Mechanical acceleration rate. This digital */
 #define MINIMUM_ACC                        500     /*!< Mechanical acceleration rate for BIG load application */
-#define NUMBER_OF_STEPS                  10000     /*!< Number of elements for motor start-UP (max value 65535)*/
+#define NUMBER_OF_STEPS                    1000     /*!< Number of elements for motor start-UP (max value 65535)*/
 #define TIME_FOR_ALIGN                    200     /*!< Time for alignment (msec)*/
 #define BUTTON_DELAY                      1000     /*!< Delay time to enable push button for new command (1 = 1msec)*/
 
@@ -138,7 +140,7 @@
 #define ZC_READ_TO_PWM_EDGE_POST_GUARD_TIME_CYC  (ZC_READ_TO_PWM_EDGE_POST_GUARD_TIME_NS/HF_COUNTER_CYCLE_TIME_NS)
 
 /*!< Speed parameters */
-#define SPEED_LOOP_TIME                      1     /*!< Speed Loop time (1 = 1msec) */
+#define SPEED_LOOP_TIME                      4     /*!< (1 = 1msec) Time for new execution of speed loop */
 #define FILTER_DEEP_SHIFT                    4
 #define FILTER_DEEP     (1<<FILTER_DEEP_SHIFT)     /*!< Number of bits for digital filter */
 

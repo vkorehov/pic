@@ -73,7 +73,7 @@ extern UART_HandleTypeDef huart;
  **********************************************************/
 void BSP_BOARD_FAULT_LED_ON(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_FAULT_LED_PORT,BSP_BOARD_FAULT_LED_PIN,GPIO_PIN_RESET);
+//  HAL_GPIO_WritePin(BSP_BOARD_FAULT_LED_PORT,BSP_BOARD_FAULT_LED_PIN,GPIO_PIN_RESET);
 }
 
 /******************************************************//**
@@ -82,7 +82,7 @@ void BSP_BOARD_FAULT_LED_ON(void)
  **********************************************************/
 void BSP_BOARD_FAULT_LED_OFF(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_FAULT_LED_PORT,BSP_BOARD_FAULT_LED_PIN,GPIO_PIN_SET);
+//  HAL_GPIO_WritePin(BSP_BOARD_FAULT_LED_PORT,BSP_BOARD_FAULT_LED_PIN,GPIO_PIN_SET);
 }
 
 /******************************************************//**
@@ -91,7 +91,7 @@ void BSP_BOARD_FAULT_LED_OFF(void)
  **********************************************************/
 void BSP_BOARD_RGB1_LED_ON(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_RGB1_LED_PORT,BSP_BOARD_RGB1_LED_PIN,GPIO_PIN_RESET);
+//  HAL_GPIO_WritePin(BSP_BOARD_RGB1_LED_PORT,BSP_BOARD_RGB1_LED_PIN,GPIO_PIN_RESET);
 }
 
 /******************************************************//**
@@ -100,7 +100,7 @@ void BSP_BOARD_RGB1_LED_ON(void)
  **********************************************************/
 void BSP_BOARD_RGB1_LED_OFF(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_RGB1_LED_PORT,BSP_BOARD_RGB1_LED_PIN,GPIO_PIN_SET);
+//  HAL_GPIO_WritePin(BSP_BOARD_RGB1_LED_PORT,BSP_BOARD_RGB1_LED_PIN,GPIO_PIN_SET);
 }
 
 /******************************************************//**
@@ -109,7 +109,7 @@ void BSP_BOARD_RGB1_LED_OFF(void)
  **********************************************************/
 void BSP_BOARD_RGB1_LED_TOGGLE(void)
 {
-  HAL_GPIO_TogglePin(BSP_BOARD_RGB1_LED_PORT,BSP_BOARD_RGB1_LED_PIN);
+//  HAL_GPIO_TogglePin(BSP_BOARD_RGB1_LED_PORT,BSP_BOARD_RGB1_LED_PIN);
 }
 
 /******************************************************//**
@@ -118,7 +118,7 @@ void BSP_BOARD_RGB1_LED_TOGGLE(void)
  **********************************************************/
 void BSP_BOARD_RGB2_LED_ON(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_RGB2_LED_PORT,BSP_BOARD_RGB2_LED_PIN,GPIO_PIN_RESET);
+//  HAL_GPIO_WritePin(BSP_BOARD_RGB2_LED_PORT,BSP_BOARD_RGB2_LED_PIN,GPIO_PIN_RESET);
 }
 
 /******************************************************//**
@@ -127,7 +127,7 @@ void BSP_BOARD_RGB2_LED_ON(void)
  **********************************************************/
 void BSP_BOARD_RGB2_LED_OFF(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_RGB2_LED_PORT,BSP_BOARD_RGB2_LED_PIN,GPIO_PIN_SET);
+//  HAL_GPIO_WritePin(BSP_BOARD_RGB2_LED_PORT,BSP_BOARD_RGB2_LED_PIN,GPIO_PIN_SET);
 }
 
 /******************************************************//**
@@ -136,7 +136,7 @@ void BSP_BOARD_RGB2_LED_OFF(void)
  **********************************************************/
 void BSP_BOARD_RGB2_LED_TOGGLE(void)
 {
-  HAL_GPIO_TogglePin(BSP_BOARD_RGB2_LED_PORT,BSP_BOARD_RGB2_LED_PIN);
+//  HAL_GPIO_TogglePin(BSP_BOARD_RGB2_LED_PORT,BSP_BOARD_RGB2_LED_PIN);
 }
 
 /******************************************************//**
@@ -145,7 +145,7 @@ void BSP_BOARD_RGB2_LED_TOGGLE(void)
  **********************************************************/
 void BSP_BOARD_RGB3_LED_ON(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_RGB3_LED_PORT,BSP_BOARD_RGB3_LED_PIN,GPIO_PIN_RESET);
+//  HAL_GPIO_WritePin(BSP_BOARD_RGB3_LED_PORT,BSP_BOARD_RGB3_LED_PIN,GPIO_PIN_RESET);
 }
 
 /******************************************************//**
@@ -154,7 +154,7 @@ void BSP_BOARD_RGB3_LED_ON(void)
  **********************************************************/
 void BSP_BOARD_RGB3_LED_TOGGLE(void)
 {
-  HAL_GPIO_WritePin(BSP_BOARD_RGB3_LED_PORT,BSP_BOARD_RGB3_LED_PIN,GPIO_PIN_SET);
+//  HAL_GPIO_WritePin(BSP_BOARD_RGB3_LED_PORT,BSP_BOARD_RGB3_LED_PIN,GPIO_PIN_SET);
 }
 
 /******************************************************//**
@@ -163,7 +163,7 @@ void BSP_BOARD_RGB3_LED_TOGGLE(void)
  **********************************************************/
 void BSP_BOARD_RGB3_LED_OFF(void)
 {
-  HAL_GPIO_TogglePin(BSP_BOARD_RGB3_LED_PORT,BSP_BOARD_RGB3_LED_PIN);
+//  HAL_GPIO_TogglePin(BSP_BOARD_RGB3_LED_PORT,BSP_BOARD_RGB3_LED_PIN);
 }
 
 /******************************************************//**

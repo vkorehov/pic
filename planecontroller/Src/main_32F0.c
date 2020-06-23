@@ -47,6 +47,8 @@ extern TIM_HandleTypeDef ZC_TIMx;
 extern ADC_HandleTypeDef ADCx;
 extern UART_HandleTypeDef huart;
 
+uint8_t mainTxBuffer[50];
+
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
@@ -277,6 +279,7 @@ void MX_LF_TIMx_Init(void)
   TIM_ClockConfigTypeDef sClockSourceConfig;
   TIM_MasterConfigTypeDef sMasterConfig;  
   
+  
   LF_TIMx.Instance = BSP_BOARD_LF_TIMx;
   LF_TIMx.Init.Prescaler = LF_TIMX_PSC;
   LF_TIMx.Init.CounterMode = BSP_BOARD_LF_TIMx_COUNTER_MODE ;
@@ -284,6 +287,9 @@ void MX_LF_TIMx_Init(void)
   LF_TIMx.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;  
   if (HAL_TIM_Base_Init(&LF_TIMx) != HAL_OK) Error_Handler();
   
+  sprintf((char *)mainTxBuffer, ">>ARR Reset\r\n >");
+  HAL_UART_Transmit(&huart, (uint8_t *)mainTxBuffer, (strlen((char *)mainTxBuffer)),5000);            
+    
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&LF_TIMx, &sClockSourceConfig) != HAL_OK) Error_Handler(); 
   
@@ -358,22 +364,22 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   
   /*Configure the FAULT LED GPIO pin (RGB1 = RED) */
-  GPIO_InitStruct.Pin = BSP_BOARD_FAULT_LED_PIN;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(BSP_BOARD_FAULT_LED_PORT, &GPIO_InitStruct);
-  BSP_BOARD_FAULT_LED_OFF();
+//  GPIO_InitStruct.Pin = BSP_BOARD_FAULT_LED_PIN;
+//  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//  GPIO_InitStruct.Pull = GPIO_PULLUP;
+//  HAL_GPIO_Init(BSP_BOARD_FAULT_LED_PORT, &GPIO_InitStruct);
+//  BSP_BOARD_FAULT_LED_OFF();
  
    /*Configure the other LEDs (RGB2 = GREEN, RGB3 = BLUE) */
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Pin = BSP_BOARD_RGB2_LED_PIN;
-  HAL_GPIO_Init(BSP_BOARD_RGB2_LED_PORT, &GPIO_InitStruct);
-  BSP_BOARD_RGB2_LED_OFF();
+//  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//  GPIO_InitStruct.Pull = GPIO_PULLUP;
+//  GPIO_InitStruct.Pin = BSP_BOARD_RGB2_LED_PIN;
+//  HAL_GPIO_Init(BSP_BOARD_RGB2_LED_PORT, &GPIO_InitStruct);
+//  BSP_BOARD_RGB2_LED_OFF();
 
-  GPIO_InitStruct.Pin = BSP_BOARD_RGB3_LED_PIN;
-  HAL_GPIO_Init(BSP_BOARD_RGB3_LED_PORT, &GPIO_InitStruct);
-  BSP_BOARD_RGB3_LED_OFF();  
+//  GPIO_InitStruct.Pin = BSP_BOARD_RGB3_LED_PIN;
+//  HAL_GPIO_Init(BSP_BOARD_RGB3_LED_PORT, &GPIO_InitStruct);
+//  BSP_BOARD_RGB3_LED_OFF();  
 
   
   /*Configure overcurrent threshold GPIO pins */
@@ -384,7 +390,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(BSP_OC_TH_STBY_PORT, &GPIO_InitStruct);
   
   /*Set the overcurrent threshold */
-  STSPIN32F0MotorDriver.Overcurrent_Threshold_Setvalue(BSP_OC_TH_100mV);
+  STSPIN32F0MotorDriver.Overcurrent_Threshold_Setvalue(BSP_OC_TH_250mV);
   
   /*Configure the overcurrent selection GPIO pin  */
   GPIO_InitStruct.Pin = BSP_OC_SEL_PIN;

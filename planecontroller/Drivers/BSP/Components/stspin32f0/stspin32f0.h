@@ -143,7 +143,7 @@
 #define BSP_DMA_PRIORITY_SUB        (1)
 
 #define BSP_UART                    (USART1)
-#define BSP_UART_BAUD_RATE          (230400)
+#define BSP_UART_BAUD_RATE          (115200)
 #define BSP_UART_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOB_CLK_ENABLE()
 #define BSP_UART_CLK_ENABLE()       __HAL_RCC_USART1_CLK_ENABLE()
 #define BSP_UART_CLK_DISABLE()      __HAL_RCC_USART1_CLK_DISABLE()

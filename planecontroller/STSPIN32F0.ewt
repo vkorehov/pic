@@ -1402,6 +1402,9 @@
         <name>$PROJ_DIR$\Inc\main_32F0.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\Inc\MC_SixStep_param_2036_U_024_B_K312.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\Inc\MC_SixStep_param_32F0.h</name>
     </file>
     <file>
