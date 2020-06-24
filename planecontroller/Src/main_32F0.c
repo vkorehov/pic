@@ -47,8 +47,6 @@ extern TIM_HandleTypeDef ZC_TIMx;
 extern ADC_HandleTypeDef ADCx;
 extern UART_HandleTypeDef huart;
 
-uint8_t mainTxBuffer[50];
-
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
@@ -79,6 +77,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_SPI1_Init();
+  BPM280_Init();
 #if (defined(POTENTIOMETER)||defined(CURRENT_SENSE_ADC)||defined(VBUS_SENSE_ADC)||defined(TEMP_SENSE_ADC))
   MX_ADC_Init();
 #endif
@@ -103,6 +103,8 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
+    BPM280_Read_Pressure();
+    HAL_Delay(100);
 /*! **************************************************************************
   ==============================================================================   
             ###### How to use the 6Step FW Example project ######
@@ -286,10 +288,7 @@ void MX_LF_TIMx_Init(void)
   LF_TIMx.Init.Period = LF_TIMX_ARR;
   LF_TIMx.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;  
   if (HAL_TIM_Base_Init(&LF_TIMx) != HAL_OK) Error_Handler();
-  
-  sprintf((char *)mainTxBuffer, ">>ARR Reset\r\n >");
-  HAL_UART_Transmit(&huart, (uint8_t *)mainTxBuffer, (strlen((char *)mainTxBuffer)),5000);            
-    
+     
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&LF_TIMx, &sClockSourceConfig) != HAL_OK) Error_Handler(); 
   
@@ -433,6 +432,16 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIO_PORT_COMM, &GPIO_InitStruct);
 #endif
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PA4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  
 }
 
 /**

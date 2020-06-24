@@ -48,6 +48,11 @@
    
 /* Exported functions ------------------------------------------------------- */
 void Error_Handler(void);
+extern SPI_HandleTypeDef hspi1;
+uint32_t BPM280_Read_Pressure(void);
+uint32_t BPM280_Init(void);
+
+void MX_SPI1_Init(void);
 
 #ifdef __cplusplus
 }

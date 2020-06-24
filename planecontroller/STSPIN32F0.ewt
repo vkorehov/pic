@@ -1411,6 +1411,9 @@
         <name>$PROJ_DIR$\Inc\MC_SixStep_param_7PP_3S_propeller.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\Src\spi.c</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\Drivers\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f031x6.s</name>
     </file>
     <file>
