@@ -1,13 +1,14 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.30.1.114/W32 for ARM                  24/Jun/2020  20:58:02
+# IAR ELF Linker V8.30.1.114/W32 for ARM                  27/Jun/2020  20:03:52
 # Copyright 2007-2018 IAR Systems AB.
 #
 #    Output file  =  C:\pic\planecontroller\STSPIN32F0A_ESC\Exe\STSPIN32F0.out
 #    Map file     =  C:\pic\planecontroller\STSPIN32F0A_ESC\List\STSPIN32F0.map
 #    Command line =  
-#        -f C:\Users\VLADIS~1\AppData\Local\Temp\EWBF5A.tmp
+#        -f C:\Users\VLADIS~1\AppData\Local\Temp\EW1660.tmp
 #        (C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\6Step_Lib.o
+#        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\exti.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\main_32F0.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\spi.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\startup_stm32f031x6.o
@@ -24,6 +25,7 @@
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_dac.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_dac_ex.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_dma.o
+#        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_exti.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_flash.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_flash_ex.o
 #        C:\pic\planecontroller\STSPIN32F0A_ESC\Obj\stm32f0xx_hal_gpio.o
@@ -119,7 +121,7 @@ initialize by copy { rw };
   .intvec            ro code   0x800'0000    0xb0  startup_stm32f031x6.o [1]
                              - 0x800'00b0    0xb0
 
-"P1":                                      0x63a7
+"P1":                                      0x68d0
   .text              ro code   0x800'00b0  0x13a0  6Step_Lib.o [1]
   .text              ro code   0x800'1450    0x6c  STEVAL-ESC002V1.o [1]
   .text              ro code   0x800'14bc   0x6a4  stm32f0xx_hal_rcc.o [1]
@@ -147,70 +149,72 @@ initialize by copy { rw };
   .text              ro code   0x800'3f98    0x4c  strtok.o [2]
   .text              ro code   0x800'3fe4    0x98  strcmp.o [3]
   .text              ro code   0x800'407c   0x11c  stm32f0xx_hal_cortex.o [1]
-  .text              ro code   0x800'4198   0x22c  stm32f0xx_hal_gpio.o [1]
-  .text              ro code   0x800'43c4   0x210  stm32f0xx_hal_dma.o [1]
-  .text              ro code   0x800'45d4     0x2  stm32f0xx_hal_uart.o [1]
-  .text              ro code   0x800'45d6     0x2  stm32f0xx_hal_uart.o [1]
-  .text              ro code   0x800'45d8     0x2  stm32f0xx_hal_uart.o [1]
-  .text              ro code   0x800'45da    0x18  memchr.o [3]
-  .text              ro code   0x800'45f2   0x186  xprintftiny.o [2]
-  .text              ro code   0x800'4778    0x24  strspn.o [2]
-  .text              ro code   0x800'479c    0x24  strcspn.o [2]
-  .text              ro code   0x800'47c0    0x10  strlen.o [3]
-  .text              ro code   0x800'47d0   0x9b4  stm32f0xx_hal_spi.o [1]
-  .text              ro code   0x800'5184   0x564  spi.o [1]
-  .text              ro code   0x800'56e8   0x38c  main_32F0.o [1]
-  .text              ro code   0x800'5a74    0x32  ABImemset.o [3]
-  .rodata            const     0x800'5aa6     0x2  spi.o [1]
-  .text              ro code   0x800'5aa8    0x20  stm32f0xx_hal.o [1]
-  .text              ro code   0x800'5ac8    0x20  stm32f0xx_hal.o [1]
-  .rodata            const     0x800'5ae8   0x1b0  UART_UI.o [1]
-  .rodata            const     0x800'5c98   0x120  UART_UI.o [1]
-  .text              ro code   0x800'5db8   0x118  stspin32f0_it.o [1]
-  .text              ro code   0x800'5ed0   0x108  stm32f0xx_hal_adc.o [1]
-  .text              ro code   0x800'5fd8     0x2  stm32f0xx_hal_adc.o [1]
-  .text              ro code   0x800'5fda     0x2  stm32f0xx_hal_adc.o [1]
-  .text              ro code   0x800'5fdc    0x80  system_stm32f0xx.o [1]
-  .text              ro code   0x800'605c    0x3c  zero_init3.o [3]
-  .text              ro code   0x800'6098    0x28  data_init.o [3]
-  .iar.init_table    const     0x800'60c0    0x20  - Linker created -
-  .text              ro code   0x800'60e0    0x1e  cmain.o [3]
-  .text              ro code   0x800'60fe     0x4  low_level_init.o [2]
-  .text              ro code   0x800'6102     0x8  exit.o [2]
-  .text              ro code   0x800'610a     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'610c     0xa  cexit.o [3]
-  .text              ro code   0x800'6116     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'6118    0x14  exit.o [4]
-  .rodata            const     0x800'612c    0x1c  UART_UI.o [1]
-  .rodata            const     0x800'6148    0x18  UART_UI.o [1]
-  .rodata            const     0x800'6160    0x10  stm32f0xx_hal_rcc.o [1]
-  .rodata            const     0x800'6170    0x10  stm32f0xx_hal_rcc.o [1]
-  .rodata            const     0x800'6180    0x10  system_stm32f0xx.o [1]
-  .text              ro code   0x800'6190    0x10  startup_stm32f031x6.o [1]
-  .rodata            const     0x800'61a0     0xc  6Step_Lib.o [1]
-  .text              ro code   0x800'61ac     0xc  cstartup_M.o [3]
-  .rodata            const     0x800'61b8     0x8  system_stm32f0xx.o [1]
-  .text              ro code   0x800'61c0     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61c2     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61c4     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61c6     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61c8     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61ca     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61cc     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61ce     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61d0     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61d2     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61d4     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61d6     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61d8     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61da     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61dc     0x2  startup_stm32f031x6.o [1]
-  .text              ro code   0x800'61de     0x2  startup_stm32f031x6.o [1]
-  .rodata            const     0x800'61e0     0x1  spi.o [1]
-  .rodata            const     0x800'61e1     0x0  zero_init3.o [3]
-  .rodata            const     0x800'61e1     0x0  lz77_init_single.o [3]
-  Initializer bytes  const     0x800'61e1   0x276  <for P2-1>
-                             - 0x800'6457  0x63a7
+  .text              ro code   0x800'4198   0x248  stm32f0xx_hal_gpio.o [1]
+  .text              ro code   0x800'43e0   0x210  stm32f0xx_hal_dma.o [1]
+  .text              ro code   0x800'45f0     0x2  stm32f0xx_hal_uart.o [1]
+  .text              ro code   0x800'45f2     0x2  stm32f0xx_hal_uart.o [1]
+  .text              ro code   0x800'45f4     0x2  stm32f0xx_hal_uart.o [1]
+  .text              ro code   0x800'45f6    0x18  memchr.o [3]
+  .text              ro code   0x800'460e   0x186  xprintftiny.o [2]
+  .text              ro code   0x800'4794    0x24  strspn.o [2]
+  .text              ro code   0x800'47b8    0x24  strcspn.o [2]
+  .text              ro code   0x800'47dc    0x10  strlen.o [3]
+  .text              ro code   0x800'47ec   0x9b4  stm32f0xx_hal_spi.o [1]
+  .text              ro code   0x800'51a0   0x838  spi.o [1]
+  .text              ro code   0x800'59d8   0x390  main_32F0.o [1]
+  .text              ro code   0x800'5d68    0x32  ABImemset.o [3]
+  .rodata            const     0x800'5d9a     0x2  spi.o [1]
+  .text              ro code   0x800'5d9c    0x20  stm32f0xx_hal.o [1]
+  .text              ro code   0x800'5dbc    0x90  exti.o [1]
+  .text              ro code   0x800'5e4c    0x20  stm32f0xx_hal.o [1]
+  .text              ro code   0x800'5e6c   0x13c  stm32f0xx_hal_exti.o [1]
+  .rodata            const     0x800'5fa8   0x1b0  UART_UI.o [1]
+  .rodata            const     0x800'6158   0x120  UART_UI.o [1]
+  .text              ro code   0x800'6278   0x118  stspin32f0_it.o [1]
+  .text              ro code   0x800'6390   0x108  stm32f0xx_hal_adc.o [1]
+  .text              ro code   0x800'6498     0x2  stm32f0xx_hal_adc.o [1]
+  .text              ro code   0x800'649a     0x2  stm32f0xx_hal_adc.o [1]
+  .text              ro code   0x800'649c    0x80  system_stm32f0xx.o [1]
+  .rodata            const     0x800'651c    0x5c  spi.o [1]
+  .text              ro code   0x800'6578    0x3c  zero_init3.o [3]
+  .text              ro code   0x800'65b4    0x28  data_init.o [3]
+  .iar.init_table    const     0x800'65dc    0x20  - Linker created -
+  .text              ro code   0x800'65fc    0x1e  cmain.o [3]
+  .text              ro code   0x800'661a     0x4  low_level_init.o [2]
+  .text              ro code   0x800'661e     0x8  exit.o [2]
+  .text              ro code   0x800'6626     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6628     0xa  cexit.o [3]
+  .text              ro code   0x800'6632     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6634    0x14  exit.o [4]
+  .rodata            const     0x800'6648    0x1c  UART_UI.o [1]
+  .rodata            const     0x800'6664    0x18  UART_UI.o [1]
+  .rodata            const     0x800'667c    0x10  spi.o [1]
+  .rodata            const     0x800'668c    0x10  stm32f0xx_hal_rcc.o [1]
+  .rodata            const     0x800'669c    0x10  stm32f0xx_hal_rcc.o [1]
+  .rodata            const     0x800'66ac    0x10  system_stm32f0xx.o [1]
+  .text              ro code   0x800'66bc    0x10  startup_stm32f031x6.o [1]
+  .rodata            const     0x800'66cc     0xc  6Step_Lib.o [1]
+  .text              ro code   0x800'66d8     0xc  cstartup_M.o [3]
+  .rodata            const     0x800'66e4     0x8  system_stm32f0xx.o [1]
+  .text              ro code   0x800'66ec     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66ee     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66f0     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66f2     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66f4     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66f6     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66f8     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66fa     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66fc     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'66fe     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6700     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6702     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6704     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6706     0x2  startup_stm32f031x6.o [1]
+  .text              ro code   0x800'6708     0x2  startup_stm32f031x6.o [1]
+  .rodata            const     0x800'670a     0x0  zero_init3.o [3]
+  .rodata            const     0x800'670a     0x0  lz77_init_single.o [3]
+  Initializer bytes  const     0x800'670a   0x276  <for P2-1>
+                             - 0x800'6980  0x68d0
 
 "P2", part 1 of 3:                          0x3aa
   P2-1                        0x2000'0000   0x3aa  <Init block>
@@ -251,7 +255,7 @@ initialize by copy { rw };
     .data            inited   0x2000'03a9     0x1  UART_UI.o [1]
                             - 0x2000'03aa   0x3aa
 
-"P2", part 2 of 3:                          0x45c
+"P2", part 2 of 3:                          0x498
   .bss               zero     0x2000'03ac    0x80  6Step_Lib.o [1]
   .bss               zero     0x2000'042c    0x70  stspin32f0.o [1]
   .bss               zero     0x2000'049c    0x64  spi.o [1]
@@ -262,90 +266,93 @@ initialize by copy { rw };
   .bss               zero     0x2000'0610    0x40  stspin32f0.o [1]
   .bss               zero     0x2000'0650    0x40  stspin32f0.o [1]
   .bss               zero     0x2000'0690    0x40  stspin32f0.o [1]
-  .bss               zero     0x2000'06d0    0x34  UART_UI.o [1]
-  .bss               zero     0x2000'0704    0x18  UART_UI.o [1]
-  .bss               zero     0x2000'071c    0x10  6Step_Lib.o [1]
-  .bss               zero     0x2000'072c     0x8  6Step_Lib.o [1]
-  .bss               zero     0x2000'0734     0x8  6Step_Lib.o [1]
-  .bss               zero     0x2000'073c     0x8  6Step_Lib.o [1]
-  .bss               zero     0x2000'0744     0x8  6Step_Lib.o [1]
-  .bss               zero     0x2000'074c     0x8  6Step_Lib.o [1]
-  .bss               zero     0x2000'0754     0x8  6Step_Lib.o [1]
+  .bss               zero     0x2000'06d0    0x34  spi.o [1]
+  .bss               zero     0x2000'0704    0x34  UART_UI.o [1]
+  .bss               zero     0x2000'0738    0x18  UART_UI.o [1]
+  .bss               zero     0x2000'0750    0x10  6Step_Lib.o [1]
   .bss               zero     0x2000'0760     0x8  6Step_Lib.o [1]
-  .bss               zero     0x2000'0768     0x8  UART_UI.o [1]
-  .bss               zero     0x2000'0770     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0774     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0778     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'077c     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0780     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0784     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0788     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'078c     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'0768     0x8  6Step_Lib.o [1]
+  .bss               zero     0x2000'0770     0x8  6Step_Lib.o [1]
+  .bss               zero     0x2000'0778     0x8  6Step_Lib.o [1]
+  .bss               zero     0x2000'0780     0x8  6Step_Lib.o [1]
+  .bss               zero     0x2000'0788     0x8  6Step_Lib.o [1]
   .bss               zero     0x2000'0790     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0794     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'0798     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'079c     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'07a0     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'07a4     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'07a8     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'07ac     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'0798     0x8  6Step_Lib.o [1]
+  .bss               zero     0x2000'07a0     0x8  exti.o [1]
+  .bss               zero     0x2000'07a8     0x8  UART_UI.o [1]
   .bss               zero     0x2000'07b0     0x4  6Step_Lib.o [1]
   .bss               zero     0x2000'07b4     0x4  6Step_Lib.o [1]
   .bss               zero     0x2000'07b8     0x4  6Step_Lib.o [1]
-  .bss               zero     0x2000'07bc     0x4  strtok.o [2]
-  .bss               zero     0x2000'07c0     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07c2     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07c4     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07c6     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07c8     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07ca     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07cc     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07ce     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07d0     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07d2     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07d4     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07d6     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07d8     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07da     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07dc     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07de     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07e0     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07e2     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07e4     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07e6     0x2  6Step_Lib.o [1]
-  .bss               zero     0x2000'07e8     0x2  spi.o [1]
-  .bss               zero     0x2000'07ea     0x2  spi.o [1]
-  .bss               zero     0x2000'07ec     0x2  spi.o [1]
-  .bss               zero     0x2000'07ee     0x2  spi.o [1]
-  .bss               zero     0x2000'07f0     0x2  spi.o [1]
-  .bss               zero     0x2000'07f2     0x2  spi.o [1]
-  .bss               zero     0x2000'07f4     0x2  spi.o [1]
-  .bss               zero     0x2000'07f6     0x2  spi.o [1]
-  .bss               zero     0x2000'07f8     0x2  spi.o [1]
-  .bss               zero     0x2000'07fa     0x2  spi.o [1]
-  .bss               zero     0x2000'07fc     0x2  spi.o [1]
-  .bss               zero     0x2000'07fe     0x2  spi.o [1]
-  .bss               zero     0x2000'0800     0x2  UART_UI.o [1]
-  .bss               zero     0x2000'0802     0x1  6Step_Lib.o [1]
-  .bss               zero     0x2000'0803     0x1  6Step_Lib.o [1]
-  .bss               zero     0x2000'0804     0x1  6Step_Lib.o [1]
-  .bss               zero     0x2000'0805     0x1  6Step_Lib.o [1]
-  .bss               zero     0x2000'0806     0x1  6Step_Lib.o [1]
-  .bss               zero     0x2000'0807     0x1  UART_UI.o [1]
-                            - 0x2000'0808   0x45c
+  .bss               zero     0x2000'07bc     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07c0     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07c4     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07c8     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07cc     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07d0     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07d4     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07d8     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07dc     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07e0     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07e4     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07e8     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07ec     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07f0     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07f4     0x4  6Step_Lib.o [1]
+  .bss               zero     0x2000'07f8     0x4  strtok.o [2]
+  .bss               zero     0x2000'07fc     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'07fe     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0800     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0802     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0804     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0806     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0808     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'080a     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'080c     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'080e     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0810     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0812     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0814     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0816     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0818     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'081a     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'081c     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'081e     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0820     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0822     0x2  6Step_Lib.o [1]
+  .bss               zero     0x2000'0824     0x2  spi.o [1]
+  .bss               zero     0x2000'0826     0x2  spi.o [1]
+  .bss               zero     0x2000'0828     0x2  spi.o [1]
+  .bss               zero     0x2000'082a     0x2  spi.o [1]
+  .bss               zero     0x2000'082c     0x2  spi.o [1]
+  .bss               zero     0x2000'082e     0x2  spi.o [1]
+  .bss               zero     0x2000'0830     0x2  spi.o [1]
+  .bss               zero     0x2000'0832     0x2  spi.o [1]
+  .bss               zero     0x2000'0834     0x2  spi.o [1]
+  .bss               zero     0x2000'0836     0x2  spi.o [1]
+  .bss               zero     0x2000'0838     0x2  spi.o [1]
+  .bss               zero     0x2000'083a     0x2  spi.o [1]
+  .bss               zero     0x2000'083c     0x2  UART_UI.o [1]
+  .bss               zero     0x2000'083e     0x1  6Step_Lib.o [1]
+  .bss               zero     0x2000'083f     0x1  6Step_Lib.o [1]
+  .bss               zero     0x2000'0840     0x1  6Step_Lib.o [1]
+  .bss               zero     0x2000'0841     0x1  6Step_Lib.o [1]
+  .bss               zero     0x2000'0842     0x1  6Step_Lib.o [1]
+  .bss               zero     0x2000'0843     0x1  UART_UI.o [1]
+                            - 0x2000'0844   0x498
 
 "P2", part 3 of 3:                          0x400
-  CSTACK                      0x2000'0808   0x400  <Block>
-    CSTACK           uninit   0x2000'0808   0x400  <Block tail>
-                            - 0x2000'0c08   0x400
+  CSTACK                      0x2000'0848   0x400  <Block>
+    CSTACK           uninit   0x2000'0848   0x400  <Block tail>
+                            - 0x2000'0c48   0x400
 
 Unused ranges:
 
          From           To    Size
          ----           --    ----
-   0x800'6457   0x800'7fff  0x1ba9
+   0x800'6980   0x800'7fff  0x1680
   0x2000'03aa  0x2000'03ab     0x2
-  0x2000'0c08  0x2000'0fff   0x3f8
+  0x2000'0844  0x2000'0847     0x4
+  0x2000'0c48  0x2000'0fff   0x3b8
 
 
 *******************************************************************************
@@ -355,12 +362,12 @@ Unused ranges:
           Address      Size
           -------      ----
 Zero (__iar_zero_init3)
-    1 destination range, total size 0x45c:
-          0x2000'03ac  0x45c
+    1 destination range, total size 0x498:
+          0x2000'03ac  0x498
 
 Copy/lz77 (__iar_lz77_init_single3)
     1 source range, total size 0x276 (67% of destination):
-           0x800'61e1  0x276
+           0x800'670a  0x276
     1 destination range, total size 0x3aa:
           0x2000'0000  0x3aa
 
@@ -380,14 +387,16 @@ C:\pic\planecontroller\STSPIN32F0A_ESC\Obj: [1]
     6Step_Lib.o               5 024       17      392
     STEVAL-ESC002V1.o           108
     UART_UI.o                 1 964    1 352      950
-    main_32F0.o                 908
-    spi.o                     1 380        3      124
-    startup_stm32f031x6.o       228
+    exti.o                      144                 8
+    main_32F0.o                 912
+    spi.o                     2 104      110      176
+    startup_stm32f031x6.o       226
     stm32f0xx_hal.o             100
     stm32f0xx_hal_adc.o         268
     stm32f0xx_hal_cortex.o      284
     stm32f0xx_hal_dma.o         528
-    stm32f0xx_hal_gpio.o        556
+    stm32f0xx_hal_exti.o        316
+    stm32f0xx_hal_gpio.o        584
     stm32f0xx_hal_rcc.o       1 700       32
     stm32f0xx_hal_spi.o       2 484
     stm32f0xx_hal_tim.o       2 492
@@ -398,7 +407,7 @@ C:\pic\planecontroller\STSPIN32F0A_ESC\Obj: [1]
     stspin32f0_it.o             280
     system_stm32f0xx.o          128       27        4
     -------------------------------------------------
-    Total:                   22 176    1 473    2 046
+    Total:                   23 390    1 580    2 106
 
 dl6M_tln.a: [2]
     exit.o                        8
@@ -440,7 +449,7 @@ shb_l.a: [4]
     Gaps                                            4
     Linker created                        32    1 024
 -----------------------------------------------------
-    Grand Total:             24 182    1 505    3 078
+    Grand Total:             25 396    1 612    3 138
 
 
 *******************************************************************************
@@ -449,17 +458,16 @@ shb_l.a: [4]
 
 Entry                       Address   Size  Type      Object
 -----                       -------   ----  ----      ------
-.iar.init_table$$Base    0x800'60c0          --   Gb  - Linker created -
-.iar.init_table$$Limit   0x800'60e0          --   Gb  - Linker created -
-?main                    0x800'60e1         Code  Gb  cmain.o [3]
-ADC1_IRQHandler          0x800'5e83    0xa  Code  Gb  stspin32f0_it.o [1]
+.iar.init_table$$Base    0x800'65dc          --   Gb  - Linker created -
+.iar.init_table$$Limit   0x800'65fc          --   Gb  - Linker created -
+?main                    0x800'65fd         Code  Gb  cmain.o [3]
+ADC1_IRQHandler          0x800'6343    0xa  Code  Gb  stspin32f0_it.o [1]
 ADC_Channel              0x800'3e6d   0x30  Code  Gb  stspin32f0.o [1]
 ADCx                    0x2000'0500   0x4c  Data  Gb  stspin32f0.o [1]
-AHBPrescTable            0x800'6180   0x10  Data  Gb  system_stm32f0xx.o [1]
-APBPrescTable            0x800'61b8    0x8  Data  Gb  system_stm32f0xx.o [1]
-ARR_LF                  0x2000'0790    0x4  Data  Gb  6Step_Lib.o [1]
-BPM280_Init              0x800'5185  0x2be  Code  Gb  spi.o [1]
-BPM280_Read_Pressure     0x800'5561   0x98  Code  Gb  spi.o [1]
+AHBPrescTable            0x800'66ac   0x10  Data  Gb  system_stm32f0xx.o [1]
+APBPrescTable            0x800'66e4    0x8  Data  Gb  system_stm32f0xx.o [1]
+ARR_LF                  0x2000'07cc    0x4  Data  Gb  6Step_Lib.o [1]
+BPM280_Init              0x800'562d  0x2be  Code  Gb  spi.o [1]
 BSP_BOARD_FAULT_LED_OFF
                          0x800'1453    0x2  Code  Gb  STEVAL-ESC002V1.o [1]
 BSP_BOARD_FAULT_LED_ON   0x800'1451    0x2  Code  Gb  STEVAL-ESC002V1.o [1]
@@ -478,7 +486,7 @@ CMD_MEASEL               0x800'2dfd    0xe  Code  Gb  UART_UI.o [1]
 CMD_MEASTA               0x800'2e0d   0x36  Code  Gb  UART_UI.o [1]
 CMD_MEASTO               0x800'2e4d   0x46  Code  Gb  UART_UI.o [1]
 CMD_MEASTO::strTxCancelled
-                        0x2000'0704   0x18  Data  Lc  UART_UI.o [1]
+                        0x2000'0738   0x18  Data  Lc  UART_UI.o [1]
 CMD_MSG                  0x800'2bc9   0x32  Code  Gb  UART_UI.o [1]
 CMD_MSG_BOOL_DIRECT      0x800'2c0d   0x32  Code  Gb  UART_UI.o [1]
 CMD_POLESP               0x800'2d33    0xe  Code  Gb  UART_UI.o [1]
@@ -487,23 +495,25 @@ CMD_PROMPT::strLineMessage
                         0x2000'03a6    0x2  Data  Lc  UART_UI.o [1]
 CMD_Parser               0x800'2ea5   0xba  Code  Gb  UART_UI.o [1]
 CMD_Parser::CmdListIndex
-                        0x2000'0807    0x1  Data  Lc  UART_UI.o [1]
+                        0x2000'0843    0x1  Data  Lc  UART_UI.o [1]
 CMD_SETDCY               0x800'2ccb    0xe  Code  Gb  UART_UI.o [1]
 CMD_SETSPD               0x800'2cbd    0xe  Code  Gb  UART_UI.o [1]
 CMD_STARTM               0x800'2c49   0x30  Code  Gb  UART_UI.o [1]
 CMD_STATUS               0x800'2d83   0x44  Code  Gb  UART_UI.o [1]
 CMD_STOPMT               0x800'2c8d   0x30  Code  Gb  UART_UI.o [1]
-CSTACK$$Base            0x2000'0808          --   Gb  - Linker created -
-CSTACK$$Limit           0x2000'0c08          --   Gb  - Linker created -
-CmdTable                 0x800'5c98  0x120  Data  Gb  UART_UI.o [1]
+CSTACK$$Base            0x2000'0848          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'0c48          --   Gb  - Linker created -
+CmdTable                 0x800'6158  0x120  Data  Gb  UART_UI.o [1]
 DMA1_Channel2_3_IRQHandler
-                         0x800'5e2b    0xc  Code  Gb  stspin32f0_it.o [1]
+                         0x800'62eb    0xc  Code  Gb  stspin32f0_it.o [1]
 DMA_CalcBaseAndBitshift
-                         0x800'45b1   0x1a  Code  Lc  stm32f0xx_hal_dma.o [1]
-DMA_SetConfig            0x800'4587   0x2a  Code  Lc  stm32f0xx_hal_dma.o [1]
+                         0x800'45cd   0x1a  Code  Lc  stm32f0xx_hal_dma.o [1]
+DMA_SetConfig            0x800'45a3   0x2a  Code  Lc  stm32f0xx_hal_dma.o [1]
 DisableInput_CH1_D_CH2_D_CH3_D
                          0x800'3d0f    0x2  Code  Gb  stspin32f0.o [1]
-El_Speed_Hz             0x2000'07a0    0x4  Data  Gb  6Step_Lib.o [1]
+EXTI0_1_IRQHandler       0x800'5e2d    0xa  Code  Gb  exti.o [1]
+EXTILine1_Config         0x800'5dbd   0x70  Code  Gb  exti.o [1]
+El_Speed_Hz             0x2000'07dc    0x4  Data  Gb  6Step_Lib.o [1]
 EnableInput_CH1_D_CH2_E_CH3_E
                          0x800'3cf3   0x1a  Code  Gb  stspin32f0.o [1]
 EnableInput_CH1_E_CH2_D_CH3_E
@@ -513,20 +523,26 @@ EnableInput_CH1_E_CH2_E_CH3_D
 EnableInput_CH1_E_CH2_E_CH3_E
                          0x800'3d0d    0x2  Code  Gb  stspin32f0.o [1]
 Enable_start_button     0x2000'03a8    0x1  Data  Gb  6Step_Lib.o [1]
-Error_Handler            0x800'5a61   0x14  Code  Gb  main_32F0.o [1]
+Error_Handler            0x800'5d55   0x14  Code  Gb  main_32F0.o [1]
+Exti1RisingCb            0x800'5389   0x52  Code  Gb  spi.o [1]
 Get_UART_Data            0x800'3e9d    0x8  Code  Gb  stspin32f0.o [1]
 HAL_ADC_ConvCpltCallback
                          0x800'31d9    0xa  Code  Gb  stspin32f0_hal_msp.o [1]
-HAL_ADC_IRQHandler       0x800'5ed1  0x102  Code  Gb  stm32f0xx_hal_adc.o [1]
-HAL_DMA_IRQHandler       0x800'44b1   0xd6  Code  Gb  stm32f0xx_hal_dma.o [1]
-HAL_DMA_Init             0x800'43c5   0x5c  Code  Gb  stm32f0xx_hal_dma.o [1]
-HAL_DMA_Start_IT         0x800'4425   0x8c  Code  Gb  stm32f0xx_hal_dma.o [1]
-HAL_Delay                0x800'5ac9   0x20  Code  Wk  stm32f0xx_hal.o [1]
+HAL_ADC_IRQHandler       0x800'6391  0x102  Code  Gb  stm32f0xx_hal_adc.o [1]
+HAL_DMA_IRQHandler       0x800'44cd   0xd6  Code  Gb  stm32f0xx_hal_dma.o [1]
+HAL_DMA_Init             0x800'43e1   0x5c  Code  Gb  stm32f0xx_hal_dma.o [1]
+HAL_DMA_Start_IT         0x800'4441   0x8c  Code  Gb  stm32f0xx_hal_dma.o [1]
+HAL_Delay                0x800'5e4d   0x20  Code  Wk  stm32f0xx_hal.o [1]
+HAL_EXTI_IRQHandler      0x800'5f69   0x26  Code  Gb  stm32f0xx_hal_exti.o [1]
+HAL_EXTI_RegisterCallback
+                         0x800'5f4f   0x1a  Code  Gb  stm32f0xx_hal_exti.o [1]
+HAL_EXTI_SetConfigLine   0x800'5e6d   0xe2  Code  Gb  stm32f0xx_hal_exti.o [1]
 HAL_GPIO_Init            0x800'4199  0x1f2  Code  Gb  stm32f0xx_hal_gpio.o [1]
-HAL_GPIO_WritePin        0x800'438b   0x1a  Code  Gb  stm32f0xx_hal_gpio.o [1]
+HAL_GPIO_ReadPin         0x800'438b   0x1a  Code  Gb  stm32f0xx_hal_gpio.o [1]
+HAL_GPIO_WritePin        0x800'43a5   0x1a  Code  Gb  stm32f0xx_hal_gpio.o [1]
 HAL_GetTick              0x800'1427    0x6  Code  Gb  6Step_Lib.o [1]
 HAL_IncTick              0x800'141d    0xa  Code  Gb  6Step_Lib.o [1]
-HAL_Init                 0x800'5aa9   0x1a  Code  Gb  stm32f0xx_hal.o [1]
+HAL_Init                 0x800'5d9d   0x1a  Code  Gb  stm32f0xx_hal.o [1]
 HAL_InitTick             0x800'2fa1   0x24  Code  Wk  stm32f0xx_hal.o [1]
 HAL_MspInit              0x800'2ff9   0x10  Code  Gb  stspin32f0_hal_msp.o [1]
 HAL_NVIC_EnableIRQ       0x800'415d    0xe  Code  Gb  stm32f0xx_hal_cortex.o [1]
@@ -537,12 +553,12 @@ HAL_RCC_GetPCLK1Freq     0x800'1b19   0x18  Code  Gb  stm32f0xx_hal_rcc.o [1]
 HAL_RCC_GetSysClockFreq
                          0x800'1a95   0x72  Code  Gb  stm32f0xx_hal_rcc.o [1]
 HAL_RCC_OscConfig        0x800'14bd  0x45c  Code  Gb  stm32f0xx_hal_rcc.o [1]
-HAL_SPI_Init             0x800'47d1   0xd0  Code  Gb  stm32f0xx_hal_spi.o [1]
-HAL_SPI_MspInit          0x800'5651   0x5e  Code  Gb  spi.o [1]
-HAL_SPI_Receive          0x800'4a91  0x1ce  Code  Gb  stm32f0xx_hal_spi.o [1]
-HAL_SPI_Transmit         0x800'48a1  0x1e6  Code  Gb  stm32f0xx_hal_spi.o [1]
+HAL_SPI_Init             0x800'47ed   0xd0  Code  Gb  stm32f0xx_hal_spi.o [1]
+HAL_SPI_MspInit          0x800'594d   0x5e  Code  Gb  spi.o [1]
+HAL_SPI_Receive          0x800'4aad  0x1ce  Code  Gb  stm32f0xx_hal_spi.o [1]
+HAL_SPI_Transmit         0x800'48bd  0x1e6  Code  Gb  stm32f0xx_hal_spi.o [1]
 HAL_SPI_TransmitReceive
-                         0x800'4c69  0x2c2  Code  Gb  stm32f0xx_hal_spi.o [1]
+                         0x800'4c85  0x2c2  Code  Gb  stm32f0xx_hal_spi.o [1]
 HAL_SYSTICK_Callback     0x800'3219    0x8  Code  Gb  stspin32f0_hal_msp.o [1]
 HAL_SYSTICK_Config       0x800'416b    0xc  Code  Gb  stm32f0xx_hal_cortex.o [1]
 HAL_SYSTICK_IRQHandler   0x800'4191    0x8  Code  Gb  stm32f0xx_hal_cortex.o [1]
@@ -594,7 +610,7 @@ HF_TIMx_SetDutyCycle_CH3
                          0x800'3da5    0xc  Code  Gb  stspin32f0.o [1]
 HF_TIMx_SetDutyCycle_CH4
                          0x800'3db1    0xc  Code  Gb  stspin32f0.o [1]
-HardFault_Handler        0x800'5db9    0x4  Code  Gb  stspin32f0_it.o [1]
+HardFault_Handler        0x800'6279    0x4  Code  Gb  stspin32f0_it.o [1]
 IF_TIMx                 0x2000'05d0   0x40  Data  Gb  stspin32f0.o [1]
 LF_TIMx                 0x2000'0650   0x40  Data  Gb  stspin32f0.o [1]
 LL_GPIO_IsInputPinSet    0x800'00b1   0x14  Code  Lc  6Step_Lib.o [1]
@@ -654,43 +670,46 @@ MC_TIMx_SixStep_timebase
 MC_Task_DutyCycle        0x800'0ae9   0x32  Code  Gb  6Step_Lib.o [1]
 MC_UI_INIT               0x800'2817  0x1e0  Code  Gb  UART_UI.o [1]
 MC_Zero_Crossing_Read    0x800'0fdd  0x428  Code  Gb  6Step_Lib.o [1]
-MX_GPIO_Init             0x800'595b   0xc4  Code  Lc  main_32F0.o [1]
-MX_HF_TIMx_Init          0x800'577d   0xde  Code  Lc  main_32F0.o [1]
-MX_LF_TIMx_Init          0x800'585b   0x56  Code  Lc  main_32F0.o [1]
-MX_SPI1_Init             0x800'55f9   0x42  Code  Gb  spi.o [1]
-MX_UART_Init             0x800'5933   0x28  Code  Lc  main_32F0.o [1]
-MX_ZC_TIMx_Init          0x800'58b1   0x82  Code  Lc  main_32F0.o [1]
-Mech_Speed_RPM          0x2000'079c    0x4  Data  Gb  6Step_Lib.o [1]
+MX_GPIO_Init             0x800'5c4f   0xc4  Code  Lc  main_32F0.o [1]
+MX_HF_TIMx_Init          0x800'5a71   0xde  Code  Lc  main_32F0.o [1]
+MX_LF_TIMx_Init          0x800'5b4f   0x56  Code  Lc  main_32F0.o [1]
+MX_SPI1_Init             0x800'58f5   0x42  Code  Gb  spi.o [1]
+MX_UART_Init             0x800'5c27   0x28  Code  Lc  main_32F0.o [1]
+MX_ZC_TIMx_Init          0x800'5ba5   0x82  Code  Lc  main_32F0.o [1]
+Mech_Speed_RPM          0x2000'07d8    0x4  Data  Gb  6Step_Lib.o [1]
 NVIC_EnableIRQ           0x800'407d    0xe  Code  Lc  stm32f0xx_hal_cortex.o [1]
 NVIC_SetPriority         0x800'408b   0x8c  Code  Lc  stm32f0xx_hal_cortex.o [1]
 Overcurrent_Selection    0x800'3ddd   0x16  Code  Gb  stspin32f0.o [1]
 Overcurrent_Threshold_Setvalue
                          0x800'3df3   0x7a  Code  Gb  stspin32f0.o [1]
-PI_parameters           0x2000'071c   0x10  Data  Gb  6Step_Lib.o [1]
-Region$$Table$$Base      0x800'60c0          --   Gb  - Linker created -
-Region$$Table$$Limit     0x800'60e0          --   Gb  - Linker created -
-Rotor_poles_pairs       0x2000'07d6    0x2  Data  Gb  6Step_Lib.o [1]
+PI_parameters           0x2000'0750   0x10  Data  Gb  6Step_Lib.o [1]
+Region$$Table$$Base      0x800'65dc          --   Gb  - Linker created -
+Region$$Table$$Limit     0x800'65fc          --   Gb  - Linker created -
+Rotor_poles_pairs       0x2000'0812    0x2  Data  Gb  6Step_Lib.o [1]
 SIXSTEP_parameters      0x2000'03ac   0x80  Data  Gb  6Step_Lib.o [1]
-SPI_EndRxTransaction     0x800'508d   0x8e  Code  Lc  stm32f0xx_hal_spi.o [1]
-SPI_EndRxTxTransaction   0x800'511b   0x6a  Code  Lc  stm32f0xx_hal_spi.o [1]
+SPI_EndRxTransaction     0x800'50a9   0x8e  Code  Lc  stm32f0xx_hal_spi.o [1]
+SPI_EndRxTxTransaction   0x800'5137   0x6a  Code  Lc  stm32f0xx_hal_spi.o [1]
 SPI_WaitFifoStateUntilTimeout
-                         0x800'4fd5   0xb2  Code  Lc  stm32f0xx_hal_spi.o [1]
+                         0x800'4ff1   0xb2  Code  Lc  stm32f0xx_hal_spi.o [1]
 SPI_WaitFlagStateUntilTimeout
-                         0x800'4f35   0xa0  Code  Lc  stm32f0xx_hal_spi.o [1]
+                         0x800'4f51   0xa0  Code  Lc  stm32f0xx_hal_spi.o [1]
 STSPIN32F0MotorDriver   0x2000'0000   0x40  Data  Gb  stspin32f0.o [1]
+SX1976_Init              0x800'54f9  0x11c  Code  Gb  spi.o [1]
+SX1976_OnRX              0x800'53ef  0x106  Code  Gb  spi.o [1]
+SX1976_RX_Reset          0x800'53db   0x14  Code  Gb  spi.o [1]
 Start_PWM_driving        0x800'3d11   0x3e  Code  Gb  stspin32f0.o [1]
-StatusTable              0x800'5ae8  0x1b0  Data  Gb  UART_UI.o [1]
+StatusTable              0x800'5fa8  0x1b0  Data  Gb  UART_UI.o [1]
 Stop_PWM_driving         0x800'3d4f   0x3e  Code  Gb  stspin32f0.o [1]
 SysTick_Config           0x800'4117   0x32  Code  Lc  stm32f0xx_hal_cortex.o [1]
-SysTick_Handler          0x800'5e8d    0xc  Code  Gb  stspin32f0_it.o [1]
-SystemClock_Config       0x800'571f   0x5e  Code  Gb  main_32F0.o [1]
+SysTick_Handler          0x800'634d    0xc  Code  Gb  stspin32f0_it.o [1]
+SystemClock_Config       0x800'5a13   0x5e  Code  Gb  main_32F0.o [1]
 SystemCoreClock         0x2000'0040    0x4  Data  Gb  system_stm32f0xx.o [1]
-SystemInit               0x800'5fdd   0x52  Code  Gb  system_stm32f0xx.o [1]
-TIM16_IRQHandler         0x800'5e99    0xa  Code  Gb  stspin32f0_it.o [1]
+SystemInit               0x800'649d   0x52  Code  Gb  system_stm32f0xx.o [1]
+TIM16_IRQHandler         0x800'6359    0xa  Code  Gb  stspin32f0_it.o [1]
 TIM1_BRK_UP_TRG_COM_IRQHandler
-                         0x800'5e37   0x4c  Code  Gb  stspin32f0_it.o [1]
-TIM2_IRQHandler          0x800'5ec9    0x8  Code  Gb  stspin32f0_it.o [1]
-TIM3_IRQHandler          0x800'5ea3    0xa  Code  Gb  stspin32f0_it.o [1]
+                         0x800'62f7   0x4c  Code  Gb  stspin32f0_it.o [1]
+TIM2_IRQHandler          0x800'6389    0x8  Code  Gb  stspin32f0_it.o [1]
+TIM3_IRQHandler          0x800'6363    0xa  Code  Gb  stspin32f0_it.o [1]
 TIM_Base_SetConfig       0x800'2151   0x7c  Code  Gb  stm32f0xx_hal_tim.o [1]
 TIM_CCxChannelCmd        0x800'24f9   0x1c  Code  Gb  stm32f0xx_hal_tim.o [1]
 TIM_CCxNChannelCmd       0x800'27d9   0x1c  Code  Lc  stm32f0xx_hal_tim_ex.o [1]
@@ -706,12 +725,12 @@ TIM_TI1_ConfigInputStage
                          0x800'244d   0x28  Code  Lc  stm32f0xx_hal_tim.o [1]
 TIM_TI2_ConfigInputStage
                          0x800'2475   0x2a  Code  Lc  stm32f0xx_hal_tim.o [1]
-T_single_step           0x2000'0784    0x4  Data  Gb  6Step_Lib.o [1]
+T_single_step           0x2000'07c0    0x4  Data  Gb  6Step_Lib.o [1]
 T_single_step_first_value
-                        0x2000'0788    0x4  Data  Gb  6Step_Lib.o [1]
-Tick_cnt                0x2000'07b4    0x4  Data  Gb  6Step_Lib.o [1]
-Time_vector_prev_tmp    0x2000'0780    0x4  Data  Gb  6Step_Lib.o [1]
-Time_vector_tmp         0x2000'077c    0x4  Data  Gb  6Step_Lib.o [1]
+                        0x2000'07c4    0x4  Data  Gb  6Step_Lib.o [1]
+Tick_cnt                0x2000'07f0    0x4  Data  Gb  6Step_Lib.o [1]
+Time_vector_prev_tmp    0x2000'07bc    0x4  Data  Gb  6Step_Lib.o [1]
+Time_vector_tmp         0x2000'07b8    0x4  Data  Gb  6Step_Lib.o [1]
 UART_AdvFeatureConfig    0x800'379b   0xde  Code  Gb  stm32f0xx_hal_uart.o [1]
 UART_CheckIdleState      0x800'3881   0x6e  Code  Gb  stm32f0xx_hal_uart.o [1]
 UART_Communication_Task
@@ -722,7 +741,7 @@ UART_DMATxHalfCplt       0x800'39d7    0xe  Code  Lc  stm32f0xx_hal_uart.o [1]
 UART_EndRxTransfer       0x800'3979   0x20  Code  Lc  stm32f0xx_hal_uart.o [1]
 UART_EndTransmit_IT      0x800'3a67   0x20  Code  Gb  stm32f0xx_hal_uart.o [1]
 UART_EndTxTransfer       0x800'3965   0x14  Code  Lc  stm32f0xx_hal_uart.o [1]
-UART_FLAG_RECEIVE       0x2000'0803    0x1  Data  Gb  6Step_Lib.o [1]
+UART_FLAG_RECEIVE       0x2000'083f    0x1  Data  Gb  6Step_Lib.o [1]
 UART_Receive_IT          0x800'3a87   0x90  Code  Gb  stm32f0xx_hal_uart.o [1]
 UART_Send_Reply          0x800'2a39   0x14  Code  Gb  UART_UI.o [1]
 UART_SetConfig           0x800'3601  0x198  Code  Gb  stm32f0xx_hal_uart.o [1]
@@ -731,13 +750,13 @@ UART_WaitOnFlagUntilTimeout
                          0x800'38fd   0x68  Code  Gb  stm32f0xx_hal_uart.o [1]
 UART_num_decode          0x800'29f7   0x2c  Code  Gb  UART_UI.o [1]
 UART_num_decode::Value_Buffer
-                        0x2000'0768    0x8  Data  Lc  UART_UI.o [1]
-USART1_IRQHandler        0x800'5dbd   0x6e  Code  Gb  stspin32f0_it.o [1]
-Uart_cmd_flag           0x2000'0800    0x2  Data  Lc  UART_UI.o [1]
+                        0x2000'07a8    0x8  Data  Lc  UART_UI.o [1]
+USART1_IRQHandler        0x800'627d   0x6e  Code  Gb  stspin32f0_it.o [1]
+Uart_cmd_flag           0x2000'083c    0x2  Data  Lc  UART_UI.o [1]
 ZC_TIMx                 0x2000'0690   0x40  Data  Gb  stspin32f0.o [1]
-_PrintfTiny              0x800'460d  0x16c  Code  Gb  xprintftiny.o [2]
+_PrintfTiny              0x800'4629  0x16c  Code  Gb  xprintftiny.o [2]
 _SProut                  0x800'3317    0xa  Code  Gb  xsprout.o [2]
-_Strtok_ssave           0x2000'07bc    0x4  Data  Lc  strtok.o [2]
+_Strtok_ssave           0x2000'07f8    0x4  Data  Lc  strtok.o [2]
 __ICFEDIT_region_RAM_end__ {Abs}
                         0x2000'0fff         Data  Gb  <internal module>
 __ICFEDIT_region_RAM_start__ {Abs}
@@ -745,74 +764,74 @@ __ICFEDIT_region_RAM_start__ {Abs}
 __aeabi_idiv             0x800'2541         Code  Gb  I32DivModFast.o [3]
 __aeabi_idiv0            0x800'3315         Code  Gb  IntDivZer.o [3]
 __aeabi_idivmod          0x800'2541         Code  Gb  I32DivModFast.o [3]
-__aeabi_memclr4          0x800'5a75         Code  Gb  ABImemset.o [3]
-__aeabi_memclr8          0x800'5a75         Code  Gb  ABImemset.o [3]
+__aeabi_memclr4          0x800'5d69         Code  Gb  ABImemset.o [3]
+__aeabi_memclr8          0x800'5d69         Code  Gb  ABImemset.o [3]
 __aeabi_memcpy4          0x800'2fc5         Code  Wk  ABImemcpy.o [3]
 __aeabi_uidiv            0x800'2547         Code  Gb  I32DivModFast.o [3]
 __aeabi_uidivmod         0x800'2547         Code  Gb  I32DivModFast.o [3]
-__cmain                  0x800'60e1         Code  Gb  cmain.o [3]
-__exit                   0x800'6119   0x14  Code  Gb  exit.o [4]
-__iar_Memset4_word       0x800'5a79         Code  Gb  ABImemset.o [3]
+__cmain                  0x800'65fd         Code  Gb  cmain.o [3]
+__exit                   0x800'6635   0x14  Code  Gb  exit.o [4]
+__iar_Memset4_word       0x800'5d6d         Code  Gb  ABImemset.o [3]
 __iar_Stoulx             0x800'3b1d  0x134  Code  Gb  iar_Stoulx.o [2]
-__iar_data_init3         0x800'6099   0x28  Code  Gb  data_init.o [3]
+__iar_data_init3         0x800'65b5   0x28  Code  Gb  data_init.o [3]
 __iar_lz77_init_single3
                          0x800'3297   0x7e  Code  Gb  lz77_init_single.o [3]
-__iar_program_start      0x800'61ad         Code  Gb  cstartup_M.o [3]
-__iar_zero_init3         0x800'605d   0x3c  Code  Gb  zero_init3.o [3]
-__low_level_init         0x800'60ff    0x4  Code  Gb  low_level_init.o [2]
+__iar_program_start      0x800'66d9         Code  Gb  cstartup_M.o [3]
+__iar_zero_init3         0x800'6579   0x3c  Code  Gb  zero_init3.o [3]
+__low_level_init         0x800'661b    0x4  Code  Gb  low_level_init.o [2]
 __vector_table           0x800'0000         Data  Gb  startup_stm32f031x6.o [1]
-_call_main               0x800'60ed         Code  Gb  cmain.o [3]
-_exit                    0x800'610d         Code  Gb  cexit.o [3]
-_main                    0x800'60fb         Code  Gb  cmain.o [3]
+_call_main               0x800'6609         Code  Gb  cmain.o [3]
+_exit                    0x800'6629         Code  Gb  cexit.o [3]
+_main                    0x800'6617         Code  Gb  cmain.o [3]
 aRxBuffer               0x2000'0044    0xc  Data  Gb  UART_UI.o [1]
-aTxBuffer               0x2000'06d0   0x34  Data  Gb  UART_UI.o [1]
-arrGT                   0x2000'07de    0x2  Data  Gb  6Step_Lib.o [1]
-array_completed         0x2000'0802    0x1  Data  Gb  6Step_Lib.o [1]
+aTxBuffer               0x2000'0704   0x34  Data  Gb  UART_UI.o [1]
+arrGT                   0x2000'081a    0x2  Data  Gb  6Step_Lib.o [1]
+array_completed         0x2000'083e    0x1  Data  Gb  6Step_Lib.o [1]
 atoi                     0x800'3c51    0x4  Code  Gb  iar_Stoulx.o [2]
-bmp280_compensate_P      0x800'5491   0xd0  Code  Gb  spi.o [1]
-bmp280_compensate_T      0x800'5449   0x44  Code  Gb  spi.o [1]
-changePolarity          0x2000'07d2    0x2  Data  Gb  6Step_Lib.o [1]
-cnt_bemf_event          0x2000'07e2    0x2  Data  Gb  6Step_Lib.o [1]
-commTime                0x2000'0798    0x4  Data  Gb  6Step_Lib.o [1]
-constant_k              0x2000'0778    0x4  Data  Gb  6Step_Lib.o [1]
+changePolarity          0x2000'080e    0x2  Data  Gb  6Step_Lib.o [1]
+cnt_bemf_event          0x2000'081e    0x2  Data  Gb  6Step_Lib.o [1]
+commTime                0x2000'07d4    0x4  Data  Gb  6Step_Lib.o [1]
+constant_k              0x2000'07b4    0x4  Data  Gb  6Step_Lib.o [1]
 constant_multiplier_tmp
-                        0x2000'0760    0x8  Data  Gb  6Step_Lib.o [1]
-counter_ARR_Bemf        0x2000'07b8    0x4  Data  Gb  6Step_Lib.o [1]
-cyclesToPwmEdge         0x2000'0770    0x4  Data  Gb  6Step_Lib.o [1]
-delta                   0x2000'078c    0x4  Data  Gb  6Step_Lib.o [1]
-dig_P1                  0x2000'07ee    0x2  Data  Gb  spi.o [1]
-dig_P2                  0x2000'07f0    0x2  Data  Gb  spi.o [1]
-dig_P3                  0x2000'07f2    0x2  Data  Gb  spi.o [1]
-dig_P4                  0x2000'07f4    0x2  Data  Gb  spi.o [1]
-dig_P5                  0x2000'07f6    0x2  Data  Gb  spi.o [1]
-dig_P6                  0x2000'07f8    0x2  Data  Gb  spi.o [1]
-dig_P7                  0x2000'07fa    0x2  Data  Gb  spi.o [1]
-dig_P8                  0x2000'07fc    0x2  Data  Gb  spi.o [1]
-dig_P9                  0x2000'07fe    0x2  Data  Gb  spi.o [1]
-dig_T1                  0x2000'07e8    0x2  Data  Gb  spi.o [1]
-dig_T2                  0x2000'07ea    0x2  Data  Gb  spi.o [1]
-dig_T3                  0x2000'07ec    0x2  Data  Gb  spi.o [1]
+                        0x2000'0798    0x8  Data  Gb  6Step_Lib.o [1]
+counter_ARR_Bemf        0x2000'07f4    0x4  Data  Gb  6Step_Lib.o [1]
+cyclesToPwmEdge         0x2000'0790    0x4  Data  Gb  6Step_Lib.o [1]
+delta                   0x2000'07c8    0x4  Data  Gb  6Step_Lib.o [1]
+dig_P1                  0x2000'082a    0x2  Data  Gb  spi.o [1]
+dig_P2                  0x2000'082c    0x2  Data  Gb  spi.o [1]
+dig_P3                  0x2000'082e    0x2  Data  Gb  spi.o [1]
+dig_P4                  0x2000'0830    0x2  Data  Gb  spi.o [1]
+dig_P5                  0x2000'0832    0x2  Data  Gb  spi.o [1]
+dig_P6                  0x2000'0834    0x2  Data  Gb  spi.o [1]
+dig_P7                  0x2000'0836    0x2  Data  Gb  spi.o [1]
+dig_P8                  0x2000'0838    0x2  Data  Gb  spi.o [1]
+dig_P9                  0x2000'083a    0x2  Data  Gb  spi.o [1]
+dig_T1                  0x2000'0824    0x2  Data  Gb  spi.o [1]
+dig_T2                  0x2000'0826    0x2  Data  Gb  spi.o [1]
+dig_T3                  0x2000'0828    0x2  Data  Gb  spi.o [1]
 digits                   0x800'3c60   0x28  Data  Lc  iar_Stoulx.o [2]
-exit                     0x800'6103    0x8  Code  Gb  exit.o [2]
-hfn                     0x2000'07d4    0x2  Data  Gb  6Step_Lib.o [1]
+exit                     0x800'661f    0x8  Code  Gb  exit.o [2]
+hexti                   0x2000'07a0    0x8  Data  Gb  exti.o [1]
+hfn                     0x2000'0810    0x2  Data  Gb  6Step_Lib.o [1]
 hspi1                   0x2000'049c   0x64  Data  Gb  spi.o [1]
 huart                   0x2000'042c   0x70  Data  Gb  stspin32f0.o [1]
 index_ARR_step          0x2000'03a0    0x2  Data  Gb  6Step_Lib.o [1]
-index_adc_chn           0x2000'07e0    0x2  Data  Gb  6Step_Lib.o [1]
-index_align             0x2000'07e4    0x2  Data  Gb  6Step_Lib.o [1]
-index_array             0x2000'07d8    0x2  Data  Gb  6Step_Lib.o [1]
+index_adc_chn           0x2000'081c    0x2  Data  Gb  6Step_Lib.o [1]
+index_align             0x2000'0820    0x2  Data  Gb  6Step_Lib.o [1]
+index_array             0x2000'0814    0x2  Data  Gb  6Step_Lib.o [1]
 index_pot_filt          0x2000'03a4    0x2  Data  Gb  6Step_Lib.o [1]
 index_startup_motor     0x2000'03a2    0x2  Data  Gb  6Step_Lib.o [1]
-lf_timer_failure        0x2000'0805    0x1  Data  Gb  6Step_Lib.o [1]
-main                     0x800'56e9   0x36  Code  Gb  main_32F0.o [1]
-mech_accel_hz           0x2000'0774    0x4  Data  Gb  6Step_Lib.o [1]
-memchr                   0x800'45db   0x18  Code  Gb  memchr.o [3]
-n_zcr_startup           0x2000'07a4    0x4  Data  Gb  6Step_Lib.o [1]
+lf_timer_failure        0x2000'0841    0x1  Data  Gb  6Step_Lib.o [1]
+main                     0x800'59d9   0x3a  Code  Gb  main_32F0.o [1]
+mech_accel_hz           0x2000'07b0    0x4  Data  Gb  6Step_Lib.o [1]
+memchr                   0x800'45f7   0x18  Code  Gb  memchr.o [3]
+n_zcr_startup           0x2000'07e0    0x4  Data  Gb  6Step_Lib.o [1]
 ndigs                    0x800'3c88   0x28  Data  Lc  iar_Stoulx.o [2]
-out                      0x800'45f3   0x1a  Code  Lc  xprintftiny.o [2]
-postGT                  0x2000'07dc    0x2  Data  Gb  6Step_Lib.o [1]
-potent_filtered         0x2000'07e6    0x2  Data  Gb  6Step_Lib.o [1]
-preGT                   0x2000'07da    0x2  Data  Gb  6Step_Lib.o [1]
+out                      0x800'460f   0x1a  Code  Lc  xprintftiny.o [2]
+postGT                  0x2000'0818    0x2  Data  Gb  6Step_Lib.o [1]
+potent_filtered         0x2000'0822    0x2  Data  Gb  6Step_Lib.o [1]
+preGT                   0x2000'0816    0x2  Data  Gb  6Step_Lib.o [1]
+read                     0x800'52ed   0x5c  Code  Lc  spi.o [1]
 row0TxBuffer            0x2000'0050    0x8  Data  Gb  UART_UI.o [1]
 row10TxBuffer           0x2000'02c8   0x20  Data  Gb  UART_UI.o [1]
 row11TxBuffer           0x2000'02e8   0x28  Data  Gb  UART_UI.o [1]
@@ -839,36 +858,40 @@ rowETxBuffer            0x2000'0248   0x28  Data  Gb  UART_UI.o [1]
 rowLxBuffer             0x2000'0390   0x10  Data  Gb  UART_UI.o [1]
 rowV1TBxBuffer          0x2000'0230   0x18  Data  Gb  UART_UI.o [1]
 rowVTxBuffer            0x2000'0218   0x18  Data  Gb  UART_UI.o [1]
-speed_fdbk_error        0x2000'0806    0x1  Data  Gb  6Step_Lib.o [1]
-speed_sum_pot_filt      0x2000'07b0    0x4  Data  Gb  6Step_Lib.o [1]
-speed_sum_sp_filt       0x2000'07ac    0x4  Data  Gb  6Step_Lib.o [1]
+speed_fdbk_error        0x2000'0842    0x1  Data  Gb  6Step_Lib.o [1]
+speed_sum_pot_filt      0x2000'07ec    0x4  Data  Gb  6Step_Lib.o [1]
+speed_sum_sp_filt       0x2000'07e8    0x4  Data  Gb  6Step_Lib.o [1]
 speed_tmp_array         0x2000'0590   0x40  Data  Gb  6Step_Lib.o [1]
 sprintf                  0x800'3f2d   0x40  Code  Gb  sprintf.o [2]
-startup_bemf_failure    0x2000'0804    0x1  Data  Gb  6Step_Lib.o [1]
-stepPrepared            0x2000'07c0    0x2  Data  Gb  6Step_Lib.o [1]
+startup_bemf_failure    0x2000'0840    0x1  Data  Gb  6Step_Lib.o [1]
+stepPrepared            0x2000'07fc    0x2  Data  Gb  6Step_Lib.o [1]
 strcmp                   0x800'3ff5         Code  Gb  strcmp.o [3]
 strcpy                   0x800'3eb9         Code  Gb  strcpy.o [3]
-strcspn                  0x800'479d   0x24  Code  Gb  strcspn.o [2]
-strlen                   0x800'47c1   0x10  Code  Gb  strlen.o [3]
+strcspn                  0x800'47b9   0x24  Code  Gb  strcspn.o [2]
+strlen                   0x800'47dd   0x10  Code  Gb  strlen.o [3]
 strncmp                  0x800'3f6d   0x2c  Code  Gb  strncmp.o [2]
-strspn                   0x800'4779   0x24  Code  Gb  strspn.o [2]
+strspn                   0x800'4795   0x24  Code  Gb  strspn.o [2]
 strtok                   0x800'3f99   0x4c  Code  Gb  strtok.o [2]
-uwTick                  0x2000'07a8    0x4  Data  Lc  6Step_Lib.o [1]
-zc                      0x2000'07ce    0x2  Data  Gb  6Step_Lib.o [1]
-zcdTime                 0x2000'0794    0x4  Data  Gb  6Step_Lib.o [1]
-zcn                     0x2000'07d0    0x2  Data  Gb  6Step_Lib.o [1]
-zcuHl                   0x2000'0744    0x8  Data  Gb  6Step_Lib.o [1]
-zcuIndexHl              0x2000'07c8    0x2  Data  Gb  6Step_Lib.o [1]
-zcuIndexLh              0x2000'07c2    0x2  Data  Gb  6Step_Lib.o [1]
-zcuLh                   0x2000'072c    0x8  Data  Gb  6Step_Lib.o [1]
-zcvHl                   0x2000'074c    0x8  Data  Gb  6Step_Lib.o [1]
-zcvIndexHl              0x2000'07ca    0x2  Data  Gb  6Step_Lib.o [1]
-zcvIndexLh              0x2000'07c4    0x2  Data  Gb  6Step_Lib.o [1]
-zcvLh                   0x2000'0734    0x8  Data  Gb  6Step_Lib.o [1]
-zcwHl                   0x2000'0754    0x8  Data  Gb  6Step_Lib.o [1]
-zcwIndexHl              0x2000'07cc    0x2  Data  Gb  6Step_Lib.o [1]
-zcwIndexLh              0x2000'07c6    0x2  Data  Gb  6Step_Lib.o [1]
-zcwLh                   0x2000'073c    0x8  Data  Gb  6Step_Lib.o [1]
+sx1276TxBuffer          0x2000'06d0   0x34  Data  Gb  spi.o [1]
+uwTick                  0x2000'07e4    0x4  Data  Lc  6Step_Lib.o [1]
+write                    0x800'5349   0x40  Code  Lc  spi.o [1]
+write_and_retry          0x800'51a1   0xa4  Code  Lc  spi.o [1]
+write_and_verify         0x800'5245   0xa8  Code  Lc  spi.o [1]
+zc                      0x2000'080a    0x2  Data  Gb  6Step_Lib.o [1]
+zcdTime                 0x2000'07d0    0x4  Data  Gb  6Step_Lib.o [1]
+zcn                     0x2000'080c    0x2  Data  Gb  6Step_Lib.o [1]
+zcuHl                   0x2000'0778    0x8  Data  Gb  6Step_Lib.o [1]
+zcuIndexHl              0x2000'0804    0x2  Data  Gb  6Step_Lib.o [1]
+zcuIndexLh              0x2000'07fe    0x2  Data  Gb  6Step_Lib.o [1]
+zcuLh                   0x2000'0760    0x8  Data  Gb  6Step_Lib.o [1]
+zcvHl                   0x2000'0780    0x8  Data  Gb  6Step_Lib.o [1]
+zcvIndexHl              0x2000'0806    0x2  Data  Gb  6Step_Lib.o [1]
+zcvIndexLh              0x2000'0800    0x2  Data  Gb  6Step_Lib.o [1]
+zcvLh                   0x2000'0768    0x8  Data  Gb  6Step_Lib.o [1]
+zcwHl                   0x2000'0788    0x8  Data  Gb  6Step_Lib.o [1]
+zcwIndexHl              0x2000'0808    0x2  Data  Gb  6Step_Lib.o [1]
+zcwIndexLh              0x2000'0802    0x2  Data  Gb  6Step_Lib.o [1]
+zcwLh                   0x2000'0770    0x8  Data  Gb  6Step_Lib.o [1]
 
 
 [1] = C:\pic\planecontroller\STSPIN32F0A_ESC\Obj
@@ -876,9 +899,9 @@ zcwLh                   0x2000'073c    0x8  Data  Gb  6Step_Lib.o [1]
 [3] = rt6M_tl.a
 [4] = shb_l.a
 
-  24 182 bytes of readonly  code memory
-   1 505 bytes of readonly  data memory
-   3 078 bytes of readwrite data memory
+  25 396 bytes of readonly  code memory
+   1 612 bytes of readonly  data memory
+   3 138 bytes of readwrite data memory
 
 Errors: none
 Warnings: none

@@ -79,6 +79,8 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   BPM280_Init();
+  EXTILine1_Config();    
+  SX1976_Init();
 #if (defined(POTENTIOMETER)||defined(CURRENT_SENSE_ADC)||defined(VBUS_SENSE_ADC)||defined(TEMP_SENSE_ADC))
   MX_ADC_Init();
 #endif
@@ -103,8 +105,9 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
-    BPM280_Read_Pressure();
+    //BPM280_Read_Pressure();
     HAL_Delay(100);
+
 /*! **************************************************************************
   ==============================================================================   
             ###### How to use the 6Step FW Example project ######

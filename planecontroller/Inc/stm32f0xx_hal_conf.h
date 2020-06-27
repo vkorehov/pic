@@ -79,7 +79,8 @@
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_RCC_MODULE_ENABLED
 /*#define HAL_I2C_MODULE_ENABLED   */
-
+#define HAL_EXTI_MODULE_ENABLED
+   
 /* ########################## HSE/HSI Values adaptation ##################### */
 /**
   * @brief Adjust the value of External High Speed oscillator (HSE) used in your application.
@@ -196,6 +197,10 @@
  #include "stm32f0xx_hal_gpio.h"
 #endif /* HAL_GPIO_MODULE_ENABLED */
 
+#ifdef HAL_EXTI_MODULE_ENABLED
+  #include "stm32f0xx_hal_exti.h"
+#endif /* HAL_EXTI_MODULE_ENABLED */
+      
 #ifdef HAL_DMA_MODULE_ENABLED
   #include "stm32f0xx_hal_dma.h"
 #endif /* HAL_DMA_MODULE_ENABLED */

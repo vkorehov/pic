@@ -49,9 +49,15 @@
 /* Exported functions ------------------------------------------------------- */
 void Error_Handler(void);
 extern SPI_HandleTypeDef hspi1;
+extern EXTI_HandleTypeDef hexti;
+
 uint32_t BPM280_Read_Pressure(void);
 uint32_t BPM280_Init(void);
+uint32_t SX1976_Init(void);
 
+void Exti1RisingCb(void);
+
+void EXTILine1_Config(void);
 void MX_SPI1_Init(void);
 
 #ifdef __cplusplus

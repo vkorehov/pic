@@ -1247,6 +1247,9 @@
                 <name>$PROJ_DIR$\Drivers\STM32F0xx_HAL_Driver\Src\stm32f0xx_hal_dma.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\Drivers\STM32F0xx_HAL_Driver\Src\stm32f0xx_hal_exti.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\Drivers\STM32F0xx_HAL_Driver\Src\stm32f0xx_hal_flash.c</name>
             </file>
             <file>
@@ -1395,6 +1398,9 @@
             </file>
         </group>
     </group>
+    <file>
+        <name>$PROJ_DIR$\Src\exti.c</name>
+    </file>
     <file>
         <name>$PROJ_DIR$\Src\main_32F0.c</name>
     </file>

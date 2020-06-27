@@ -1,0 +1,66 @@
+RegDioMapping1 mapping of digital pins
+RegDioMapping2 
+
+DIO0 RxDone + TxDone + CadDone
+
+RegDioMapping1  Mapping of pins DIO0 to DIO5
+DIOx mapping 
+bit7-6 == Dio0Mapping: 00 == RxDone, 01 == TxDone 10 == cadDone
+
+
+RegPreambleMsb and RegPreambleLsb
+
+Implicit Header Mode
+RxPayloadCrcOn
+
+FifoAddrPtr
+FifoRxBytesNb
+RegFifoRxCurrentAddr
+FifoRxBaseAddr = 0x00
+
+FifoTxBaseAddr = 0x80
+PayloadLength
+
+RegFifoAddrPtr must be initialized before SPI op.
+Then it is autoincremented
+10100010
+
+RegIrqFlagsMask
+RegIrqFlags - indicates which irq trigger
+In the register RegIrqFlags, a ‘1’ indicates a given IRQ has been trigged and then the IRQ must be clear by writing a ‘1’.
+
+LoRaFeiValue measure frequency error
+FErrHz = Fei * 2^24/32*10^6 * BW/500
+
+register 0x27 compensate freq error offset.
+
+In order to write packet data into FIFO user should:
+1 Set FifoPtrAddr to FifoTxPtrBase.
+2 Write PayloadLength bytes to the FIFO (RegFifo)
+Write Data
+
+wait for TX Done interrupt
+
+
+Receive Continuous:
+RxDone interrupt?
+check PayloadCrcError
+
+RegSymbTimeout 4 to 1023 symbols to wait in single RX mode
+
+
+ValidHeader (even in implicit mode!), PayloadCrcError, RxDone and RxTimeout must check in RX
+RegRxNbBytes Indicates the number of bytes that have been received thus far.
+RegFifoAddrPtr is a dynamic pointer that indicates precisely where the Lora modem received data has been written up
+to.
+
+Alternatively, it is possible to manually point to the location of the last packet received, from the start of the current
+packet, by setting RegFifoAddrPtr to RegFifoRxByteAddr minus RegRxNbBytes. The payload bytes can then be read
+from the FIFO by reading the RegFifo address RegRxNbBytes times.
+
+
+Receive:
+Set FifoAddrPtr to FifoRxBaseAddr.
+A single packet receive operation is initiated by selecting the operating mode RXSINGLE.
+
+10011101
