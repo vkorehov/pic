@@ -29,7 +29,7 @@ void EXTILine1_Config(void)
   HAL_EXTI_RegisterCallback(&hexti, HAL_EXTI_COMMON_CB_ID, Exti1RisingCb);
   
   /* Enable and set EXTI Line1 Interrupt to the lowest priority so far */
-  HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0x04, 0x00);
+  HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0x03, 0x00);
   HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);
 }
 

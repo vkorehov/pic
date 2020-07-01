@@ -1,0 +1,32 @@
+
+
+My power: 760mW (attenuator -10dB), max out P +2dBm
+
+ALIEXPRESS power: 720..740mW  (attenuator -10dB), max out P +2dBm
+
+My RX RSSI: 
+SNR (dB) = -31dB
+Rssi (dB) = -57dB
+
+ALIEXPRESS RX RSSI (attenuator -10dB), max out P +2dBm:
+SNR (dB) = -28dB
+Rssi (dB) = -43dB
+
+
+#define SX1976_MODEM_CONFIG3_READ 0x26
+#define SX1976_MODEM_CONFIG3_WRITE 0xa6
+
+#define MODEM_CONFIG3_AGC_ON 0x04
+#define MODEM_CONFIG3_AGC_OFF 0x00
+#define MODEM_CONFIG3_LDR_OPT 0x08
+#define MODEM_CONFIG3_NO_LDR_OPT 0x00
+
+
+#define SX1976_LNA_GAIN_HIGHEST 0x20
+#define SX1976_LNA_GAIN_G1 0x20
+#define SX1976_LNA_GAIN_G2 0x40
+#define SX1976_LNA_GAIN_G3 0x60
+#define SX1976_LNA_GAIN_G4 0x80
+#define SX1976_LNA_GAIN_G5 0xa0
+#define SX1976_LNA_GAIN_G6 0xc0
+#define SX1976_LNA_GAIN_LOWEST 0xc0

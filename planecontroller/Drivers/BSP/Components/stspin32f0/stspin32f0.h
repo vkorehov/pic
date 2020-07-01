@@ -149,9 +149,9 @@
 #define BSP_UART_CLK_DISABLE()      __HAL_RCC_USART1_CLK_DISABLE()
 #define BSP_UART_IRQn               (USART1_IRQn)
 #define BSP_UART_PRIORITY           (2)
-#define BSP_UART_PINS               (GPIO_PIN_6|GPIO_PIN_7)
-#define BSP_UART_PORT               (GPIOB)
-#define BSP_UART_AF                 (GPIO_AF0_USART1)
+#define BSP_UART_PINS               (GPIO_PIN_2|GPIO_PIN_3)
+#define BSP_UART_PORT               (GPIOA)
+#define BSP_UART_AF                 (GPIO_AF1_USART1)
 
 #define BSP_OC_SEL_PIN              (GPIO_PIN_11)
 #define BSP_OC_SEL_PORT             (GPIOA)

@@ -227,7 +227,7 @@
                     <state>STEVAL_ESC002V1</state>
                     <state>USE_HAL_DRIVER</state>
                     <state>STM32F031x6</state>
-                    <state>UART_COMM</state>
+                    <state>NO_UART_COMM</state>
                     <state>SENSE_COMPARATORS</state>
                     <state>ARR_FILTER</state>
                     <state>NO_OPEN_LOOP_RAMP</state>

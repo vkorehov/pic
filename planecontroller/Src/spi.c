@@ -67,6 +67,8 @@ int16_t dig_P7 = 0;
 int16_t dig_P8 = 0;
 int16_t dig_P9 = 0;
 
+uint8_t tx = 0;  
+
 #define SX1976_FRF_READ_MSB 0x06
 #define SX1976_FRF_READ_MID 0x07
 #define SX1976_FRF_READ_LSB 0x08
@@ -75,10 +77,16 @@ int16_t dig_P9 = 0;
 #define SX1976_FRF_WRITE_MID 0x87
 #define SX1976_FRF_WRITE_LSB 0x88
 
+
 //FRF = 14226227
-#define FRF_868_3_MHZ_MSB 0xD9
-#define FRF_868_3_MHZ_MID 0x13
-#define FRF_868_3_MHZ_LSB 0x33
+///int32_t  Ferr = 4000;
+uint32_t Ftarget = 868300000 - 4000;
+uint32_t frf = 0;
+#define AFC
+
+//#define FRF_868_3_MHZ_MSB 0xD9
+//#define FRF_868_3_MHZ_MID 0x13
+//#define FRF_868_3_MHZ_LSB 0x33
 
 #define SX1976_FSK_PA_BOOST_READ 0x4d
 #define SX1976_FSK_PA_BOOST_WRITE 0xcd
@@ -106,22 +114,23 @@ int16_t dig_P9 = 0;
 #define SX1976_PA_SELECT_WRITE 0x89
 
 #define PA_SELECT_BOOST   0x80
-#define PA_SELECT_2dBm    0x0f // Pout=17-(15-OutputPower)
-#define PA_SELECT_3dBm    0x0e // Pout=17-(15-OutputPower)
-#define PA_SELECT_4dBm    0x0d // Pout=17-(15-OutputPower)
-#define PA_SELECT_5dBm    0x0c // Pout=17-(15-OutputPower)
-#define PA_SELECT_6dBm    0x0b // Pout=17-(15-OutputPower)
-#define PA_SELECT_7dBm    0x0a // Pout=17-(15-OutputPower)
-#define PA_SELECT_8dBm    0x09 // Pout=17-(15-OutputPower)
-#define PA_SELECT_9dBm    0x08 // Pout=17-(15-OutputPower)
-#define PA_SELECT_10dBm    0x07 // Pout=17-(15-OutputPower)
-#define PA_SELECT_11dBm    0x06 // Pout=17-(15-OutputPower)
-#define PA_SELECT_12dBm    0x05 // Pout=17-(15-OutputPower)
-#define PA_SELECT_13dBm    0x04 // Pout=17-(15-OutputPower)
-#define PA_SELECT_14dBm    0x03 // Pout=17-(15-OutputPower)
-#define PA_SELECT_15dBm    0x02 // Pout=17-(15-OutputPower)
-#define PA_SELECT_16dBm    0x01 // Pout=17-(15-OutputPower)
-#define PA_SELECT_17dBm    0x00 // Pout=17-(15-OutputPower)
+#define PA_SELECT_2dBm    0x00 // Pout=17-(15-OutputPower)
+#define PA_SELECT_3dBm    0x01 // Pout=17-(15-OutputPower)
+#define PA_SELECT_4dBm    0x02 // Pout=17-(15-OutputPower)
+#define PA_SELECT_5dBm    0x03 // Pout=17-(15-OutputPower)
+#define PA_SELECT_6dBm    0x04 // Pout=17-(15-OutputPower)
+#define PA_SELECT_7dBm    0x05 // Pout=17-(15-OutputPower)
+#define PA_SELECT_8dBm    0x06 // Pout=17-(15-OutputPower)
+#define PA_SELECT_9dBm    0x07 // Pout=17-(15-OutputPower)
+#define PA_SELECT_10dBm    0x08 // Pout=17-(15-OutputPower)
+#define PA_SELECT_11dBm    0x09 // Pout=17-(15-OutputPower)
+#define PA_SELECT_12dBm    0x0a // Pout=17-(15-OutputPower)
+#define PA_SELECT_13dBm    0x0b // Pout=17-(15-OutputPower)
+#define PA_SELECT_14dBm    0x0c // Pout=17-(15-OutputPower)
+#define PA_SELECT_15dBm    0x0d // Pout=17-(15-OutputPower)
+#define PA_SELECT_16dBm    0x0e // Pout=17-(15-OutputPower)
+#define PA_SELECT_17dBm    0x0f // Pout=17-(15-OutputPower)
+
 
 
 #define SX1976_OCP_READ 0x0B
@@ -151,14 +160,22 @@ int16_t dig_P9 = 0;
 #define SX1976_LNA_WRITE 0x8C
 
 #define SX1976_LNA_BOOST_HF_ON 0x03
+#define SX1976_LNA_BOOST_HF_OFF 0x00
+
 #define SX1976_LNA_GAIN_HIGHEST 0x20
+#define SX1976_LNA_GAIN_G1 0x20
+#define SX1976_LNA_GAIN_G2 0x40
+#define SX1976_LNA_GAIN_G3 0x60
+#define SX1976_LNA_GAIN_G4 0x80
+#define SX1976_LNA_GAIN_G5 0xa0
+#define SX1976_LNA_GAIN_G6 0xc0
+#define SX1976_LNA_GAIN_LOWEST 0xc0
 
 #define SX1976_DIO_MAPPING1_READ 0x40
 #define SX1976_DIO_MAPPING1_WRITE 0xC0
 #define SX1976_DIO0_RX_DONE 0x00
 #define SX1976_DIO0_TX_DONE 0x40
 #define SX1976_DIO0_CAD_DONE 0x80
-
 
 #define SX1976_MODEM_CONFIG1_READ 0x1D
 #define SX1976_MODEM_CONFIG1_WRITE 0x9D
@@ -181,6 +198,14 @@ int16_t dig_P9 = 0;
 #define MODEM_CONFIG2_SF_1024 0xa0
 #define MODEM_CONFIG2_SF_2048 0xb0
 #define MODEM_CONFIG2_SF_4096 0xc0
+
+#define SX1976_MODEM_CONFIG3_READ 0x26
+#define SX1976_MODEM_CONFIG3_WRITE 0xa6
+
+#define MODEM_CONFIG3_AGC_ON 0x04
+#define MODEM_CONFIG3_AGC_OFF 0x00
+#define MODEM_CONFIG3_LDR_OPT 0x08
+#define MODEM_CONFIG3_NO_LDR_OPT 0x00
 
 #define SX1976_PAYLOAD_LEN_READ 0x22
 #define SX1976_PAYLOAD_LEN_WRITE 0xA2
@@ -218,10 +243,21 @@ int16_t dig_P9 = 0;
 #define SX1976_FIFO_READ 0x00
 #define SX1976_FIFO_WRITE 0x80
 
+#define SX1976_PKT_SNR 0x19
+#define SX1976_PKT_RSSI 0x1A
+
+#define SX1976_FEI_LSB 0x2A
+#define SX1976_FEI_MID 0x29
+#define SX1976_FEI_MSB 0x28
+
+#define SX1976_PPM_CORRECTION 0x27
+
 uint8_t sx1276TxBuffer[50];
 extern UART_HandleTypeDef huart;
 
 void SX1976_OnRX(uint8_t discard);
+void SX1976_OnTX();
+void SX1976_AFC(int32_t ferr);
 
 static void write_and_retry(uint8_t addr, uint8_t val) {  
   while(1) {
@@ -318,9 +354,21 @@ void Exti1RisingCb(void)
       sprintf((char *)sx1276TxBuffer, ">> NO RX\r\n >");
       HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                        
     }
+    if (flags & IRQ_TX_DONE) {
+      SX1976_OnTX();
+    } else {
+      sprintf((char *)sx1276TxBuffer, ">> NO TX\r\n >");
+      HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                        
+    }
+    
     // Reset IRQs
-    write(SX1976_IRQ_FLAGS_READ, flags);
-  }  
+    write(SX1976_IRQ_FLAGS_READ, flags);    
+  }
+
+  if (tx) {
+    // Go to TX again
+    write_and_retry(SX1976_OP_MODE_READ, OP_MODE_TX | OP_MODE_HF | OP_MODE_LORA);    
+  }
 }
 
 void SX1976_RX_Reset(void) {  
@@ -328,6 +376,24 @@ void SX1976_RX_Reset(void) {
   write_and_verify(SX1976_FIFO_ADDR_PTR_READ, 0x00);  
   // Configure RX Current Write to be aligned as well
   write_and_verify(SX1976_FIFO_ADDR_RX_CURRENT_READ, 0x00);  
+}
+
+void SX1976_TX_Reset(void) {
+  // Configure FIFO buffer ptr to be set to TX Base Addr
+  write_and_verify(SX1976_FIFO_ADDR_PTR_READ, 0x80);  
+}
+
+int32_t Ferr_old = 100000; // moved by 100000 to positive side to avoid issues while calc IIR.
+uint8_t suspend_afr = 16;
+
+void ServoAngle(uint8_t angle) {
+  if (angle > 180) {
+    angle = 180;
+  }
+  // get duration in 1000uS
+  uint32_t duration = 1000 + (angle * 5555) / 1000;
+  // control PWM
+  // 20ms period
 }
 
 void SX1976_OnRX(uint8_t discard) {
@@ -356,36 +422,93 @@ void SX1976_OnRX(uint8_t discard) {
     bytesCount -= 16;
   }
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+
+  uint8_t rssi = read(SX1976_PKT_RSSI);
+  int8_t snr = read(SX1976_PKT_RSSI);
+
+  int16_t snrDb = snr / 4;
+  int16_t rssiDb;
+  if( snrDb >= 0) {
+    rssiDb = -157 + rssi;
+    if (rssiDb > -100) {
+      // recalc with slope comp.
+      rssiDb = -157 + ((16 * rssi) / 15);      
+    }
+  } else {
+    rssiDb = -157 + rssi + snrDb;
+  }
+    
+  uint8_t fei_msb = read(SX1976_FEI_MSB);
+  uint8_t fei_mid = read(SX1976_FEI_MID);
+  uint8_t fei_lsb = read(SX1976_FEI_LSB);
   
-  sprintf((char *)sx1276TxBuffer, ">>RX: %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u DISCARD? %u Addr: %u Bytes: %u\r\n >",
+  int32_t fei = (((fei_msb & 0x0f) << 28) | (fei_mid << 20) | (fei_lsb << 12));
+  fei = fei >> 12;
+  // Move to positive side to avoid issues while crossing zero
+  int32_t Ferr = (fei * 100) / 764  + 100000;
+
+  uint32_t pressure = BPM280_Read_Pressure();
+    
+#ifdef AFC
+  // dont use AFC if we have bad CRC, we will re-enable it once we will have stable link, i.e. 16 non-errored packets.
+  if (discard != 0) {
+    suspend_afr = 16;
+  }
+  if (discard == 0 && suspend_afr > 0) {
+    suspend_afr--;
+  }
+  //
+  if (suspend_afr == 0) {
+    // IIR filter Ferr with Coeff 8
+    Ferr_old = (Ferr_old * 7 + Ferr) / 8;
+    //
+    SX1976_AFC(Ferr_old - 100000);
+  }
+#endif
+  sprintf((char *)sx1276TxBuffer, ">>RX: %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u D? %u A: %u B: %u rssi=%d snr=%d ferr=%d press=%u\r\n >",
           inputBuffer[0], inputBuffer[1], inputBuffer[2], inputBuffer[3]
             , inputBuffer[4], inputBuffer[5], inputBuffer[6], inputBuffer[7]
               , inputBuffer[8], inputBuffer[9], inputBuffer[10], inputBuffer[11]
-                , inputBuffer[12], inputBuffer[13], inputBuffer[14], inputBuffer[15], discard, currentAddr, bytesCountOrig);
+                , inputBuffer[12], inputBuffer[13], inputBuffer[14], inputBuffer[15], discard, currentAddr, bytesCountOrig, rssiDb, snrDb, Ferr - 100000, pressure);
   HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                  
 }
 
-uint32_t SX1976_Init(void) {
-  uint8_t outputBuffer[4] = {0,0,0,0};
-  uint8_t inputBuffer[3];
-    
-  // Go to sleep and Set Lora mode
-  write_and_retry(SX1976_OP_MODE_READ, OP_MODE_SLEEP | OP_MODE_HF | OP_MODE_LORA);  
-  write_and_retry(SX1976_OP_MODE_READ, OP_MODE_STDBY | OP_MODE_HF | OP_MODE_LORA);  
-  // Reset ALL IRQs
-  write(SX1976_IRQ_FLAGS_READ, 0xff);  
+void SX1976_OnTX(void) {
+  uint32_t pressure = BPM280_Read_Pressure();
+
+  uint8_t outputBuffer[17] = {0,pressure >> 24, pressure >> 16, pressure >> 8, pressure,0,0,0,0,0,0,0,0,0,0,0,0};
   
-  // Set FRF
-  outputBuffer[0] = SX1976_FRF_WRITE_MSB;
-  outputBuffer[1] = FRF_868_3_MHZ_MSB;
-  outputBuffer[2] = FRF_868_3_MHZ_MID;
-  outputBuffer[3] = FRF_868_3_MHZ_LSB;
+  // move Ptr to base
+  write(SX1976_FIFO_ADDR_PTR_READ, 0x80);
+  
+  // Write number of bytes
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET); 
+  outputBuffer[0] = SX1976_FIFO_WRITE;
+  if (HAL_SPI_Transmit(&hspi1, outputBuffer, 17, 1000) != HAL_OK) {
+    Error_Handler();
+  }
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+        
+  sprintf((char *)sx1276TxBuffer, ">>TX started press=%u\r\n >", pressure);
+  HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                  
+}
+
+void SX1976_AFC(int32_t ferr) {    
+  frf = (uint32_t)(((int64_t)Ftarget - (int64_t)ferr) * 100000000 / 6103515625);
+  int32_t offset = ((int32_t)ferr * 950000) / (int32_t)Ftarget;
+  int8_t offset_8 = (int8_t)offset;
+  // Set Ferr offset
+  write_and_verify(SX1976_PPM_CORRECTION, offset_8);  
+  
+  uint8_t outputBuffer[4] = {SX1976_FRF_WRITE_MSB, (frf >> 16) & 0xff, (frf >> 8) & 0xff, frf & 0xff};
+  uint8_t inputBuffer[3];
   
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
   if (HAL_SPI_Transmit(&hspi1, outputBuffer, 4, 1000) != HAL_OK) {
     Error_Handler();
   }
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);                      
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);  
+  
   // Read FRF
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET); 
   outputBuffer[0] = SX1976_FRF_READ_MSB;
@@ -397,45 +520,106 @@ uint32_t SX1976_Init(void) {
   }      
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);                      
   // assert
-  if (inputBuffer[0] != FRF_868_3_MHZ_MSB ||
-      inputBuffer[1] != FRF_868_3_MHZ_MID ||
-        inputBuffer[2] != FRF_868_3_MHZ_LSB)
+  if (inputBuffer[0] != ((frf >> 16) & 0xff) ||
+      inputBuffer[1] != ((frf >> 8) & 0xff) ||
+        inputBuffer[2] != (frf & 0xff))
+  {
+    Error_Handler();
+  }  
+}
+
+uint32_t SX1976_Init(void) {
+  frf = (uint32_t)(((int64_t)Ftarget) * 100000000 / 6103515625);
+  
+  uint8_t outputBuffer[4] = {0,0,0,0};
+  uint8_t inputBuffer[3];
+    
+  // Go to sleep and Set Lora mode
+  write_and_retry(SX1976_OP_MODE_READ, OP_MODE_SLEEP | OP_MODE_HF | OP_MODE_LORA);  
+  write_and_retry(SX1976_OP_MODE_READ, OP_MODE_STDBY | OP_MODE_HF | OP_MODE_LORA);  
+  // Reset ALL IRQs
+  write(SX1976_IRQ_FLAGS_READ, 0xff);  
+  
+  // Set FRF
+  outputBuffer[0] = SX1976_FRF_WRITE_MSB;
+  outputBuffer[1] = (frf >> 16) & 0xff;
+  outputBuffer[2] = (frf >> 8) & 0xff;
+  outputBuffer[3] = frf & 0xff;
+
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+  if (HAL_SPI_Transmit(&hspi1, outputBuffer, 4, 1000) != HAL_OK) {
+    Error_Handler();
+  }
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);                      
+  // Read FRF
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET); 
+  outputBuffer[0] = SX1976_FRF_READ_MSB;
+  if (HAL_SPI_Transmit(&hspi1, outputBuffer, 1, 1000) != HAL_OK) {
+    Error_Handler();
+  }
+  if (HAL_SPI_Receive (&hspi1, inputBuffer, 3, 1000) != HAL_OK) {
+    Error_Handler();
+  }
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);                      
+  // assert
+  if (inputBuffer[0] != ((frf >> 16) & 0xff) ||
+      inputBuffer[1] != ((frf >> 8) & 0xff) ||
+        inputBuffer[2] != (frf & 0xff))
   {
     Error_Handler();
   }
+  
+  write_and_verify(SX1976_PA_SELECT_READ, PA_SELECT_2dBm | PA_SELECT_BOOST);  
   
   // Set power level and select PA_BOOST
   write_and_verify(SX1976_PA_SELECT_READ, PA_SELECT_2dBm | PA_SELECT_BOOST);  
   // Configure OCP
   write_and_verify(SX1976_OCP_READ, SX1976_OCP_ON | SX1976_OCP_TRIM_110ma);  
   // Configure LNA
-  write_and_verify(SX1976_LNA_READ, SX1976_LNA_BOOST_HF_ON | SX1976_LNA_GAIN_HIGHEST);  
+  write(SX1976_LNA_READ, SX1976_LNA_BOOST_HF_ON | SX1976_LNA_GAIN_HIGHEST);  
   // Configure Implicit header mode
   write_and_verify(SX1976_MODEM_CONFIG1_READ, MODEM_CONFIG1_HM_IMPLICIT | MODEM_CONFIG1_BW_125khz | MODEM_CONFIG1_CR_4_5);  
     
   // Configure CRC ON
   write_and_verify(SX1976_MODEM_CONFIG2_READ, MODEM_CONFIG2_CRC_ON | MODEM_CONFIG2_SF_128);  
-    
+
+  // Configure AGC ON
+  write_and_verify(SX1976_MODEM_CONFIG3_READ, MODEM_CONFIG3_AGC_ON | MODEM_CONFIG3_NO_LDR_OPT);  
+  
   // configure PayloadLength to be fixed 16 Bytes
   write_and_verify(SX1976_PAYLOAD_LEN_READ, 16);
     
   // configure MaxPayloadLength to be fixed 16 Bytes
   write_and_verify(SX1976_MAX_PAYLOAD_LEN_READ, 16);
-    
+  
   // Configure TX Base Addr
   write_and_verify(SX1976_FIFO_ADDR_TX_BASE_READ, 0x80);
     
   // Configure RX Base Addr
   write_and_verify(SX1976_FIFO_ADDR_RX_BASE_READ, 0x00);
-  
-  SX1976_RX_Reset(); // Reset pointers
-  
-  // Configure DIO0 as RXDONE
-  write_and_verify(SX1976_DIO_MAPPING1_READ, SX1976_DIO0_RX_DONE);
+
+  if (tx) {
+    SX1976_TX_Reset(); // Reset pointers
+  } else {
+    SX1976_RX_Reset(); // Reset pointers    
+  }
+
+  if (tx) {      
+    // Configure DIO0 as TXDONE
+    write_and_verify(SX1976_DIO_MAPPING1_READ, SX1976_DIO0_TX_DONE);
+  } else {
+    // Configure DIO0 as RXDONE
+    write_and_verify(SX1976_DIO_MAPPING1_READ, SX1976_DIO0_RX_DONE);    
+  }
+
+  if (tx) {
+    // Go to TX
+    write_and_retry(SX1976_OP_MODE_READ, OP_MODE_TX | OP_MODE_HF | OP_MODE_LORA);
+  } else {
+    // Go to continous RX
+    write_and_retry(SX1976_OP_MODE_READ, OP_MODE_RX_CONT | OP_MODE_HF | OP_MODE_LORA);
+  }
     
-  // Go to continous RX
-  write_and_retry(SX1976_OP_MODE_READ, OP_MODE_RX_CONT | OP_MODE_HF | OP_MODE_LORA);
-  
   return 0;
 }
 
@@ -495,7 +679,7 @@ uint32_t BPM280_Init(void) {
   outputBuffer[1] = BPM280_CONFIG_4_WIRE_SPI | BPM280_CONFIG_0MS_STBY | BPM280_CONFIG_FILTER_16X;
   if (HAL_SPI_Transmit(&hspi1, outputBuffer, 2, 1000) != HAL_OK) {
     Error_Handler();
-  }     
+  }
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);    
   
   // READ CONFIG

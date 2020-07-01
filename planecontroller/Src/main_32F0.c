@@ -46,6 +46,7 @@ extern TIM_HandleTypeDef LF_TIMx;
 extern TIM_HandleTypeDef ZC_TIMx;
 extern ADC_HandleTypeDef ADCx;
 extern UART_HandleTypeDef huart;
+TIM_HandleTypeDef SERVO_TIM17;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -62,7 +63,7 @@ static void MX_ZC_TIMx_Init(void);
 #if defined(UART_COMM)
 static void MX_UART_Init(void);
 #endif
-
+static void SERVO_TIM17_Init(void);
 
 int main(void)
 {
@@ -93,6 +94,7 @@ int main(void)
 #if defined(UART_COMM)
   MX_UART_Init();
 #endif
+SERVO_TIM17_Init();
 
  /* **************************************************************************** 
   ==============================================================================   
@@ -105,9 +107,6 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
-    //BPM280_Read_Pressure();
-    HAL_Delay(100);
-
 /*! **************************************************************************
   ==============================================================================   
             ###### How to use the 6Step FW Example project ######
@@ -202,6 +201,33 @@ void MX_ADC_Init(void)
   if (HAL_ADC_ConfigChannel(&ADCx, &sConfig) != HAL_OK) Error_Handler();
 }
 #endif
+
+/* IF timer init function */
+void SERVO_TIM17_Init(void)
+{
+  TIM_OC_InitTypeDef sConfigOC;
+  
+  SERVO_TIM17.Instance = TIM17;
+  SERVO_TIM17.Init.Prescaler = 0xFF;
+  SERVO_TIM17.Init.CounterMode = TIM_COUNTERMODE_UP;
+  SERVO_TIM17.Init.Period = 0xFFFF;
+  SERVO_TIM17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+  SERVO_TIM17.Init.RepetitionCounter = 0;
+  SERVO_TIM17.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;  
+  if (HAL_TIM_IC_Init(&SERVO_TIM17) != HAL_OK) Error_Handler(); 
+  
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
+  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_LOW;
+  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  sConfigOC.Pulse = 0xFFFF;
+ 
+  if (HAL_TIM_PWM_ConfigChannel(&SERVO_TIM17, &sConfigOC, TIM_CHANNEL_1) != HAL_OK) Error_Handler();
+  
+}
+
 
 #if defined(ST_PWM_INTERFACE)
 /* IF timer init function */
@@ -444,6 +470,17 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  
+  /*Configure GPIO PB7 to be used for TIM17_CH1N */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
+  GPIO_InitStruct.Pin = GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF2_TIM17;
+
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   
 }
 

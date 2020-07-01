@@ -29,6 +29,8 @@ RegIrqFlagsMask
 RegIrqFlags - indicates which irq trigger
 In the register RegIrqFlags, a ‘1’ indicates a given IRQ has been trigged and then the IRQ must be clear by writing a ‘1’.
 
+AgcAutoOn
+
 LoRaFeiValue measure frequency error
 FErrHz = Fei * 2^24/32*10^6 * BW/500
 

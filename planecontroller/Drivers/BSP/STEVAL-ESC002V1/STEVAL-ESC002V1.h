@@ -68,7 +68,7 @@
   * @{
   */
 
-#define BSP_BOARD_SYSTICK_PRIORITY           (3)
+#define BSP_BOARD_SYSTICK_PRIORITY           (2)
 
 #define BSP_BOARD_HF_TIMx_SLAVE_MODE         (TIM_SLAVEMODE_TRIGGER)
 #define BSP_BOARD_HF_TIMx_TS_ITR             (TIM_TS_ITR2)
@@ -189,13 +189,13 @@
 #define BSP_BOARD_ZCW_PORT              (GPIOB)
 
 #define GPIO_PORT_ARR                   (GPIOA)       /*!< GPIO port name for zero crossing detection */
-#define GPIO_CH_ARR                     (GPIO_PIN_3)  /*!< GPIO pin name for zero crossing detection */
+#define GPIO_CH_ARR                     (GPIO_PIN_1)  /*!< GPIO pin name for zero crossing detection */
 #define GPIO_PORT_TRIG                  (GPIOA)       /*!< GPIO port name for zero crossing detection */
-#define GPIO_CH_TRIG                    (GPIO_PIN_3)  /*!< GPIO pin name for zero crossing detection */
+#define GPIO_CH_TRIG                    (GPIO_PIN_1)  /*!< GPIO pin name for zero crossing detection */
 #define GPIO_PORT_ZCR                   (GPIOA)       /*!< GPIO port name for zero crossing detection */
-#define GPIO_CH_ZCR                     (GPIO_PIN_3)  /*!< GPIO pin name for zero crossing detection */
+#define GPIO_CH_ZCR                     (GPIO_PIN_1)  /*!< GPIO pin name for zero crossing detection */
 #define GPIO_PORT_COMM                  (GPIOA)       /*!< GPIO port name for 6Step commutation */
-#define GPIO_CH_COMM                    (GPIO_PIN_3)  /*!< GPIO pin name for 6Step commutation */
+#define GPIO_CH_COMM                    (GPIO_PIN_1)  /*!< GPIO pin name for 6Step commutation */
 
 //#define BSP_BOARD_RGB1_LED_PIN          (GPIO_PIN_0)
 //#define BSP_BOARD_RGB1_LED_PORT         (GPIOA)
