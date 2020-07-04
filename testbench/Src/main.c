@@ -542,7 +542,7 @@ uint32_t SX1976_Init(void) {
   }
   
   // Set power level and select PA_BOOST
-  write_and_verify(SX1976_PA_SELECT_READ, PA_SELECT_BOOST_2dBm | PA_SELECT_BOOST);
+  write_and_verify(SX1976_PA_SELECT_READ, PA_SELECT_NO_BOOST_MINUS_4dBm | PA_SELECT_NO_BOOST);
   // Configure OCP
   write_and_verify(SX1976_OCP_READ, SX1976_OCP_ON | SX1976_OCP_TRIM_110ma);  
   // Configure LNA
@@ -632,7 +632,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
     SX1976_Poll();
-    //HAL_Delay(1000);
+    HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

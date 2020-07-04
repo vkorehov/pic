@@ -1,0 +1,66 @@
+-GPS, GLONASS, SBAS, QZSS are enabled by default
+-Blue PPS LED blinking(1Hz) means 3D fixed
+-update rate 1Hz & baudrate 9600 default
+-Baud 9600~115200 supported by INAV
+-update rate 5Hz with INAV UBLOX Protocol
+-update rate 10Hz with INAV UBLOX7 Protocol
+-BF doesn't support GPS position hold and RTH,  GPS Rescue mode is supported by BF3.5 or last.
+-The scratches on ceramic antenna are the result of tuning the antenna by ublox. Placing small nicks in the centre of the long edges, or corners, brings them into spec.
+
+BLUE = TX
+YELLOW = RX
+RED = 5V
+BLK = GND
+
+
+
+#define BSP_UART                    (USART1)
+#define BSP_UART_BAUD_RATE          (9600)
+#define BSP_UART_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOA_CLK_ENABLE()
+#define BSP_UART_CLK_ENABLE()       __HAL_RCC_USART1_CLK_ENABLE()
+#define BSP_UART_CLK_DISABLE()      __HAL_RCC_USART1_CLK_DISABLE()
+#define BSP_UART_IRQn               (USART1_IRQn)
+#define BSP_UART_PRIORITY           (2)
+#define BSP_UART_PINS               (GPIO_PIN_2|GPIO_PIN_3)
+#define BSP_UART_PORT               (GPIOA)
+#define BSP_UART_AF                 (GPIO_AF1_USART1)
+
+
+Specification:
+Brand name: matek
+Item name: SAM-M8Q GPS module
+Dimensions: L26 x W16 x H7.5 mm
+Weight: 7 gram
+Input voltage range: 4~6V
+Uart (Tx,Rx) interface
+Battery for HOT module start
+Power LED(Red) & Time pulse LED(Blue)
+Baudrate 9600 default
+Can be easy mounted in your case by double sided tape
+Supported by INAV/Betaflight/Ardupilot, ect.
+
+Features:
+
+-72-channel u-blox M8 engine GPS L1C/A, SBAS L1C/A, QZSS L1C/A, QZSS L1 SAIF, GLONASS L1OF, Galileo E1B/C
+-On-board Ultra low noise 3.3V voltage regulator and RF filter for noise blocking
+-Features an additional front-end LNA for optimized performance and a front-end SAW filter for increased jamming immunity
+-Build-in embedded GNSS patch antenna, low power consumption
+-The 15 x 15 mm patch antenna provides the best compromise between the performance of a Right Hand Circular Polarized (RHCP) antenna
+ and a small size to be integrated in any design.
+
+-Max navigation update rate
+ Single GNSS up to 18 Hz
+ 2 Concurrent GNSS(GPS & GLONASS) up to 10 Hz
+-Horizontal position accuracy(GPS & GLONASS) 2.5 m CEP
+-Velocity accuracy 0.05m/s
+-Cold start 26 s
+ Aided cold starts: 2 s
+ Hot start 1 s
+
+-Sensitivity
+Tracking & Navigation: –165 dBm
+Reacquisition: –158 dBm
+Cold start: –146 dBm
+Hot start: –155 dBm
+
+

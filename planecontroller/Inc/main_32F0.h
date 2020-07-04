@@ -50,10 +50,18 @@
 void Error_Handler(void);
 extern SPI_HandleTypeDef hspi1;
 extern EXTI_HandleTypeDef hexti;
+extern TIM_HandleTypeDef SERVO_TIM17;
+extern TIM_HandleTypeDef SERVO_TIM16;
+extern UART_HandleTypeDef huart;
 
 uint32_t BPM280_Read_Pressure(void);
 uint32_t BPM280_Init(void);
 uint32_t SX1976_Init(void);
+void ServoPB7Angle(int8_t angle);
+void ServoPB6Angle(int8_t angle);
+void GPS_UART_Init(void);
+void GPS_Communication_Task(void);
+void GPS_Received_Value(char* value);
 
 void Exti1RisingCb(void);
 

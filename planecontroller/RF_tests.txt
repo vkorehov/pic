@@ -5,8 +5,8 @@ My power: 760mW (attenuator -10dB), max out P +2dBm
 ALIEXPRESS power: 720..740mW  (attenuator -10dB), max out P +2dBm
 
 My RX RSSI: 
-SNR (dB) = -31dB
-Rssi (dB) = -57dB
+SNR (dB) = -31dB (after matching -28db)
+Rssi (dB) = -57dB (-41db..-42db)
 
 ALIEXPRESS RX RSSI (attenuator -10dB), max out P +2dBm:
 SNR (dB) = -28dB

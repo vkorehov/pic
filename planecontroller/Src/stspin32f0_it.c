@@ -52,7 +52,7 @@ extern TIM_HandleTypeDef ZC_TIMx;
 extern UART_HandleTypeDef huart;
 
 void MC_Zero_Crossing_Read(void);
-
+void GPS_Received_Value(void);
 /******************************************************************************/
 /*            Cortex-M0 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
@@ -99,6 +99,10 @@ void USART1_IRQHandler(void)
     UART_EndTransmit_IT(&huart);
     return;
   }  
+  
+#else
+  HAL_UART_IRQHandler(&huart);
+//          GPS_Received_Value();
 #endif
 }
 

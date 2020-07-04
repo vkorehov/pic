@@ -328,6 +328,45 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
     /* Enable the TIMx global Interrupt */
     HAL_NVIC_EnableIRQ(BSP_BOARD_ZC_TIMx_IRQn);
   }
+  if(htim->Instance==TIM17)
+  { 
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM17_CLK_ENABLE();
+    /* GPIOs Clocks Enable */
+    __HAL_RCC_GPIOB_CLK_ENABLE();    
+
+    /*Configure GPIO PB7 to be used for TIM17_CH1N */
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
+    GPIO_InitStruct.Pin = GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF2_TIM17;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    
+    /* Stop TIM during Breakpoint */
+    __HAL_DBGMCU_FREEZE_TIM17();
+  }
+  if(htim->Instance==TIM16)
+  { 
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM16_CLK_ENABLE();
+    /* GPIOs Clocks Enable */
+    __HAL_RCC_GPIOB_CLK_ENABLE();    
+
+    /*Configure GPIO PB6 to be used for TIM16_CH1N */
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+    GPIO_InitStruct.Pin = GPIO_PIN_6;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF2_TIM16;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    
+    /* Stop TIM during Breakpoint */
+    __HAL_DBGMCU_FREEZE_TIM16();
+  }
+  
 }
 
 /**
@@ -369,27 +408,25 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 {
   static DMA_HandleTypeDef hdma_tx;  
   GPIO_InitTypeDef GPIO_InitStruct;
-  if(huart->Instance==BSP_UART)
+  if(huart->Instance==USART1)
   { 
     /* DMA Clock Enable */
     BSP_DMA_CLK_ENABLE();
-    
     /* Peripheral clock enable */
     BSP_UART_CLK_ENABLE();
-    
     /* GPIO Ports Clock Enable */
     BSP_UART_GPIO_CLK_ENABLE();
 
     /* USART GPIO Configuration */
-    GPIO_InitStruct.Pin = BSP_UART_PINS;
+    GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = BSP_UART_AF;
-    HAL_GPIO_Init(BSP_UART_PORT, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* DMA TX handle configuration */    
-    hdma_tx.Instance = BSP_DMA;
+    hdma_tx.Instance = DMA1_Channel2;
     hdma_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
     hdma_tx.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_tx.Init.MemInc = DMA_MINC_ENABLE;
@@ -403,10 +440,10 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     __HAL_LINKDMA(huart, hdmatx, hdma_tx);
     
     /* System interrupt init*/
-    HAL_NVIC_SetPriority(BSP_DMA_IRQn, BSP_DMA_PRIORITY, BSP_DMA_PRIORITY_SUB);
-    HAL_NVIC_EnableIRQ(BSP_DMA_IRQn);    
-    HAL_NVIC_SetPriority(BSP_UART_IRQn, BSP_UART_PRIORITY, 0);
-    HAL_NVIC_EnableIRQ(BSP_UART_IRQn);
+    HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQn, 3, 1);
+    HAL_NVIC_EnableIRQ(DMA1_Channel2_3_IRQn);
+    HAL_NVIC_SetPriority(USART1_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(USART1_IRQn);
   }
 }
 
@@ -418,7 +455,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
 {
   static DMA_HandleTypeDef hdma_tx;
-  if(huart->Instance==BSP_UART)
+  if(huart->Instance==USART1)
   {
     /* DMA Clock Disable */
     BSP_DMA_CLK_DISABLE();
@@ -427,14 +464,14 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     BSP_UART_CLK_DISABLE();
   
     /* UART GPIO Deconfiguration */
-    HAL_GPIO_DeInit(BSP_UART_PORT, BSP_UART_PINS);
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_2|GPIO_PIN_3);
     
     /* De-Initialize the DMA Channel associated to transmission process */
-    HAL_DMA_DeInit(&hdma_tx);    
+    HAL_DMA_DeInit(&hdma_tx);
 
     /* Peripheral interrupt DeInit*/
-    HAL_NVIC_DisableIRQ(BSP_DMA_IRQn);
-    HAL_NVIC_DisableIRQ(BSP_UART_IRQn);
+    HAL_NVIC_DisableIRQ(DMA1_Channel2_3_IRQn);
+    HAL_NVIC_DisableIRQ(USART1_IRQn);
   }
 }
 

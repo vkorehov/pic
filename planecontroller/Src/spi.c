@@ -351,14 +351,14 @@ void Exti1RisingCb(void)
     if (flags & IRQ_RX_DONE) {
       SX1976_OnRX(flags & IRQ_PAYLOAD_CRC_ERROR);
     } else {
-      sprintf((char *)sx1276TxBuffer, ">> NO RX\r\n >");
-      HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                        
+      //sprintf((char *)sx1276TxBuffer, ">> NO RX\r\n >");
+      //HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                        
     }
     if (flags & IRQ_TX_DONE) {
       SX1976_OnTX();
     } else {
-      sprintf((char *)sx1276TxBuffer, ">> NO TX\r\n >");
-      HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                        
+      //sprintf((char *)sx1276TxBuffer, ">> NO TX\r\n >");
+      //HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                        
     }
     
     // Reset IRQs
@@ -386,14 +386,14 @@ void SX1976_TX_Reset(void) {
 int32_t Ferr_old = 100000; // moved by 100000 to positive side to avoid issues while calc IIR.
 uint8_t suspend_afr = 16;
 
-void ServoAngle(uint8_t angle) {
-  if (angle > 180) {
-    angle = 180;
-  }
-  // get duration in 1000uS
-  uint32_t duration = 1000 + (angle * 5555) / 1000;
-  // control PWM
-  // 20ms period
+void ServoPB7Angle(int8_t value) {
+  int32_t duration = 4800 + ((int32_t)value * 126) / 10; // 3200 .. 6400 range is (0 deg to 180) deg
+  SERVO_TIM17.Instance->CCR1 = duration;
+}
+
+void ServoPB6Angle(int8_t value) {
+  int32_t duration = 4800 + ((int32_t)value * 126) / 10; // 3200 .. 6400 range is (0 deg to 180) deg
+  SERVO_TIM16.Instance->CCR1 = duration;
 }
 
 void SX1976_OnRX(uint8_t discard) {
@@ -407,7 +407,7 @@ void SX1976_OnRX(uint8_t discard) {
   
   // Read number of bytes
   uint8_t bytesCount = read(SX1976_FIFO_RX_BYTES_NB_READ);
-  uint8_t bytesCountOrig = bytesCount;
+  //uint8_t bytesCountOrig = bytesCount;
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET); 
   outputBuffer[0] = SX1976_FIFO_READ;
   if (HAL_SPI_Transmit(&hspi1, outputBuffer, 1, 1000) != HAL_OK) {
@@ -465,12 +465,12 @@ void SX1976_OnRX(uint8_t discard) {
     SX1976_AFC(Ferr_old - 100000);
   }
 #endif
-  sprintf((char *)sx1276TxBuffer, ">>RX: %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u D? %u A: %u B: %u rssi=%d snr=%d ferr=%d press=%u\r\n >",
-          inputBuffer[0], inputBuffer[1], inputBuffer[2], inputBuffer[3]
-            , inputBuffer[4], inputBuffer[5], inputBuffer[6], inputBuffer[7]
-              , inputBuffer[8], inputBuffer[9], inputBuffer[10], inputBuffer[11]
-                , inputBuffer[12], inputBuffer[13], inputBuffer[14], inputBuffer[15], discard, currentAddr, bytesCountOrig, rssiDb, snrDb, Ferr - 100000, pressure);
-  HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                  
+  //sprintf((char *)sx1276TxBuffer, ">>RX: %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u D? %u A: %u B: %u rssi=%d snr=%d ferr=%d press=%u\r\n >",
+  //        inputBuffer[0], inputBuffer[1], inputBuffer[2], inputBuffer[3]
+  //          , inputBuffer[4], inputBuffer[5], inputBuffer[6], inputBuffer[7]
+  //            , inputBuffer[8], inputBuffer[9], inputBuffer[10], inputBuffer[11]
+  //              , inputBuffer[12], inputBuffer[13], inputBuffer[14], inputBuffer[15], discard, currentAddr, bytesCountOrig, rssiDb, snrDb, Ferr - 100000, pressure);
+  //HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                  
 }
 
 void SX1976_OnTX(void) {
@@ -489,8 +489,8 @@ void SX1976_OnTX(void) {
   }
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
         
-  sprintf((char *)sx1276TxBuffer, ">>TX started press=%u\r\n >", pressure);
-  HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                  
+  //sprintf((char *)sx1276TxBuffer, ">>TX started press=%u\r\n >", pressure);
+  //HAL_UART_Transmit(&huart, (uint8_t *)sx1276TxBuffer, (strlen((char *)sx1276TxBuffer)),5000);                  
 }
 
 void SX1976_AFC(int32_t ferr) {    
@@ -568,9 +568,7 @@ uint32_t SX1976_Init(void) {
   {
     Error_Handler();
   }
-  
-  write_and_verify(SX1976_PA_SELECT_READ, PA_SELECT_2dBm | PA_SELECT_BOOST);  
-  
+    
   // Set power level and select PA_BOOST
   write_and_verify(SX1976_PA_SELECT_READ, PA_SELECT_2dBm | PA_SELECT_BOOST);  
   // Configure OCP
