@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" --backend -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
+& "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" --backend -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
 }
 else
 {
-& "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" --debug_file=$debugfile --backend -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
+& "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" --debug_file=$debugfile --backend -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
 }

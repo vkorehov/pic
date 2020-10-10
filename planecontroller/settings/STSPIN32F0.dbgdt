@@ -776,7 +776,7 @@
                     <item>gps_coord_lat</item>
                     <item>gps_coord_long</item>
                     <item>gps_elevation_buff</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>

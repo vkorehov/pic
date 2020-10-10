@@ -38,15 +38,13 @@ void InitApp(void)
     TRISAbits.TRISA4 = 0;
     RA0 = 0;
     RA4 = 0;
-    // encoder input
+    // input from encoder
     TRISAbits.TRISA5 = 1;
-    
-    // TIMER1 used as counter
-    T1OSCEN = 0;
-    TMR1CS0 = 0;
-    TMR1CS1 = 1;
+    // TIMER1
+    TMR1CS1 = 0;    
+    TMR1CS0 = 1;
+    T1CKPS1 = 0;    
     T1CKPS0 = 0;
-    T1CKPS1 = 0;
     nT1SYNC = 1;
     TMR1GE = 0;
     TMR1L = 0;
@@ -61,7 +59,9 @@ void InitApp(void)
     TMR1ON = 1;
 
     SSPIF = 0;
+    TMR1IF = 0;
     /* Enable interrupts */
+    TMR1IE = 1;    
     SSPIE = 1;
     PEIE = 1;
     GIE  = 1;

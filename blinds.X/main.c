@@ -19,17 +19,12 @@
 unsigned int position = 0;
 unsigned int next_position = 0;
 unsigned int command_position = 0;
+
 unsigned char state = 0;
+
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
-inline void write_tmr1(unsigned int val) {
-    TMR1L = ((val)&0xff);
-    TMR1H = ((val) >> 8);
-}
-inline unsigned int read_tmr1() {
-    return ((unsigned int)TMR1H << 8) | (unsigned int)TMR1L;
-}
 
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
@@ -68,7 +63,7 @@ void main(void)
     {
         if (command_position > 0) {
             next_position = command_position;
-            write_tmr1(0);
+            write_ticks(0);
             original_position = position;
             if (next_position > position) {
                 state = STATE_CCV;
@@ -81,7 +76,7 @@ void main(void)
         }
         if (state == STATE_CCV) {
             ccv();
-            position = original_position + (read_tmr1() >> 4);
+            position = original_position + (read_ticks());
             if (next_position <= position) {
                 stop();
                 next_position = position; // TODO: take into account inertia
@@ -90,7 +85,7 @@ void main(void)
         }
         if (state == STATE_CV) {
             cv();
-            position = original_position - (read_tmr1() >> 4);
+            position = original_position - (read_ticks());
             if (next_position >= position) {
                 stop();
                 next_position = position; // TODO: take into account inertia

@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" --backend -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" --backend -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" "--debug_file=%~1" --backend -f "C:\generated\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\common\bin\cspybat" -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.general.xcl" "--debug_file=%~1" --backend -f "C:\pic\transmitter\EWARM\settings\transmitter.transmitter.driver.xcl" 
 
 @echo off 
 :end

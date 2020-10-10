@@ -63,6 +63,17 @@ void SystemClock_Config(void);
 volatile uint16_t adc_buffer[2] = {0};
 uint8_t trottle = 0;
 int32_t leftright = 0;
+uint8_t engine = 0;
+uint8_t btn1 = 0;
+uint8_t btn2 = 0;
+
+void Btn1FallingCb(void) {
+  btn1++;
+}
+
+void Btn2FallingCb(void) {
+  btn2++;  
+}
 
 /* USER CODE END 0 */
 
@@ -98,10 +109,11 @@ int main(void)
   MX_ADC_Init();
   MX_SPI1_Init();
   MX_TIM1_Init();
-  MX_USART1_UART_Init();
+  //MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_ADC_Start_DMA(&hadc, (uint32_t*)&adc_buffer, 2);
   HAL_TIM_Base_Start(&htim1);
+  SX1276_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -109,7 +121,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    HAL_Delay(500);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+    HAL_Delay(500);    
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);    
+    SX1276_Poll();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

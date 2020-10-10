@@ -66,6 +66,14 @@ void Error_Handler(void);
 }
 #endif
 
+
+uint32_t SX1276_Init(void);
+void SX1276_Poll(void);
+extern EXTI_HandleTypeDef hexti1;
+extern EXTI_HandleTypeDef hexti7;
+void Btn1FallingCb(void);
+void Btn2FallingCb(void);
+
 #endif /* __MAIN_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
